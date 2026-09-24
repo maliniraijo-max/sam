@@ -1,15 +1,17 @@
 let pdfDoc=null,currentPage=1,pages=[];
 const AI_API_URL = window.SAM_AI_API_URL || "/api/generate-lesson";
-async function enhanceLessonWithAI(rawPages){
-  const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"lesson",pages:rawPages.map((p,i)=>({page:i+1,text:p.sourceText||""}))})});
+async function analyzeOnePage(page){
+  const payload={action:"lesson-page",text:String(page.sourceText||"")};
+  if(page.imageData)payload.image=page.imageData;
+  const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
   const data=await res.json().catch(()=>({}));
   if(!res.ok)throw new Error(data.error||("AI lesson service failed ("+res.status+")"));
-  if(!Array.isArray(data.lessons))throw new Error(data.error||"AI lesson response invalid");
-  return data.lessons;
+  if(!data.lesson)throw new Error(data.error||"AI lesson response invalid");
+  return data.lesson;
 }
 async function generateAIImage(page){
   if(page.aiImage||!page.imagePrompt)return page.aiImage||null;
-  const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"image",prompt:"Create a clean child-friendly educational illustration for this school concept. Modern premium textbook style, clear composition, accurate science, soft cheerful colours, no paragraphs, no captions, no logos, no watermark, no decorative text. "+page.imagePrompt})});
+  const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"image",prompt:"Create a clean child-friendly educational illustration for this school concept. Modern premium textbook style, clear composition, accurate content, soft cheerful colours, no paragraphs, no captions, no logos, no watermark, no decorative text. "+page.imagePrompt})});
   const data=await res.json().catch(()=>({}));
   if(!res.ok)throw new Error(data.error||("AI illustration failed ("+res.status+")"));
   if(!data.image)throw new Error(data.error||"AI illustration response did not contain an image.");
@@ -17,7 +19,7 @@ async function generateAIImage(page){
 }
 async function createAIVisualForCurrentPage(){
   const p=pages[currentPage-1];if(!p||p.aiImage||!p.imagePrompt)return;
-  try{e.status.textContent="Creating AI illustration…";await generateAIImage(p);render();e.status.textContent="AI illustration ready.";}catch(err){console.warn(err);}
+  try{e.status.textContent="Creating illustration for page "+currentPage+"…";await generateAIImage(p);render();e.status.textContent="Illustration ready.";}catch(err){console.warn("AI IMAGE",err);e.status.textContent="Illustration unavailable: "+(err&&err.message?err.message:"Unknown error");}
 }
 
 const $=id=>document.getElementById(id);
@@ -208,23 +210,68 @@ function render(){
   e.counter.textContent=currentPage+" / "+pages.length;e.pageCount.textContent="Page "+currentPage+" of "+pages.length;
   e.progress.style.width=(currentPage/pages.length*100)+"%";if(s.imagePrompt&&!s.aiImage)createAIVisualForCurrentPage();
 }
+async function fileToDataUrl(file){
+  return await new Promise((resolve,reject)=>{
+    const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);
+  });
+}
+async function analyzePages(items){
+  pages=[];
+  for(let i=0;i<items.length;i++){
+    const item=items[i];
+    e.status.textContent="Understanding page "+(i+1)+" of "+items.length+"…";
+    const lesson=await analyzeOnePage(item);
+    const info=conceptInfo(item.sourceText||lesson.title||"");
+    pages.push({...item,title:lesson.title||("Lesson page "+(i+1)),info,diagram:diagramFor(info.kind),points:Array.isArray(lesson.keyIdeas)?lesson.keyIdeas:[],discovery:lesson.discovery||"",memory:lesson.memory||"",imagePrompt:lesson.imagePrompt||""});
+  }
+}
 async function readPdf(file){
   if(!window.pdfjsLib){e.status.textContent="The PDF reader is still loading. Please try again.";return;}
   try{
     e.status.textContent="Reading your PDF…";const b=await file.arrayBuffer();
-    pdfDoc=await window.pdfjsLib.getDocument(new Uint8Array(b)).promise;pages=[];
+    pdfDoc=await window.pdfjsLib.getDocument(new Uint8Array(b)).promise;const items=[];
     for(let i=1;i<=pdfDoc.numPages;i++){
       e.status.textContent="Reading page "+i+" of "+pdfDoc.numPages+"…";
       const p=await pdfDoc.getPage(i),tc=await p.getTextContent(),text=tc.items.map(x=>x.str).join(" ");
-      const s=slide(i,text);s.sourceText=text;pages.push(s);
+      let imageData=null;
+      if(text.trim().length<40){
+        const vp=p.getViewport({scale:1.5}),canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+        canvas.width=vp.width;canvas.height=vp.height;await p.render({canvasContext:ctx,viewport:vp}).promise;
+        imageData=canvas.toDataURL("image/jpeg",0.72);
+      }
+      items.push({sourceText:text,imageData});
     }
-    currentPage=1;render();e.lesson.classList.remove("hidden");
-    e.status.textContent="PDF read. Asking AI to understand each page…";try{const lessons=await enhanceLessonWithAI(pages);pages=pages.map((p,i)=>{const a=lessons[i]||{};return {...p,title:a.title||p.title,points:Array.isArray(a.keyIdeas)&&a.keyIdeas.length?a.keyIdeas:p.points,discovery:a.discovery||p.discovery,memory:a.memory||p.memory,imagePrompt:a.imagePrompt||""};});currentPage=1;render();e.status.textContent="Done — AI understood the PDF. Illustrations load as you open each page.";}catch(err){console.warn("AI LESSON",err);e.status.textContent="AI error: "+(err&&err.message?err.message:"Unknown AI error"); }
-  }catch(err){e.status.textContent="PDF error: "+(err&&err.message?err.message:"Unknown error")+". Please try again.";console.error("PDF ERROR",err);}
+    await analyzePages(items);currentPage=1;render();e.lesson.classList.remove("hidden");
+    e.status.textContent="Done — AI understood the PDF. Open each page to create its illustration.";
+  }catch(err){e.status.textContent="AI/PDF error: "+(err&&err.message?err.message:"Unknown error");console.error("PDF ERROR",err);}
 }
+async function readImages(files){
+  try{
+    const items=[];
+    for(const file of files){
+      e.status.textContent="Reading photo "+(items.length+1)+" of "+files.length+"…";
+      items.push({sourceText:"",imageData:await fileToDataUrl(file),sourceName:file.name});
+    }
+    await analyzePages(items);currentPage=1;render();e.lesson.classList.remove("hidden");
+    e.status.textContent="Done — photos understood. Open each page to create its illustration.";
+  }catch(err){e.status.textContent="AI/image error: "+(err&&err.message?err.message:"Unknown error");console.error("IMAGE ERROR",err);}
+}
+
 e.drop.addEventListener("click",()=>e.input.click());
 e.drop.addEventListener("keydown",x=>{if(x.key==="Enter"||x.key===" "){x.preventDefault();e.input.click();}});
-e.input.addEventListener("change",x=>{const f=x.target.files[0];if(!f)return;if(f.type!=="application/pdf"){e.status.textContent="Please choose a PDF file.";return}e.info.textContent="📄 "+f.name;e.info.classList.remove("hidden");e.create.classList.remove("hidden");e.create.onclick=()=>readPdf(f);});
+function chooseFiles(files){
+  const list=Array.from(files||[]);if(!list.length)return;
+  const hasPdf=list.some(f=>f.type==="application/pdf");
+  if(hasPdf&&list.length>1){e.status.textContent="Please choose one PDF, or choose multiple photos.";return;}
+  e.info.textContent=list.length===1?"📄 "+list[0].name:"🖼️ "+list.length+" photos selected";
+  e.info.classList.remove("hidden");e.create.classList.remove("hidden");
+  e.create.onclick=()=>hasPdf?readPdf(list[0]):readImages(list);
+}
+e.input.addEventListener("change",x=>chooseFiles(x.target.files));
+$("galleryBtn").onclick=()=>e.input.click();
+$("cameraBtn").onclick=()=>$("cameraInput").click();
+$("cameraInput").addEventListener("change",x=>chooseFiles(x.target.files));
+
 ["dragenter","dragover"].forEach(ev=>e.drop.addEventListener(ev,x=>{x.preventDefault();e.drop.classList.add("drag")}));
 ["dragleave","drop"].forEach(ev=>e.drop.addEventListener(ev,x=>{x.preventDefault();e.drop.classList.remove("drag")}));
 e.drop.addEventListener("drop",x=>{const f=x.dataTransfer.files[0];if(f){e.input.files=x.dataTransfer.files;e.input.dispatchEvent(new Event("change"));}});
@@ -247,10 +294,12 @@ function simSteps(t){
   return["💭 Idea","🔎 Explore","🧩 Connect","💡 Understand"];
 }
 function simulate(){
-  const text=$("simInput").value.trim();if(!text)return;const a=simSteps(text);
-  let html='<div class="sim-title">✨ '+esc(text)+'</div><div class="sim-steps">';
-  a.forEach((x,i)=>{const z=x.split(" "),emoji=z.shift();html+='<div class="sim-step" style="animation-delay:'+(i*90)+'ms"><span class="emoji">'+emoji+"</span>"+esc(z.join(" "))+"</div>";if(i<a.length-1)html+='<span class="arrow">→</span>';});
-  html+="</div>";$("simulation").innerHTML=html;$("simulation").classList.remove("hidden");
+  const input=$("simInput");const box=$("simulation");const text=input.value.trim();
+  if(!text){input.focus();box.innerHTML='<div class="sim-title">💡 Type an idea first.</div>';box.classList.remove("hidden");return;}
+  const a=simSteps(text);let html='<div class="sim-title">✨ '+esc(text)+'</div><div class="sim-steps">';
+  a.forEach((x,i)=>{const z=x.split(" "),emoji=z.shift();html+='<div class="sim-step" style="animation-delay:'+(i*120)+'ms"><span class="emoji">'+emoji+"</span>"+esc(z.join(" "))+"</div>";if(i<a.length-1)html+='<span class="arrow">→</span>';});
+  html+="</div>";box.innerHTML=html;box.classList.remove("hidden");box.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
+
 document.querySelectorAll(".examples button").forEach(b=>b.onclick=()=>{$("simInput").value=b.dataset.example;simulate()});
 $("simulateBtn").onclick=simulate;
