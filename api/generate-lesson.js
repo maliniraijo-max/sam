@@ -65,7 +65,51 @@ export default async function handler(req,res){
         if(m)parts.push({inline_data:{mime_type:m[1],data:m[2]}});
       }
       if(!parts.length)return send(res,{error:"No page text or image supplied."},400);
-      const first=await callGemini(parts,"application/json",{timeoutMs:45000,maxOutputTokens:1100});
+      let first;
+      try{
+        first=await callGemini(parts,"application/json",{timeoutMs:12000,maxOutputTokens:900});
+      }catch(aiError){
+        // Gemini free-tier quota can be exhausted even when the website itself is healthy.
+        // Do not make the uploaded-page feature unusable: create a local lesson from the
+        // page text immediately, then Pollinations can still create the illustration.
+        console.warn("LESSON AI unavailable; using local page fallback:",aiError?.message);
+        const source=String(body.text||"").replace(/\\s+/g," ").trim();
+        const sentences=source.split(/(?<=[.!?])\\s+/).map(x=>x.trim()).filter(x=>x.length>20);
+        const lower=source.toLowerCase();
+        let title=sentences[0]||"Lesson Page";
+        title=title.replace(/^(page|chapter)\\s*\\d+[:.\\-]?\\s*/i,"").slice(0,80).trim()||"Lesson Page";
+        let keyIdeas=sentences.slice(0,3).map(x=>x.length>150?x.slice(0,147)+"…":x);
+        if(/fraction|numerator|denominator/.test(lower)){
+          title="Fractions";
+          keyIdeas=[
+            "A fraction shows equal parts of a whole.",
+            "The numerator is the top number and the denominator is the bottom number.",
+            "Fractions can be compared, added, subtracted, multiplied and divided."
+          ];
+        }else if(/pollinat/.test(lower)){
+          title="Pollination";
+          keyIdeas=[
+            "Pollination is the transfer of pollen from anther to stigma.",
+            "Pollen can be carried by insects, birds, wind or other agents.",
+            "Pollination can lead to fertilisation and seed formation."
+          ];
+        }else if(/energy|kinetic|potential|heat|light|sound/.test(lower)){
+          title="Forms of Energy";
+          keyIdeas=[
+            "Energy is the ability to cause change or do work.",
+            "Energy can appear in different forms such as heat, light, sound and movement.",
+            "Energy can be transferred or changed from one form to another."
+          ];
+        }
+        while(keyIdeas.length<2)keyIdeas.push("Look at the page examples and connect them to the main idea.");
+        first={
+          title,
+          keyIdeas:keyIdeas.slice(0,3),
+          discovery:"Look at the examples and diagrams on this page. They show how the main idea works step by step.",
+          memory:"SEE IT → CONNECT IT → EXPLAIN IT",
+          imagePrompt:"Accurate child-friendly educational illustration of "+title+" based only on the supplied page content. Show the main objects, relationships, examples or process from the page without adding unrelated information."
+        };
+      }
       const complete=(x)=>x&&String(x.title||"").trim()&&Array.isArray(x.keyIdeas)&&x.keyIdeas.length>=2&&String(x.discovery||"").trim()&&String(x.memory||"").trim();
       let lesson=first;
       if(!complete(lesson)){
