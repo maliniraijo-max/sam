@@ -178,7 +178,7 @@ Rules:
       // We use the public-domain World English Bible through bible-api.com for the chapter text,
       // then summarize it into child-friendly slides. Gemini is still used first when available.
       async function getBibleChapter(request){
-        const m=String(request||"").trim().match(/^(.+?)\\s+(\\d{1,3})(?::(\\d+(?:-\\d+)?))?$/i);
+        const m=String(request||"").trim().match(/^(.+?)\\s+(?:chapter\\s*)?(\\d{1,3})(?::(\\d+(?:-\\d+)?))?$/i);
         if(!m)return null;
         const rawBook=m[1].trim().toLowerCase().replace(/^(the)\\s+/,"");
         const aliases={
