@@ -4,12 +4,25 @@ function extractObject(text){
   const a=s.indexOf("{"),b=s.lastIndexOf("}");return JSON.parse(a>=0&&b>=0?s.slice(a,b+1):s);
 }
 const prompt=`You create accessible visual lessons for an 11-year-old learner. Preserve the source meaning and do not invent facts. Return ONLY valid JSON with exactly these fields: title, keyIdeas (3 concise factual bullets), discovery (one simple conceptual sentence), memory (short memorable phrase), imagePrompt (a detailed prompt for a clear educational illustration). Use concrete calm child-friendly language. If an image is supplied, read the visible text and diagrams carefully. The imagePrompt must represent the actual page concept, not a generic decorative image. Do not ask the image generator to render lots of text.`;
-async function gemini(parts){
+async function callGemini(parts, responseMimeType="application/json"){
   const key=process.env.GEMINI_API_KEY;if(!key)throw new Error("GEMINI_API_KEY is not configured on Vercel.");
-  const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt},...parts]}],generationConfig:{responseMimeType:"application/json",temperature:0.2}})});
-  const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d?.error?.message||("Gemini request failed ("+r.status+")"));
-  return extractObject(d?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"");
+  const models=["gemini-3.5-flash-lite","gemini-3.8-flash","gemini-3.6-flash"];
+  let lastError=null;
+  for(const model of models){
+    for(let attempt=0;attempt<3;attempt++){
+      try{
+        const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{responseMimeType,temperature:0.2}})});
+        const d=await r.json().catch(()=>({}));
+        if(r.ok)return extractObject(d?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"");
+        lastError=new Error(d?.error?.message||("Gemini request failed ("+r.status+")"));
+        if(![429,500,502,503,504].includes(r.status))break;
+      }catch(e){lastError=e;}
+      await new Promise(resolve=>setTimeout(resolve,800*Math.pow(2,attempt)));
+    }
+  }
+  throw lastError||new Error("Gemini is temporarily unavailable. Please try again.");
 }
+
 export default async function handler(req,res){
   if(req.method==="OPTIONS")return send(res,{ok:true});
   if(req.method!=="POST")return send(res,{error:"Method not allowed."},405);
@@ -26,11 +39,8 @@ export default async function handler(req,res){
     }
     if(body.action==="simulate"){
       const text=String(body.text||"").trim();if(!text)return send(res,{error:"No simulation topic supplied."},400);
-      const key=process.env.GEMINI_API_KEY;if(!key)return send(res,{error:"GEMINI_API_KEY is not configured on Vercel."},500);
-      const simPrompt=`You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, equivalent fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {"steps":[{"emoji":"one emoji","label":"short action/state"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, make the steps show the mathematical transformation or relationship (for example, for 1/2 = 2/4, show one half, divide each half into 2 equal parts, count 2 of 4 parts, conclude equivalence). For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.`;
-      const rr=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts:[{text:simPrompt+"\n\nCONCEPT:\n"+text}]}],generationConfig:{responseMimeType:"application/json",temperature:0.2}})});
-      const dd=await rr.json().catch(()=>({}));if(!rr.ok)throw new Error(dd?.error?.message||("Gemini simulation failed ("+rr.status+")"));
-      const obj=extractObject(dd?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"");return send(res,obj);
+      const simPrompt="You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, equivalent fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {\"steps\":[{\"emoji\":\"one emoji\",\"label\":\"short action/state\"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, show the mathematical transformation or relationship. For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.";
+      const obj=await callGemini([{text:simPrompt+"\\n\\nCONCEPT:\\n"+text}]);return send(res,obj);
     }
 
     if(body.action==="image"){
