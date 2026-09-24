@@ -213,7 +213,10 @@ function slide(i,text){
 }
 function render(){
   const s=pages[currentPage-1];if(!s)return;
-  e.title.textContent=s.title;e.visual.innerHTML=s.aiImage?'<img class="ai-visual" src="'+s.aiImage+'" alt="'+esc(s.title)+'">':s.diagram;e.flow.textContent=s.info.visualTitle||"";
+  e.title.textContent=s.title;
+  if(s.aiImage)e.visual.innerHTML='<img class="ai-visual" src="'+s.aiImage+'" alt="'+esc(s.title)+'">';
+  else e.visual.innerHTML='<div class="ai-placeholder">🎨 Creating an illustration specifically for this page…</div>';
+  e.flow.textContent=s.info.visualTitle||"";
   e.points.innerHTML=s.points.map(p=>"<li>"+esc(p)+"</li>").join("");
   e.discovery.textContent=s.discovery;e.memory.textContent=s.memory;
   e.counter.textContent=currentPage+" / "+pages.length;e.pageCount.textContent="Page "+currentPage+" of "+pages.length;
@@ -235,14 +238,8 @@ async function analyzePages(items){
     const aiDiscovery=String(lesson.discovery||"").trim();
     const aiMemory=String(lesson.memory||"").trim();
     const aiPrompt=String(lesson.imagePrompt||"").trim();
-    const info=conceptInfo((item.sourceText||"")+" "+aiTitle+" "+aiDiscovery);
-    const fb=info.kind==="general"?chapter4Fallback(i):null;
-    const finalInfo=fb||info;
-    const fallback=fallbackContent(finalInfo.kind);
-    const points=aiPoints.length?aiPoints:(fallback?.points||keyIdeas(item.sourceText||aiTitle,finalInfo));
-    const discovery=aiDiscovery||(fallback?.discovery||discoveryFor(finalInfo));
-    const memory=aiMemory||(fallback?.memory||memoryFor(finalInfo));
-    pages.push({...item,title:aiTitle||("Lesson page "+(i+1)),info:finalInfo,diagram:diagramFor(finalInfo.kind),points,discovery,memory,imagePrompt:aiPrompt,aiLesson:true});
+    if(!aiTitle||aiPoints.length!==3||!aiDiscovery||!aiMemory||!aiPrompt) throw new Error("AI returned incomplete content for page "+(i+1));
+    pages.push({...item,title:aiTitle,info:{kind:"ai",name:aiTitle,visualTitle:aiTitle},diagram:"",points:aiPoints,discovery:aiDiscovery,memory:aiMemory,imagePrompt:aiPrompt,aiLesson:true});
   }
 }
 async function readPdf(file){
@@ -253,12 +250,9 @@ async function readPdf(file){
     for(let i=1;i<=pdfDoc.numPages;i++){
       e.status.textContent="Reading page "+i+" of "+pdfDoc.numPages+"…";
       const p=await pdfDoc.getPage(i),tc=await p.getTextContent(),text=tc.items.map(x=>x.str).join(" ");
-      let imageData=null;
-      if(text.trim().length<40){
-        const vp=p.getViewport({scale:1.5}),canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
-        canvas.width=vp.width;canvas.height=vp.height;await p.render({canvasContext:ctx,viewport:vp}).promise;
-        imageData=canvas.toDataURL("image/jpeg",0.72);
-      }
+      const vp=p.getViewport({scale:1.2}),canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+      canvas.width=vp.width;canvas.height=vp.height;await p.render({canvasContext:ctx,viewport:vp}).promise;
+      const imageData=canvas.toDataURL("image/jpeg",0.55);
       items.push({sourceText:text,imageData});
     }
     await analyzePages(items);currentPage=1;render();e.lesson.classList.remove("hidden");
