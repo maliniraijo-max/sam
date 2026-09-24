@@ -649,7 +649,7 @@ function renderLogosChapter(){
     '<div class="logos-events">'+ch.events.map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
     '<div class="logos-memory"><strong>🧠 Remember</strong><p>'+esc(ch.facts.join(" • "))+'</p></div>'+
     '<div id="logosQuizArea"></div>';
-  $("logosQuizBtn").onclick=()=>startLogosQuiz();
+  $("logosQuizBtn").onclick=()=>{window.location.href="quiz.html?book="+encodeURIComponent(logosBook)+"&chapter="+logosChapter;};
 }
 function startLogosQuiz(){
   const book=LOGOS_2026[logosBook],ch=book.chapters[logosChapter];
