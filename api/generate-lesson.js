@@ -24,6 +24,15 @@ export default async function handler(req,res){
       if(!parts.length)return send(res,{error:"No page text or image supplied."},400);
       return send(res,{lesson:await gemini(parts)});
     }
+    if(body.action==="simulate"){
+      const text=String(body.text||"").trim();if(!text)return send(res,{error:"No simulation topic supplied."},400);
+      const key=process.env.GEMINI_API_KEY;if(!key)return send(res,{error:"GEMINI_API_KEY is not configured on Vercel."},500);
+      const simPrompt=`You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, equivalent fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {"steps":[{"emoji":"one emoji","label":"short action/state"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, make the steps show the mathematical transformation or relationship (for example, for 1/2 = 2/4, show one half, divide each half into 2 equal parts, count 2 of 4 parts, conclude equivalence). For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.`;
+      const rr=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts:[{text:simPrompt+"\n\nCONCEPT:\n"+text}]}],generationConfig:{responseMimeType:"application/json",temperature:0.2}})});
+      const dd=await rr.json().catch(()=>({}));if(!rr.ok)throw new Error(dd?.error?.message||("Gemini simulation failed ("+rr.status+")"));
+      const obj=extractObject(dd?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"");return send(res,obj);
+    }
+
     if(body.action==="image"){
       const key=process.env.POLLINATIONS_API_KEY;
       if(!key)return send(res,{error:"POLLINATIONS_API_KEY is not configured on Vercel."},500);
