@@ -52,8 +52,9 @@ async function createTopicLesson(){
       currentPage=1;
       e.lesson.classList.remove("hidden");
       render();
-      status.textContent="Done — "+pages.length+" illustrated lesson slides are ready.";
+      status.textContent="Lesson content ready. Preparing all visuals…";
       e.lesson.scrollIntoView({behavior:"smooth",block:"start"});
+      bufferAllIllustrations(runId);
     }else{
       status.textContent="Done — the topic lesson was created in the background.";
     }
@@ -82,22 +83,54 @@ async function generateAIImage(page){
   })();
   return page.imagePromise;
 }
-async function prefetchNearbyIllustrations(){
-  const start=currentPage;
-  const targets=pages.slice(start,start+2).filter(p=>p&&!p.aiImage&&p.imagePrompt);
+function setNavigationBusy(busy){
+  ["firstBtn","prevBtn","nextBtn","lastBtn","readBtn"].forEach(id=>{
+    const b=$(id);if(b)b.disabled=busy;
+  });
+  document.body.classList.toggle("buffering-lesson",busy);
+}
+async function bufferAllIllustrations(runId){
+  if(!pages.length)return;
+  setNavigationBusy(true);
+  const total=pages.filter(p=>p.imagePrompt).length;
+  let completed=pages.filter(p=>p.aiImage).length;
   let next=0;
+  const queue=pages.map((p,i)=>({p,i})).filter(x=>x.p.imagePrompt&&!x.p.aiImage);
+  queue.sort((a,b)=>Math.abs(a.i-(currentPage-1))-Math.abs(b.i-(currentPage-1)));
   const worker=async()=>{
-    while(next<targets.length){
-      const p=targets[next++];
-      try{await generateAIImage(p);}catch(err){console.warn("AI IMAGE PREFETCH",err);}
+    while(true){
+      const job=queue[next++];
+      if(!job)return;
+      try{
+        await generateAIImage(job.p);
+        completed++;
+        if(runId===activeLessonRun){
+          e.status.textContent="Preparing visual lesson… "+completed+" of "+total+" illustrations ready";
+          if(job.i===currentPage-1)render();
+        }
+      }catch(err){
+        console.warn("AI IMAGE BUFFER",err);
+        completed++;
+      }
     }
   };
-  await Promise.all([worker(),worker()]);
-  if(pages[currentPage-1]&&pages[currentPage-1].aiImage)render();
+  await Promise.all([worker(),worker(),worker()]);
+  if(runId===activeLessonRun){
+    setNavigationBusy(false);
+    e.status.textContent="Visual lesson ready — all slides are buffered.";
+    render();
+  }
 }
 async function createAIVisualForCurrentPage(){
   const p=pages[currentPage-1];if(!p||p.aiImage||!p.imagePrompt)return;
-  try{e.status.textContent="Creating illustration for page "+currentPage+"…";await generateAIImage(p);render();e.status.textContent="Illustration ready.";}catch(err){console.warn("AI IMAGE",err);e.status.textContent="Illustration unavailable: "+(err&&err.message?err.message:"Unknown error");}
+  try{
+    e.status.textContent="Creating illustration for page "+currentPage+"…";
+    await generateAIImage(p);
+    render();
+  }catch(err){
+    console.warn("AI IMAGE",err);
+    e.status.textContent="Illustration unavailable: "+(err&&err.message?err.message:"Unknown error");
+  }
 }
 
 const $=id=>document.getElementById(id);
@@ -289,9 +322,7 @@ function render(){
   e.points.innerHTML=s.points.map(p=>"<li>"+esc(p)+"</li>").join("");
   e.discovery.textContent=s.discovery;e.memory.textContent=s.memory;
   e.counter.textContent=currentPage+" / "+pages.length;e.pageCount.textContent="Page "+currentPage+" of "+pages.length;
-  e.progress.style.width=(currentPage/pages.length*100)+"%";if(s.imagePrompt&&!s.aiImage)createAIVisualForCurrentPage();
-  // Generate only the visible slide. Background prefetching made mobile/desktop
-  // browsers compete for memory and network bandwidth, making the page feel frozen.
+  e.progress.style.width=(currentPage/pages.length*100)+"%";if(s.imagePrompt&&!s.aiImage&&!document.body.classList.contains("buffering-lesson"))createAIVisualForCurrentPage();
 }
 async function fileToDataUrl(file){
   // Downscale camera/gallery photos before sending them to AI. Full-resolution
@@ -348,8 +379,10 @@ async function analyzePages(items,runId){
   if(runId===activeLessonRun){
     pages=results;
     currentPage=1;
-    render();
     e.lesson.classList.remove("hidden");
+    render();
+    e.status.textContent="Lesson understood. Preparing all visuals…";
+    bufferAllIllustrations(runId);
   }
   return results;
 }
