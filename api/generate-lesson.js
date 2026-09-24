@@ -135,48 +135,7 @@ export default async function handler(req,res){
     if(body.action==="topic-lesson"){
       const topic=String(body.topic||"").trim();
       if(!topic)return send(res,{error:"Please enter a topic."},400);
-      const topicPrompt=`Create a complete illustrated school lesson for an 11-year-old learner at the requested grade level.
 
-TOPIC / REQUEST:
-${topic}
-
-Use your general educational knowledge to teach the topic accurately and age-appropriately. If the request names a grade, match that grade. If it names a curriculum or syllabus, follow that level and terminology where you know it. Do not invent quotations, page numbers, or claims of having searched a textbook. Build a coherent lesson from basics to understanding and application.
-
-Choose the number of slides yourself based on the breadth of the topic: normally 5–10 slides, but use up to 25 when the topic genuinely needs more explanation. Do not pad the lesson just to increase the slide count.
-
-Return ONLY valid JSON:
-{"title":"...","subtitle":"...","slides":[{"title":"short slide title","keyIdeas":["concise factual point","concise factual point","concise factual point"],"discovery":"one simple conceptual explanation","memory":"short memorable phrase","imagePrompt":"specific educational illustration showing the actual concept on this slide"}]}
-
-Rules:
-- Each slide must teach one clear idea.
-- Keep language simple enough for the stated grade.
-- Progress logically from introduction to explanation, examples/processes, and a short recap/application where appropriate.
-- Make the lesson visually teachable: every slide needs a meaningful imagePrompt.
-- For science, show accurate processes, labelled relationships, life cycles, cause/effect, or diagrams.
-- For mathematics, show the actual mathematical objects, steps, quantities, or visual models.
-- For language/history/geography, use meaningful scenes, timelines, maps, examples, or comparisons.
-- Do not put long paragraphs inside imagePrompt.
-- Avoid repeating the same idea across slides.
-- Never mention that you are an AI.`;
-      try{
-        const obj=await callGemini([{text:topicPrompt}],"application/json",{timeoutMs:12000,maxOutputTokens:5000});
-        if(obj&&Array.isArray(obj.slides)&&obj.slides.length>=5){
-          obj.slides=obj.slides.slice(0,25).map((s,i)=>({
-            title:String(s.title||("Lesson "+(i+1))).trim(),
-            keyIdeas:Array.isArray(s.keyIdeas)?s.keyIdeas.filter(Boolean).map(x=>String(x).trim()).slice(0,3):[],
-            discovery:String(s.discovery||"").trim(),
-            memory:String(s.memory||"").trim(),
-            imagePrompt:String(s.imagePrompt||"").trim()
-          }));
-          return send(res,{lesson:obj});
-        }
-      }catch(topicError){
-        console.warn("TOPIC AI unavailable; using local lesson fallback:",topicError?.message);
-      }
-
-      // Bible chapter requests get a real chapter-aware fallback instead of a generic lesson.
-      // We use the public-domain World English Bible through bible-api.com for the chapter text,
-      // then summarize it into child-friendly slides. Gemini is still used first when available.
       async function getBibleChapter(request){
         const m=String(request||"").trim().match(/^(.+?)\\s+(?:chapter\\s*)?(\\d{1,3})(?::(\\d+(?:-\\d+)?))?$/i);
         if(!m)return null;
@@ -259,6 +218,7 @@ Rules:
 
       // Keep the Topic Lesson feature usable even when Gemini is overloaded.
       // These lessons are deterministic, instant, and can still receive AI illustrations.
+
       const bibleChapter=await getBibleChapter(topic);
       if(bibleChapter){
         // Try Gemini with the actual chapter text first, so the lesson can be precise.
@@ -270,6 +230,50 @@ Rules:
         }catch(e){console.warn("BIBLE AI unavailable; using chapter-aware fallback:",e?.message);}
         return send(res,{lesson:bibleFallback(bibleChapter)});
       }
+
+      // Bible requests MUST be routed before generic topic AI; otherwise Gemini may answer “Ruth chapter 1” as a generic lesson.\n      const topicPrompt=`Create a complete illustrated school lesson for an 11-year-old learner at the requested grade level.
+
+TOPIC / REQUEST:
+${topic}
+
+Use your general educational knowledge to teach the topic accurately and age-appropriately. If the request names a grade, match that grade. If it names a curriculum or syllabus, follow that level and terminology where you know it. Do not invent quotations, page numbers, or claims of having searched a textbook. Build a coherent lesson from basics to understanding and application.
+
+Choose the number of slides yourself based on the breadth of the topic: normally 5–10 slides, but use up to 25 when the topic genuinely needs more explanation. Do not pad the lesson just to increase the slide count.
+
+Return ONLY valid JSON:
+{"title":"...","subtitle":"...","slides":[{"title":"short slide title","keyIdeas":["concise factual point","concise factual point","concise factual point"],"discovery":"one simple conceptual explanation","memory":"short memorable phrase","imagePrompt":"specific educational illustration showing the actual concept on this slide"}]}
+
+Rules:
+- Each slide must teach one clear idea.
+- Keep language simple enough for the stated grade.
+- Progress logically from introduction to explanation, examples/processes, and a short recap/application where appropriate.
+- Make the lesson visually teachable: every slide needs a meaningful imagePrompt.
+- For science, show accurate processes, labelled relationships, life cycles, cause/effect, or diagrams.
+- For mathematics, show the actual mathematical objects, steps, quantities, or visual models.
+- For language/history/geography, use meaningful scenes, timelines, maps, examples, or comparisons.
+- Do not put long paragraphs inside imagePrompt.
+- Avoid repeating the same idea across slides.
+- Never mention that you are an AI.`;
+      try{
+        const obj=await callGemini([{text:topicPrompt}],"application/json",{timeoutMs:12000,maxOutputTokens:5000});
+        if(obj&&Array.isArray(obj.slides)&&obj.slides.length>=5){
+          obj.slides=obj.slides.slice(0,25).map((s,i)=>({
+            title:String(s.title||("Lesson "+(i+1))).trim(),
+            keyIdeas:Array.isArray(s.keyIdeas)?s.keyIdeas.filter(Boolean).map(x=>String(x).trim()).slice(0,3):[],
+            discovery:String(s.discovery||"").trim(),
+            memory:String(s.memory||"").trim(),
+            imagePrompt:String(s.imagePrompt||"").trim()
+          }));
+          return send(res,{lesson:obj});
+        }
+      }catch(topicError){
+        console.warn("TOPIC AI unavailable; using local lesson fallback:",topicError?.message);
+      }
+
+      // Bible chapter requests get a real chapter-aware fallback instead of a generic lesson.
+      // We use the public-domain World English Bible through bible-api.com for the chapter text,
+      // then summarize it into child-friendly slides. Gemini is still used first when available.
+
 
       const t=topic.toLowerCase();
       let slides=[];
