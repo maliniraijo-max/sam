@@ -335,6 +335,12 @@ Rules:
         steps=[{emoji:"🌼",label:"Anther contains pollen"},{emoji:"🐝",label:"Pollen is carried"},{emoji:"🌸",label:"Pollen reaches stigma"},{emoji:"🌱",label:"Reproduction can continue"}];
       }else if(/earth.*sun|sun.*earth|orbit/.test(t)){
         steps=[{emoji:"☀️",label:"Sun is the centre"},{emoji:"🌍",label:"Earth moves around Sun"},{emoji:"🔄",label:"Earth follows its orbit"},{emoji:"📅",label:"One orbit makes a year"}];
+      }else if(/ruth\\s+(?:chapter\\s*)?1|bible.*ruth\\s+(?:chapter\\s*)?1/i.test(t)){
+        steps=[{emoji:"👩",label:"Naomi loses her husband and sons"},{emoji:"🏠",label:"Naomi decides to return home"},{emoji:"👭",label:"Ruth chooses to stay with Naomi"},{emoji:"🛤️",label:"They travel to Bethlehem"},{emoji:"🌾",label:"They arrive at the start of barley harvest"}];
+      }else if(/ruth\\s+(?:chapter\\s*)?\\d+/i.test(t)){
+        steps=[{emoji:"📖",label:"Read the Ruth chapter"},{emoji:"👥",label:"Meet the people"},{emoji:"🛤️",label:"Follow what happens"},{emoji:"💛",label:"Notice their choices"},{emoji:"💡",label:"Explain the main lesson"}];
+      }else if(/(?:1|2)\\s*samuel\\s+(?:chapter\\s*)?\\d+|john\\s+(?:chapter\\s*)?\\d+|galatians\\s+(?:chapter\\s*)?\\d+/i.test(t)){
+        steps=[{emoji:"📖",label:"Read the Bible chapter"},{emoji:"👥",label:"Identify the people"},{emoji:"➡️",label:"Follow the events"},{emoji:"💬",label:"Notice key words and choices"},{emoji:"💡",label:"Explain the chapter message"}];
       }else{
         steps=[{emoji:"🔎",label:"Identify the main idea"},{emoji:"🧩",label:"Break it into parts"},{emoji:"🔗",label:"Connect the steps"},{emoji:"💡",label:"Explain what happens"}];
       }
