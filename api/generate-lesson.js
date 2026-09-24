@@ -312,30 +312,93 @@ Rules:
 
     if(body.action==="simulate"){
       const text=String(body.text||"").trim();if(!text)return send(res,{error:"No simulation topic supplied."},400);
-      const t=text.toLowerCase();
+      const t=text.toLowerCase().replace(/\s+/g," ").trim();
+      const has=phrase=>t.includes(phrase);
+      let steps=null;
 
-      // Bible chapters get a deterministic story flow FIRST.
-      // Do not let Gemini replace a known Bible flow with a generic study-skills flow.
-      if(/\bruth\b\\s+(?:chapter\\s*)?1\b/i.test(t)){
-        return send(res,{steps:[
+      // Known flows are local-first. Gemini cannot replace them with generic steps.
+      if(has("ruth") && (has("ruth chapter 1") || /^ruth\s+1$/.test(t))){
+        steps=[
           {emoji:"👩",label:"Naomi loses her husband and sons"},
           {emoji:"🏠",label:"Naomi decides to return home"},
           {emoji:"👭",label:"Ruth chooses to stay with Naomi"},
           {emoji:"🛤️",label:"They travel to Bethlehem"},
           {emoji:"🌾",label:"They arrive at barley harvest"}
-        ]});
-      }
-      if(/\bruth\b\\s+(?:chapter\\s*)?\\d+\b|(?:1|2)\\s+samuel\\s+(?:chapter\\s*)?\\d+\b|\bjohn\b\\s+(?:chapter\\s*)?\\d+\b|\bgalatians\b\\s+(?:chapter\\s*)?\\d+\b/i.test(t)){
-        return send(res,{steps:[
-          {emoji:"📖",label:"Read the Bible chapter"},
+        ];
+      }else if((has("ruth") && (has("chapter")||/^ruth\s+\d+$/.test(t))) ||
+               has("1 samuel") || has("2 samuel") || has("john chapter") || has("galatians chapter")){
+        steps=[
+          {emoji:"📖",label:"Open the Bible chapter"},
           {emoji:"👥",label:"Meet the important people"},
           {emoji:"➡️",label:"Follow the events in order"},
           {emoji:"💬",label:"Notice words and choices"},
-          {emoji:"💡",label:"Explain the chapter message"}
-        ]});
+          {emoji:"💡",label:"Understand the chapter message"}
+        ];
+      }else if(/equivalent fraction|fraction|fractions/.test(t)){
+        steps=[
+          {emoji:"🍫",label:"Start with the fraction"},
+          {emoji:"✖️",label:"Multiply top and bottom"},
+          {emoji:"🔢",label:"Keep the value equal"},
+          {emoji:"✨",label:"Get an equivalent fraction"}
+        ];
+      }else if(/tree|plant|growth/.test(t)){
+        steps=[
+          {emoji:"🌰",label:"Seed is planted"},
+          {emoji:"💧",label:"Water reaches the seed"},
+          {emoji:"🌱",label:"Root and shoot emerge"},
+          {emoji:"🌿",label:"Young plant grows"},
+          {emoji:"🌳",label:"Mature tree develops"}
+        ];
+      }else if(has("water cycle")){
+        steps=[
+          {emoji:"☀️",label:"Sun heats the water"},
+          {emoji:"💨",label:"Water evaporates"},
+          {emoji:"☁️",label:"Water vapour condenses"},
+          {emoji:"🌧️",label:"Rain falls"},
+          {emoji:"🌊",label:"Water collects"}
+        ];
+      }else if(has("butterfly")){
+        steps=[
+          {emoji:"🥚",label:"Egg is laid"},
+          {emoji:"🐛",label:"Caterpillar grows"},
+          {emoji:"🟢",label:"Pupa forms"},
+          {emoji:"🦋",label:"Adult butterfly emerges"}
+        ];
+      }else if(has("pollination")){
+        steps=[
+          {emoji:"🌼",label:"Anther contains pollen"},
+          {emoji:"🐝",label:"Pollen is carried"},
+          {emoji:"🌸",label:"Pollen reaches stigma"},
+          {emoji:"🌱",label:"Reproduction can continue"}
+        ];
+      }else if(has("earth")&&has("sun")){
+        steps=[
+          {emoji:"☀️",label:"Sun provides light"},
+          {emoji:"🌍",label:"Earth receives sunlight"},
+          {emoji:"🔄",label:"Earth moves in orbit"},
+          {emoji:"🌌",label:"Earth continues around Sun"}
+        ];
+      }else if(has("food chain")){
+        steps=[
+          {emoji:"🌱",label:"Plant makes food"},
+          {emoji:"🐛",label:"Insect eats plant"},
+          {emoji:"🐸",label:"Frog eats insect"},
+          {emoji:"🐍",label:"Snake eats frog"},
+          {emoji:"🦅",label:"Eagle eats snake"}
+        ];
+      }else if(has("volcano")){
+        steps=[
+          {emoji:"🌋",label:"Magma gathers underground"},
+          {emoji:"🔥",label:"Pressure and heat increase"},
+          {emoji:"💨",label:"Volcano erupts"},
+          {emoji:"🌋",label:"Lava flows outward"}
+        ];
       }
 
-      const simPrompt="You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, equivalent fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {\"steps\":[{\"emoji\":\"one emoji\",\"label\":\"short action/state\"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, show the mathematical transformation or relationship. For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.";
+      if(steps)return send(res,{steps});
+
+      // Unknown concepts still use Gemini for flexible AI simulation.
+      const simPrompt="You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {\\"steps\\":[{\\"emoji\\":\\"one emoji\\",\\"label\\":\\"short action/state\\"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, show the mathematical transformation or relationship. For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.";
       try{
         const obj=await callGemini([{text:simPrompt+"\\n\\nCONCEPT:\\n"+text}],"application/json",{timeoutMs:8000,maxOutputTokens:700});
         if(obj?.steps?.length)return send(res,obj);
@@ -343,23 +406,12 @@ Rules:
         console.warn("SIMULATION AI unavailable; using instant fallback:",simError?.message);
       }
 
-      let steps;
-      if(/equivalent fraction|fraction|fractions/.test(t)){
-        steps=[{emoji:"🍫",label:"Start with the fraction"},{emoji:"✖️",label:"Multiply top and bottom"},{emoji:"🔢",label:"Keep the value equal"},{emoji:"✨",label:"Get an equivalent fraction"}];
-      }else if(/tree|plant|growth/.test(t)){
-        steps=[{emoji:"🌰",label:"Seed is planted"},{emoji:"💧",label:"Water reaches the seed"},{emoji:"🌱",label:"Root and shoot emerge"},{emoji:"🌿",label:"Young plant grows"},{emoji:"🌳",label:"Mature tree develops"}];
-      }else if(/water cycle/.test(t)){
-        steps=[{emoji:"☀️",label:"Sun heats the water"},{emoji:"💨",label:"Water evaporates"},{emoji:"☁️",label:"Water vapour condenses"},{emoji:"🌧️",label:"Rain falls"},{emoji:"🌊",label:"Water collects"}];
-      }else if(/butterfly/.test(t)){
-        steps=[{emoji:"🥚",label:"Egg"},{emoji:"🐛",label:"Caterpillar grows"},{emoji:"🟢",label:"Pupa forms"},{emoji:"🦋",label:"Adult butterfly emerges"}];
-      }else if(/pollination/.test(t)){
-        steps=[{emoji:"🌼",label:"Anther contains pollen"},{emoji:"🐝",label:"Pollen is carried"},{emoji:"🌸",label:"Pollen reaches stigma"},{emoji:"🌱",label:"Reproduction can continue"}];
-      }else if(/earth.*sun|sun.*earth|orbit/.test(t)){
-        steps=[{emoji:"☀️",label:"Sun is the centre"},{emoji:"🌍",label:"Earth moves around Sun"},{emoji:"🔄",label:"Earth follows its orbit"},{emoji:"📅",label:"One orbit makes a year"}];
-      }else{
-        steps=[{emoji:"🔎",label:"Identify the main idea"},{emoji:"🧩",label:"Break it into parts"},{emoji:"🔗",label:"Connect the steps"},{emoji:"💡",label:"Explain what happens"}];
-      }
-      return send(res,{steps});
+      return send(res,{steps:[
+        {emoji:"🔎",label:"Identify the main idea"},
+        {emoji:"🧩",label:"Break it into parts"},
+        {emoji:"🔗",label:"Connect the important steps"},
+        {emoji:"💡",label:"Explain what happens"}
+      ]});
     }
 
     if(body.action==="image"){
