@@ -13,23 +13,29 @@ memory: one short memorable phrase based on THIS page;
 imagePrompt: a detailed prompt for an accurate educational illustration of THIS page's actual concept. If the page contains a process, show that process; if it contains a diagram, recreate its relationships; if it contains mathematics, show the actual mathematical objects. Do not add unrelated objects. Do not ask the image generator to render paragraphs of text.
 
 The slide must be appropriate for the uploaded page even when the page belongs to a completely different subject from every other page.`;
-async function callGemini(parts, responseMimeType="application/json"){
-  const key=process.env.GEMINI_API_KEY;if(!key)throw new Error("GEMINI_API_KEY is not configured on Vercel.");
-  const models=["gemini-3.5-flash-lite","gemini-3.8-flash"];
+async function callGemini(parts,responseMimeType="application/json"){
+  const key=process.env.GEMINI_API_KEY;
+  if(!key)throw new Error("GEMINI_API_KEY is not configured on Vercel.");
   let lastError=null;
-  for(const model of models){
-    for(let attempt=0;attempt<3;attempt++){
-      try{
-        const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{responseMimeType}})});
-        const d=await r.json().catch(()=>({}));
-        if(r.ok)return extractObject(d?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"");
-        lastError=new Error(d?.error?.message||("Gemini request failed ("+r.status+")"));
-        if(![429,500,502,503,504].includes(r.status))break;
-      }catch(e){lastError=e;}
-      await new Promise(resolve=>setTimeout(resolve,800*Math.pow(2,attempt)));
-    }
+  // Keep each request bounded; do not queue six slow model calls.
+  for(let attempt=0;attempt<2;attempt++){
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),24000);
+    try{
+      const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key="+encodeURIComponent(key),{
+        method:"POST",headers:{"Content-Type":"application/json"},signal:controller.signal,
+        body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{responseMimeType,maxOutputTokens:900}})
+      });
+      const d=await r.json().catch(()=>({}));
+      if(r.ok)return extractObject(d?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"");
+      lastError=new Error(d?.error?.message||("Gemini request failed ("+r.status+")"));
+      if(![500,502,503,504].includes(r.status))break;
+    }catch(e){
+      lastError=e?.name==="AbortError"?new Error("Gemini did not respond within 24 seconds"):e;
+    }finally{clearTimeout(timeout);}
+    if(attempt===0)await new Promise(resolve=>setTimeout(resolve,900));
   }
-  throw lastError||new Error("Gemini is temporarily unavailable. Please try again.");
+  throw lastError||new Error("Gemini is temporarily unavailable.");
 }
 
 export default async function handler(req,res){
@@ -45,14 +51,15 @@ export default async function handler(req,res){
       }
       if(!parts.length)return send(res,{error:"No page text or image supplied."},400);
       const first=await callGemini(parts);
-      const complete=(x)=>x&&String(x.title||"").trim()&&Array.isArray(x.keyIdeas)&&x.keyIdeas.length>=2&&String(x.discovery||"").trim()&&String(x.memory||"").trim()&&String(x.imagePrompt||"").trim();
+      const complete=(x)=>x&&String(x.title||"").trim()&&Array.isArray(x.keyIdeas)&&x.keyIdeas.length>=2&&String(x.discovery||"").trim()&&String(x.memory||"").trim();
       let lesson=first;
       if(!complete(lesson)){
         const repair="You are repairing an AI lesson extraction. Use ONLY the supplied SOURCE PAGE. Return ONLY valid JSON with exactly these fields: title (short page-specific title), keyIdeas (exactly 3 factual points from the page), discovery (one simple explanation of the page main idea), memory (one short memory phrase), imagePrompt (specific educational illustration prompt for THIS page). Do not use any topic from outside the source page. If the page is a worksheet, base the lesson on the actual questions or concepts visible on it.\\n\\nSOURCE PAGE:\\n"+parts.map(p=>p.text||"").join("\\n")+"\\n\\nFIRST ATTEMPT:\\n"+JSON.stringify(first);
         lesson=await callGemini([{text:repair},...parts.filter(p=>p.inline_data)]);
       }
-      if(!complete(lesson))throw new Error("Gemini could read the page but returned incomplete lesson fields. Please try this page again.");
-      lesson.keyIdeas=lesson.keyIdeas.slice(0,3);
+      if(!complete(lesson))throw new Error("Gemini returned incomplete lesson fields. Please try this page again.");
+      lesson.keyIdeas=lesson.keyIdeas.filter(Boolean).slice(0,3);
+      lesson.imagePrompt=String(lesson.imagePrompt||"").trim()||("Accurate child-friendly educational illustration of "+lesson.title+": "+lesson.keyIdeas.join("; "));
       return send(res,{lesson});
     }
     if(body.action==="simulate"){
