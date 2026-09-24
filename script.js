@@ -2,16 +2,18 @@ let pdfDoc=null,currentPage=1,pages=[];
 const AI_API_URL = window.SAM_AI_API_URL || "/api/generate-lesson";
 async function enhanceLessonWithAI(rawPages){
   const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"lesson",pages:rawPages.map((p,i)=>({page:i+1,text:p.sourceText||""}))})});
-  if(!res.ok)throw new Error("AI lesson service unavailable");
-  const data=await res.json();
-  if(!Array.isArray(data.lessons))throw new Error("AI lesson response invalid");
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok)throw new Error(data.error||("AI lesson service failed ("+res.status+")"));
+  if(!Array.isArray(data.lessons))throw new Error(data.error||"AI lesson response invalid");
   return data.lessons;
 }
 async function generateAIImage(page){
   if(page.aiImage||!page.imagePrompt)return page.aiImage||null;
   const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"image",prompt:"Create a clean child-friendly educational illustration for this school concept. Modern premium textbook style, clear composition, accurate science, soft cheerful colours, no paragraphs, no captions, no logos, no watermark, no decorative text. "+page.imagePrompt})});
-  if(!res.ok)throw new Error("AI illustration failed");
-  const data=await res.json();page.aiImage=data.image;return page.aiImage;
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok)throw new Error(data.error||("AI illustration failed ("+res.status+")"));
+  if(!data.image)throw new Error(data.error||"AI illustration response did not contain an image.");
+  page.aiImage=data.image;return page.aiImage;
 }
 async function createAIVisualForCurrentPage(){
   const p=pages[currentPage-1];if(!p||p.aiImage||!p.imagePrompt)return;
@@ -217,7 +219,7 @@ async function readPdf(file){
       const s=slide(i,text);s.sourceText=text;pages.push(s);
     }
     currentPage=1;render();e.lesson.classList.remove("hidden");
-    e.status.textContent="PDF read. Asking AI to understand each page…";try{const lessons=await enhanceLessonWithAI(pages);pages=pages.map((p,i)=>{const a=lessons[i]||{};return {...p,title:a.title||p.title,points:Array.isArray(a.keyIdeas)&&a.keyIdeas.length?a.keyIdeas:p.points,discovery:a.discovery||p.discovery,memory:a.memory||p.memory,imagePrompt:a.imagePrompt||""};});currentPage=1;render();e.status.textContent="Done — AI understood the PDF. Illustrations load as you open each page.";}catch(err){console.warn("AI LESSON",err);e.status.textContent="PDF lesson ready, but AI backend is not connected."; }
+    e.status.textContent="PDF read. Asking AI to understand each page…";try{const lessons=await enhanceLessonWithAI(pages);pages=pages.map((p,i)=>{const a=lessons[i]||{};return {...p,title:a.title||p.title,points:Array.isArray(a.keyIdeas)&&a.keyIdeas.length?a.keyIdeas:p.points,discovery:a.discovery||p.discovery,memory:a.memory||p.memory,imagePrompt:a.imagePrompt||""};});currentPage=1;render();e.status.textContent="Done — AI understood the PDF. Illustrations load as you open each page.";}catch(err){console.warn("AI LESSON",err);e.status.textContent="AI error: "+(err&&err.message?err.message:"Unknown AI error"); }
   }catch(err){e.status.textContent="PDF error: "+(err&&err.message?err.message:"Unknown error")+". Please try again.";console.error("PDF ERROR",err);}
 }
 e.drop.addEventListener("click",()=>e.input.click());
