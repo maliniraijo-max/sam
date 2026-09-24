@@ -231,7 +231,8 @@ export default async function handler(req,res){
         return send(res,{lesson:bibleFallback(bibleChapter)});
       }
 
-      // Bible requests MUST be routed before generic topic AI; otherwise Gemini may answer “Ruth chapter 1” as a generic lesson.\n      const topicPrompt=`Create a complete illustrated school lesson for an 11-year-old learner at the requested grade level.
+      // Bible requests MUST be routed before generic topic AI; otherwise Gemini may answer “Ruth chapter 1” as a generic lesson.
+      const topicPrompt=`Create a complete illustrated school lesson for an 11-year-old learner at the requested grade level.
 
 TOPIC / REQUEST:
 ${topic}
