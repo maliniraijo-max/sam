@@ -1,4 +1,23 @@
 let pdfDoc=null,currentPage=1,pages=[];
+const AI_API_URL = window.SAM_AI_API_URL || "/api/generate-lesson";
+async function enhanceLessonWithAI(rawPages){
+  const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"lesson",pages:rawPages.map((p,i)=>({page:i+1,text:p.sourceText||""}))})});
+  if(!res.ok)throw new Error("AI lesson service unavailable");
+  const data=await res.json();
+  if(!Array.isArray(data.lessons))throw new Error("AI lesson response invalid");
+  return data.lessons;
+}
+async function generateAIImage(page){
+  if(page.aiImage||!page.imagePrompt)return page.aiImage||null;
+  const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"image",prompt:"Create a clean child-friendly educational illustration for this school concept. Modern premium textbook style, clear composition, accurate science, soft cheerful colours, no paragraphs, no captions, no logos, no watermark, no decorative text. "+page.imagePrompt})});
+  if(!res.ok)throw new Error("AI illustration failed");
+  const data=await res.json();page.aiImage=data.image;return page.aiImage;
+}
+async function createAIVisualForCurrentPage(){
+  const p=pages[currentPage-1];if(!p||p.aiImage||!p.imagePrompt)return;
+  try{e.status.textContent="Creating AI illustration…";await generateAIImage(p);render();e.status.textContent="AI illustration ready.";}catch(err){console.warn(err);}
+}
+
 const $=id=>document.getElementById(id);
 const e={input:$("pdfInput"),drop:$("dropzone"),info:$("fileInfo"),create:$("createLesson"),status:$("status"),lesson:$("lessonSection"),title:$("slideTitle"),visual:$("visual"),flow:$("flow"),points:$("keyPoints"),discovery:$("discoveryText"),memory:$("memoryText"),progress:$("progress"),pageCount:$("pageCount"),counter:$("counter")};
 
@@ -181,11 +200,11 @@ function slide(i,text){
 }
 function render(){
   const s=pages[currentPage-1];if(!s)return;
-  e.title.textContent=s.title;e.visual.innerHTML=s.diagram;e.flow.textContent=s.info.visualTitle;
+  e.title.textContent=s.title;e.visual.innerHTML=s.aiImage?'<img class="ai-visual" src="'+s.aiImage+'" alt="'+esc(s.title)+'">':s.diagram;e.flow.textContent=s.info.visualTitle||"";
   e.points.innerHTML=s.points.map(p=>"<li>"+esc(p)+"</li>").join("");
   e.discovery.textContent=s.discovery;e.memory.textContent=s.memory;
   e.counter.textContent=currentPage+" / "+pages.length;e.pageCount.textContent="Page "+currentPage+" of "+pages.length;
-  e.progress.style.width=(currentPage/pages.length*100)+"%";
+  e.progress.style.width=(currentPage/pages.length*100)+"%";if(s.imagePrompt&&!s.aiImage)createAIVisualForCurrentPage();
 }
 async function readPdf(file){
   if(!window.pdfjsLib){e.status.textContent="The PDF reader is still loading. Please try again.";return;}
@@ -195,10 +214,10 @@ async function readPdf(file){
     for(let i=1;i<=pdfDoc.numPages;i++){
       e.status.textContent="Reading page "+i+" of "+pdfDoc.numPages+"…";
       const p=await pdfDoc.getPage(i),tc=await p.getTextContent(),text=tc.items.map(x=>x.str).join(" ");
-      pages.push(slide(i,text));
+      const s=slide(i,text);s.sourceText=text;pages.push(s);
     }
     currentPage=1;render();e.lesson.classList.remove("hidden");
-    e.status.textContent="Done — "+pages.length+" visual slides are ready.";
+    e.status.textContent="PDF read. Asking AI to understand each page…";try{const lessons=await enhanceLessonWithAI(pages);pages=pages.map((p,i)=>{const a=lessons[i]||{};return {...p,title:a.title||p.title,points:Array.isArray(a.keyIdeas)&&a.keyIdeas.length?a.keyIdeas:p.points,discovery:a.discovery||p.discovery,memory:a.memory||p.memory,imagePrompt:a.imagePrompt||""};});currentPage=1;render();e.status.textContent="Done — AI understood the PDF. Illustrations load as you open each page.";}catch(err){console.warn("AI LESSON",err);e.status.textContent="PDF lesson ready, but AI backend is not connected."; }
   }catch(err){e.status.textContent="PDF error: "+(err&&err.message?err.message:"Unknown error")+". Please try again.";console.error("PDF ERROR",err);}
 }
 e.drop.addEventListener("click",()=>e.input.click());
