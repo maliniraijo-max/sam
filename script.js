@@ -21,6 +21,38 @@ async function analyzeOnePage(page){
   }
   throw new Error("Page AI request failed: "+(lastError?.message||"network error"));
 }
+async function createTopicLesson(){
+  const input=$("topicInput"),status=$("topicStatus"),topic=input.value.trim();
+  if(!topic){input.focus();status.textContent="Please enter a topic.";return;}
+  status.textContent="AI is building your illustrated lesson…";
+  $("topicBtn").disabled=true;
+  try{
+    const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"topic-lesson",topic})});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok)throw new Error(data.error||("Topic lesson failed ("+res.status+")"));
+    const lesson=data.lesson;
+    if(!lesson||!Array.isArray(lesson.slides)||lesson.slides.length<5)throw new Error("The AI returned an incomplete lesson.");
+    pages=lesson.slides.map((s,i)=>({
+      sourceText:"",
+      title:String(s.title||("Lesson "+(i+1))).trim(),
+      info:{kind:"topic",name:String(s.title||("Lesson "+(i+1))),visualTitle:String(s.title||"")},
+      diagram:"",
+      points:Array.isArray(s.keyIdeas)?s.keyIdeas.filter(Boolean).slice(0,3):[],
+      discovery:String(s.discovery||""),
+      memory:String(s.memory||""),
+      imagePrompt:String(s.imagePrompt||""),
+      aiLesson:true
+    }));
+    currentPage=1;
+    render();
+    e.lesson.classList.remove("hidden");
+    status.textContent="Done — "+pages.length+" illustrated lesson slides are ready.";
+    e.lesson.scrollIntoView({behavior:"smooth",block:"start"});
+  }catch(err){
+    status.textContent="Topic lesson error: "+(err&&err.message?err.message:"Unknown error");
+  }finally{$("topicBtn").disabled=false;}
+}
+
 async function generateAIImage(page){
   if(page.aiImage||!page.imagePrompt)return page.aiImage||null;
   const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"image",prompt:"Create a clean child-friendly educational illustration for this school concept. Modern premium textbook style, clear composition, accurate content, soft cheerful colours, no paragraphs, no captions, no logos, no watermark, no decorative text. "+page.imagePrompt})});
@@ -360,3 +392,4 @@ async function simulate(){
 
 document.querySelectorAll(".examples button").forEach(b=>b.onclick=()=>{$("simInput").value=b.dataset.example;simulate()});
 $("simulateBtn").onclick=simulate;
+$("topicBtn").onclick=createTopicLesson;
