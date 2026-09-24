@@ -268,9 +268,20 @@ function chooseFiles(files){
   e.create.onclick=()=>hasPdf?readPdf(list[0]):readImages(list);
 }
 e.input.addEventListener("change",x=>chooseFiles(x.target.files));
+let cameraPages=[];
 $("galleryBtn").onclick=()=>e.input.click();
 $("cameraBtn").onclick=()=>$("cameraInput").click();
-$("cameraInput").addEventListener("change",x=>chooseFiles(x.target.files));
+$("cameraInput").addEventListener("change",async x=>{
+  const file=x.target.files[0];if(!file)return;
+  try{
+    cameraPages.push({sourceText:"",imageData:await fileToDataUrl(file),sourceName:file.name});
+    e.info.textContent="📷 "+cameraPages.length+" camera photo"+(cameraPages.length===1?"":"s")+" added";
+    e.info.classList.remove("hidden");e.create.classList.remove("hidden");
+    e.status.textContent="Photo added. Take another photo or tap Create Visual Lesson.";
+    e.create.onclick=async()=>{if(!cameraPages.length)return;await analyzePages(cameraPages);currentPage=1;render();e.lesson.classList.remove("hidden");e.status.textContent="Done — camera photos understood. Open each page to create its illustration.";};
+    x.target.value="";
+  }catch(err){e.status.textContent="Camera error: "+(err&&err.message?err.message:"Unknown error");}
+});
 
 ["dragenter","dragover"].forEach(ev=>e.drop.addEventListener(ev,x=>{x.preventDefault();e.drop.classList.add("drag")}));
 ["dragleave","drop"].forEach(ev=>e.drop.addEventListener(ev,x=>{x.preventDefault();e.drop.classList.remove("drag")}));
@@ -293,12 +304,24 @@ function simSteps(t){
   if(t.includes("volcano"))return["🌋 Volcano","🔥 Heat","💨 Eruption","🌋 Lava"];
   return["💭 Idea","🔎 Explore","🧩 Connect","💡 Understand"];
 }
-function simulate(){
-  const input=$("simInput");const box=$("simulation");const text=input.value.trim();
-  if(!text){input.focus();box.innerHTML='<div class="sim-title">💡 Type an idea first.</div>';box.classList.remove("hidden");return;}
-  const a=simSteps(text);let html='<div class="sim-title">✨ '+esc(text)+'</div><div class="sim-steps">';
-  a.forEach((x,i)=>{const z=x.split(" "),emoji=z.shift();html+='<div class="sim-step" style="animation-delay:'+(i*120)+'ms"><span class="emoji">'+emoji+"</span>"+esc(z.join(" "))+"</div>";if(i<a.length-1)html+='<span class="arrow">→</span>';});
-  html+="</div>";box.innerHTML=html;box.classList.remove("hidden");box.scrollIntoView({behavior:"smooth",block:"nearest"});
+async function simulate(){
+  const input=$("simInput"),box=$("simulation"),text=input.value.trim();
+  if(!text){input.focus();box.innerHTML='<div class="sim-title">💡 Type any concept first.</div>';box.classList.remove("hidden");return;}
+  box.innerHTML='<div class="sim-title">🤖 AI is building a simulation…</div>';box.classList.remove("hidden");
+  try{
+    const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"simulate",text})});
+    const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||("Simulation failed ("+res.status+")"));
+    const steps=Array.isArray(data.steps)?data.steps:[];if(!steps.length)throw new Error("AI returned no simulation steps.");
+    let html='<div class="sim-title">✨ '+esc(text)+'</div><div class="sim-steps">';
+    steps.forEach((x,i)=>{
+      const emoji=x.emoji||"💡";const label=x.label||x.title||"Step "+(i+1);
+      html+='<div class="sim-step" style="animation-delay:'+(i*120)+'ms"><span class="emoji">'+esc(emoji)+"</span>"+esc(label)+"</div>";
+      if(i<steps.length-1)html+='<span class="arrow">→</span>';
+    });
+    html+="</div>";box.innerHTML=html;box.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }catch(err){
+    console.warn("SIMULATION",err);box.innerHTML='<div class="sim-title">⚠️ '+esc(err&&err.message?err.message:"Simulation unavailable")+'</div>';
+  }
 }
 
 document.querySelectorAll(".examples button").forEach(b=>b.onclick=()=>{$("simInput").value=b.dataset.example;simulate()});
