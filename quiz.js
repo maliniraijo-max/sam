@@ -11,7 +11,7 @@
   if(!window.LOGOS_DEEP_2026?.[book]?.chapters?.[chapter]?.facts || window.LOGOS_DEEP_2026[book].chapters[chapter].facts.length<10){
     await new Promise((resolve,reject)=>{
       const s=document.createElement("script");
-      s.src="./logos-data.js?v=20260924-6&fresh="+Date.now();
+      s.src="./logos-data.js?v=20260924-100&fresh="+Date.now();
       s.onload=resolve;
       s.onerror=reject;
       document.head.appendChild(s);
