@@ -35,7 +35,7 @@ export default async function handler(req,res){
         if(m)parts.push({inline_data:{mime_type:m[1],data:m[2]}});
       }
       if(!parts.length)return send(res,{error:"No page text or image supplied."},400);
-      return send(res,{lesson:await gemini(parts)});
+      return send(res,{lesson:await callGemini(parts)});
     }
     if(body.action==="simulate"){
       const text=String(body.text||"").trim();if(!text)return send(res,{error:"No simulation topic supplied."},400);
