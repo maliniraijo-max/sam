@@ -636,7 +636,7 @@ function renderLogosBooks(){
     const nums=document.createElement("div");nums.className="logos-chapters";
     for(let n=book.range[0];n<=book.range[1];n++){
       const b=document.createElement("button");b.className="logos-chapter-btn"+(key===logosBook&&n===logosChapter?" active":"");b.textContent=n;
-      b.onclick=()=>{logosBook=key;logosChapter=n;renderLogosBooks();renderLogosChapter();};
+      b.onclick=()=>{logosBook=key;logosChapter=n;if(window.LOGOS_DEEP_2026){Object.entries(window.LOGOS_DEEP_2026).forEach(([key,book])=>{LOGOS_2026[key]={...book,chapters:Object.fromEntries(Object.entries(book.chapters).map(([n,ch])=>[n,{...ch,events:ch.facts}]))};});} renderLogosBooks();renderLogosChapter();};
       nums.appendChild(b);
     }
     group.appendChild(nums);box.appendChild(group);
