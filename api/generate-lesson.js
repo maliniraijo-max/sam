@@ -325,6 +325,30 @@ Rules:
           {emoji:"🛤️",label:"They travel to Bethlehem"},
           {emoji:"🌾",label:"They arrive at barley harvest"}
         ];
+      }else if(has("ruth") && (has("ruth chapter 2") || /^ruth\s+2$/.test(t))){
+        steps=[
+          {emoji:"🌾",label:"Ruth gleans in Boaz's field"},
+          {emoji:"👀",label:"Boaz notices Ruth"},
+          {emoji:"🤝",label:"Boaz protects and welcomes Ruth"},
+          {emoji:"🍞",label:"Ruth eats with Boaz's workers"},
+          {emoji:"🏠",label:"Ruth tells Naomi about Boaz"}
+        ];
+      }else if(has("ruth") && (has("ruth chapter 3") || /^ruth\s+3$/.test(t))){
+        steps=[
+          {emoji:"🌙",label:"Naomi gives Ruth a plan"},
+          {emoji:"🌾",label:"Ruth goes to Boaz at night"},
+          {emoji:"🧎",label:"Ruth asks Boaz to help"},
+          {emoji:"🤝",label:"Boaz agrees to act as redeemer"},
+          {emoji:"🌅",label:"Ruth returns safely to Naomi"}
+        ];
+      }else if(has("ruth") && (has("ruth chapter 4") || /^ruth\s+4$/.test(t))){
+        steps=[
+          {emoji:"⚖️",label:"Boaz meets the nearer relative"},
+          {emoji:"🤝",label:"Boaz receives the right to redeem"},
+          {emoji:"💍",label:"Boaz marries Ruth"},
+          {emoji:"👶",label:"Ruth and Boaz have a son"},
+          {emoji:"🌳",label:"Their family joins David's line"}
+        ];
       }else if((has("ruth") && (has("chapter")||/^ruth\s+\d+$/.test(t))) ||
                has("1 samuel") || has("2 samuel") || has("john chapter") || has("galatians chapter")){
         steps=[
