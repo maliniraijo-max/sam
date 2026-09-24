@@ -23,14 +23,16 @@
   title.textContent=(info?.label||info?.name||"Bible").replace(/^\S+\s/,"")+" • Chapter "+chapter+" MCQ";
   sub.textContent="10 questions • Choose one of four answers. The correct answer appears immediately.";
 
-  if(!info||facts.length<10){
+  if(!info||facts.length!==10){
     area.innerHTML="<h2>Chapter quiz data is unavailable.</h2><p>Please return to Bible Study and try the Chapter Quiz again.</p><a class='quiz-home' href='./'>Return to Bible Study</a>";
     return;
   }
 
-  const pool=Object.values(info.chapters||{}).flatMap(x=>Array.isArray(x.facts)?x.facts:[]);
+  const otherChapterFacts=Object.entries(info.chapters||{})
+    .filter(([n])=>Number(n)!==chapter)
+    .flatMap(([,x])=>Array.isArray(x.facts)?x.facts:[]);
   const questions=facts.slice(0,10).map(answer=>{
-    const distractors=pool.filter(x=>x!==answer).sort(()=>Math.random()-.5).slice(0,3);
+    const distractors=otherChapterFacts.sort(()=>Math.random()-.5).slice(0,3);
     return {
       q:"Which statement is specifically associated with "+(info.label||info.name)+" Chapter "+chapter+"?",
       answer,
