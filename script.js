@@ -1,4 +1,5 @@
 let pdfDoc=null,currentPage=1,pages=[];
+let activeLessonRun=0;
 const AI_API_URL = window.SAM_AI_API_URL || "/api/generate-lesson";
 async function analyzeOnePage(page){
   const payload={action:"lesson-page",text:String(page.sourceText||"")};
@@ -24,6 +25,7 @@ async function analyzeOnePage(page){
 async function createTopicLesson(){
   const input=$("topicInput"),status=$("topicStatus"),topic=input.value.trim();
   if(!topic){input.focus();status.textContent="Please enter a topic.";return;}
+  const runId=++activeLessonRun;
   status.textContent="AI is building your illustrated lesson…";
   $("topicBtn").disabled=true;
   try{
@@ -32,7 +34,7 @@ async function createTopicLesson(){
     if(!res.ok)throw new Error(data.error||("Topic lesson failed ("+res.status+")"));
     const lesson=data.lesson;
     if(!lesson||!Array.isArray(lesson.slides)||lesson.slides.length<5)throw new Error("The AI returned an incomplete lesson.");
-    pages=lesson.slides.map((s,i)=>({
+    const topicPages=lesson.slides.map((s,i)=>({
       sourceText:"",
       title:String(s.title||("Lesson "+(i+1))).trim(),
       info:{kind:"topic",name:String(s.title||("Lesson "+(i+1))),visualTitle:String(s.title||"")},
@@ -43,11 +45,18 @@ async function createTopicLesson(){
       imagePrompt:String(s.imagePrompt||""),
       aiLesson:true
     }));
-    currentPage=1;
-    render();
-    e.lesson.classList.remove("hidden");
-    status.textContent="Done — "+pages.length+" illustrated lesson slides are ready.";
-    e.lesson.scrollIntoView({behavior:"smooth",block:"start"});
+    // The request continues to run independently from PDF/photo processing.
+    // Only the most recently selected lesson run takes over the slideshow.
+    if(runId===activeLessonRun){
+      pages=topicPages;
+      currentPage=1;
+      e.lesson.classList.remove("hidden");
+      render();
+      status.textContent="Done — "+pages.length+" illustrated lesson slides are ready.";
+      e.lesson.scrollIntoView({behavior:"smooth",block:"start"});
+    }else{
+      status.textContent="Done — the topic lesson was created in the background.";
+    }
   }catch(err){
     status.textContent="Topic lesson error: "+(err&&err.message?err.message:"Unknown error");
   }finally{$("topicBtn").disabled=false;}
@@ -60,6 +69,19 @@ async function generateAIImage(page){
   if(!res.ok)throw new Error(data.error||("AI illustration failed ("+res.status+")"));
   if(!data.image)throw new Error(data.error||"AI illustration response did not contain an image.");
   page.aiImage=data.image;return page.aiImage;
+}
+async function prefetchNearbyIllustrations(){
+  const start=currentPage-1;
+  const targets=pages.slice(start,start+3).filter(p=>p&&!p.aiImage&&p.imagePrompt);
+  let next=0;
+  const worker=async()=>{
+    while(next<targets.length){
+      const p=targets[next++];
+      try{await generateAIImage(p);}catch(err){console.warn("AI IMAGE PREFETCH",err);}
+    }
+  };
+  await Promise.all([worker(),worker()]);
+  if(pages[currentPage-1]&&pages[currentPage-1].aiImage)render();
 }
 async function createAIVisualForCurrentPage(){
   const p=pages[currentPage-1];if(!p||p.aiImage||!p.imagePrompt)return;
@@ -256,14 +278,14 @@ function render(){
   e.discovery.textContent=s.discovery;e.memory.textContent=s.memory;
   e.counter.textContent=currentPage+" / "+pages.length;e.pageCount.textContent="Page "+currentPage+" of "+pages.length;
   e.progress.style.width=(currentPage/pages.length*100)+"%";if(s.imagePrompt&&!s.aiImage)createAIVisualForCurrentPage();
+  prefetchNearbyIllustrations();
 }
 async function fileToDataUrl(file){
   return await new Promise((resolve,reject)=>{
     const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);
   });
 }
-async function analyzePages(items){
-  pages=new Array(items.length);
+async function analyzePages(items,runId){
   const results=new Array(items.length);
   let next=0,done=0,failed=null;
   const worker=async()=>{
@@ -272,7 +294,7 @@ async function analyzePages(items){
       const i=next++;
       if(i>=items.length)return;
       const item=items[i];
-      e.status.textContent="Understanding pages "+Math.min(done+1,items.length)+"–"+Math.min(done+2,items.length)+" of "+items.length+"…";
+      if(runId===activeLessonRun)e.status.textContent="Understanding pages… "+done+" of "+items.length+" complete";
       try{
         const lesson=await analyzeOnePage(item);
         const aiTitle=String(lesson.title||"").trim();
@@ -283,16 +305,23 @@ async function analyzePages(items){
         if(!aiTitle||aiPoints.length<2||!aiDiscovery||!aiMemory||!aiPrompt) throw new Error("AI returned incomplete content for page "+(i+1));
         results[i]={...item,title:aiTitle,info:{kind:"ai",name:aiTitle,visualTitle:aiTitle},diagram:"",points:aiPoints,discovery:aiDiscovery,memory:aiMemory,imagePrompt:aiPrompt,aiLesson:true};
         done++;
-        e.status.textContent="Understanding pages… "+done+" of "+items.length+" complete";
+        if(runId===activeLessonRun)e.status.textContent="Understanding pages… "+done+" of "+items.length+" complete";
       }catch(err){
         failed=new Error("Page "+(i+1)+": "+(err&&err.message?err.message:"AI processing failed"));
         return;
       }
     }
   };
-  await Promise.all([worker(),worker()]);
+  // Three pages/photos can be understood at the same time.
+  await Promise.all([worker(),worker(),worker()]);
   if(failed)throw failed;
-  pages=results;
+  if(runId===activeLessonRun){
+    pages=results;
+    currentPage=1;
+    render();
+    e.lesson.classList.remove("hidden");
+  }
+  return results;
 }
 async function readPdf(file){
   if(!window.pdfjsLib){e.status.textContent="The PDF reader is still loading. Please try again.";return;}
@@ -307,8 +336,8 @@ async function readPdf(file){
       const imageData=canvas.toDataURL("image/jpeg",0.48);
       items.push({sourceText:text,imageData});
     }
-    await analyzePages(items);currentPage=1;render();e.lesson.classList.remove("hidden");
-    e.status.textContent="Done — AI understood the PDF. Open each page to create its illustration.";
+    const runId=++activeLessonRun;await analyzePages(items,runId);
+    if(runId===activeLessonRun)e.status.textContent="Done — AI understood the PDF. Illustrations can continue in the background.";
   }catch(err){e.status.textContent="AI/PDF error: "+(err&&err.message?err.message:"Unknown error");console.error("PDF ERROR",err);}
 }
 async function readImages(files){
@@ -318,8 +347,8 @@ async function readImages(files){
       e.status.textContent="Reading photo "+(items.length+1)+" of "+files.length+"…";
       items.push({sourceText:"",imageData:await fileToDataUrl(file),sourceName:file.name});
     }
-    await analyzePages(items);currentPage=1;render();e.lesson.classList.remove("hidden");
-    e.status.textContent="Done — photos understood. Open each page to create its illustration.";
+    const runId=++activeLessonRun;await analyzePages(items,runId);
+    if(runId===activeLessonRun)e.status.textContent="Done — photos understood. Illustrations can continue in the background.";
   }catch(err){e.status.textContent="AI/image error: "+(err&&err.message?err.message:"Unknown error");console.error("IMAGE ERROR",err);}
 }
 
@@ -344,7 +373,7 @@ $("cameraInput").addEventListener("change",async x=>{
     e.info.textContent="📷 "+cameraPages.length+" camera photo"+(cameraPages.length===1?"":"s")+" added";
     e.info.classList.remove("hidden");e.create.classList.remove("hidden");
     e.status.textContent="Photo added. Take another photo or tap Create Visual Lesson.";
-    e.create.onclick=async()=>{if(!cameraPages.length)return;await analyzePages(cameraPages);currentPage=1;render();e.lesson.classList.remove("hidden");e.status.textContent="Done — camera photos understood. Open each page to create its illustration.";};
+    e.create.onclick=async()=>{if(!cameraPages.length)return;const runId=++activeLessonRun;await analyzePages(cameraPages,runId);if(runId===activeLessonRun)e.status.textContent="Done — camera photos understood. Illustrations can continue in the background.";};
     x.target.value="";
   }catch(err){e.status.textContent="Camera error: "+(err&&err.message?err.message:"Unknown error");}
 });
