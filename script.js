@@ -568,9 +568,7 @@ $("topicMiniNext").onclick=()=>{if(topicMiniPage<topicPages.length-1){topicMiniP
 
 let logosBook="ruth",logosChapter=1;
 
-function logosDeepData(){
-  return window.LOGOS_DEEP_2026||null;
-}
+function logosDeepData(){ return window.LOGOS_DEEP_2026||null; }
 
 function validateLogosData(){
   const data=logosDeepData();
@@ -591,15 +589,11 @@ function validateLogosData(){
 function renderLogosBooks(){
   const box=$("logosBooks");if(!box)return;
   const data=logosDeepData();
-  if(!data){
-    box.innerHTML='<p class="logos-empty">Logos study data could not be loaded.</p>';
-    return;
-  }
+  if(!data){box.innerHTML='<p class="logos-empty">Logos study data could not be loaded.</p>';return;}
   box.innerHTML="";
   Object.entries(data).forEach(([key,book])=>{
     const group=document.createElement("div");group.className="logos-book";
-    const title=document.createElement("button");
-    title.className="logos-book-title";
+    const title=document.createElement("button");title.className="logos-book-title";
     title.innerHTML=esc(book.label)+" <span>"+book.range[0]+"–"+book.range[1]+"</span>";
     title.onclick=()=>{logosBook=key;renderLogosBooks();renderLogosChapter();};
     group.appendChild(title);
@@ -607,24 +601,19 @@ function renderLogosBooks(){
     for(let n=book.range[0];n<=book.range[1];n++){
       const b=document.createElement("button");
       b.className="logos-chapter-btn"+(key===logosBook&&n===logosChapter?" active":"");
-      b.textContent=n;
-      b.title=book.label+" Chapter "+n;
+      b.textContent=n;b.title=book.label+" Chapter "+n;
       b.onclick=()=>{logosBook=key;logosChapter=n;renderLogosBooks();renderLogosChapter();};
       nums.appendChild(b);
     }
-    group.appendChild(nums);
-    box.appendChild(group);
+    group.appendChild(nums);box.appendChild(group);
   });
 }
 
 function renderLogosChapter(){
   const box=$("logosChapterView");if(!box)return;
-  const data=logosDeepData();
-  const book=data?.[logosBook];
-  const ch=book?.chapters?.[logosChapter];
+  const data=logosDeepData(),book=data?.[logosBook],ch=book?.chapters?.[logosChapter];
   if(!book||!ch||!Array.isArray(ch.facts)||ch.facts.length!==10){
-    box.innerHTML='<p class="logos-empty">This chapter does not have the required 10 study points.</p>';
-    return;
+    box.innerHTML='<p class="logos-empty">This chapter does not have the required 10 study points.</p>';return;
   }
   box.innerHTML='<div class="logos-chapter-head"><div><span>'+esc(book.label)+'</span><h3>Chapter '+logosChapter+': '+esc(ch.title)+'</h3><small class="logos-point-count">10 Study Points</small></div><button id="logosQuizBtn" class="logos-quiz-btn">📝 Chapter Quiz</button></div>'+
     '<div class="logos-events">'+ch.facts.map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
@@ -635,82 +624,13 @@ function renderLogosChapter(){
 (function bootLogosStudy(){
   const finish=()=>{
     const check=validateLogosData();
-    renderLogosBooks();
-    renderLogosChapter();
+    renderLogosBooks();renderLogosChapter();
     if(!check.ok)console.error("LOGOS DATA VALIDATION FAILED",check);
   };
   if(window.LOGOS_DEEP_2026)finish();
   else{
     const s=document.createElement("script");
-    s.src="./logos-data.js?v=20260924-101&fresh="+Date.now();
-    s.onload=finish;
-    s.onerror=finish;
-    document.head.appendChild(s);
+    s.src="./logos-data.js?v=20260924-103&fresh="+Date.now();
+    s.onload=finish;s.onerror=finish;document.head.appendChild(s);
   }
-})();(function bootLogosStudy(){
-  const finish=()=>{
-    if(window.LOGOS_DEEP_2026){
-      Object.entries(window.LOGOS_DEEP_2026).forEach(([key,book])=>{
-        LOGOS_2026[key]={
-          ...book,
-          chapters:Object.fromEntries(
-            Object.entries(book.chapters).map(([n,ch])=>[n,{...ch,events:ch.facts}])
-          )
-        };
-      });
-    }
-    renderLogosBooks();
-    renderLogosChapter();
-  };
-  if(window.LOGOS_DEEP_2026){
-    finish();
-  }else{
-    const s=document.createElement("script");
-    s.src="./logos-data.js?v=20260924-100&fresh="+Date.now();
-    s.onload=finish;
-    s.onerror=finish;
-    document.head.appendChild(s);
-  }
-})();};
-      nums.appendChild(b);
-    }
-    group.appendChild(nums);box.appendChild(group);
-  });
-}
-function renderLogosChapter(){
-  const box=$("logosChapterView");if(!box)return;
-  const deepBook=window.LOGOS_DEEP_2026?.[logosBook];
-  const book=deepBook||LOGOS_2026[logosBook],ch=book?.chapters?.[logosChapter];if(!ch)return;
-  const studyPoints=Array.isArray(ch.facts)?ch.facts:(Array.isArray(ch.events)?ch.events:[]);
-  box.innerHTML='<div class="logos-chapter-head"><div><span>'+book.label+'</span><h3>Chapter '+logosChapter+': '+esc(ch.title)+'</h3><small class="logos-point-count">'+studyPoints.length+' Study Points</small></div><button id="logosQuizBtn" class="logos-quiz-btn">📝 Chapter Quiz</button></div>'+
-    '<div class="logos-events">'+studyPoints.map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
-    '<div class="logos-memory"><strong>🧠 Remember</strong><p>Read the 10 points above, then take the chapter quiz.</p></div>'+
-    '<div id="logosQuizArea"></div>';
-  $("logosQuizBtn").onclick=()=>{window.location.href="quiz.html?book="+encodeURIComponent(logosBook)+"&chapter="+logosChapter;};
-}
-function startLogosQuiz(){
-  const book=LOGOS_2026[logosBook],ch=book.chapters[logosChapter];
-  const all=Object.values(book.chapters).filter(x=>x!==ch).flatMap(x=>x.facts);
-  const questions=ch.facts.map((fact,i)=>{
-    const pool=[fact,...all.filter(x=>x!==fact).sort(()=>0.5-Math.random()).slice(0,3)].sort(()=>0.5-Math.random());
-    return {question:"Which statement is specifically associated with "+book.label+" Chapter "+logosChapter+"?",answer:fact,options:pool};
-  });
-  logosQuiz={questions,index:0,score:0};
-  renderLogosQuiz();
-}
-function renderLogosQuiz(){
-  const area=$("logosQuizArea");if(!area||!logosQuiz)return;
-  if(logosQuiz.index>=logosQuiz.questions.length){
-    area.innerHTML='<div class="logos-result"><strong>🎉 Chapter complete!</strong><div>'+logosQuiz.score+' / '+logosQuiz.questions.length+' correct</div><button id="logosAgain" class="small-btn">Try Again</button></div>';
-    $("logosAgain").onclick=startLogosQuiz;return;
-  }
-  const q=logosQuiz.questions[logosQuiz.index];
-  area.innerHTML='<div class="logos-quiz-card"><div class="logos-qcount">Question '+(logosQuiz.index+1)+' of '+logosQuiz.questions.length+'</div><h4>'+esc(q.question)+'</h4><div class="logos-options">'+q.options.map((o,i)=>'<button data-i="'+i+'">'+esc(o)+'</button>').join("")+'</div></div>';
-  area.querySelectorAll("button[data-i]").forEach(btn=>btn.onclick=()=>{
-    const chosen=q.options[Number(btn.dataset.i)];
-    area.querySelectorAll("button[data-i]").forEach(x=>x.disabled=true);
-    if(chosen===q.answer){btn.classList.add("correct");logosQuiz.score++}else{btn.classList.add("wrong");area.querySelectorAll("button[data-i]").forEach(x=>{if(x.textContent===q.answer)x.classList.add("correct")});}
-    setTimeout(()=>{logosQuiz.index++;renderLogosQuiz()},650);
-  });
-}
-renderLogosBooks();renderLogosChapter();
+})();
