@@ -7,7 +7,7 @@ async function analyzeOnePage(page){
   let lastError=null;
   for(let attempt=0;attempt<2;attempt++){
     const controller=new AbortController();
-    const timeout=setTimeout(()=>controller.abort(),100000);
+    const timeout=setTimeout(()=>controller.abort(),90000);
     try{
       const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),signal:controller.signal});
       const data=await res.json().catch(()=>({}));
@@ -15,7 +15,7 @@ async function analyzeOnePage(page){
       if(!data.lesson)throw new Error(data.error||"AI lesson response invalid");
       return data.lesson;
     }catch(err){
-      lastError=err&&err.name==="AbortError"?new Error("AI request timed out after 100 seconds"):err;
+      lastError=err&&err.name==="AbortError"?new Error("AI request timed out after 90 seconds"):err;
       if(attempt===0&&err?.name!=="AbortError"&&!/quota|429|rate limit/i.test(lastError?.message||""))await new Promise(r=>setTimeout(r,1200));
       else break;
     }finally{clearTimeout(timeout);}
@@ -63,12 +63,24 @@ async function createTopicLesson(){
 }
 
 async function generateAIImage(page){
-  if(page.aiImage||!page.imagePrompt)return page.aiImage||null;
-  const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"image",prompt:"Create a clean child-friendly educational illustration for this school concept. Modern premium textbook style, clear composition, accurate content, soft cheerful colours, no paragraphs, no captions, no logos, no watermark, no decorative text. "+page.imagePrompt})});
+  if(page.aiImage)return page.aiImage;
+  if(!page.imagePrompt)return null;
+  if(page.imagePromise)return page.imagePromise;
+  page.imagePromise=(async()=>{
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),45000);
+    try{
+      const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"image",prompt:"Create a clean child-friendly educational illustration for this school concept. Modern premium textbook style, clear composition, accurate content, soft cheerful colours, no paragraphs, no captions, no logos, no watermark, no decorative text. "+page.imagePrompt}),signal:controller.signal});
   const data=await res.json().catch(()=>({}));
-  if(!res.ok)throw new Error(data.error||("AI illustration failed ("+res.status+")"));
-  if(!data.image)throw new Error(data.error||"AI illustration response did not contain an image.");
-  page.aiImage=data.image;return page.aiImage;
+      if(!res.ok)throw new Error(data.error||("AI illustration failed ("+res.status+")"));
+      if(!data.image)throw new Error(data.error||"AI illustration response did not contain an image.");
+      page.aiImage=data.image;return page.aiImage;
+    }catch(err){
+      if(err?.name==="AbortError")throw new Error("Illustration timed out after 45 seconds");
+      throw err;
+    }finally{clearTimeout(timeout);page.imagePromise=null;}
+  })();
+  return page.imagePromise;
 }
 async function prefetchNearbyIllustrations(){
   const start=currentPage;
@@ -278,11 +290,27 @@ function render(){
   e.discovery.textContent=s.discovery;e.memory.textContent=s.memory;
   e.counter.textContent=currentPage+" / "+pages.length;e.pageCount.textContent="Page "+currentPage+" of "+pages.length;
   e.progress.style.width=(currentPage/pages.length*100)+"%";if(s.imagePrompt&&!s.aiImage)createAIVisualForCurrentPage();
-  prefetchNearbyIllustrations();
+  // Prefetch only after the current slide is visible; never let prefetch block navigation.
+  setTimeout(()=>prefetchNearbyIllustrations(),50);
 }
 async function fileToDataUrl(file){
-  return await new Promise((resolve,reject)=>{
-    const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);
+  // Downscale camera/gallery photos before sending them to AI. Full-resolution
+  // phone photos can be several MB each and can lock up the browser/UI.
+  const raw=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});
+  return resizeImageDataUrl(raw,1200,0.62);
+}
+async function resizeImageDataUrl(dataUrl,maxSide=1200,quality=0.62){
+  return await new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{
+      const scale=Math.min(1,maxSide/Math.max(img.naturalWidth,img.naturalHeight));
+      const canvas=document.createElement("canvas");
+      canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));
+      canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));
+      const ctx=canvas.getContext("2d");ctx.drawImage(img,0,0,canvas.width,canvas.height);
+      resolve(canvas.toDataURL("image/jpeg",quality));
+    };
+    img.onerror=()=>resolve(dataUrl);img.src=dataUrl;
   });
 }
 async function analyzePages(items,runId){
@@ -303,7 +331,9 @@ async function analyzePages(items,runId){
         const aiMemory=String(lesson.memory||"").trim();
         const aiPrompt=String(lesson.imagePrompt||"").trim();
         if(!aiTitle||aiPoints.length<2||!aiDiscovery||!aiMemory||!aiPrompt) throw new Error("AI returned incomplete content for page "+(i+1));
-        results[i]={...item,title:aiTitle,info:{kind:"ai",name:aiTitle,visualTitle:aiTitle},diagram:"",points:aiPoints,discovery:aiDiscovery,memory:aiMemory,imagePrompt:aiPrompt,aiLesson:true};
+        // Do NOT retain the uploaded PDF/photo base64 in the slideshow. Keeping dozens of
+        // full-page images in memory was making the page look frozen and unresponsive.
+        results[i]={title:aiTitle,info:{kind:"ai",name:aiTitle,visualTitle:aiTitle},diagram:"",points:aiPoints,discovery:aiDiscovery,memory:aiMemory,imagePrompt:aiPrompt,aiLesson:true};
         done++;
         if(runId===activeLessonRun)e.status.textContent="Understanding pages… "+done+" of "+items.length+" complete";
       }catch(err){
@@ -331,9 +361,11 @@ async function readPdf(file){
     for(let i=1;i<=pdfDoc.numPages;i++){
       e.status.textContent="Reading page "+i+" of "+pdfDoc.numPages+"…";
       const p=await pdfDoc.getPage(i),tc=await p.getTextContent(),text=tc.items.map(x=>x.str).join(" ");
-      const vp=p.getViewport({scale:1.0}),canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+      const base=p.getViewport({scale:1.0});
+      const scale=Math.min(1,900/Math.max(base.width,base.height));
+      const vp=p.getViewport({scale}),canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
       canvas.width=vp.width;canvas.height=vp.height;await p.render({canvasContext:ctx,viewport:vp}).promise;
-      const imageData=canvas.toDataURL("image/jpeg",0.48);
+      const imageData=canvas.toDataURL("image/jpeg",0.38);
       items.push({sourceText:text,imageData});
     }
     const runId=++activeLessonRun;await analyzePages(items,runId);
