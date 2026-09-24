@@ -1,5 +1,6 @@
 let pdfDoc=null,currentPage=1,pages=[];
 let activeLessonRun=0;
+let topicPages=[],topicMiniPage=0;
 const AI_API_URL = window.SAM_AI_API_URL || "/api/generate-lesson";
 async function analyzeOnePage(page){
   const payload={action:"lesson-page",text:String(page.sourceText||"")};
@@ -22,11 +23,32 @@ async function analyzeOnePage(page){
   }
   throw new Error("Page AI request failed: "+(lastError?.message||"network error"));
 }
+function renderTopicMini(){
+  const box=$("topicMini");if(!box||!topicPages.length)return;
+  const p=topicPages[topicMiniPage];
+  $("topicMiniCount").textContent=(topicMiniPage+1)+" / "+topicPages.length;
+  $("topicMiniTitle").textContent=p.title;
+  $("topicMiniPoints").innerHTML=p.points.map(x=>"<li>"+esc(x)+"</li>").join("");
+  $("topicMiniDiscovery").textContent=p.discovery;
+  $("topicMiniMemory").textContent=p.memory;
+  const v=$("topicMiniVisual");
+  if(p.aiImage)v.innerHTML='<img class="topic-mini-img" src="'+p.aiImage+'" alt="'+esc(p.title)+'">';
+  else v.innerHTML='<span>🎨</span><small>Illustration loading…</small>';
+  box.classList.remove("hidden");
+}
+async function bufferTopicIllustrations(runId){
+  const queue=topicPages.map((p,i)=>({p,i})).filter(x=>x.p.imagePrompt&&!x.p.aiImage);
+  let next=0;
+  const worker=async()=>{
+    while(true){const job=queue[next++];if(!job)return;try{await generateAIImage(job.p);if(runId===activeLessonRun&&job.i===topicMiniPage)renderTopicMini();}catch(err){console.warn("TOPIC IMAGE",err);}}
+  };
+  await Promise.all([worker(),worker()]);
+}
 async function createTopicLesson(){
   const input=$("topicInput"),status=$("topicStatus"),topic=input.value.trim();
   if(!topic){input.focus();status.textContent="Please enter a topic.";return;}
   const runId=++activeLessonRun;
-  status.textContent="AI is building your illustrated lesson…";
+  status.textContent="Creating quick topic lesson…";
   $("topicBtn").disabled=true;
   try{
     const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"topic-lesson",topic})});
@@ -34,35 +56,13 @@ async function createTopicLesson(){
     if(!res.ok)throw new Error(data.error||("Topic lesson failed ("+res.status+")"));
     const lesson=data.lesson;
     if(!lesson||!Array.isArray(lesson.slides)||lesson.slides.length<5)throw new Error("The AI returned an incomplete lesson.");
-    const topicPages=lesson.slides.map((s,i)=>({
-      sourceText:"",
-      title:String(s.title||("Lesson "+(i+1))).trim(),
-      info:{kind:"topic",name:String(s.title||("Lesson "+(i+1))),visualTitle:String(s.title||"")},
-      diagram:"",
-      points:Array.isArray(s.keyIdeas)?s.keyIdeas.filter(Boolean).slice(0,3):[],
-      discovery:String(s.discovery||""),
-      memory:String(s.memory||""),
-      imagePrompt:String(s.imagePrompt||""),
-      aiLesson:true
-    }));
-    // The request continues to run independently from PDF/photo processing.
-    // Only the most recently selected lesson run takes over the slideshow.
-    if(runId===activeLessonRun){
-      pages=topicPages;
-      currentPage=1;
-      e.lesson.classList.remove("hidden");
-      render();
-      status.textContent="Lesson content ready. Preparing all visuals…";
-      e.lesson.scrollIntoView({behavior:"smooth",block:"start"});
-      bufferAllIllustrations(runId);
-    }else{
-      status.textContent="Done — the topic lesson was created in the background.";
-    }
-  }catch(err){
-    status.textContent="Topic lesson error: "+(err&&err.message?err.message:"Unknown error");
-  }finally{$("topicBtn").disabled=false;}
+    topicPages=lesson.slides.map((s,i)=>({title:String(s.title||("Lesson "+(i+1))).trim(),points:Array.isArray(s.keyIdeas)?s.keyIdeas.filter(Boolean).slice(0,3):[],discovery:String(s.discovery||""),memory:String(s.memory||""),imagePrompt:String(s.imagePrompt||""),aiImage:null}));
+    topicMiniPage=0;renderTopicMini();
+    status.textContent="Ready — "+topicPages.length+" quick topic cards.";
+    if(runId===activeLessonRun)bufferTopicIllustrations(runId);
+  }catch(err){status.textContent="Topic lesson error: "+(err&&err.message?err.message:"Unknown error");}
+  finally{$("topicBtn").disabled=false;}
 }
-
 async function generateAIImage(page){
   if(page.aiImage)return page.aiImage;
   if(!page.imagePrompt)return null;
@@ -487,3 +487,5 @@ async function simulate(){
 document.querySelectorAll(".examples button").forEach(b=>b.onclick=()=>{$("simInput").value=b.dataset.example;simulate()});
 $("simulateBtn").onclick=simulate;
 $("topicBtn").onclick=createTopicLesson;
+$("topicMiniPrev").onclick=()=>{if(topicMiniPage>0){topicMiniPage--;renderTopicMini();}};
+$("topicMiniNext").onclick=()=>{if(topicMiniPage<topicPages.length-1){topicMiniPage++;renderTopicMini();}};
