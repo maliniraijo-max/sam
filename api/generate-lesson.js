@@ -3,7 +3,16 @@ function extractObject(text){
   const s=String(text||"").replace(/^\s*```json\s*/i,"").replace(/\s*```\s*$/i,"").trim();
   const a=s.indexOf("{"),b=s.lastIndexOf("}");return JSON.parse(a>=0&&b>=0?s.slice(a,b+1):s);
 }
-const prompt=`You create accessible visual lessons for an 11-year-old learner. Preserve the source meaning and do not invent facts. Return ONLY valid JSON with exactly these fields: title, keyIdeas (3 concise factual bullets), discovery (one simple conceptual sentence), memory (short memorable phrase), imagePrompt (a detailed prompt for a clear educational illustration). Use concrete calm child-friendly language. If an image is supplied, read the visible text and diagrams carefully. The imagePrompt must represent the actual page concept, not a generic decorative image. Do not ask the image generator to render lots of text.`;
+const prompt=`You create one visual learning slide from ONE uploaded school-book page for an 11-year-old learner. The uploaded page is the ONLY authoritative source. IGNORE any previous topic, chapter, page, template, or hardcoded example. Never assume the page is about flowering plants, science, mathematics, or any other topic unless the uploaded page actually shows or states that. Carefully read ALL visible source text and inspect diagrams, tables, labels, examples, and pictures in the supplied page image. Preserve the source meaning and facts; do not invent facts or substitute generic teaching content.
+
+Return ONLY valid JSON with exactly these fields:
+title: a short title that matches THIS page;
+keyIdeas: exactly 3 concise factual points drawn from THIS page;
+discovery: one simple conceptual explanation of the main idea on THIS page;
+memory: one short memorable phrase based on THIS page;
+imagePrompt: a detailed prompt for an accurate educational illustration of THIS page's actual concept. If the page contains a process, show that process; if it contains a diagram, recreate its relationships; if it contains mathematics, show the actual mathematical objects. Do not add unrelated objects. Do not ask the image generator to render paragraphs of text.
+
+The slide must be appropriate for the uploaded page even when the page belongs to a completely different subject from every other page.`;
 async function callGemini(parts, responseMimeType="application/json"){
   const key=process.env.GEMINI_API_KEY;if(!key)throw new Error("GEMINI_API_KEY is not configured on Vercel.");
   const models=["gemini-3.5-flash-lite","gemini-3.8-flash","gemini-3.6-flash"];
