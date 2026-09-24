@@ -1,0 +1,7 @@
+{
+  "name":"sam-visual-learning-studio",
+  "private":true,
+  "type":"module",
+  "engines":{"node":"24.x"},
+  "dependencies":{"openai":"^5.0.0"}
+}
