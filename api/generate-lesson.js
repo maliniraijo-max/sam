@@ -312,6 +312,29 @@ Rules:
 
     if(body.action==="simulate"){
       const text=String(body.text||"").trim();if(!text)return send(res,{error:"No simulation topic supplied."},400);
+      const t=text.toLowerCase();
+
+      // Bible chapters get a deterministic story flow FIRST.
+      // Do not let Gemini replace a known Bible flow with a generic study-skills flow.
+      if(/\\bruth\\b\\s+(?:chapter\\s*)?1\\b/i.test(t)){
+        return send(res,{steps:[
+          {emoji:"👩",label:"Naomi loses her husband and sons"},
+          {emoji:"🏠",label:"Naomi decides to return home"},
+          {emoji:"👭",label:"Ruth chooses to stay with Naomi"},
+          {emoji:"🛤️",label:"They travel to Bethlehem"},
+          {emoji:"🌾",label:"They arrive at barley harvest"}
+        ]});
+      }
+      if(/\\bruth\\b\\s+(?:chapter\\s*)?\\d+\\b|(?:1|2)\\s+samuel\\s+(?:chapter\\s*)?\\d+\\b|\\bjohn\\b\\s+(?:chapter\\s*)?\\d+\\b|\\bgalatians\\b\\s+(?:chapter\\s*)?\\d+\\b/i.test(t)){
+        return send(res,{steps:[
+          {emoji:"📖",label:"Read the Bible chapter"},
+          {emoji:"👥",label:"Meet the important people"},
+          {emoji:"➡️",label:"Follow the events in order"},
+          {emoji:"💬",label:"Notice words and choices"},
+          {emoji:"💡",label:"Explain the chapter message"}
+        ]});
+      }
+
       const simPrompt="You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, equivalent fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {\"steps\":[{\"emoji\":\"one emoji\",\"label\":\"short action/state\"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, show the mathematical transformation or relationship. For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.";
       try{
         const obj=await callGemini([{text:simPrompt+"\\n\\nCONCEPT:\\n"+text}],"application/json",{timeoutMs:8000,maxOutputTokens:700});
@@ -319,9 +342,7 @@ Rules:
       }catch(simError){
         console.warn("SIMULATION AI unavailable; using instant fallback:",simError?.message);
       }
-      // Never leave Search & Find broken when Gemini is busy. Give an immediate
-      // useful visual sequence while keeping the AI path available when it recovers.
-      const t=text.toLowerCase();
+
       let steps;
       if(/equivalent fraction|fraction|fractions/.test(t)){
         steps=[{emoji:"🍫",label:"Start with the fraction"},{emoji:"✖️",label:"Multiply top and bottom"},{emoji:"🔢",label:"Keep the value equal"},{emoji:"✨",label:"Get an equivalent fraction"}];
@@ -335,12 +356,6 @@ Rules:
         steps=[{emoji:"🌼",label:"Anther contains pollen"},{emoji:"🐝",label:"Pollen is carried"},{emoji:"🌸",label:"Pollen reaches stigma"},{emoji:"🌱",label:"Reproduction can continue"}];
       }else if(/earth.*sun|sun.*earth|orbit/.test(t)){
         steps=[{emoji:"☀️",label:"Sun is the centre"},{emoji:"🌍",label:"Earth moves around Sun"},{emoji:"🔄",label:"Earth follows its orbit"},{emoji:"📅",label:"One orbit makes a year"}];
-      }else if(/ruth\\s+(?:chapter\\s*)?1|bible.*ruth\\s+(?:chapter\\s*)?1/i.test(t)){
-        steps=[{emoji:"👩",label:"Naomi loses her husband and sons"},{emoji:"🏠",label:"Naomi decides to return home"},{emoji:"👭",label:"Ruth chooses to stay with Naomi"},{emoji:"🛤️",label:"They travel to Bethlehem"},{emoji:"🌾",label:"They arrive at the start of barley harvest"}];
-      }else if(/ruth\\s+(?:chapter\\s*)?\\d+/i.test(t)){
-        steps=[{emoji:"📖",label:"Read the Ruth chapter"},{emoji:"👥",label:"Meet the people"},{emoji:"🛤️",label:"Follow what happens"},{emoji:"💛",label:"Notice their choices"},{emoji:"💡",label:"Explain the main lesson"}];
-      }else if(/(?:1|2)\\s*samuel\\s+(?:chapter\\s*)?\\d+|john\\s+(?:chapter\\s*)?\\d+|galatians\\s+(?:chapter\\s*)?\\d+/i.test(t)){
-        steps=[{emoji:"📖",label:"Read the Bible chapter"},{emoji:"👥",label:"Identify the people"},{emoji:"➡️",label:"Follow the events"},{emoji:"💬",label:"Notice key words and choices"},{emoji:"💡",label:"Explain the chapter message"}];
       }else{
         steps=[{emoji:"🔎",label:"Identify the main idea"},{emoji:"🧩",label:"Break it into parts"},{emoji:"🔗",label:"Connect the steps"},{emoji:"💡",label:"Explain what happens"}];
       }
