@@ -3,11 +3,20 @@ const AI_API_URL = window.SAM_AI_API_URL || "/api/generate-lesson";
 async function analyzeOnePage(page){
   const payload={action:"lesson-page",text:String(page.sourceText||"")};
   if(page.imageData)payload.image=page.imageData;
-  const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-  const data=await res.json().catch(()=>({}));
-  if(!res.ok)throw new Error(data.error||("AI lesson service failed ("+res.status+")"));
-  if(!data.lesson)throw new Error(data.error||"AI lesson response invalid");
-  return data.lesson;
+  let lastError=null;
+  for(let attempt=0;attempt<2;attempt++){
+    try{
+      const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      const data=await res.json().catch(()=>({}));
+      if(!res.ok)throw new Error(data.error||("AI lesson service failed ("+res.status+")"));
+      if(!data.lesson)throw new Error(data.error||"AI lesson response invalid");
+      return data.lesson;
+    }catch(err){
+      lastError=err;
+      if(attempt===0)await new Promise(r=>setTimeout(r,1200));
+    }
+  }
+  throw new Error("Page AI request failed: "+(lastError?.message||"network error"));
 }
 async function generateAIImage(page){
   if(page.aiImage||!page.imagePrompt)return page.aiImage||null;
