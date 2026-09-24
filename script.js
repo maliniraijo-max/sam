@@ -63,6 +63,14 @@ function simpleCycle(items,title){
 }
 function diagramFor(kind){
   if(kind==="flower-parts")return flowerSvg();
+  if(kind==="flower-diversity")return simpleCycle(["Colour","Fragrance","Petals","Arrangement"],"Flowers show diversity");
+  if(kind==="complete-incomplete")return simpleCycle(["Calyx","Corolla","Androecium","Gynoecium"],"Complete flower has all four groups");
+  if(kind==="unisexual-bisexual")return simpleCycle(["Male only","Female only","Both together"],"One or both reproductive parts");
+  if(kind==="monoecious-dioecious")return simpleCycle(["Same plant","Male + female","Different plants"],"Where male and female flowers occur");
+  if(kind==="pollinators")return simpleCycle(["Insects","Birds","Wind","Water"],"Agents that can help pollination");
+  if(kind==="after-fertilization")return simpleCycle(["Zygote","Embryo","Ovule → seed","Ovary → fruit"],"What happens after fertilisation");
+  if(kind==="fruit-types")return simpleCycle(["Simple","Aggregate","Multiple","Other types"],"Different ways fruits can form");
+  if(kind==="whole-story")return simpleCycle(["Flower","Pollination","Fertilisation","Seed + fruit"],"The whole flowering story");
   if(kind==="pollination")return simpleCycle(["Anther","Pollen","Pollinator","Stigma"],"Pollen moves from anther to stigma");
   if(kind==="fertilization")return simpleCycle(["Pollen","Pollen tube","Ovule","Seed"],"Fertilization happens inside the flower");
   if(kind==="fruit")return simpleCycle(["Flower","Ovary","Growing fruit","Fruit"],"The ovary develops into the fruit");
@@ -94,10 +102,82 @@ function memoryFor(info){
   const m={"flower-parts":"STAMEN → pollen.  CARPEL → stigma + style + ovary.","pollination":"POLLEN: ANTHER → STIGMA","fertilization":"POLLEN → OVULE → SEED","fruit":"OVARY → FRUIT   •   OVULE → SEED","germination":"WATER + AIR + WARMTH → GROWING SEED","seed-dispersal":"SEEDS TRAVEL → NEW PLACES → NEW PLANTS","water-cycle":"EVAPORATION → CONDENSATION → RAINFALL → COLLECTION","butterfly":"EGG → CATERPILLAR → PUPA → BUTTERFLY","frog":"EGG → TADPOLE → YOUNG FROG → ADULT","food-chain":"PLANT → HERBIVORE → CARNIVORE","earth-sun":"EARTH → ORBITS SUN → ONE YEAR","volcano":"MAGMA + PRESSURE → ERUPTION","tree":"SEED → SPROUT → SAPLING → TREE"};
   return m[info.kind]||"LOOK → UNDERSTAND → EXPLAIN";
 }
+function chapter4Fallback(i){
+  const c={
+    3:{kind:"flower-diversity",name:"Flower Diversity",visualTitle:"Flowers can look different"},
+    4:{kind:"flower-parts",name:"Main Parts of a Flower",visualTitle:"Each flower part has a job"},
+    5:{kind:"flower-parts",name:"Stamen & Carpel",visualTitle:"Male and female reproductive parts"},
+    6:{kind:"complete-incomplete",name:"Complete & Incomplete Flowers",visualTitle:"Which main parts are present?"},
+    7:{kind:"unisexual-bisexual",name:"Unisexual & Bisexual Flowers",visualTitle:"One or both reproductive parts"},
+    8:{kind:"monoecious-dioecious",name:"Monoecious & Dioecious Plants",visualTitle:"Where male and female flowers occur"},
+    9:{kind:"pollination",name:"Pollination",visualTitle:"Anther → pollen → stigma"},
+    10:{kind:"pollinators",name:"Pollinators",visualTitle:"Insects • birds • wind • water"},
+    11:{kind:"fertilization",name:"Fertilisation",visualTitle:"Pollen tube → male gamete → egg"},
+    12:{kind:"after-fertilization",name:"After Fertilisation",visualTitle:"Zygote → embryo • ovule → seed • ovary → fruit"},
+    13:{kind:"fruit-types",name:"Kinds of Fruits",visualTitle:"Simple • aggregate • multiple • other types"},
+    14:{kind:"whole-story",name:"The Whole Story",visualTitle:"Flower → pollination → fertilisation → seed → fruit"}
+  };
+  return c[i]||null;
+}
+function fallbackContent(kind){
+  const data={
+    "flower-diversity":{
+      points:["Flowers can differ in colour, fragrance and number of petals.","Flowers may occur singly or as an inflorescence.","Inflorescence means many flowers arranged together."],
+      discovery:"Flowers are not all alike. Their differences help us identify how they are arranged.",
+      memory:"FLOWERS → COLOUR + FRAGRANCE + PETALS + ARRANGEMENT"
+    },
+    "flower-parts":{
+      points:["Pedicel attaches the flower to the stem.","Thalamus supports the other flower parts; calyx protects the bud.","Corolla attracts visitors; androecium and gynoecium are reproductive parts."],
+      discovery:"Different flower parts have different jobs — support, protection, attraction and reproduction.",
+      memory:"SUPPORT → PROTECTION → ATTRACTION → REPRODUCTION"
+    },
+    "complete-incomplete":{
+      points:["A complete flower has calyx, corolla, androecium and gynoecium.","An incomplete flower is missing one or more of these main parts.","The four groups help us describe the structure of a flower."],
+      discovery:"Complete does not mean 'better' — it simply tells us that all four main groups are present.",
+      memory:"COMPLETE = CALYX + COROLLA + ANDROECIUM + GYNOECIUM"
+    },
+    "unisexual-bisexual":{
+      points:["A unisexual flower has only one reproductive part.","A bisexual flower has both androecium and gynoecium.","The words describe the reproductive parts present in the same flower."],
+      discovery:"Look for the reproductive parts: one group means unisexual; both groups mean bisexual.",
+      memory:"UNI = ONE • BI = TWO"
+    },
+    "monoecious-dioecious":{
+      points:["Monoecious plants have male and female flowers on the same plant.","Dioecious plants have male flowers and female flowers on different plants.","These terms describe where the male and female flowers occur."],
+      discovery:"Think about the plant, not one flower: same plant = monoecious; different plants = dioecious.",
+      memory:"MONO = SAME PLANT • DI = DIFFERENT PLANTS"
+    },
+    "pollinators":{
+      points:["Pollinators or agents help transfer pollen during pollination.","Insects and birds can carry pollen from one flower to another.","Wind and water can also help pollination."],
+      discovery:"Pollen does not have to move by itself. Living and non-living agents can help it travel.",
+      memory:"POLLINATORS → INSECTS • BIRDS • WIND • WATER"
+    },
+    "after-fertilization":{
+      points:["The zygote develops into an embryo.","The ovule develops into a seed.","The ovary develops into the fruit."],
+      discovery:"After fertilisation, three important changes connect the flower to the next generation.",
+      memory:"ZYGOTE → EMBRYO • OVULE → SEED • OVARY → FRUIT"
+    },
+    "fruit-types":{
+      points:["Simple fruit develops from one flower with one ovary.","Aggregate fruit develops from one flower with multiple ovaries.","Multiple fruit develops from an inflorescence; the chapter also includes seedless and pseudo fruits."],
+      discovery:"Fruit types can be classified by how the flower or group of flowers contributes to the fruit.",
+      memory:"SIMPLE • AGGREGATE • MULTIPLE • SEEDLESS • PSEUDO"
+    },
+    "whole-story":{
+      points:["A flower contains parts involved in reproduction.","Pollination moves pollen to the stigma; fertilisation forms a zygote.","After fertilisation, ovules become seeds and the ovary can become fruit."],
+      discovery:"The chapter is one connected journey from flower to the next generation.",
+      memory:"FLOWER → POLLINATION → FERTILISATION → SEED + FRUIT"
+    }
+  };
+  return data[kind]||null;
+}
 function slide(i,text){
-  const info=conceptInfo(text),p=keyIdeas(text,info);
+  let info=conceptInfo(text);
+  let fallback=null;
+  if(info.kind==="general") fallback=chapter4Fallback(i);
+  if(fallback) info=fallback;
+  const fc=fallbackContent(info.kind);
+  const p=fc?fc.points:keyIdeas(text,info);
   const title=info.kind==="general"?(cleanText(text).split(/[.!?]/)[0]||("Lesson page "+i)).slice(0,75):info.name;
-  return{title,info,diagram:diagramFor(info.kind),points:p,discovery:discoveryFor(info),memory:memoryFor(info)};
+  return{title,info,diagram:diagramFor(info.kind),points:p,discovery:fc?fc.discovery:discoveryFor(info),memory:fc?fc.memory:memoryFor(info)};
 }
 function render(){
   const s=pages[currentPage-1];if(!s)return;
