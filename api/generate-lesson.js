@@ -103,16 +103,52 @@ Rules:
 - Do not put long paragraphs inside imagePrompt.
 - Avoid repeating the same idea across slides.
 - Never mention that you are an AI.`;
-      const obj=await callGemini([{text:topicPrompt}],"application/json",{timeoutMs:45000,maxOutputTokens:5000});
-      if(!obj||!Array.isArray(obj.slides)||obj.slides.length<5)throw new Error("The AI could not create enough lesson slides. Please try the topic again.");
-      obj.slides=obj.slides.slice(0,25).map((s,i)=>({
-        title:String(s.title||("Lesson "+(i+1))).trim(),
-        keyIdeas:Array.isArray(s.keyIdeas)?s.keyIdeas.filter(Boolean).map(x=>String(x).trim()).slice(0,3):[],
-        discovery:String(s.discovery||"").trim(),
-        memory:String(s.memory||"").trim(),
-        imagePrompt:String(s.imagePrompt||"").trim()
-      }));
-      return send(res,{lesson:obj});
+      try{
+        const obj=await callGemini([{text:topicPrompt}],"application/json",{timeoutMs:12000,maxOutputTokens:5000});
+        if(obj&&Array.isArray(obj.slides)&&obj.slides.length>=5){
+          obj.slides=obj.slides.slice(0,25).map((s,i)=>({
+            title:String(s.title||("Lesson "+(i+1))).trim(),
+            keyIdeas:Array.isArray(s.keyIdeas)?s.keyIdeas.filter(Boolean).map(x=>String(x).trim()).slice(0,3):[],
+            discovery:String(s.discovery||"").trim(),
+            memory:String(s.memory||"").trim(),
+            imagePrompt:String(s.imagePrompt||"").trim()
+          }));
+          return send(res,{lesson:obj});
+        }
+      }catch(topicError){
+        console.warn("TOPIC AI unavailable; using local lesson fallback:",topicError?.message);
+      }
+
+      // Keep the Topic Lesson feature usable even when Gemini is overloaded.
+      // These lessons are deterministic, instant, and can still receive AI illustrations.
+      const t=topic.toLowerCase();
+      let slides=[];
+      const add=(title,keyIdeas,discovery,memory,imagePrompt)=>slides.push({title,keyIdeas,discovery,memory,imagePrompt});
+
+      if(/fraction/.test(t)){
+        add("What is a Fraction?",["A fraction shows equal parts of a whole.","The numerator is the top number.","The denominator is the bottom number."],"A fraction tells us how many equal parts we have out of the total number of equal parts.","TOP = parts we have • BOTTOM = total equal parts","Grade 5 fraction model with a rectangle divided into equal parts, some parts shaded, numerator and denominator clearly represented visually");
+        add("Proper, Improper & Mixed Fractions",["A proper fraction is less than 1.","An improper fraction is equal to or greater than 1.","A mixed number has a whole number and a fraction."],"The size of a fraction depends on how the numerator compares with the denominator.","PROPER < 1 • IMPROPER ≥ 1","Visual comparison of proper fraction, improper fraction, and mixed number using fraction bars");
+        add("Equivalent Fractions",["Equivalent fractions have the same value.","Multiply or divide numerator and denominator by the same non-zero number.","Different-looking fractions can represent the same amount."],"Multiplying both parts by the same number changes the names of the parts but not the value.","SAME VALUE, DIFFERENT LOOK","Two fraction bars showing 1/2 and 2/4 with equal shaded areas, plus the multiplication relationship");
+        add("Comparing Fractions",["Fractions with the same denominator are easy to compare.","With the same denominator, the larger numerator means the larger fraction.","Visual fraction bars help compare different fractions."],"Compare the amount shaded, not just the numbers you see.","SAME BOTTOM → COMPARE TOP","Side-by-side fraction bars comparing two fractions with equal and different denominators");
+        add("Adding Fractions",["Fractions with the same denominator can be added directly.","Add the numerators and keep the denominator the same.","The denominator tells the size of each part."],"When the pieces are the same size, you only need to count how many pieces you have altogether.","KEEP THE BOTTOM, ADD THE TOP","Chocolate bar or fraction bars demonstrating 2/8 + 3/8 = 5/8 with equal pieces");
+        add("Subtracting Fractions",["Use a common denominator before subtracting.","Subtract the numerators when denominators are equal.","Simplify the answer when possible."],"Subtracting fractions means taking away equal-sized parts.","KEEP THE BOTTOM, SUBTRACT THE TOP","Fraction bars showing 7/8 - 3/8 = 4/8 and simplification to 1/2");
+        add("Multiplying Fractions",["Multiply numerator by numerator.","Multiply denominator by denominator.","Simplify the result when possible."],"Fraction multiplication can be understood as finding a fraction of a fraction.","TOP × TOP • BOTTOM × BOTTOM","Area model showing 2/3 of 3/4 with overlapping shaded regions and the resulting fraction");
+        add("Dividing Fractions",["Dividing asks how many groups of one fraction fit into another.","Keep the first fraction, change division to multiplication, and use the reciprocal of the second fraction.","Check whether the answer makes sense."],"Division tells us how many fractional groups can fit into the amount we have.","KEEP • CHANGE • FLIP","Visual fraction bars demonstrating division of one fraction by another with reciprocal step");
+        add("Fraction Review",["Fractions describe parts of equal wholes.","Equivalent fractions keep the same value.","Choose the operation that matches the problem."],"Fractions become easier when you picture the equal parts first.","SEE THE PARTS → CHOOSE THE OPERATION","Friendly grade 5 fraction concept map connecting fraction types, equivalence, comparison, addition, subtraction, multiplication and division");
+      }else if(/pollinat/.test(t)){
+        add("What is Pollination?",["Pollination is the transfer of pollen from anther to stigma.","The anther produces pollen.","The stigma receives pollen."],"Pollination is the important step where pollen reaches the female part of a flower.","ANTHER → POLLEN → STIGMA","Accurate flower diagram showing pollen moving from anther to stigma");
+        add("Agents of Pollination",["Insects can carry pollen.","Birds and other animals can carry pollen.","Wind and water can also move pollen in some plants."],"Pollen can travel with help from living and non-living agents.","POLLEN NEEDS A CARRIER","Bee, bird, wind and water carrying pollen between flowers");
+        add("Self & Cross Pollination",["Self-pollination happens within the same flower or plant.","Cross-pollination transfers pollen between flowers of different plants of the same species.","Both involve pollen reaching a stigma."],"The key difference is where the pollen comes from.","SAME PLANT or DIFFERENT PLANT","Clear comparison diagram of self-pollination and cross-pollination");
+        add("From Pollination to Fertilisation",["Pollination happens before fertilisation.","A pollen grain on the stigma can grow a pollen tube.","The male cell can reach the ovule."],"Pollination starts a chain of events that can lead to fertilisation.","POLLINATION → POLLEN TUBE → FERTILISATION","Step-by-step flower diagram from pollen landing on stigma to pollen tube reaching ovule");
+        add("Why Pollination Matters",["Pollination helps flowering plants reproduce.","Successful reproduction can lead to seeds.","Seeds can grow into new plants."],"Pollination connects one generation of plants to the next.","POLLEN → SEED → NEW PLANT","Life-cycle style illustration linking flower, pollination, seed formation and new plant");
+      }else{
+        add("Let's Explore "+topic,["First identify what the topic is about.","Look for its important parts or ideas.","Connect the ideas to understand the whole topic."],"Start with the big picture, then zoom in on the important parts.","BIG IDEA → PARTS → CONNECTIONS","Clean child-friendly educational overview of "+topic+", showing its main concept and major parts");
+        add("Key Ideas",["Find the main facts or rules.","Notice important words and relationships.","Ask what causes what, or how the parts connect."],"Learning becomes easier when separate facts are connected into one mental picture.","NOTICE → CONNECT → EXPLAIN","Visual concept map for "+topic+" with three clearly connected key ideas");
+        add("How It Works",["Break the topic into simple steps.","Follow the order when there is a process.","Use an example to check your understanding."],"A process becomes clearer when you see one step leading to the next.","STEP 1 → STEP 2 → STEP 3","Step-by-step educational process illustrating "+topic+" in a simple school textbook style");
+        add("Example & Application",["Use the idea in a simple example.","Explain why the answer or result makes sense.","Try a similar example yourself."],"Applying an idea shows whether you truly understand it.","LEARN → TRY → EXPLAIN","Age-appropriate example applying "+topic+" with clear visual objects and relationships");
+        add("Quick Review",["Say the main idea in your own words.","Recall the most important terms.","Explain one example without looking."],"If you can explain the idea simply, you are ready to use it.","SEE IT → UNDERSTAND IT → REMEMBER IT","Friendly visual recap of "+topic+" with the main idea, key terms and one example");
+      }
+      return send(res,{lesson:{title:topic,subtitle:"Visual lesson",slides}});
     }
 
     if(body.action==="simulate"){
