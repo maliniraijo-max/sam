@@ -118,7 +118,32 @@ Rules:
     if(body.action==="simulate"){
       const text=String(body.text||"").trim();if(!text)return send(res,{error:"No simulation topic supplied."},400);
       const simPrompt="You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, equivalent fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {\"steps\":[{\"emoji\":\"one emoji\",\"label\":\"short action/state\"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, show the mathematical transformation or relationship. For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.";
-      const obj=await callGemini([{text:simPrompt+"\\n\\nCONCEPT:\\n"+text}],"application/json",{timeoutMs:30000,maxOutputTokens:700});return send(res,obj);
+      try{
+        const obj=await callGemini([{text:simPrompt+"\\n\\nCONCEPT:\\n"+text}],"application/json",{timeoutMs:8000,maxOutputTokens:700});
+        if(obj?.steps?.length)return send(res,obj);
+      }catch(simError){
+        console.warn("SIMULATION AI unavailable; using instant fallback:",simError?.message);
+      }
+      // Never leave Search & Find broken when Gemini is busy. Give an immediate
+      // useful visual sequence while keeping the AI path available when it recovers.
+      const t=text.toLowerCase();
+      let steps;
+      if(/equivalent fraction|fraction|fractions/.test(t)){
+        steps=[{emoji:"🍫",label:"Start with the fraction"},{emoji:"✖️",label:"Multiply top and bottom"},{emoji:"🔢",label:"Keep the value equal"},{emoji:"✨",label:"Get an equivalent fraction"}];
+      }else if(/tree|plant|growth/.test(t)){
+        steps=[{emoji:"🌰",label:"Seed is planted"},{emoji:"💧",label:"Water reaches the seed"},{emoji:"🌱",label:"Root and shoot emerge"},{emoji:"🌿",label:"Young plant grows"},{emoji:"🌳",label:"Mature tree develops"}];
+      }else if(/water cycle/.test(t)){
+        steps=[{emoji:"☀️",label:"Sun heats the water"},{emoji:"💨",label:"Water evaporates"},{emoji:"☁️",label:"Water vapour condenses"},{emoji:"🌧️",label:"Rain falls"},{emoji:"🌊",label:"Water collects"}];
+      }else if(/butterfly/.test(t)){
+        steps=[{emoji:"🥚",label:"Egg"},{emoji:"🐛",label:"Caterpillar grows"},{emoji:"🟢",label:"Pupa forms"},{emoji:"🦋",label:"Adult butterfly emerges"}];
+      }else if(/pollination/.test(t)){
+        steps=[{emoji:"🌼",label:"Anther contains pollen"},{emoji:"🐝",label:"Pollen is carried"},{emoji:"🌸",label:"Pollen reaches stigma"},{emoji:"🌱",label:"Reproduction can continue"}];
+      }else if(/earth.*sun|sun.*earth|orbit/.test(t)){
+        steps=[{emoji:"☀️",label:"Sun is the centre"},{emoji:"🌍",label:"Earth moves around Sun"},{emoji:"🔄",label:"Earth follows its orbit"},{emoji:"📅",label:"One orbit makes a year"}];
+      }else{
+        steps=[{emoji:"🔎",label:"Identify the main idea"},{emoji:"🧩",label:"Break it into parts"},{emoji:"🔗",label:"Connect the steps"},{emoji:"💡",label:"Explain what happens"}];
+      }
+      return send(res,{steps});
     }
 
     if(body.action==="image"){
