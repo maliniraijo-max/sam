@@ -221,8 +221,19 @@ async function analyzePages(items){
     const item=items[i];
     e.status.textContent="Understanding page "+(i+1)+" of "+items.length+"…";
     const lesson=await analyzeOnePage(item);
-    const info=conceptInfo(item.sourceText||lesson.title||"");
-    pages.push({...item,title:lesson.title||("Lesson page "+(i+1)),info,diagram:diagramFor(info.kind),points:Array.isArray(lesson.keyIdeas)?lesson.keyIdeas:[],discovery:lesson.discovery||"",memory:lesson.memory||"",imagePrompt:lesson.imagePrompt||""});
+    const aiTitle=String(lesson.title||"").trim();
+    const aiPoints=Array.isArray(lesson.keyIdeas)?lesson.keyIdeas.filter(Boolean).map(x=>String(x).trim()).filter(Boolean):[];
+    const aiDiscovery=String(lesson.discovery||"").trim();
+    const aiMemory=String(lesson.memory||"").trim();
+    const aiPrompt=String(lesson.imagePrompt||"").trim();
+    const info=conceptInfo((item.sourceText||"")+" "+aiTitle+" "+aiDiscovery);
+    const fb=info.kind==="general"?chapter4Fallback(i):null;
+    const finalInfo=fb||info;
+    const fallback=fallbackContent(finalInfo.kind);
+    const points=aiPoints.length?aiPoints:(fallback?.points||keyIdeas(item.sourceText||aiTitle,finalInfo));
+    const discovery=aiDiscovery||(fallback?.discovery||discoveryFor(finalInfo));
+    const memory=aiMemory||(fallback?.memory||memoryFor(finalInfo));
+    pages.push({...item,title:aiTitle||("Lesson page "+(i+1)),info:finalInfo,diagram:diagramFor(finalInfo.kind),points,discovery,memory,imagePrompt:aiPrompt,aiLesson:true});
   }
 }
 async function readPdf(file){
