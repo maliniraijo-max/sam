@@ -1,9 +1,9 @@
-const CACHE_NAME = "sam-learning-shell-v1";
+const CACHE_NAME = "sam-learning-shell-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
   "./style.css",
-  "./script.js?v=20260924-11",
+  "./script.js?v=20260924-12",
   "./manifest.json",
   "./icon.svg"
 ];
