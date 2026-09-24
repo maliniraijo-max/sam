@@ -1,23 +1,36 @@
 (async function(){
   const params=new URLSearchParams(location.search);
-  const book=params.get("book")||"ruth";
+  const requestedBook=params.get("book")||"ruth";
   const chapter=Number(params.get("chapter")||1);
   const title=document.getElementById("quizTitle");
   const sub=document.getElementById("quizSubtitle");
   const area=document.getElementById("quizArea");
   const progress=document.getElementById("quizProgress");
 
+  // Resolve old/cached book names (for example "Ruth" or "ruth") to the canonical dataset key.
+  function resolveBookKey(value){
+    const data=window.LOGOS_DEEP_2026||{};
+    if(data[value])return value;
+    const wanted=String(value).trim().toLowerCase();
+    return Object.keys(data).find(k=>k.toLowerCase()===wanted) ||
+      Object.keys(data).find(k=>String(data[k].label||"").replace(/^\S+\s*/,"").toLowerCase()===wanted) ||
+      null;
+  }
+
+  let book=resolveBookKey(requestedBook);
+
   // If an older cached Logos data file was served, reload the current data explicitly.
-  if(!window.LOGOS_DEEP_2026?.[book]?.chapters?.[chapter]?.facts || window.LOGOS_DEEP_2026[book].chapters[chapter].facts.length<10){
+  if(!book || !window.LOGOS_DEEP_2026?.[book]?.chapters?.[chapter]?.facts || window.LOGOS_DEEP_2026[book].chapters[chapter].facts.length!==10){
     await new Promise((resolve,reject)=>{
       const s=document.createElement("script");
-      s.src="./logos-data.js?v=20260924-102&fresh="+Date.now();
+      s.src="./logos-data.js?v=20260924-104&fresh="+Date.now();
       s.onload=resolve;
       s.onerror=reject;
       document.head.appendChild(s);
     }).catch(()=>{});
   }
 
+  book=resolveBookKey(requestedBook)||book;
   const info=window.LOGOS_DEEP_2026?.[book];
   const facts=info?.chapters?.[chapter]?.facts||[];
   title.textContent=(info?.label||info?.name||"Bible").replace(/^\S+\s/,"")+" • Chapter "+chapter+" MCQ";
