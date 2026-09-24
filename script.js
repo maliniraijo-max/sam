@@ -290,8 +290,8 @@ function render(){
   e.discovery.textContent=s.discovery;e.memory.textContent=s.memory;
   e.counter.textContent=currentPage+" / "+pages.length;e.pageCount.textContent="Page "+currentPage+" of "+pages.length;
   e.progress.style.width=(currentPage/pages.length*100)+"%";if(s.imagePrompt&&!s.aiImage)createAIVisualForCurrentPage();
-  // Prefetch only after the current slide is visible; never let prefetch block navigation.
-  setTimeout(()=>prefetchNearbyIllustrations(),50);
+  // Generate only the visible slide. Background prefetching made mobile/desktop
+  // browsers compete for memory and network bandwidth, making the page feel frozen.
 }
 async function fileToDataUrl(file){
   // Downscale camera/gallery photos before sending them to AI. Full-resolution
