@@ -69,45 +69,56 @@ export default async function handler(req,res){
       try{
         first=await callGemini(parts,"application/json",{timeoutMs:12000,maxOutputTokens:900});
       }catch(aiError){
-        // Gemini free-tier quota can be exhausted even when the website itself is healthy.
-        // Do not make the uploaded-page feature unusable: create a local lesson from the
-        // page text immediately, then Pollinations can still create the illustration.
-        console.warn("LESSON AI unavailable; using local page fallback:",aiError?.message);
-        const source=String(body.text||"").replace(/\\s+/g," ").trim();
-        const sentences=source.split(/(?<=[.!?])\\s+/).map(x=>x.trim()).filter(x=>x.length>20);
+        // Gemini may be unavailable because the free quota is exhausted. The uploaded
+        // page must still produce a page-faithful lesson, so fall back to the actual
+        // extracted page text instead of generic subject notes.
+        console.warn("LESSON AI unavailable; using source-faithful local fallback:",aiError?.message);
+        const source=String(body.text||"").replace(/\s+/g," ").trim();
+        const rawParts=source
+          .split(/(?<=[.!?])\s+|(?=\b(?:Example|Activity|Question|Remember|Note|Definition|Key|What|How|Why)\b\s*[:\-])/i)
+          .map(x=>x.trim())
+          .filter(x=>x.length>15);
+        const cleanParts=rawParts.filter(x=>!/^(page|chapter)\s*\d+$/i.test(x));
         const lower=source.toLowerCase();
-        let title=sentences[0]||"Lesson Page";
-        title=title.replace(/^(page|chapter)\\s*\\d+[:.\\-]?\\s*/i,"").slice(0,80).trim()||"Lesson Page";
-        let keyIdeas=sentences.slice(0,3).map(x=>x.length>150?x.slice(0,147)+"…":x);
-        if(/fraction|numerator|denominator/.test(lower)){
-          title="Fractions";
-          keyIdeas=[
-            "A fraction shows equal parts of a whole.",
-            "The numerator is the top number and the denominator is the bottom number.",
-            "Fractions can be compared, added, subtracted, multiplied and divided."
+
+        // Prefer a heading-like opening fragment for the slide title.
+        let title=(cleanParts.find(x=>x.length>=3&&x.length<=90&&
+          !/[.!?]$/.test(x))||cleanParts[0]||"Lesson Page")
+          .replace(/^(page|chapter)\s*\d+[:.\-]?\s*/i,"").trim();
+        if(!title||title.length>90)title="Lesson Page";
+
+        // Preserve the page's actual statements. Do not substitute generic facts.
+        let keyIdeas=cleanParts
+          .filter(x=>x.length>=20)
+          .slice(0,5)
+          .map(x=>x.length>180?x.slice(0,177)+"…":x);
+
+        // If extraction is sparse, use recognizable page-specific terms from the source.
+        if(keyIdeas.length<2){
+          const terms=[];
+          const patterns=[
+            [/numerator|denominator|fraction/,"Fraction concepts shown on this page"],
+            [/pollinat|pollen|anther|stigma/,"Pollination concepts shown on this page"],
+            [/kinetic|potential|energy/,"Energy concepts shown on this page"],
+            [/evaporation|condensation|rainfall/,"Water-cycle concepts shown on this page"],
+            [/photosynthesis|chlorophyll/,"Photosynthesis concepts shown on this page"],
+            [/force|motion|friction/,"Force and motion concepts shown on this page"]
           ];
-        }else if(/pollinat/.test(lower)){
-          title="Pollination";
-          keyIdeas=[
-            "Pollination is the transfer of pollen from anther to stigma.",
-            "Pollen can be carried by insects, birds, wind or other agents.",
-            "Pollination can lead to fertilisation and seed formation."
-          ];
-        }else if(/energy|kinetic|potential|heat|light|sound/.test(lower)){
-          title="Forms of Energy";
-          keyIdeas=[
-            "Energy is the ability to cause change or do work.",
-            "Energy can appear in different forms such as heat, light, sound and movement.",
-            "Energy can be transferred or changed from one form to another."
-          ];
+          for(const [re,label] of patterns)if(re.test(lower))terms.push(label);
+          keyIdeas=[...keyIdeas,...terms];
         }
-        while(keyIdeas.length<2)keyIdeas.push("Look at the page examples and connect them to the main idea.");
+        while(keyIdeas.length<2)keyIdeas.push("The page contains additional examples or information that should be read directly from the source.");
+
+        const discovery=cleanParts.slice(0,2).join(" ");
+        const memoryTerms=(source.match(/\b[A-Za-z][A-Za-z-]{3,}\b/g)||[])
+          .filter(x=>!/^(this|that|with|from|they|have|which|about|there|their)$/i.test(x))
+          .slice(0,6);
         first={
-          title,
+          title:title.slice(0,80),
           keyIdeas:keyIdeas.slice(0,3),
-          discovery:"Look at the examples and diagrams on this page. They show how the main idea works step by step.",
-          memory:"SEE IT → CONNECT IT → EXPLAIN IT",
-          imagePrompt:"Accurate child-friendly educational illustration of "+title+" based only on the supplied page content. Show the main objects, relationships, examples or process from the page without adding unrelated information."
+          discovery:discovery||"Read the examples and diagrams on this page and connect them to the main idea.",
+          memory:memoryTerms.length?memoryTerms.join(" • "):"SEE THE PAGE → CONNECT THE IDEAS → EXPLAIN",
+          imagePrompt:"Create an educational illustration that stays faithful to the uploaded page. Use the page's actual topic, objects, relationships, examples and process from the supplied source text. Do not invent a different topic."
         };
       }
       const complete=(x)=>x&&String(x.title||"").trim()&&Array.isArray(x.keyIdeas)&&x.keyIdeas.length>=2&&String(x.discovery||"").trim()&&String(x.memory||"").trim();
