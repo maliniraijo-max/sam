@@ -654,10 +654,12 @@ renderLogosBooks();renderLogosChapter();};
 }
 function renderLogosChapter(){
   const box=$("logosChapterView");if(!box)return;
-  const book=LOGOS_2026[logosBook],ch=book.chapters[logosChapter];if(!ch)return;
-  box.innerHTML='<div class="logos-chapter-head"><div><span>'+book.label+'</span><h3>Chapter '+logosChapter+': '+esc(ch.title)+'</h3></div><button id="logosQuizBtn" class="logos-quiz-btn">📝 Chapter Quiz</button></div>'+
-    '<div class="logos-events">'+ch.events.map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
-    '<div class="logos-memory"><strong>🧠 Remember</strong><p>'+esc(ch.facts.join(" • "))+'</p></div>'+
+  const deepBook=window.LOGOS_DEEP_2026?.[logosBook];
+  const book=deepBook||LOGOS_2026[logosBook],ch=book?.chapters?.[logosChapter];if(!ch)return;
+  const studyPoints=Array.isArray(ch.facts)?ch.facts:(Array.isArray(ch.events)?ch.events:[]);
+  box.innerHTML='<div class="logos-chapter-head"><div><span>'+book.label+'</span><h3>Chapter '+logosChapter+': '+esc(ch.title)+'</h3><small class="logos-point-count">'+studyPoints.length+' Study Points</small></div><button id="logosQuizBtn" class="logos-quiz-btn">📝 Chapter Quiz</button></div>'+
+    '<div class="logos-events">'+studyPoints.map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
+    '<div class="logos-memory"><strong>🧠 Remember</strong><p>Read the 10 points above, then take the chapter quiz.</p></div>'+
     '<div id="logosQuizArea"></div>';
   $("logosQuizBtn").onclick=()=>{window.location.href="quiz.html?book="+encodeURIComponent(logosBook)+"&chapter="+logosChapter;};
 }
