@@ -398,7 +398,7 @@ Rules:
       if(steps)return send(res,{steps});
 
       // Unknown concepts still use Gemini for flexible AI simulation.
-      const simPrompt="You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {\\"steps\\":[{\\"emoji\\":\\"one emoji\\",\\"label\\":\\"short action/state\\"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, show the mathematical transformation or relationship. For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.";
+      const simPrompt='You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {"steps":[{"emoji":"one emoji","label":"short action/state"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, show the mathematical transformation or relationship. For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.';
       try{
         const obj=await callGemini([{text:simPrompt+"\\n\\nCONCEPT:\\n"+text}],"application/json",{timeoutMs:8000,maxOutputTokens:700});
         if(obj?.steps?.length)return send(res,obj);
