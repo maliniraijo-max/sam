@@ -125,7 +125,7 @@ Rules:
       const key=process.env.POLLINATIONS_API_KEY;
       if(!key)return send(res,{error:"POLLINATIONS_API_KEY is not configured on Vercel."},500);
       const promptText=String(body.prompt||"").trim();if(!promptText)return send(res,{error:"No image prompt supplied."},400);
-      const url="https://gen.pollinations.ai/image/"+encodeURIComponent(promptText)+"?model=flux&width=1024&height=1024";
+      const url="https://gen.pollinations.ai/image/"+encodeURIComponent(promptText)+"?model=flux&width=768&height=768";
       const r=await fetch(url,{headers:{Authorization:"Bearer "+key}});
       if(!r.ok)throw new Error("Pollinations image request failed ("+r.status+")");
       const buf=Buffer.from(await r.arrayBuffer());const type=r.headers.get("content-type")||"image/jpeg";
