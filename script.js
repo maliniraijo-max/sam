@@ -6,7 +6,7 @@ async function analyzeOnePage(page){
   let lastError=null;
   for(let attempt=0;attempt<2;attempt++){
     const controller=new AbortController();
-    const timeout=setTimeout(()=>controller.abort(),45000);
+    const timeout=setTimeout(()=>controller.abort(),100000);
     try{
       const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),signal:controller.signal});
       const data=await res.json().catch(()=>({}));
@@ -14,8 +14,9 @@ async function analyzeOnePage(page){
       if(!data.lesson)throw new Error(data.error||"AI lesson response invalid");
       return data.lesson;
     }catch(err){
-      lastError=err&&err.name==="AbortError"?new Error("AI request timed out after 45 seconds"):err;
-      if(attempt===0)await new Promise(r=>setTimeout(r,1200));
+      lastError=err&&err.name==="AbortError"?new Error("AI request timed out after 100 seconds"):err;
+      if(attempt===0&&err?.name!=="AbortError"&&!/quota|429|rate limit/i.test(lastError?.message||""))await new Promise(r=>setTimeout(r,1200));
+      else break;
     }finally{clearTimeout(timeout);}
   }
   throw new Error("Page AI request failed: "+(lastError?.message||"network error"));
@@ -247,7 +248,7 @@ async function analyzePages(items){
         const aiDiscovery=String(lesson.discovery||"").trim();
         const aiMemory=String(lesson.memory||"").trim();
         const aiPrompt=String(lesson.imagePrompt||"").trim();
-        if(!aiTitle||aiPoints.length!==3||!aiDiscovery||!aiMemory||!aiPrompt) throw new Error("AI returned incomplete content for page "+(i+1));
+        if(!aiTitle||aiPoints.length<2||!aiDiscovery||!aiMemory||!aiPrompt) throw new Error("AI returned incomplete content for page "+(i+1));
         results[i]={...item,title:aiTitle,info:{kind:"ai",name:aiTitle,visualTitle:aiTitle},diagram:"",points:aiPoints,discovery:aiDiscovery,memory:aiMemory,imagePrompt:aiPrompt,aiLesson:true};
         done++;
         e.status.textContent="Understanding pages… "+done+" of "+items.length+" complete";
