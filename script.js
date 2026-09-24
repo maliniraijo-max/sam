@@ -5,16 +5,18 @@ async function analyzeOnePage(page){
   if(page.imageData)payload.image=page.imageData;
   let lastError=null;
   for(let attempt=0;attempt<2;attempt++){
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),45000);
     try{
-      const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload),signal:controller.signal});
       const data=await res.json().catch(()=>({}));
       if(!res.ok)throw new Error(data.error||("AI lesson service failed ("+res.status+")"));
       if(!data.lesson)throw new Error(data.error||"AI lesson response invalid");
       return data.lesson;
     }catch(err){
-      lastError=err;
+      lastError=err&&err.name==="AbortError"?new Error("AI request timed out after 45 seconds"):err;
       if(attempt===0)await new Promise(r=>setTimeout(r,1200));
-    }
+    }finally{clearTimeout(timeout);}
   }
   throw new Error("Page AI request failed: "+(lastError?.message||"network error"));
 }
@@ -228,19 +230,36 @@ async function fileToDataUrl(file){
   });
 }
 async function analyzePages(items){
-  pages=[];
-  for(let i=0;i<items.length;i++){
-    const item=items[i];
-    e.status.textContent="Understanding page "+(i+1)+" of "+items.length+"…";
-    const lesson=await analyzeOnePage(item);
-    const aiTitle=String(lesson.title||"").trim();
-    const aiPoints=Array.isArray(lesson.keyIdeas)?lesson.keyIdeas.filter(Boolean).map(x=>String(x).trim()).filter(Boolean):[];
-    const aiDiscovery=String(lesson.discovery||"").trim();
-    const aiMemory=String(lesson.memory||"").trim();
-    const aiPrompt=String(lesson.imagePrompt||"").trim();
-    if(!aiTitle||aiPoints.length!==3||!aiDiscovery||!aiMemory||!aiPrompt) throw new Error("AI returned incomplete content for page "+(i+1));
-    pages.push({...item,title:aiTitle,info:{kind:"ai",name:aiTitle,visualTitle:aiTitle},diagram:"",points:aiPoints,discovery:aiDiscovery,memory:aiMemory,imagePrompt:aiPrompt,aiLesson:true});
-  }
+  pages=new Array(items.length);
+  const results=new Array(items.length);
+  let next=0,done=0,failed=null;
+  const worker=async()=>{
+    while(true){
+      if(failed)return;
+      const i=next++;
+      if(i>=items.length)return;
+      const item=items[i];
+      e.status.textContent="Understanding pages "+Math.min(done+1,items.length)+"–"+Math.min(done+2,items.length)+" of "+items.length+"…";
+      try{
+        const lesson=await analyzeOnePage(item);
+        const aiTitle=String(lesson.title||"").trim();
+        const aiPoints=Array.isArray(lesson.keyIdeas)?lesson.keyIdeas.filter(Boolean).map(x=>String(x).trim()).filter(Boolean):[];
+        const aiDiscovery=String(lesson.discovery||"").trim();
+        const aiMemory=String(lesson.memory||"").trim();
+        const aiPrompt=String(lesson.imagePrompt||"").trim();
+        if(!aiTitle||aiPoints.length!==3||!aiDiscovery||!aiMemory||!aiPrompt) throw new Error("AI returned incomplete content for page "+(i+1));
+        results[i]={...item,title:aiTitle,info:{kind:"ai",name:aiTitle,visualTitle:aiTitle},diagram:"",points:aiPoints,discovery:aiDiscovery,memory:aiMemory,imagePrompt:aiPrompt,aiLesson:true};
+        done++;
+        e.status.textContent="Understanding pages… "+done+" of "+items.length+" complete";
+      }catch(err){
+        failed=new Error("Page "+(i+1)+": "+(err&&err.message?err.message:"AI processing failed"));
+        return;
+      }
+    }
+  };
+  await Promise.all([worker(),worker()]);
+  if(failed)throw failed;
+  pages=results;
 }
 async function readPdf(file){
   if(!window.pdfjsLib){e.status.textContent="The PDF reader is still loading. Please try again.";return;}
@@ -250,9 +269,9 @@ async function readPdf(file){
     for(let i=1;i<=pdfDoc.numPages;i++){
       e.status.textContent="Reading page "+i+" of "+pdfDoc.numPages+"…";
       const p=await pdfDoc.getPage(i),tc=await p.getTextContent(),text=tc.items.map(x=>x.str).join(" ");
-      const vp=p.getViewport({scale:1.2}),canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
+      const vp=p.getViewport({scale:1.0}),canvas=document.createElement("canvas"),ctx=canvas.getContext("2d");
       canvas.width=vp.width;canvas.height=vp.height;await p.render({canvasContext:ctx,viewport:vp}).promise;
-      const imageData=canvas.toDataURL("image/jpeg",0.55);
+      const imageData=canvas.toDataURL("image/jpeg",0.48);
       items.push({sourceText:text,imageData});
     }
     await analyzePages(items);currentPage=1;render();e.lesson.classList.remove("hidden");
