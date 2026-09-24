@@ -13,27 +13,42 @@ memory: one short memorable phrase based on THIS page;
 imagePrompt: a detailed prompt for an accurate educational illustration of THIS page's actual concept. If the page contains a process, show that process; if it contains a diagram, recreate its relationships; if it contains mathematics, show the actual mathematical objects. Do not add unrelated objects. Do not ask the image generator to render paragraphs of text.
 
 The slide must be appropriate for the uploaded page even when the page belongs to a completely different subject from every other page.`;
-async function callGemini(parts,responseMimeType="application/json"){
+async function callGemini(parts,responseMimeType="application/json",options={}){
   const key=process.env.GEMINI_API_KEY;
   if(!key)throw new Error("GEMINI_API_KEY is not configured on Vercel.");
+
+  // Use a small model cascade. Google is currently reporting intermittent
+  // high-demand 503s on Gemini, so one busy model should not break the whole app.
+  const models=options.models||["gemini-3.1-flash-lite","gemini-3.5-flash-lite","gemini-3.6-flash"];
+  const timeoutMs=options.timeoutMs||45000;
+  const maxOutputTokens=options.maxOutputTokens||1200;
   let lastError=null;
-  // Keep each request bounded; do not queue six slow model calls.
-  for(let attempt=0;attempt<2;attempt++){
+
+  for(const model of models){
     const controller=new AbortController();
-    const timeout=setTimeout(()=>controller.abort(),24000);
+    const timeout=setTimeout(()=>controller.abort(),timeoutMs);
     try{
-      const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key="+encodeURIComponent(key),{
-        method:"POST",headers:{"Content-Type":"application/json"},signal:controller.signal,
-        body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{responseMimeType,maxOutputTokens:900}})
+      const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent?key="+encodeURIComponent(key),{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        signal:controller.signal,
+        body:JSON.stringify({
+          contents:[{role:"user",parts}],
+          generationConfig:{responseMimeType,maxOutputTokens}
+        })
       });
       const d=await r.json().catch(()=>({}));
-      if(r.ok)return extractObject(d?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"");
+      if(r.ok){
+        const text=d?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"";
+        return extractObject(text);
+      }
       lastError=new Error(d?.error?.message||("Gemini request failed ("+r.status+")"));
-      if(![500,502,503,504].includes(r.status))break;
+      // 429/permission/quota should not burn through the remaining models.
+      if([400,401,403,404,429].includes(r.status))break;
+      // 500/502/503/504: immediately try the next stable model.
     }catch(e){
-      lastError=e?.name==="AbortError"?new Error("Gemini did not respond within 24 seconds"):e;
+      lastError=e?.name==="AbortError"?new Error(model+" did not respond within "+Math.round(timeoutMs/1000)+" seconds"):e;
     }finally{clearTimeout(timeout);}
-    if(attempt===0)await new Promise(resolve=>setTimeout(resolve,900));
   }
   throw lastError||new Error("Gemini is temporarily unavailable.");
 }
@@ -50,12 +65,12 @@ export default async function handler(req,res){
         if(m)parts.push({inline_data:{mime_type:m[1],data:m[2]}});
       }
       if(!parts.length)return send(res,{error:"No page text or image supplied."},400);
-      const first=await callGemini(parts);
+      const first=await callGemini(parts,"application/json",{timeoutMs:45000,maxOutputTokens:1100});
       const complete=(x)=>x&&String(x.title||"").trim()&&Array.isArray(x.keyIdeas)&&x.keyIdeas.length>=2&&String(x.discovery||"").trim()&&String(x.memory||"").trim();
       let lesson=first;
       if(!complete(lesson)){
         const repair="You are repairing an AI lesson extraction. Use ONLY the supplied SOURCE PAGE. Return ONLY valid JSON with exactly these fields: title (short page-specific title), keyIdeas (exactly 3 factual points from the page), discovery (one simple explanation of the page main idea), memory (one short memory phrase), imagePrompt (specific educational illustration prompt for THIS page). Do not use any topic from outside the source page. If the page is a worksheet, base the lesson on the actual questions or concepts visible on it.\\n\\nSOURCE PAGE:\\n"+parts.map(p=>p.text||"").join("\\n")+"\\n\\nFIRST ATTEMPT:\\n"+JSON.stringify(first);
-        lesson=await callGemini([{text:repair},...parts.filter(p=>p.inline_data)]);
+        lesson=await callGemini([{text:repair},...parts.filter(p=>p.inline_data)],"application/json",{timeoutMs:45000,maxOutputTokens:1100});
       }
       if(!complete(lesson))throw new Error("Gemini returned incomplete lesson fields. Please try this page again.");
       lesson.keyIdeas=lesson.keyIdeas.filter(Boolean).slice(0,3);
@@ -88,7 +103,7 @@ Rules:
 - Do not put long paragraphs inside imagePrompt.
 - Avoid repeating the same idea across slides.
 - Never mention that you are an AI.`;
-      const obj=await callGemini([{text:topicPrompt}],"application/json");
+      const obj=await callGemini([{text:topicPrompt}],"application/json",{timeoutMs:45000,maxOutputTokens:5000});
       if(!obj||!Array.isArray(obj.slides)||obj.slides.length<5)throw new Error("The AI could not create enough lesson slides. Please try the topic again.");
       obj.slides=obj.slides.slice(0,25).map((s,i)=>({
         title:String(s.title||("Lesson "+(i+1))).trim(),
@@ -103,7 +118,7 @@ Rules:
     if(body.action==="simulate"){
       const text=String(body.text||"").trim();if(!text)return send(res,{error:"No simulation topic supplied."},400);
       const simPrompt="You are an educational simulation designer for an 11-year-old. The learner may type ANY school concept, including fractions, equivalent fractions, grammar, science, history, geography, or mathematics. Create a short visual step-by-step simulation that demonstrates the concept, not merely defines it. Return ONLY valid JSON: {\"steps\":[{\"emoji\":\"one emoji\",\"label\":\"short action/state\"}]}. Give 3 to 7 steps. Make the sequence logically meaningful and age-appropriate. For mathematics, show the mathematical transformation or relationship. For non-math topics, show a process, cause/effect chain, comparison, or transformation. Keep labels under 8 words. Use simple emojis as visual anchors.";
-      const obj=await callGemini([{text:simPrompt+"\\n\\nCONCEPT:\\n"+text}]);return send(res,obj);
+      const obj=await callGemini([{text:simPrompt+"\\n\\nCONCEPT:\\n"+text}],"application/json",{timeoutMs:30000,maxOutputTokens:700});return send(res,obj);
     }
 
     if(body.action==="image"){
