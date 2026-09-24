@@ -1,0 +1,19 @@
+{
+  "name": "Sam's Visual Learning Studio",
+  "short_name": "Sam's Learning",
+  "description": "A calm visual learning and discovery space for Sam.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f5fbff",
+  "theme_color": "#f5fbff",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
