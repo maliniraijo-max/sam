@@ -646,7 +646,31 @@ function renderLogosBooks(){
     };
   });
 }
-renderLogosBooks();renderLogosChapter();};
+(function bootLogosStudy(){
+  const finish=()=>{
+    if(window.LOGOS_DEEP_2026){
+      Object.entries(window.LOGOS_DEEP_2026).forEach(([key,book])=>{
+        LOGOS_2026[key]={
+          ...book,
+          chapters:Object.fromEntries(
+            Object.entries(book.chapters).map(([n,ch])=>[n,{...ch,events:ch.facts}])
+          )
+        };
+      });
+    }
+    renderLogosBooks();
+    renderLogosChapter();
+  };
+  if(window.LOGOS_DEEP_2026){
+    finish();
+  }else{
+    const s=document.createElement("script");
+    s.src="./logos-data.js?v=20260924-100&fresh="+Date.now();
+    s.onload=finish;
+    s.onerror=finish;
+    document.head.appendChild(s);
+  }
+})();};
       nums.appendChild(b);
     }
     group.appendChild(nums);box.appendChild(group);
