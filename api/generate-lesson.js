@@ -174,8 +174,103 @@ Rules:
         console.warn("TOPIC AI unavailable; using local lesson fallback:",topicError?.message);
       }
 
+      // Bible chapter requests get a real chapter-aware fallback instead of a generic lesson.
+      // We use the public-domain World English Bible through bible-api.com for the chapter text,
+      // then summarize it into child-friendly slides. Gemini is still used first when available.
+      async function getBibleChapter(request){
+        const m=String(request||"").trim().match(/^(.+?)\\s+(\\d{1,3})(?::(\\d+(?:-\\d+)?))?$/i);
+        if(!m)return null;
+        const rawBook=m[1].trim().toLowerCase().replace(/^(the)\\s+/,"");
+        const aliases={
+          "genesis":"GEN","gen":"GEN","exodus":"EXO","ex":"EXO","leviticus":"LEV","lev":"LEV",
+          "numbers":"NUM","num":"NUM","deuteronomy":"DEU","deut":"DEU","joshua":"JOS","judges":"JDG",
+          "ruth":"RUT","1 samuel":"1SA","1samuel":"1SA","2 samuel":"2SA","2samuel":"2SA",
+          "1 kings":"1KI","2 kings":"2KI","1 chronicles":"1CH","2 chronicles":"2CH",
+          "ezra":"EZR","nehemiah":"NEH","esther":"EST","job":"JOB","psalms":"PSA","psalm":"PSA",
+          "proverbs":"PRO","ecclesiastes":"ECC","song of solomon":"SNG","isaiah":"ISA","jeremiah":"JER",
+          "lamentations":"LAM","ezekiel":"EZK","daniel":"DAN","hosea":"HOS","joel":"JOL","amos":"AMO",
+          "obadiah":"OBA","jonah":"JON","micah":"MIC","nahum":"NAM","habakkuk":"HAB","zephaniah":"ZEP",
+          "haggai":"HAG","zechariah":"ZEC","malachi":"MAL","matthew":"MAT","matt":"MAT","mark":"MRK",
+          "mk":"MRK","luke":"LUK","john":"JHN","acts":"ACT","romans":"ROM","rom":"ROM",
+          "1 corinthians":"1CO","2 corinthians":"2CO","galatians":"GAL","ephesians":"EPH",
+          "philippians":"PHP","colossians":"COL","1 thessalonians":"1TH","2 thessalonians":"2TH",
+          "1 timothy":"1TI","2 timothy":"2TI","titus":"TIT","philemon":"PHM","hebrews":"HEB",
+          "james":"JAS","1 peter":"1PE","2 peter":"2PE","1 john":"1JN","2 john":"2JN","3 john":"3JN",
+          "jude":"JUD","revelation":"REV","revelation of john":"REV"
+        };
+        const id=aliases[rawBook];
+        if(!id)return null;
+        const chapter=m[2], verseRange=m[3]||"";
+        const url="https://bible-api.com/data/web/"+id+"/"+chapter;
+        try{
+          const r=await fetch(url);
+          if(!r.ok)return null;
+          const d=await r.json();
+          if(!Array.isArray(d.verses)||!d.verses.length)return null;
+          return {book:m[1].trim(),chapter,verseRange,verses:d.verses};
+        }catch(e){return null;}
+      }
+      function bibleFallback(ch){
+        const verses=ch.verses;
+        const groups=[];
+        const size=Math.max(2,Math.ceil(verses.length/5));
+        for(let i=0;i<verses.length;i+=size)groups.push(verses.slice(i,i+size));
+        const clean=(arr)=>arr.map(v=>"Verse "+v.verse+": "+String(v.text||"").replace(/\\s+/g," ").trim()).join(" ");
+        const slides=[];
+        slides.push({
+          title:ch.book+" "+ch.chapter+" — Overview",
+          keyIdeas:[
+            "This chapter has "+verses.length+" verses.",
+            "Read the chapter as one connected story or message.",
+            "Notice the people, place, problem, response and outcome."
+          ],
+          discovery:"Start by asking: Who is involved, what happens, and how does the situation change?",
+          memory:"WHO → WHAT HAPPENS → WHAT CHANGES",
+          imagePrompt:"Child-friendly Bible story illustration for "+ch.book+" chapter "+ch.chapter+", showing the main people and setting without adding modern objects."
+        });
+        groups.forEach((g,i)=>{
+          const first=g[0].verse,last=g[g.length-1].verse;
+          const text=clean(g);
+          slides.push({
+            title:ch.book+" "+ch.chapter+":"+first+(first!==last?"–"+last:""),
+            keyIdeas:[
+              "Verses "+first+"–"+last+" introduce the events and people in this part of the chapter.",
+              "Look for what the people say, do, decide, or experience.",
+              "Connect this part to what happened immediately before and after it."
+            ],
+            discovery:text.length>420?text.slice(0,417)+"…":text,
+            memory:"READ → NOTICE → CONNECT",
+            imagePrompt:"Accurate child-friendly Bible story scene representing "+ch.book+" "+ch.chapter+":"+first+"–"+last+". Use the historical setting and people suggested by the passage; no modern objects, no text."
+          });
+        });
+        slides.push({
+          title:"What can we learn?",
+          keyIdeas:[
+            "Retell the chapter in the correct order.",
+            "Name the important people and explain their choices or actions.",
+            "Use the chapter itself to support your answers."
+          ],
+          discovery:"The strongest understanding comes from connecting the chapter's events rather than memorising isolated names.",
+          memory:"RETELL IT → EXPLAIN IT → REMEMBER IT",
+          imagePrompt:"Warm educational Bible chapter recap illustration for "+ch.book+" "+ch.chapter+", showing the central story arc in one clear scene."
+        });
+        return {title:ch.book+" "+ch.chapter,subtitle:"Bible chapter lesson • World English Bible source",slides};
+      }
+
       // Keep the Topic Lesson feature usable even when Gemini is overloaded.
       // These lessons are deterministic, instant, and can still receive AI illustrations.
+      const bibleChapter=await getBibleChapter(topic);
+      if(bibleChapter){
+        // Try Gemini with the actual chapter text first, so the lesson can be precise.
+        const chapterText=bibleChapter.verses.map(v=>"Verse "+v.verse+": "+v.text).join("\\n");
+        try{
+          const biblePrompt="Create a meaningful Bible study lesson for an 11-year-old from the exact chapter text below. Do not invent events. Use the chapter as the authoritative source. Summarize rather than quoting long passages. Include the actual people, places, events, choices and sequence from the chapter. Return ONLY JSON with title, subtitle and 5-10 slides, each with title, exactly 3 keyIdeas, discovery, memory and imagePrompt.\\n\\nCHAPTER: "+bibleChapter.book+" "+bibleChapter.chapter+"\\n"+chapterText;
+          const obj=await callGemini([{text:biblePrompt}],"application/json",{timeoutMs:12000,maxOutputTokens:5000});
+          if(obj&&Array.isArray(obj.slides)&&obj.slides.length>=5)return send(res,{lesson:obj});
+        }catch(e){console.warn("BIBLE AI unavailable; using chapter-aware fallback:",e?.message);}
+        return send(res,{lesson:bibleFallback(bibleChapter)});
+      }
+
       const t=topic.toLowerCase();
       let slides=[];
       const add=(title,keyIdeas,discovery,memory,imagePrompt)=>slides.push({title,keyIdeas,discovery,memory,imagePrompt});
