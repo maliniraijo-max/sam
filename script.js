@@ -464,21 +464,97 @@ function simSteps(t){
   if(t.includes("volcano"))return["🌋 Volcano","🔥 Heat","💨 Eruption","🌋 Lava"];
   return["💭 Idea","🔎 Explore","🧩 Connect","💡 Understand"];
 }
+function renderSimulation(text,steps){
+  const box=$("simulation");
+  let html='<div class="sim-title">✨ '+esc(text)+'</div><div class="sim-steps">';
+  steps.forEach((x,i)=>{
+    const emoji=x.emoji||"💡";const label=x.label||x.title||"Step "+(i+1);
+    html+='<div class="sim-step" style="animation-delay:'+(i*120)+'ms"><span class="emoji">'+esc(emoji)+"</span>"+esc(label)+"</div>";
+    if(i<steps.length-1)html+='<span class="arrow">→</span>';
+  });
+  html+="</div>";box.innerHTML=html;box.classList.remove("hidden");box.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function getLocalSimulation(text){
+  const t=text.toLowerCase().replace(/\s+/g," ").trim();
+  const has=x=>t.includes(x);
+
+  if(has("ruth") && (has("ruth chapter 1") || /^ruth\s+1$/.test(t))) return [
+    {emoji:"👩",label:"Naomi loses her husband and sons"},
+    {emoji:"🏠",label:"Naomi decides to return home"},
+    {emoji:"👭",label:"Ruth chooses to stay with Naomi"},
+    {emoji:"🛤️",label:"They travel to Bethlehem"},
+    {emoji:"🌾",label:"They arrive at barley harvest"}
+  ];
+  if(has("ruth") && (has("ruth chapter 2") || /^ruth\s+2$/.test(t))) return [
+    {emoji:"🌾",label:"Ruth gleans in Boaz's field"},
+    {emoji:"👀",label:"Boaz notices Ruth"},
+    {emoji:"🤝",label:"Boaz protects and welcomes Ruth"},
+    {emoji:"🍞",label:"Ruth eats with Boaz's workers"},
+    {emoji:"🏠",label:"Ruth tells Naomi about Boaz"}
+  ];
+  if(has("ruth") && (has("ruth chapter 3") || /^ruth\s+3$/.test(t))) return [
+    {emoji:"🌙",label:"Naomi gives Ruth a plan"},
+    {emoji:"🌾",label:"Ruth goes to Boaz at night"},
+    {emoji:"🧎",label:"Ruth asks Boaz to help"},
+    {emoji:"🤝",label:"Boaz agrees to act as redeemer"},
+    {emoji:"🌅",label:"Ruth returns safely to Naomi"}
+  ];
+  if(has("ruth") && (has("ruth chapter 4") || /^ruth\s+4$/.test(t))) return [
+    {emoji:"⚖️",label:"Boaz meets the nearer relative"},
+    {emoji:"🤝",label:"Boaz receives the right to redeem"},
+    {emoji:"💍",label:"Boaz marries Ruth"},
+    {emoji:"👶",label:"Ruth and Boaz have a son"},
+    {emoji:"🌳",label:"Their family joins David's line"}
+  ];
+
+  if(/equivalent fraction|fraction|fractions/.test(t)) return [
+    {emoji:"🍫",label:"Start with the fraction"},
+    {emoji:"✖️",label:"Multiply top and bottom"},
+    {emoji:"🔢",label:"Keep the value equal"},
+    {emoji:"✨",label:"Get an equivalent fraction"}
+  ];
+  if(has("water cycle")) return [
+    {emoji:"☀️",label:"Sun heats the water"},
+    {emoji:"💨",label:"Water evaporates"},
+    {emoji:"☁️",label:"Water vapour condenses"},
+    {emoji:"🌧️",label:"Rain falls"},
+    {emoji:"🌊",label:"Water collects"}
+  ];
+  if(has("butterfly")) return [
+    {emoji:"🥚",label:"Egg is laid"},
+    {emoji:"🐛",label:"Caterpillar grows"},
+    {emoji:"🟢",label:"Pupa forms"},
+    {emoji:"🦋",label:"Adult butterfly emerges"}
+  ];
+  if(has("pollination")) return [
+    {emoji:"🌼",label:"Anther contains pollen"},
+    {emoji:"🐝",label:"Pollen is carried"},
+    {emoji:"🌸",label:"Pollen reaches stigma"},
+    {emoji:"🌱",label:"Reproduction can continue"}
+  ];
+  return null;
+}
+
 async function simulate(){
   const input=$("simInput"),box=$("simulation"),text=input.value.trim();
   if(!text){input.focus();box.innerHTML='<div class="sim-title">💡 Type any concept first.</div>';box.classList.remove("hidden");return;}
+
+  // Known visual lessons are rendered directly in the browser.
+  // This makes Bible/science examples reliable even if the AI API is busy,
+  // unavailable, or an old server deployment is still being served.
+  const localSteps=getLocalSimulation(text);
+  if(localSteps){
+    renderSimulation(text,localSteps);
+    return;
+  }
+
   box.innerHTML='<div class="sim-title">🤖 AI is building a simulation…</div>';box.classList.remove("hidden");
   try{
     const res=await fetch(AI_API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"simulate",text})});
     const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||("Simulation failed ("+res.status+")"));
     const steps=Array.isArray(data.steps)?data.steps:[];if(!steps.length)throw new Error("AI returned no simulation steps.");
-    let html='<div class="sim-title">✨ '+esc(text)+'</div><div class="sim-steps">';
-    steps.forEach((x,i)=>{
-      const emoji=x.emoji||"💡";const label=x.label||x.title||"Step "+(i+1);
-      html+='<div class="sim-step" style="animation-delay:'+(i*120)+'ms"><span class="emoji">'+esc(emoji)+"</span>"+esc(label)+"</div>";
-      if(i<steps.length-1)html+='<span class="arrow">→</span>';
-    });
-    html+="</div>";box.innerHTML=html;box.scrollIntoView({behavior:"smooth",block:"nearest"});
+    renderSimulation(text,steps);
   }catch(err){
     console.warn("SIMULATION",err);box.innerHTML='<div class="sim-title">⚠️ '+esc(err&&err.message?err.message:"Simulation unavailable")+'</div>';
   }
