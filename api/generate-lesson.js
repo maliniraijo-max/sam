@@ -15,12 +15,12 @@ imagePrompt: a detailed prompt for an accurate educational illustration of THIS 
 The slide must be appropriate for the uploaded page even when the page belongs to a completely different subject from every other page.`;
 async function callGemini(parts, responseMimeType="application/json"){
   const key=process.env.GEMINI_API_KEY;if(!key)throw new Error("GEMINI_API_KEY is not configured on Vercel.");
-  const models=["gemini-3.5-flash-lite","gemini-3.8-flash","gemini-3.6-flash"];
+  const models=["gemini-3.5-flash-lite","gemini-3.8-flash"];
   let lastError=null;
   for(const model of models){
     for(let attempt=0;attempt<3;attempt++){
       try{
-        const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{responseMimeType,temperature:0.2}})});
+        const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent?key="+encodeURIComponent(key),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{responseMimeType}})});
         const d=await r.json().catch(()=>({}));
         if(r.ok)return extractObject(d?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"");
         lastError=new Error(d?.error?.message||("Gemini request failed ("+r.status+")"));
@@ -44,7 +44,16 @@ export default async function handler(req,res){
         if(m)parts.push({inline_data:{mime_type:m[1],data:m[2]}});
       }
       if(!parts.length)return send(res,{error:"No page text or image supplied."},400);
-      return send(res,{lesson:await callGemini(parts)});
+      const first=await callGemini(parts);
+      const complete=(x)=>x&&String(x.title||"").trim()&&Array.isArray(x.keyIdeas)&&x.keyIdeas.length>=2&&String(x.discovery||"").trim()&&String(x.memory||"").trim()&&String(x.imagePrompt||"").trim();
+      let lesson=first;
+      if(!complete(lesson)){
+        const repair="You are repairing an AI lesson extraction. Use ONLY the supplied SOURCE PAGE. Return ONLY valid JSON with exactly these fields: title (short page-specific title), keyIdeas (exactly 3 factual points from the page), discovery (one simple explanation of the page main idea), memory (one short memory phrase), imagePrompt (specific educational illustration prompt for THIS page). Do not use any topic from outside the source page. If the page is a worksheet, base the lesson on the actual questions or concepts visible on it.\\n\\nSOURCE PAGE:\\n"+parts.map(p=>p.text||"").join("\\n")+"\\n\\nFIRST ATTEMPT:\\n"+JSON.stringify(first);
+        lesson=await callGemini([{text:repair},...parts.filter(p=>p.inline_data)]);
+      }
+      if(!complete(lesson))throw new Error("Gemini could read the page but returned incomplete lesson fields. Please try this page again.");
+      lesson.keyIdeas=lesson.keyIdeas.slice(0,3);
+      return send(res,{lesson});
     }
     if(body.action==="simulate"){
       const text=String(body.text||"").trim();if(!text)return send(res,{error:"No simulation topic supplied."},400);
