@@ -316,7 +316,7 @@ Rules:
 
       // Bible chapters get a deterministic story flow FIRST.
       // Do not let Gemini replace a known Bible flow with a generic study-skills flow.
-      if(/\\bruth\\b\\s+(?:chapter\\s*)?1\\b/i.test(t)){
+      if(/\bruth\b\\s+(?:chapter\\s*)?1\b/i.test(t)){
         return send(res,{steps:[
           {emoji:"👩",label:"Naomi loses her husband and sons"},
           {emoji:"🏠",label:"Naomi decides to return home"},
@@ -325,7 +325,7 @@ Rules:
           {emoji:"🌾",label:"They arrive at barley harvest"}
         ]});
       }
-      if(/\\bruth\\b\\s+(?:chapter\\s*)?\\d+\\b|(?:1|2)\\s+samuel\\s+(?:chapter\\s*)?\\d+\\b|\\bjohn\\b\\s+(?:chapter\\s*)?\\d+\\b|\\bgalatians\\b\\s+(?:chapter\\s*)?\\d+\\b/i.test(t)){
+      if(/\bruth\b\\s+(?:chapter\\s*)?\\d+\b|(?:1|2)\\s+samuel\\s+(?:chapter\\s*)?\\d+\b|\bjohn\b\\s+(?:chapter\\s*)?\\d+\b|\bgalatians\b\\s+(?:chapter\\s*)?\\d+\b/i.test(t)){
         return send(res,{steps:[
           {emoji:"📖",label:"Read the Bible chapter"},
           {emoji:"👥",label:"Meet the important people"},
