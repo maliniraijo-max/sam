@@ -137,9 +137,13 @@ export default async function handler(req,res){
       if(!topic)return send(res,{error:"Please enter a topic."},400);
 
       async function getBibleChapter(request){
-        const m=String(request||"").trim().match(/^(.+?)\\s+(?:chapter\\s*)?(\\d{1,3})(?::(\\d+(?:-\\d+)?))?$/i);
+        let normalized=String(request||"").trim();
+        normalized=normalized.replace(/^\s*(?:from|in|of)\s+(?:the\s+)?bible\s+/i,"");
+        normalized=normalized.replace(/^\s*bible\s+/i,"");
+        normalized=normalized.replace(/^\s*book\s+of\s+/i,"");
+        const m=normalized.match(/^(.+?)\s+(?:chapter\s*)?(\d{1,3})(?::(\d+(?:-\d+)?))?$/i);
         if(!m)return null;
-        const rawBook=m[1].trim().toLowerCase().replace(/^(the)\\s+/,"");
+        const rawBook=m[1].trim().toLowerCase().replace(/^(the)\s+/,"");
         const aliases={
           "genesis":"GEN","gen":"GEN","exodus":"EXO","ex":"EXO","leviticus":"LEV","lev":"LEV",
           "numbers":"NUM","num":"NUM","deuteronomy":"DEU","deut":"DEU","joshua":"JOS","judges":"JDG",
