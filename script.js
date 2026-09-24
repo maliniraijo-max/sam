@@ -566,87 +566,88 @@ $("topicBtn").onclick=createTopicLesson;
 $("topicMiniPrev").onclick=()=>{if(topicMiniPage>0){topicMiniPage--;renderTopicMini();}};
 $("topicMiniNext").onclick=()=>{if(topicMiniPage<topicPages.length-1){topicMiniPage++;renderTopicMini();}};
 
-const LOGOS_2026={
-  ruth:{
-    label:"🌾 Ruth",range:[1,4],chapters:{
-      1:{title:"Naomi and Ruth return to Bethlehem",events:["Naomi loses her husband and sons","Ruth chooses to stay with Naomi","They arrive in Bethlehem at barley harvest"],facts:["Ruth stays with Naomi","They travel to Bethlehem","The chapter ends at the beginning of barley harvest"]},
-      2:{title:"Ruth meets Boaz",events:["Ruth gleans in Boaz's field","Boaz protects and welcomes Ruth","Ruth returns to Naomi with grain"],facts:["Ruth gleans in Boaz's field","Boaz is kind to Ruth","Ruth tells Naomi about Boaz"]},
-      3:{title:"Ruth asks Boaz to redeem her",events:["Naomi gives Ruth a plan","Ruth goes to Boaz at the threshing floor","Boaz promises to act as redeemer"],facts:["Ruth approaches Boaz at night","Boaz agrees to help if the nearer relative will not redeem","Ruth returns to Naomi before dawn"]},
-      4:{title:"Boaz redeems Ruth",events:["Boaz meets the nearer relative","Boaz marries Ruth","Ruth and Boaz have a son named Obed"],facts:["Boaz settles the redemption at the town gate","Boaz marries Ruth","Obed becomes the father of Jesse"]}
-    }
-  },
-  samuel:{
-    label:"👑 1 Samuel",range:[1,7],chapters:{
-      1:{title:"Hannah prays for a son",events:["Hannah prays at Shiloh","Samuel is born","Hannah dedicates Samuel to the Lord"],facts:["Hannah prays for a son","Samuel is dedicated to the Lord","Eli is the priest at Shiloh"]},
-      2:{title:"Hannah's song and Eli's sons",events:["Hannah praises God","Samuel serves at the sanctuary","Eli's sons are condemned for their wickedness"],facts:["Hannah praises God","Samuel ministers before the Lord","Eli's sons Hophni and Phinehas act wickedly"]},
-      3:{title:"The Lord calls Samuel",events:["Samuel hears a voice at night","Eli realizes the Lord is calling him","Samuel receives a message from the Lord"],facts:["Samuel is called while serving at Shiloh","Eli tells Samuel to answer the Lord","Samuel becomes known as a prophet"]},
-      4:{title:"The ark is captured",events:["Israel fights the Philistines","The ark is taken","Eli dies after hearing the news"],facts:["The Philistines capture the ark","Eli dies after hearing that the ark was captured","Phinehas's wife names her son Ichabod"]},
-      5:{title:"The ark among the Philistines",events:["The ark is placed beside Dagon","Dagon falls before the ark","Plagues strike the Philistine cities"],facts:["Dagon falls before the ark","The Philistines suffer plagues","The ark is moved between Philistine cities"]},
-      6:{title:"The ark returns to Israel",events:["The Philistines send the ark away","The ark reaches Beth-shemesh","The people rejoice and respond to the ark"],facts:["The Philistines return the ark","The ark comes to Beth-shemesh","The Philistines use two milk cows for the cart"]},
-      7:{title:"Samuel leads Israel back to God",events:["Israel puts away foreign gods","Samuel gathers the people at Mizpah","God gives Israel victory over the Philistines"],facts:["Samuel calls Israel to return to the Lord","The gathering takes place at Mizpah","Samuel sets up the Ebenezer stone"]}
-    }
-  },
-  ecclesiastes:{
-    label:"🕊️ Ecclesiastes",range:[1,6],chapters:{
-      1:{title:"The vanity of human toil",events:["Everything is described as vanity","Generations come and go","The Teacher reflects on wisdom and knowledge"],facts:["The Teacher repeatedly describes life as vanity","The cycles of nature are emphasized","More knowledge can bring more sorrow"]},
-      2:{title:"Pleasure, work and wisdom",events:["The Teacher tests pleasure","Great works and possessions are considered","Wisdom is compared with folly"],facts:["The Teacher tests pleasure and possessions","Wisdom is better than folly","Both the wise and foolish eventually die"]},
-      3:{title:"A time for everything",events:["There is a season for every activity","Human beings face limits","The Teacher reflects on God's ordering of time"],facts:["There is a time for many different activities","God has made everything suitable in its time","Human beings cannot fully grasp all God's work"]},
-      4:{title:"Oppression and companionship",events:["The Teacher observes oppression","Two are better than one","A threefold cord is described as strong"],facts:["Oppression is observed under the sun","Two are better than one","A threefold cord is not quickly broken"]},
-      5:{title:"Worship, promises and wealth",events:["The Teacher warns about careless words before God","Vows are treated seriously","Wealth does not guarantee satisfaction"],facts:["The Teacher urges carefulness when approaching God's house","Vows should not be made carelessly","Riches can fail to satisfy their owner"]},
-      6:{title:"Wealth without enjoyment",events:["A person may possess wealth without enjoying it","Human appetite is never fully satisfied","The limits of human knowledge are considered"],facts:["A person may have riches but not enjoy them","The eye is not satisfied with seeing","The chapter asks what is good for a person during life's days"]}
-    }
-  },
-  john:{
-    label:"✝️ Gospel according to John",range:[1,12],chapters:{
-      1:{title:"The Word and the first disciples",events:["The Word is introduced","John the Baptist bears witness","Jesus calls the first disciples"],facts:["The Word was with God and was God","John the Baptist bears witness to Jesus","Andrew brings Simon to Jesus"]},
-      2:{title:"Cana and the temple",events:["Jesus turns water into wine","Jesus goes to Jerusalem","Jesus cleanses the temple"],facts:["Jesus performs the sign at Cana","Water is changed into wine","Jesus drives the sellers from the temple"]},
-      3:{title:"Jesus and Nicodemus",events:["Nicodemus visits Jesus at night","Jesus teaches about being born from above","John the Baptist continues to testify"],facts:["Nicodemus visits Jesus at night","Jesus teaches about new birth","John 3:16 speaks of God's love for the world"]},
-      4:{title:"The Samaritan woman",events:["Jesus meets a Samaritan woman","Jesus offers living water","Many Samaritans believe"],facts:["Jesus speaks with a Samaritan woman","Jesus teaches about living water","The Samaritan village believes in Jesus"]},
-      5:{title:"Healing at Bethesda",events:["Jesus heals a man at Bethesda","The healing leads to controversy","Jesus speaks about his authority"],facts:["Jesus heals a man at Bethesda","The healing occurs on the Sabbath","Jesus speaks about his relationship with the Father"]},
-      6:{title:"Bread of Life",events:["Jesus feeds five thousand","Jesus walks on the sea","Jesus teaches about the bread of life"],facts:["Jesus feeds about five thousand people","Jesus walks on the sea","Jesus calls himself the bread of life"]},
-      7:{title:"Jesus at the Feast of Booths",events:["Jesus teaches at the feast","People debate who Jesus is","Jesus speaks about living water"],facts:["Jesus teaches at the Feast of Booths","People debate whether Jesus is the Christ","Jesus speaks about rivers of living water"]},
-      8:{title:"Light of the world",events:["Jesus teaches in the temple","Jesus speaks about being the light of the world","A dispute arises about Abraham"],facts:["Jesus calls himself the light of the world","Jesus teaches in the temple","Jesus says that before Abraham was, he is"]},
-      9:{title:"Jesus heals a man born blind",events:["Jesus gives sight to a man born blind","The Pharisees question the man","The man comes to believe in Jesus"],facts:["Jesus heals a man born blind","The healed man is questioned by the Pharisees","The man worships Jesus"]},
-      10:{title:"The Good Shepherd",events:["Jesus teaches about the sheepfold","Jesus calls himself the good shepherd","Jesus speaks about his sheep"],facts:["Jesus calls himself the good shepherd","The good shepherd lays down his life for the sheep","Jesus says his sheep know his voice"]},
-      11:{title:"Lazarus is raised",events:["Lazarus becomes ill and dies","Jesus arrives at Bethany","Jesus calls Lazarus from the tomb"],facts:["Lazarus is the brother of Mary and Martha","Jesus weeps","Jesus calls Lazarus out of the tomb"]},
-      12:{title:"Jesus enters Jerusalem",events:["Mary anoints Jesus","Jesus enters Jerusalem","Jesus speaks about his coming death"],facts:["Mary anoints Jesus's feet","Jesus enters Jerusalem to crowds shouting praise","Jesus speaks about the grain of wheat and his death"]}
-    }
-  },
-  galatians:{
-    label:"🌿 Galatians",range:[1,6],chapters:{
-      1:{title:"The true gospel",events:["Paul introduces himself","Paul warns against a different gospel","Paul describes his calling"],facts:["Paul is an apostle called by Jesus Christ","Paul warns against a different gospel","Paul describes his earlier life and calling"]},
-      2:{title:"Justification by faith",events:["Paul describes his meeting with the apostles","Paul confronts Peter at Antioch","Paul explains justification by faith"],facts:["Paul opposes Peter at Antioch","A person is not justified by works of the law","Paul says he lives by faith in the Son of God"]},
-      3:{title:"Faith, law and God's promise",events:["Paul asks how the Galatians received the Spirit","Abraham is presented as a man of faith","The promise is discussed in relation to the law"],facts:["Those of faith are blessed with Abraham","The law is not the basis of the promise","Paul describes the law as a guardian until Christ"]},
-      4:{title:"Sons and heirs",events:["Paul describes believers as heirs","Paul uses the picture of Hagar and Sarah","Paul urges freedom from returning to slavery"],facts:["Believers are described as heirs","Paul uses Hagar and Sarah as an illustration","The Galatians are urged not to return to slavery"]},
-      5:{title:"Freedom and life by the Spirit",events:["Paul urges believers to stand firm in freedom","Love fulfills the law","The fruit of the Spirit is described"],facts:["Christ sets believers free for freedom","Faith works through love","The fruit of the Spirit includes love, joy and peace"]},
-      6:{title:"Bear one another's burdens",events:["Believers are told to restore others gently","Paul teaches about sowing and reaping","Paul emphasizes the new creation"],facts:["Believers should restore someone gently","A person reaps what they sow","Paul boasts in the cross of Jesus Christ"]}
+let logosBook="ruth",logosChapter=1;
+
+function logosDeepData(){
+  return window.LOGOS_DEEP_2026||null;
+}
+
+function validateLogosData(){
+  const data=logosDeepData();
+  if(!data)return {ok:false,books:0,chapters:0,points:0};
+  let books=0,chapters=0,points=0;
+  for(const book of Object.values(data)){
+    books++;
+    for(const ch of Object.values(book.chapters||{})){
+      chapters++;
+      if(!Array.isArray(ch.facts)||ch.facts.length!==10)return {ok:false,books,chapters,points};
+      if(ch.facts.some(x=>typeof x!=="string"||!x.trim()))return {ok:false,books,chapters,points};
+      points+=ch.facts.length;
     }
   }
-};
+  return {ok:books===5&&chapters===35&&points===350,books,chapters,points};
+}
 
-let logosBook="ruth",logosChapter=1,logosQuiz=null;
 function renderLogosBooks(){
   const box=$("logosBooks");if(!box)return;
+  const data=logosDeepData();
+  if(!data){
+    box.innerHTML='<p class="logos-empty">Logos study data could not be loaded.</p>';
+    return;
+  }
   box.innerHTML="";
-  Object.entries(LOGOS_2026).forEach(([key,book])=>{
+  Object.entries(data).forEach(([key,book])=>{
     const group=document.createElement("div");group.className="logos-book";
-    const title=document.createElement("button");title.className="logos-book-title";title.innerHTML=book.label+" <span>"+book.range[0]+"–"+book.range[1]+"</span>";
-    title.onclick=()=>{logosBook=key;renderLogosBooks();};
+    const title=document.createElement("button");
+    title.className="logos-book-title";
+    title.innerHTML=esc(book.label)+" <span>"+book.range[0]+"–"+book.range[1]+"</span>";
+    title.onclick=()=>{logosBook=key;renderLogosBooks();renderLogosChapter();};
     group.appendChild(title);
     const nums=document.createElement("div");nums.className="logos-chapters";
     for(let n=book.range[0];n<=book.range[1];n++){
-      const b=document.createElement("button");b.className="logos-chapter-btn"+(key===logosBook&&n===logosChapter?" active":"");b.textContent=n;
-      b.onclick=()=>{logosBook=key;logosChapter=n;if(window.LOGOS_DEEP_2026){Object.entries(window.LOGOS_DEEP_2026).forEach(([key,book])=>{LOGOS_2026[key]={...book,chapters:Object.fromEntries(Object.entries(book.chapters).map(([n,ch])=>[n,{...ch,events:ch.facts}]))};});} if(window.LOGOS_DEEP_2026){
-  Object.entries(window.LOGOS_DEEP_2026).forEach(([key,book])=>{
-    LOGOS_2026[key]={
-      ...book,
-      chapters:Object.fromEntries(
-        Object.entries(book.chapters).map(([n,ch])=>[n,{...ch,events:ch.facts}])
-      )
-    };
+      const b=document.createElement("button");
+      b.className="logos-chapter-btn"+(key===logosBook&&n===logosChapter?" active":"");
+      b.textContent=n;
+      b.title=book.label+" Chapter "+n;
+      b.onclick=()=>{logosBook=key;logosChapter=n;renderLogosBooks();renderLogosChapter();};
+      nums.appendChild(b);
+    }
+    group.appendChild(nums);
+    box.appendChild(group);
   });
 }
+
+function renderLogosChapter(){
+  const box=$("logosChapterView");if(!box)return;
+  const data=logosDeepData();
+  const book=data?.[logosBook];
+  const ch=book?.chapters?.[logosChapter];
+  if(!book||!ch||!Array.isArray(ch.facts)||ch.facts.length!==10){
+    box.innerHTML='<p class="logos-empty">This chapter does not have the required 10 study points.</p>';
+    return;
+  }
+  box.innerHTML='<div class="logos-chapter-head"><div><span>'+esc(book.label)+'</span><h3>Chapter '+logosChapter+': '+esc(ch.title)+'</h3><small class="logos-point-count">10 Study Points</small></div><button id="logosQuizBtn" class="logos-quiz-btn">📝 Chapter Quiz</button></div>'+
+    '<div class="logos-events">'+ch.facts.map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
+    '<div class="logos-memory"><strong>🧠 Remember</strong><p>Learn these 10 points, then take the 10-question chapter quiz.</p></div>';
+  $("logosQuizBtn").onclick=()=>{window.location.href="quiz.html?book="+encodeURIComponent(logosBook)+"&chapter="+logosChapter;};
+}
+
 (function bootLogosStudy(){
+  const finish=()=>{
+    const check=validateLogosData();
+    renderLogosBooks();
+    renderLogosChapter();
+    if(!check.ok)console.error("LOGOS DATA VALIDATION FAILED",check);
+  };
+  if(window.LOGOS_DEEP_2026)finish();
+  else{
+    const s=document.createElement("script");
+    s.src="./logos-data.js?v=20260924-101&fresh="+Date.now();
+    s.onload=finish;
+    s.onerror=finish;
+    document.head.appendChild(s);
+  }
+})();(function bootLogosStudy(){
   const finish=()=>{
     if(window.LOGOS_DEEP_2026){
       Object.entries(window.LOGOS_DEEP_2026).forEach(([key,book])=>{
