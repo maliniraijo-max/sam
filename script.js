@@ -71,8 +71,8 @@ async function generateAIImage(page){
   page.aiImage=data.image;return page.aiImage;
 }
 async function prefetchNearbyIllustrations(){
-  const start=currentPage-1;
-  const targets=pages.slice(start,start+3).filter(p=>p&&!p.aiImage&&p.imagePrompt);
+  const start=currentPage;
+  const targets=pages.slice(start,start+2).filter(p=>p&&!p.aiImage&&p.imagePrompt);
   let next=0;
   const worker=async()=>{
     while(next<targets.length){
