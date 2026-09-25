@@ -8,14 +8,15 @@
 <link rel="stylesheet" href="style.css?v=20260925-010">
 <script>
   const exploreMode = new URLSearchParams(location.search).get("mode") || "web";
-  if (exploreMode === "web" || exploreMode === "ai") {
-    document.documentElement.classList.add(exploreMode === "web" ? "web-search-mode" : "ai-search-mode");
+  if (exploreMode === "web" || exploreMode === "ai" || exploreMode === "break") {
+    if (exploreMode === "web") document.documentElement.classList.add("web-search-mode");
+    if (exploreMode === "ai") document.documentElement.classList.add("ai-search-mode");
+    if (exploreMode === "break") document.documentElement.classList.add("break-search-mode");
     // Google provides the working search box below; hide Sam's fallback bar before first paint.
     const hideFallback = document.createElement("style");
     hideFallback.textContent = "#exploreForm,#suggestions{display:none!important}";
     document.head.appendChild(hideFallback);
   }
-  if (exploreMode === "break") document.documentElement.classList.add("break-search-mode");
 </script>
 </head>
 <body class="explore-page">
@@ -112,6 +113,6 @@ window.__gcse = {
 };
 </script>
 <script async src="https://cse.google.com/cse.js?cx=518c9e656d6e04393"></script>
-<script src="explore.js?v=20260925-011"></script>
+<script src="explore.js?v=20260925-012"></script>
 </body>
 </html>
