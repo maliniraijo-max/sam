@@ -157,9 +157,15 @@
 
     try {
       if (mode === "ai") {
-        window.location.assign(
-          "https://www.google.com/aimode?q=" + encodeURIComponent(query)
-        );
+        const r = await fetch("./api/explore", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({mode: "ai", query})
+        });
+
+        const d = await r.json();
+        if (!r.ok || d.error) throw new Error(d.error || "AI search failed.");
+        renderAi(d);
         return;
       }
 
