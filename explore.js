@@ -37,7 +37,7 @@
     e.preventDefault();const query=$("exploreInput").value.trim();if(!query)return;
     showLoading(true);
     try{
-      const r=await fetch("./api/explore",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode,query})});
+      if(mode==="web"){location.href="https://www.google.com/search?q="+encodeURIComponent(query);return;} if(mode==="break"){location.href="https://www.google.com/search?tbm=isch&q="+encodeURIComponent(query);return;} const r=await fetch("./api/explore",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode,query})});
       const d=await r.json();if(!r.ok||d.error)throw new Error(d.error||"Something went wrong.");
       if(mode==="web")renderWeb(d);else if(mode==="ai")renderAi(d);else renderBreak(d);
     }catch(err){
