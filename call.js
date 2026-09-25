@@ -14,6 +14,7 @@ let pendingCall=null;
 let timerId=null;
 let callStartedAt=0;
 let muted=false;
+let dataConn=null;
 
 const PEER_PREFIX="sam-teacher-";
 const PEER_OPTIONS={host:"0.peerjs.com",port:443,path:"/",secure:true,debug:1};
@@ -74,6 +75,43 @@ function stopLocalStream(){
     localStream.getTracks().forEach(t=>t.stop());
     localStream=null;
   }
+}
+
+
+function setChatState(online){
+  const dot=$("chatDot");
+  if(dot)dot.className="chat-dot "+(online?"online":"");
+}
+function addChatMessage(text,from){
+  const box=$("chatMessages");if(!box)return;
+  const empty=box.querySelector(".chat-empty");if(empty)empty.remove();
+  const row=document.createElement("div");
+  row.className="chat-msg "+(from==="me"?"mine":"theirs");
+  const bubble=document.createElement("div");bubble.className="chat-bubble";bubble.textContent=String(text||"");
+  const meta=document.createElement("small");meta.textContent=from==="me"?"You":"Teacher";
+  row.append(bubble,meta);box.appendChild(row);box.scrollTop=box.scrollHeight;
+}
+function attachDataConnection(conn){
+  if(dataConn&&dataConn!==conn){try{dataConn.close();}catch(e){}}
+  dataConn=conn;
+  conn.on("open",()=>setChatState(true));
+  conn.on("data",data=>{
+    if(data&&data.type==="chat"&&typeof data.text==="string")addChatMessage(data.text,"them");
+  });
+  conn.on("close",()=>{if(dataConn===conn){dataConn=null;setChatState(false);}});
+  conn.on("error",()=>setChatState(false));
+}
+function sendChat(){
+  const input=$("chatInput");if(!input)return;
+  const text=input.value.trim();if(!text)return;
+  if(!dataConn||!dataConn.open){showError("Chat is not connected yet. Please wait for the other person to join.");return;}
+  dataConn.send({type:"chat",text:text.slice(0,500)});
+  addChatMessage(text,"me");input.value="";input.focus();
+}
+function cleanupChat(){
+  if(dataConn){try{dataConn.close();}catch(e){}}
+  dataConn=null;setChatState(false);
+  const box=$("chatMessages");if(box)box.innerHTML='<div class="chat-empty">No messages yet. Say hello! 👋</div>';
 }
 
 function cleanupCall(keepPeer=true){
@@ -162,6 +200,7 @@ async function startTeacher(){
       const link=location.origin+location.pathname+"?mode=student&code="+encodeURIComponent(code);
       $("copyLinkBtn").dataset.link=link;
     });
+    peer.on("connection",conn=>attachDataConnection(conn));
     peer.on("call",call=>{
       if(currentCall||pendingCall){call.close();return;}
       pendingCall=call;
@@ -233,6 +272,8 @@ async function joinTeacher(){
     peer=new Peer(undefined,PEER_OPTIONS);
     peer.on("open",id=>{
       const teacherId=PEER_PREFIX+code.toLowerCase();
+      const conn=peer.connect(teacherId,{label:"sam-chat",reliable:true,metadata:{role:"student",name:"Sam"}});
+      attachDataConnection(conn);
       const call=peer.call(teacherId,stream,{metadata:{role:"student",name:"Sam"}});
       if(!call){throw new Error("The teacher room could not be reached.");}
       showActiveCall("Calling teacher…");
@@ -301,6 +342,9 @@ $("muteBtn").addEventListener("click",toggleMute);
 $("endBtn").addEventListener("click",endCall);
 $("copyLinkBtn").addEventListener("click",copyStudentLink);
 $("volumeSlider").addEventListener("input",e=>$("remoteAudio").volume=Number(e.target.value));
+
+$("chatSend").addEventListener("click",sendChat);
+$("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendChat();});
 
 if(initialMode==="teacher")startTeacher();
 else if(initialMode==="student")startStudent();
