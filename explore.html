@@ -6,6 +6,13 @@
 <meta name="theme-color" content="#eef9fb">
 <title>Explore • Sam's Learning</title>
 <link rel="stylesheet" href="style.css">
+<script>
+  // Keep the Google search elements visible while Google's script initializes.
+  // This avoids rendering the CSE inside a display:none container.
+  if ((new URLSearchParams(location.search).get("mode") || "web") === "web") {
+    document.documentElement.classList.add("web-search-mode");
+  }
+</script>
 </head>
 <body class="explore-page">
 <header class="explore-hero">
@@ -13,36 +20,62 @@
   <div id="exploreIcon" class="explore-icon">🔎</div>
   <p class="eyebrow" id="exploreEyebrow">WEB SEARCH</p>
   <h1 id="exploreTitle">Search the web</h1>
-  <p id="exploreSubtitle">Find fresh information in a calm, simple search space.</p>
+  <p id="exploreSubtitle">Fresh Google-powered results, shown simply for Sam.</p>
 </header>
+
 <main class="explore-shell">
+  <!-- AI / Break keep Sam's original custom search bar. -->
   <form id="exploreForm" class="explore-searchbar">
     <span id="searchGlyph">⌕</span>
     <input id="exploreInput" autocomplete="off" autofocus maxlength="300" placeholder="What do you want to explore?">
     <button type="submit" aria-label="Search">Search</button>
   </form>
+
   <div id="suggestions" class="explore-suggestions"></div>
-  <section id="googleWebSearch" class="google-web-search hidden"><div class="google-results-panel"><div class="google-results-title">🔎 Search results</div><div class="gcse-search"></div></div></section>
-  <section id="loading" class="explore-loading hidden"><div class="spinner"></div><strong id="loadingText">Searching…</strong></section>
+
+  <!-- Web Search: Google search box + Google results on the SAME page. -->
+  <section id="googleWebSearch" class="google-web-search" aria-label="Web search">
+    <div class="google-searchbox-card">
+      <div class="gcse-searchbox"
+           data-gname="samWebSearch"
+           data-enableAutoComplete="true"
+           data-autoCompleteMaxCompletions="6"></div>
+    </div>
+
+    <div class="google-results-panel">
+      <div class="google-results-title">🔎 Search results</div>
+      <div class="gcse-searchresults"
+           data-gname="samWebSearch"
+           data-webSearchResultSetSize="10"
+           data-linkTarget="_self"></div>
+    </div>
+  </section>
+
+  <section id="loading" class="explore-loading hidden">
+    <div class="spinner"></div>
+    <strong id="loadingText">Searching…</strong>
+  </section>
+
   <section id="results" class="explore-results"></section>
 </main>
+
 <script>
 window.__gcse = {
-  parsetags: 'onload',
+  parsetags: "onload",
   searchCallbacks: {
     web: {
       rendered: function(gname, query, promos, resultEls) {
         resultEls.forEach(function(el) {
-          var links = el.querySelectorAll('a.gs-title, a.gs-visibleUrl');
-          links.forEach(function(link) {
+          el.querySelectorAll("a.gs-title, a.gs-visibleUrl").forEach(function(link) {
             var href = link.href;
-            if (!/^https?:\\/\\//i.test(href)) return;
-            link.target = '_self';
-            link.addEventListener('click', function(ev) {
+            if (!/^https?:\/\//i.test(href)) return;
+            link.addEventListener("click", function(ev) {
               ev.preventDefault();
               ev.stopPropagation();
-              var back = location.href.split('#')[0];
-              location.href = 'site-viewer.html?url=' + encodeURIComponent(href) + '&return=' + encodeURIComponent(back);
+              var back = location.href.split("#")[0];
+              location.href =
+                "site-viewer.html?url=" + encodeURIComponent(href) +
+                "&return=" + encodeURIComponent(back);
             }, true);
           });
         });
@@ -52,6 +85,6 @@ window.__gcse = {
 };
 </script>
 <script async src="https://cse.google.com/cse.js?cx=518c9e656d6e04393"></script>
-<script src="explore.js?v=20260925-007"></script>
+<script src="explore.js?v=20260925-008"></script>
 </body>
 </html>
