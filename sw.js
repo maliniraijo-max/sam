@@ -1,4 +1,4 @@
-const CACHE_NAME = "sam-learning-shell-v28";
+const CACHE_NAME = "sam-learning-shell-v29";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -16,7 +16,7 @@ const APP_SHELL = [
   "./explore.html",
   "./site-viewer.html",
   "./site-viewer.js?v=20260925-001",
-  "./explore.js?v=20260925-009"
+  "./explore.js?v=20260925-010"
 ];
 
 self.addEventListener("install", event => {
