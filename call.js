@@ -120,6 +120,7 @@ function cleanupCall(keepPeer=true){
   currentCall=null;
   if(call){try{call.close();}catch(e){}}
   $("remoteAudio").srcObject=null;
+  cleanupChat();
   $("activeCall").classList.add("hidden");
   if(keepPeer){
     if(mode==="teacher"){
