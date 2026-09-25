@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#eef9fb">
+<title>Website Viewer • Sam's Learning</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="site-viewer-page">
+<header class="site-viewer-hero">
+  <a id="backToSearch" class="back-home" href="explore.html?mode=web">← Back to Search Results</a>
+  <div class="explore-icon">🌐</div>
+  <p class="eyebrow">WEBSITE VIEWER</p>
+  <h1 id="viewerTitle">Website</h1>
+  <p id="viewerUrl" class="viewer-url"></p>
+</header>
+<main class="site-viewer-shell">
+  <div class="viewer-toolbar">
+    <button id="openWebsite" class="primary" type="button">↗ Open Website</button>
+  </div>
+  <section class="site-frame-card">
+    <iframe id="siteFrame" title="Selected website" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <div id="frameFallback" class="frame-fallback hidden">
+      <div class="frame-fallback-icon">🌐</div>
+      <h2>This website can't be displayed here</h2>
+      <p>The website may prevent itself from being shown inside another page. You can still open the original website safely.</p>
+      <button id="openWebsiteFallback" class="primary" type="button">Open Website ↗</button>
+    </div>
+  </section>
+</main>
+<script src="site-viewer.js?v=20260925-001"></script>
+</body>
+</html>
