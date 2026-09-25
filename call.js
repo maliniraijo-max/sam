@@ -78,13 +78,19 @@ function stopLocalStream(){
 
 function cleanupCall(keepPeer=true){
   stopTimer();
-  if(currentCall){try{currentCall.close();}catch(e){}}
+  const call=currentCall;
   currentCall=null;
+  if(call){try{call.close();}catch(e){}}
   $("remoteAudio").srcObject=null;
   $("activeCall").classList.add("hidden");
   if(keepPeer){
-    if(mode==="teacher")setStatus("Room is open. Waiting for the next call.","ok");
-    else setStatus("Call ended. You can call again.","normal");
+    if(mode==="teacher"){
+      $("teacherSetup").classList.remove("hidden");
+      setStatus("Room is open. Waiting for the next call.","ok");
+    }else{
+      $("studentSetup").classList.remove("hidden");
+      setStatus("Call ended. You can call again.","normal");
+    }
   }
 }
 
