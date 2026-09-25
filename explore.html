@@ -5,10 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#eef9fb">
 <title>Explore • Sam's Learning</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260925-010">
 <script>
   const exploreMode = new URLSearchParams(location.search).get("mode") || "web";
-  if (exploreMode === "web") document.documentElement.classList.add("web-search-mode");
+  if (exploreMode === "web") {
+    document.documentElement.classList.add("web-search-mode");
+    // Google provides the working search box below; hide Sam's fallback bar before first paint.
+    const hideFallback = document.createElement("style");
+    hideFallback.textContent = "#exploreForm,#suggestions{display:none!important}";
+    document.head.appendChild(hideFallback);
+  }
   if (exploreMode === "break") document.documentElement.classList.add("break-search-mode");
 </script>
 </head>
