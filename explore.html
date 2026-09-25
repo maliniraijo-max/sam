@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#eef9fb">
+<title>Explore • Sam's Learning</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="explore-page">
+<header class="explore-hero">
+  <a class="back-home" href="./">← Sam's Learning</a>
+  <div id="exploreIcon" class="explore-icon">🔎</div>
+  <p class="eyebrow" id="exploreEyebrow">WEB SEARCH</p>
+  <h1 id="exploreTitle">Search the web</h1>
+  <p id="exploreSubtitle">Find fresh information in a calm, simple search space.</p>
+</header>
+<main class="explore-shell">
+  <form id="exploreForm" class="explore-searchbar">
+    <span id="searchGlyph">⌕</span>
+    <input id="exploreInput" autocomplete="off" autofocus maxlength="300" placeholder="What do you want to explore?">
+    <button type="submit" aria-label="Search">Search</button>
+  </form>
+  <div id="suggestions" class="explore-suggestions"></div>
+  <section id="loading" class="explore-loading hidden"><div class="spinner"></div><strong id="loadingText">Searching…</strong></section>
+  <section id="results" class="explore-results"></section>
+</main>
+<script src="explore.js?v=20260925-001"></script>
+</body>
+</html>
