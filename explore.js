@@ -26,11 +26,11 @@
       icon: "🌿",
       eyebrow: "TAKE A BREAK",
       title: "Take a Break",
-      subtitle: "Type anything. Sam gets a picture — no explanation, no extra text.",
-      placeholder: "Type an animal, cartoon, place, character, or scene…",
-      loading: "Opening picture search…",
-      button: "Create Picture",
-      suggest: ["A baby panda playing", "Cartoon dinosaur world", "Cute space adventure"]
+      subtitle: "Search pictures and explore them visually — no explanations needed.",
+      placeholder: "Search for an animal, cartoon, place, character, or scene…",
+      loading: "Searching pictures…",
+      button: "Find Pictures",
+      suggest: ["Baby panda playing", "Cartoon dinosaur world", "Cute space adventure"]
     }
   };
 
@@ -56,22 +56,21 @@
     };
   });
 
-  if (mode === "break") document.body.classList.add("break-mode");
+  if (mode === "break") {
+    document.body.classList.add("break-mode");
+    $("exploreForm").classList.add("hidden");
+    $("suggestions").classList.add("hidden");
+    $("loading").classList.add("hidden");
+  }
 
   if (mode === "web") {
-    // Google owns the web-search input in this mode.
-    // Do not submit the old custom form or redirect to google.com.
     $("exploreForm").classList.add("hidden");
     $("suggestions").classList.add("hidden");
     $("loading").classList.add("hidden");
   }
 
   const esc = s => String(s || "").replace(/[&<>"']/g, m => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   }[m]));
 
   function showLoading(on) {
@@ -83,12 +82,10 @@
     const url = x.url || "#";
     const title = esc(x.title || x.domain || "Web source");
     const desc = esc(x.description || "");
-    return '<article class="source-card">' +
-      '<div class="source-num">' + (i + 1) + "</div><div>" +
-      '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' +
+    return '<article class="source-card"><div class="source-num">' + (i + 1) +
+      '</div><div><a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' +
       title + "</a><small>" + esc(x.domain || url) + "</small>" +
-      (desc ? "<p>" + desc + "</p>" : "") +
-      "</div></article>";
+      (desc ? "<p>" + desc + "</p>" : "") + "</div></article>";
   }
 
   function renderAi(d) {
@@ -96,30 +93,62 @@
       ? '<img class="ai-result-image" src="' + d.image +
         '" alt="Picture related to ' + esc(d.query) + '">'
       : "";
-
     $("results").innerHTML =
-      '<div class="results-head"><span>AI ANSWER</span><strong>' +
-      esc(d.query) + "</strong></div>" +
-      '<article class="ai-answer">' + image +
-      '<div class="ai-answer-copy">' +
-      (d.answerHtml || "<p>" + esc(d.answer || "") + "</p>") +
-      "</div></article>" +
-      '<div class="ai-sources"><h3>🔗 Sources used</h3><div class="source-list">' +
-      (d.sources || []).map(sourceCard).join("") +
-      "</div></div>";
+      '<div class="results-head"><span>AI ANSWER</span><strong>' + esc(d.query) +
+      "</strong></div><article class="ai-answer">" + image +
+      '<div class="ai-answer-copy">' + (d.answerHtml || "<p>" + esc(d.answer || "") + "</p>") +
+      "</div></article><div class="ai-sources"><h3>🔗 Sources used</h3><div class="source-list">" +
+      (d.sources || []).map(sourceCard).join("") + "</div></div>";
   }
 
   function renderBreak(d) {
     $("results").innerHTML =
-      '<div class="break-image-wrap"><img src="' +
-      d.image + '" alt="" class="break-image"></div>';
+      '<div class="break-image-wrap"><img src="' + d.image +
+      '" alt="" class="break-image"></div>';
+  }
+
+  // Google image results are rendered by the Programmable Search Element.
+  // Add a friendly larger-image viewer without leaving Sam's page.
+  if (mode === "break") {
+    const panel = $("googleImageSearch");
+    const lightbox = $("imageLightbox");
+    const bigImage = $("lightboxImage");
+    const close = $("closeImageLightbox");
+
+    document.addEventListener("click", event => {
+      const image = event.target.closest(".gsc-imageResult img, .gsc-imageResult .gs-image");
+      if (!image) return;
+
+      const src = image.currentSrc || image.src;
+      if (!src) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      bigImage.src = src;
+      bigImage.alt = "Larger picture";
+      lightbox.classList.remove("hidden");
+    }, true);
+
+    function closeLightbox() {
+      lightbox.classList.add("hidden");
+      bigImage.src = "";
+    }
+
+    close.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", event => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeLightbox();
+    });
   }
 
   $("exploreForm").addEventListener("submit", async e => {
     e.preventDefault();
 
-    // Web mode is handled entirely by Google's Programmable Search Element.
-    if (mode === "web") return;
+    // Web and Break use their embedded Google search components.
+    if (mode === "web" || mode === "break") return;
 
     const query = $("exploreInput").value.trim();
     if (!query) return;
@@ -130,13 +159,6 @@
       if (mode === "ai") {
         window.location.assign(
           "https://www.google.com/aimode?q=" + encodeURIComponent(query)
-        );
-        return;
-      }
-
-      if (mode === "break") {
-        window.location.assign(
-          "https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(query)
         );
         return;
       }
