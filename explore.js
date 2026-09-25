@@ -63,7 +63,7 @@
     $("loading").classList.add("hidden");
   }
 
-  if (mode === "web") {
+  if (mode === "web" || mode === "ai") {
     $("exploreForm").classList.add("hidden");
     $("suggestions").classList.add("hidden");
     $("loading").classList.add("hidden");
@@ -147,8 +147,8 @@
   $("exploreForm").addEventListener("submit", async e => {
     e.preventDefault();
 
-    // Web and Break use their embedded Google search components.
-    if (mode === "web" || mode === "break") return;
+    // Web and Ask AI use Google's embedded autocomplete + normal web results.
+    if (mode === "web" || mode === "ai" || mode === "break") return;
 
     const query = $("exploreInput").value.trim();
     if (!query) return;
