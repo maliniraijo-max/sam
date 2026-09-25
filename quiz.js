@@ -7,94 +7,80 @@
   const area=document.getElementById("quizArea");
   const progress=document.getElementById("quizProgress");
 
-  // Resolve old/cached book names (for example "Ruth" or "ruth") to the canonical dataset key.
-  function resolveBookKey(value){
-    const data=window.LOGOS_DEEP_2026||{};
-    if(data[value])return value;
-    const wanted=String(value).trim().toLowerCase();
-    return Object.keys(data).find(k=>k.toLowerCase()===wanted) ||
-      Object.keys(data).find(k=>String(data[k].label||"").replace(/^\S+\s*/,"").toLowerCase()===wanted) ||
-      null;
+  const DATA=window.LOGOS_400_QA||{};
+  const canonBook={ruth:"Ruth",samuel:"1 Samuel",1samuel:"1 Samuel","1 samuel":"1 Samuel",ecclesiastes:"Ecclesiastes",john:"John","gospel according to john":"John",galatians:"Galatians"};
+  const wantedBook=String(requestedBook).trim().toLowerCase();
+  const bookName=canonBook[wantedBook]||requestedBook;
+  const all=Array.isArray(DATA.items)?DATA.items:[];
+  const sourceQuestions=all.filter(x=>x.book===bookName&&Number(x.chapter)===chapter);
+
+  function cleanAnswer(a){
+    return String(a||"").replace(/\s*\((?:Ruth|Ecclesiastes|John|Galatians|1 Samuel)\s+\d+:[^)]+\)\s*$/i,"").trim();
+  }
+  function esc(s){return String(s).replace(/[&<>"']/g,m=>m==="&"?"&amp;":m==="<"?"&lt;":m===">"?"&gt;":m==='"'?"&quot;":"&#39;");}
+  function stableShuffle(arr,seed){
+    const a=arr.slice(); let x=(seed*9301+49297)%233280;
+    for(let i=a.length-1;i>0;i--){x=(x*9301+49297)%233280;const j=Math.floor(x/233280*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+    return a;
   }
 
-  let book=resolveBookKey(requestedBook);
+  title.textContent=(bookName||"Bible")+" • Chapter "+chapter+" Quiz";
+  sub.textContent=sourceQuestions.length+" source questions • One question at a time • Choose one answer";
 
-  // If an older cached Logos data file was served, reload the current data explicitly.
-  if(!book || !window.LOGOS_DEEP_2026?.[book]?.chapters?.[chapter]?.facts || window.LOGOS_DEEP_2026[book].chapters[chapter].facts.length!==10){
-    await new Promise((resolve,reject)=>{
-      const s=document.createElement("script");
-      s.src="./logos-data.js?v=20260924-104&fresh="+Date.now();
-      s.onload=resolve;
-      s.onerror=reject;
-      document.head.appendChild(s);
-    }).catch(()=>{});
-  }
-
-  book=resolveBookKey(requestedBook)||book;
-  const info=window.LOGOS_DEEP_2026?.[book];
-  const facts=info?.chapters?.[chapter]?.facts||[];
-  title.textContent=(info?.label||info?.name||"Bible").replace(/^\S+\s/,"")+" • Chapter "+chapter+" MCQ";
-  sub.textContent="10 questions • Choose one of four answers. The correct answer appears immediately.";
-
-  if(!info||facts.length!==10){
-    area.innerHTML="<h2>Chapter quiz data is unavailable.</h2><p>Please return to Bible Study and try the Chapter Quiz again.</p><a class='quiz-home' href='./'>Return to Bible Study</a>";
+  if(!sourceQuestions.length){
+    area.innerHTML="<h2>Chapter questions are unavailable.</h2><p>The hard-coded Logos question bank could not find this chapter.</p><a class='quiz-home' href='./'>Return to Bible Study</a>";
     return;
   }
 
-  const otherChapterFacts=Object.entries(info.chapters||{})
-    .filter(([n])=>Number(n)!==chapter)
-    .flatMap(([,x])=>Array.isArray(x.facts)?x.facts:[]);
-  const questions=facts.slice(0,10).map(answer=>{
-    const distractors=otherChapterFacts.sort(()=>Math.random()-.5).slice(0,3);
-    return {
-      q:"Which statement is specifically associated with "+(info.label||info.name)+" Chapter "+chapter+"?",
-      answer,
-      options:[answer,...distractors].sort(()=>Math.random()-.5)
-    };
+  const pool=sourceQuestions.map(x=>cleanAnswer(x.answer)).filter(Boolean);
+  const questions=sourceQuestions.map((item,idx)=>{
+    const answer=cleanAnswer(item.answer);
+    const candidates=pool.filter((x,i)=>i!==idx && x!==answer);
+    const distractors=stableShuffle(candidates,idx+chapter*17).slice(0,3);
+    return {id:item.id,question:item.question,answer,options:stableShuffle([answer,...distractors],idx+chapter*101)};
   });
 
-  let index=0,score=0;
-  function esc(s){
-    return String(s).replace(/[&<>"']/g,m=>{
-      if(m==="&")return "&amp;";
-      if(m==="<")return "&lt;";
-      if(m===">")return "&gt;";
-      if(m===`"`)return "&quot;";
-      return "&#39;";
+  let index=0;
+  const selections={};
+
+  function show(){
+    const q=questions[index];
+    progress.textContent="Question "+(index+1)+" of "+questions.length;
+    const chosen=selections[q.id];
+    area.innerHTML='<div class="mcq-question"><div class="mcq-number">QUESTION '+(index+1)+' OF '+questions.length+' · SOURCE Q'+q.id+'</div><h2>'+esc(q.question)+'</h2><div class="mcq-options">'+q.options.map((x,i)=>'<button class="mcq-option '+(chosen===x?'selected':'')+'" data-i="'+i+'"><span>'+String.fromCharCode(65+i)+'</span><b>'+esc(x)+'</b></button>').join("")+'</div><div id="feedback" class="mcq-feedback hidden"></div><div class="mcq-nav"><button id="prevQuestion" class="nav-btn" '+(index===0?'disabled':'')+'>← Previous</button><span class="mcq-nav-count">'+(index+1)+' / '+questions.length+'</span><button id="nextQuestion" class="primary" '+(chosen===undefined?'disabled':'')+'>'+(index===questions.length-1?'Finish Quiz':'Next Question →')+'</button></div></div>';
+    area.querySelectorAll(".mcq-option").forEach((b,i)=>b.onclick=()=>choose(i));
+    document.getElementById("prevQuestion").onclick=()=>{if(index>0){index--;show();}};
+    document.getElementById("nextQuestion").onclick=()=>{if(chosen!==undefined){if(index<questions.length-1){index++;show();}else finish();}};
+    if(chosen!==undefined) showFeedback(chosen);
+  }
+
+  function choose(i){
+    const q=questions[index];
+    selections[q.id]=q.options[i];
+    show();
+  }
+
+  function showFeedback(chosen){
+    const q=questions[index];
+    const feedback=document.getElementById("feedback");
+    const correct=chosen===q.answer;
+    feedback.innerHTML=correct?"<strong>✓ Correct!</strong><br>"+esc(q.answer):"<strong>Not quite.</strong><br>The correct answer is: <b>"+esc(q.answer)+"</b>";
+    feedback.className="mcq-feedback "+(correct?"correct-feedback":"wrong-feedback");
+    area.querySelectorAll(".mcq-option").forEach((b,i)=>{
+      const value=q.options[i];
+      b.disabled=true;
+      if(value===q.answer)b.classList.add("correct");
+      if(value===chosen&&chosen!==q.answer)b.classList.add("wrong");
     });
   }
-  function show(){
-    progress.textContent="Question "+(index+1)+" of "+questions.length;
-    const q=questions[index];
-    area.innerHTML='<div class="mcq-question"><div class="mcq-number">QUESTION '+(index+1)+' OF '+questions.length+'</div><h2>'+esc(q.q)+'</h2><div class="mcq-options">'+q.options.map((x,i)=>'<button class="mcq-option" data-i="'+i+'"><span>'+String.fromCharCode(65+i)+'</span><b>'+esc(x)+'</b></button>').join("")+'</div><div id="feedback" class="mcq-feedback hidden"></div><button id="nextQuestion" class="primary hidden">Next Question →</button></div>';
-    area.querySelectorAll(".mcq-option").forEach((b,i)=>b.onclick=()=>answerQuestion(i));
-  }
-  function answerQuestion(i){
-    const q=questions[index];
-    const buttons=[...area.querySelectorAll(".mcq-option")];
-    const correct=q.options.indexOf(q.answer);
-    const feedback=document.getElementById("feedback");
-    buttons.forEach(b=>b.disabled=true);
-    if(i===correct){
-      score++;
-      buttons[i].classList.add("correct");
-      feedback.innerHTML="<strong>✓ Correct!</strong><br>"+esc(q.answer);
-      feedback.className="mcq-feedback correct-feedback";
-    }else{
-      buttons[i].classList.add("wrong");
-      buttons[correct].classList.add("correct");
-      feedback.innerHTML="<strong>✗ Not quite.</strong><br>The correct answer is: <b>"+esc(q.answer)+"</b>";
-      feedback.className="mcq-feedback wrong-feedback";
-    }
-    const next=document.getElementById("nextQuestion");
-    next.classList.remove("hidden");
-    next.onclick=()=>{index++;index<questions.length?show():finish();};
-    feedback.scrollIntoView({behavior:"smooth",block:"nearest"});
-  }
+
   function finish(){
+    let score=0;
+    questions.forEach(q=>{if(selections[q.id]===q.answer)score++;});
     progress.textContent="Complete";
-    area.innerHTML='<div class="mcq-result"><div class="result-icon">🎉</div><h2>Chapter Quiz Complete!</h2><p>Sam scored <strong>'+score+' / '+questions.length+'</strong></p><button class="primary" id="retry">Try Again</button><a class="quiz-home" href="./">← Back to Bible Study</a></div>';
-    document.getElementById("retry").onclick=()=>location.reload();
+    area.innerHTML='<div class="mcq-result"><div class="result-icon">🎉</div><h2>Chapter Quiz Complete!</h2><p>Sam scored <strong>'+score+' / '+questions.length+'</strong></p><p class="mcq-result-note">You can go back and review any question before trying again.</p><button class="primary" id="retry">Try Again</button><a class="quiz-home" href="./">← Back to Bible Study</a></div>';
+    document.getElementById("retry").onclick=()=>{index=0;for(const k of Object.keys(selections))delete selections[k];show();};
   }
+
   show();
 })();
