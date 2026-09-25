@@ -96,8 +96,8 @@ function addChatMessage(text,from){
 function attachDataConnection(conn){
   if(dataConn&&dataConn!==conn){try{dataConn.close();}catch(e){}}
   dataConn=conn;
-  if(mode==="teacher"){teacherStudentConn=conn;setStudentOnline(true);}
-  conn.on("open",()=>setChatState(true));
+  if(mode==="teacher"){teacherStudentConn=conn;}
+  conn.on("open",()=>{setChatState(true);if(mode==="teacher"&&teacherStudentConn===conn)setStudentOnline(true);});
   conn.on("data",data=>{
     if(data&&data.type==="chat"&&typeof data.text==="string")addChatMessage(data.text,"them");
   });
@@ -137,7 +137,7 @@ function cleanupCall(keepPeer=true){
       setStatus("Room is open. Waiting for the next call.","ok");
     }else{
       $("studentSetup").classList.remove("hidden");
-      setStatus("Call ended. You can call again.","normal");
+      setStatus("Call ended. You are back in the waiting room.","normal");
     }
   }
 }
@@ -148,6 +148,7 @@ function showActiveCall(title){
   $("studentSetup").classList.add("hidden");
   $("incomingBox").classList.add("hidden");
   $("activeCall").classList.remove("hidden");
+  $("activeCall").classList.toggle("student-call",mode==="student");
   $("activeTitle").textContent=title;
   $("activeStatus").textContent="Connecting audio…";
   $("muteBtn").classList.toggle("is-muted",muted);
@@ -235,7 +236,7 @@ async function acceptCall(){
     const call=pendingCall;
     pendingCall=null;
     const stream=await getMicrophone();
-    showActiveCall("Sam is calling");
+    showActiveCall("Teacher is calling");
     call.answer(stream);
     attachCall(call);
     $("activeStatus").textContent="Call accepted — connecting audio…";
@@ -261,7 +262,7 @@ async function startStudent(){
   $("rolePicker").classList.add("hidden");
   $("studentSetup").classList.remove("hidden");
   $("roomCodeInput").value=initialCode;
-  if(initialCode) setStatus("Room code loaded. Tap Call Teacher.");
+  if(initialCode) setStatus("Room code loaded. Tap Join Room.");
 }
 
 async function joinTeacher(){
