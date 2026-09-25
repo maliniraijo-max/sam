@@ -35,8 +35,8 @@
       <div class="room-code-card">
         <span>YOUR ROOM CODE</span>
         <strong id="teacherCode">------</strong>
-        <p>Give this 6-character code to Sam.</p>
-        <button id="copyLinkBtn" class="small-btn">🔗 Copy Student Link</button>
+        <p>Give this 6-character code to Sam.</p><p id="studentOnline" class="student-online">🔴 Waiting for student to join…</p>
+        <button id="copyLinkBtn" class="small-btn">🔗 Copy Student Link</button><button id="teacherCallBtn" class="primary teacher-call-btn" disabled>📞 Call Student</button>
       </div>
       <p id="teacherStatus" class="call-status">Opening your teacher room…</p>
       <div id="incomingBox" class="incoming-box hidden">
@@ -48,9 +48,9 @@
     </div>
 
     <div id="studentSetup" class="call-mode hidden">
-      <div class="call-mode-head"><div><span class="call-label">STUDENT</span><h2>Call your teacher</h2></div><span id="studentStatusDot" class="call-status-dot">●</span></div>
+      <div class="call-mode-head"><div><span class="call-label">STUDENT</span><h2>Waiting for teacher</h2></div><span id="studentStatusDot" class="call-status-dot">●</span></div>
       <label class="call-input-label" for="roomCodeInput">Teacher room code</label>
-      <div class="code-entry"><input id="roomCodeInput" maxlength="6" autocomplete="off" inputmode="text" placeholder="ABC123" aria-label="Teacher room code"><button id="joinBtn" class="primary">📞 Call Teacher</button></div>
+      <div class="code-entry"><input id="roomCodeInput" maxlength="6" autocomplete="off" inputmode="text" placeholder="ABC123" aria-label="Teacher room code"><button id="joinBtn" class="primary">Join Room</button></div><div class="student-wait-card">🧑‍🎓 <strong>You cannot start the call.</strong><span>Join your teacher’s room, then wait for the teacher to call you. When the call arrives, tap <b>Accept</b>.</span></div>
       <p id="studentStatus" class="call-status">Enter the code your teacher gave you.</p>
     </div>
 
