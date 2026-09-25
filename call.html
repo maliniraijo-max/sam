@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5fbff">
+<title>Teacher Connect • Sam's Learning</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.5/dist/peerjs.min.js" integrity="sha512-XEKeWX+mI3Ov+tg2evDlVQFzVOIp4T8J3cNcCEPaEUGpxJV3eZaN8rHuvnFPvQpGJBHPmrozJDMpm2xcDvtmyQ==" crossorigin="anonymous"></script>
+</head>
+<body class="call-page">
+<header class="call-hero">
+  <p class="eyebrow">SAM'S LEARNING SPACE</p>
+  <h1>👩‍🏫 Teacher Connect</h1>
+  <p>Private 1-to-1 audio conversation • No login needed for this first version</p>
+</header>
+
+<main class="call-shell">
+  <section class="card call-card">
+    <div id="rolePicker" class="call-role-picker">
+      <div class="call-intro">
+        <div class="call-big-icon">🎧</div>
+        <h2>Who is joining?</h2>
+        <p>Choose Teacher to open a room, or Student to join with the teacher's room code.</p>
+      </div>
+      <div class="call-role-grid">
+        <button class="call-role-btn" data-mode="teacher"><span>👩‍🏫</span><strong>I'm the Teacher</strong><small>Open a room and wait for Sam</small></button>
+        <button class="call-role-btn" data-mode="student"><span>🧑‍🎓</span><strong>I'm the Student</strong><small>Join with a room code</small></button>
+      </div>
+    </div>
+
+    <div id="teacherSetup" class="call-mode hidden">
+      <div class="call-mode-head"><div><span class="call-label">TEACHER ROOM</span><h2>Ready for Sam?</h2></div><span id="teacherStatusDot" class="call-status-dot">●</span></div>
+      <div class="room-code-card">
+        <span>YOUR ROOM CODE</span>
+        <strong id="teacherCode">------</strong>
+        <p>Give this 6-character code to Sam.</p>
+        <button id="copyLinkBtn" class="small-btn">🔗 Copy Student Link</button>
+      </div>
+      <p id="teacherStatus" class="call-status">Opening your teacher room…</p>
+      <div id="incomingBox" class="incoming-box hidden">
+        <div class="incoming-icon">📞</div>
+        <h3>Incoming call</h3>
+        <p>Sam wants to speak with you.</p>
+        <div class="call-action-row"><button id="declineBtn" class="call-danger">Decline</button><button id="acceptBtn" class="call-accept">Accept</button></div>
+      </div>
+    </div>
+
+    <div id="studentSetup" class="call-mode hidden">
+      <div class="call-mode-head"><div><span class="call-label">STUDENT</span><h2>Call your teacher</h2></div><span id="studentStatusDot" class="call-status-dot">●</span></div>
+      <label class="call-input-label" for="roomCodeInput">Teacher room code</label>
+      <div class="code-entry"><input id="roomCodeInput" maxlength="6" autocomplete="off" inputmode="text" placeholder="ABC123" aria-label="Teacher room code"><button id="joinBtn" class="primary">📞 Call Teacher</button></div>
+      <p id="studentStatus" class="call-status">Enter the code your teacher gave you.</p>
+    </div>
+
+    <div id="activeCall" class="active-call hidden">
+      <div class="call-live">
+        <span class="live-pill"><i></i> LIVE AUDIO</span>
+        <span id="callTimer">00:00</span>
+      </div>
+      <div class="call-avatar">👩‍🏫</div>
+      <h2 id="activeTitle">Connected</h2>
+      <p id="activeStatus">You are connected.</p>
+      <div class="audio-meter"><span id="audioMeterFill"></span></div>
+      <audio id="remoteAudio" autoplay playsinline></audio>
+      <div class="call-controls">
+        <button id="muteBtn" class="call-control"><span>🎤</span><small>Mute</small></button>
+        <button id="endBtn" class="call-control end"><span>📵</span><small>End</small></button>
+        <button id="volumeBtn" class="call-control"><span>🔊</span><small>Speaker</small></button>
+      </div>
+      <label class="volume-control">Volume <input id="volumeSlider" type="range" min="0" max="1" step="0.05" value="1"></label>
+    </div>
+
+    <div id="callError" class="call-error hidden"></div>
+    <a class="back-link call-back" href="./">← Back to Sam's Learning Studio</a>
+  </section>
+
+  <section class="call-note">
+    <strong>How this first version works</strong>
+    <p>The audio travels directly between the two browsers using WebRTC/PeerJS after the connection is established. A room code is used instead of an account. Both people must keep this page open while talking.</p>
+  </section>
+</main>
+<footer>Teacher Connect • Sam's Visual Learning Studio</footer>
+<script src="call.js?v=20260925-001"></script>
+<script>
+if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+</script>
+</body>
+</html>
