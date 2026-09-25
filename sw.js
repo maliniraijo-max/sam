@@ -1,4 +1,4 @@
-const CACHE_NAME = "sam-learning-shell-v16";
+const CACHE_NAME = "sam-learning-shell-v17";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -6,7 +6,10 @@ const APP_SHELL = [
   "./script.js?v=20260924-106",
   "./manifest.json",
   "./icon.svg",
-  "./logos-data.js?v=20260924-106"
+  "./logos-data.js?v=20260924-106",
+  "./quiz.html",
+  "./quiz.js?v=20260925-001",
+  "./logos-400-data.js?v=20260925-001"
 ];
 
 self.addEventListener("install", event => {
@@ -26,8 +29,6 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   const request = event.request;
   if (request.method !== "GET") return;
-
-  // Keep AI/API requests live; only use the service worker for the app shell.
   if (new URL(request.url).origin !== self.location.origin) return;
   if (request.url.includes("/api/")) return;
 
