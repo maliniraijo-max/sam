@@ -15,6 +15,8 @@ let timerId=null;
 let callStartedAt=0;
 let muted=false;
 let dataConn=null;
+let studentReady=false;
+let teacherStudentConn=null;
 
 const PEER_PREFIX="sam-teacher-";
 const PEER_OPTIONS={host:"0.peerjs.com",port:443,path:"/",secure:true,debug:1};
@@ -94,11 +96,12 @@ function addChatMessage(text,from){
 function attachDataConnection(conn){
   if(dataConn&&dataConn!==conn){try{dataConn.close();}catch(e){}}
   dataConn=conn;
+  if(mode==="teacher"){teacherStudentConn=conn;setStudentOnline(true);}
   conn.on("open",()=>setChatState(true));
   conn.on("data",data=>{
     if(data&&data.type==="chat"&&typeof data.text==="string")addChatMessage(data.text,"them");
   });
-  conn.on("close",()=>{if(dataConn===conn){dataConn=null;setChatState(false);}});
+  conn.on("close",()=>{if(dataConn===conn){dataConn=null;setChatState(false);} if(mode==="teacher"&&teacherStudentConn===conn){teacherStudentConn=null;setStudentOnline(false);}});
   conn.on("error",()=>setChatState(false));
 }
 function sendChat(){
@@ -107,6 +110,12 @@ function sendChat(){
   if(!dataConn||!dataConn.open){showError("Chat is not connected yet. Please wait for the other person to join.");return;}
   dataConn.send({type:"chat",text:text.slice(0,500)});
   addChatMessage(text,"me");input.value="";input.focus();
+}
+function setStudentOnline(online){
+  const el=$("studentOnline");
+  if(el)el.textContent=online?"🟢 Student is online — ready for a call.":"🔴 Waiting for student to join…";
+  const btn=$("teacherCallBtn");
+  if(btn)btn.disabled=!online||!!currentCall||!!pendingCall;
 }
 function cleanupChat(){
   if(dataConn){try{dataConn.close();}catch(e){}}
@@ -268,93 +277,47 @@ async function joinTeacher(){
   if(code.length!==6){showError("Please enter the 6-character teacher room code.");return;}
   $("joinBtn").disabled=true;
   try{
-    const stream=await getMicrophone();
-    setStatus("Connecting to teacher…");
     peer=new Peer(undefined,PEER_OPTIONS);
     peer.on("open",id=>{
       const teacherId=PEER_PREFIX+code.toLowerCase();
       const conn=peer.connect(teacherId,{label:"sam-chat",reliable:true,metadata:{role:"student",name:"Sam"}});
       attachDataConnection(conn);
-      const call=peer.call(teacherId,stream,{metadata:{role:"student",name:"Sam"}});
-      if(!call){throw new Error("The teacher room could not be reached.");}
-      showActiveCall("Calling teacher…");
-      attachCall(call);
-      $("activeStatus").textContent="Calling teacher…";
+      setStatus("🟢 Joined the teacher room. Waiting for the teacher to call…","ok");
+      $("joinBtn").disabled=true;
+    });
+    peer.on("call",call=>{
+      if(currentCall||pendingCall){call.close();return;}
+      pendingCall=call;
+      $("incomingBox").classList.remove("hidden");
+      setStatus("📞 Teacher is calling. Tap Accept to answer.","normal");
+      beep();
     });
     peer.on("error",err=>{
       console.warn("PEER",err);
       const msg=err.type==="peer-unavailable"?"Teacher room not found. Check the code and make sure the teacher has opened the room.":(err.message||err.type||"connection problem");
       showError(msg);
-      setStatus("Could not reach the teacher.","error");
+      setStatus("Could not join the teacher room.","error");
       $("joinBtn").disabled=false;
     });
   }catch(err){
-    showError(err.message||"Microphone permission is required to make a call.");
-    setStatus("Microphone not available.","error");
+    showError(err.message||"Could not join the teacher room.");
+    setStatus("Could not join the teacher room.","error");
     $("joinBtn").disabled=false;
   }
 }
 
-function toggleMute(){
-  muted=!muted;
-  if(localStream)localStream.getAudioTracks().forEach(t=>t.enabled=!muted);
-  $("muteBtn").classList.toggle("is-muted",muted);
-  $("muteBtn").querySelector("span").textContent=muted?"🔇":"🎤";
-  $("muteBtn").querySelector("small").textContent=muted?"Unmute":"Mute";
-  $("activeStatus").textContent=muted?"Microphone muted.":"Connected — you can speak now.";
-}
-
-function endCall(){
-  cleanupCall(true);
-}
-
-async function copyStudentLink(){
-  const link=$("copyLinkBtn").dataset.link;
-  if(!link)return;
+async function callStudent(){
+  if(mode!=="teacher"||!teacherStudentConn||!teacherStudentConn.open)return;
+  clearError();
   try{
-    await navigator.clipboard.writeText(link);
-    $("copyLinkBtn").textContent="✓ Student Link Copied";
-    setTimeout(()=>$("copyLinkBtn").textContent="🔗 Copy Student Link",1800);
-  }catch(e){
-    prompt("Copy this student link:",link);
+    const stream=await getMicrophone();
+    const studentId=teacherStudentConn.peer;
+    const call=peer.call(studentId,stream,{metadata:{role:"teacher",name:"Teacher"}});
+    showActiveCall("Calling Sam…");
+    attachCall(call);
+    $("activeStatus").textContent="Calling Sam… waiting for acceptance.";
+  }catch(err){
+    showError(err.message||"Microphone permission is required to call the student.");
   }
 }
-
-function resetToRolePicker(){
-  if(peer){try{peer.destroy();}catch(e){}}
-  peer=null;
-  stopLocalStream();
-  cleanupCall(false);
-  stopTimer();
-  mode=null;
-  $("teacherSetup").classList.add("hidden");
-  $("studentSetup").classList.add("hidden");
-  $("activeCall").classList.add("hidden");
-  $("rolePicker").classList.remove("hidden");
-}
-
-document.querySelectorAll(".call-role-btn").forEach(btn=>btn.addEventListener("click",()=>btn.dataset.mode==="teacher"?startTeacher():startStudent()));
-$("joinBtn").addEventListener("click",joinTeacher);
-$("roomCodeInput").addEventListener("input",e=>e.target.value=e.target.value.replace(/[^a-z0-9]/gi,"").slice(0,6).toUpperCase());
-$("roomCodeInput").addEventListener("keydown",e=>{if(e.key==="Enter")joinTeacher();});
-$("acceptBtn").addEventListener("click",acceptCall);
-$("declineBtn").addEventListener("click",declineCall);
-$("muteBtn").addEventListener("click",toggleMute);
-$("endBtn").addEventListener("click",endCall);
-$("copyLinkBtn").addEventListener("click",copyStudentLink);
-$("volumeSlider").addEventListener("input",e=>$("remoteAudio").volume=Number(e.target.value));
-
-$("chatSend").addEventListener("click",sendChat);
-$("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendChat();});
-
-if(initialMode==="teacher")startTeacher();
-else if(initialMode==="student")startStudent();
-
-window.addEventListener("beforeunload",()=>{
-  stopTimer();
-  if(currentCall)try{currentCall.close();}catch(e){}
-  if(pendingCall)try{pendingCall.close();}catch(e){}
-  if(peer)try{peer.destroy();}catch(e){}
-  stopLocalStream();
-});
-})();
+;
