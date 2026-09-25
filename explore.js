@@ -34,6 +34,21 @@
   function renderBreak(d){
     $("results").innerHTML='<div class="break-image-wrap"><img src="'+d.image+'" alt="" class="break-image"></div>';
   }
+  // Route Google result clicks to Sam's website viewer page.
+  if(mode==="web"){
+    document.addEventListener("click",event=>{
+      const link=event.target.closest(".gsc-result a.gs-title, .gsc-result a.gs-visibleUrl");
+      if(!link) return;
+      const href=link.href;
+      if(!/^https?:\\/\\//i.test(href)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const input=document.querySelector(".gsc-input-box input.gsc-input, input.gsc-input");
+      const q=input?.value?.trim()||"";
+      const returnUrl=location.href.split("#")[0]+(q?"&q="+encodeURIComponent(q):"");
+      location.href="site-viewer.html?url="+encodeURIComponent(href)+"&return="+encodeURIComponent(returnUrl);
+    },true);
+  }
   $("exploreForm").addEventListener("submit",async e=>{
     e.preventDefault();const query=$("exploreInput").value.trim();if(!query)return;
     showLoading(true);
