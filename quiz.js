@@ -8,7 +8,7 @@
   const progress=document.getElementById("quizProgress");
 
   const DATA=window.LOGOS_400_QA||{};
-  const canonBook={ruth:"Ruth",samuel:"1 Samuel",1samuel:"1 Samuel","1 samuel":"1 Samuel",ecclesiastes:"Ecclesiastes",john:"John","gospel according to john":"John",galatians:"Galatians"};
+  const canonBook={ruth:"Ruth",samuel:"1 Samuel","1samuel":"1 Samuel","1 samuel":"1 Samuel",ecclesiastes:"Ecclesiastes",john:"John","gospel according to john":"John",galatians:"Galatians"};
   const wantedBook=String(requestedBook).trim().toLowerCase();
   const bookName=canonBook[wantedBook]||requestedBook;
   const all=Array.isArray(DATA.items)?DATA.items:[];
