@@ -484,7 +484,7 @@ function getLocalSimulation(text){
   // This runs before Gemini, so Search & Find still works if the AI/API is unavailable.
   const m=t.match(/^(ruth|1\\s*samuel|ecclesiastes|john|gospel\\s+according\\s+to\\s+john|galatians)\\s+(?:chapter\\s*)?(\\d+)$/i);
   if(m){
-    const aliases={ruth:"ruth", "1 samuel":"1_Samuel", "1samuel":"1_Samuel", ecclesiastes:"ecclesiastes", john:"john", "gospel according to john":"john", galatians:"galatians"};
+    const aliases={ruth:"ruth", "1 samuel":"samuel", "1samuel":"1_Samuel", ecclesiastes:"ecclesiastes", john:"john", "gospel according to john":"john", galatians:"galatians"};
     const key=(aliases[m[1].toLowerCase()]||aliases[m[1].toLowerCase().replace(/\\s+/g," ")])+"_"+Number(m[2]);
     const item=LOGOS_LOCAL_SIMULATIONS[key];
     if(item){
@@ -639,8 +639,8 @@ function renderLogosChapter(){
   if(!book||!ch||!Array.isArray(ch.facts)||ch.facts.length!==10){
     box.innerHTML='<p class="logos-empty">This chapter does not have the required 10 study points.</p>';return;
   }
-  box.innerHTML='<div class="logos-chapter-head"><div><span>'+esc(book.label)+'</span><h3>Chapter '+logosChapter+': '+esc(ch.title)+'</h3><small class="logos-point-count">10 Study Points</small></div><button id="logosQuizBtn" class="logos-quiz-btn">📝 Chapter Quiz</button></div>'+
-    '<div class="logos-events">'+ch.facts.map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
+  box.innerHTML='<div class="logos-chapter-head"><div><span>'+esc(book.label)+'</span><h3>Chapter '+logosChapter+': '+esc(ch.title)+'</h3><small class="logos-point-count">5 Study Points</small></div><button id="logosQuizBtn" class="logos-quiz-btn">📝 Chapter Quiz</button></div>'+
+    '<div class="logos-events">'+ch.facts.slice(0,5).map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
     '<div class="logos-memory"><strong>🧠 Remember</strong><p>Learn these 10 points, then take the 10-question chapter quiz.</p></div>';
   $("logosQuizBtn").onclick=()=>{window.location.href="quiz.html?book="+encodeURIComponent(logosBook)+"&chapter="+logosChapter;};
 }
