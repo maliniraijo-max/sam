@@ -7,11 +7,9 @@
 <title>Explore • Sam's Learning</title>
 <link rel="stylesheet" href="style.css">
 <script>
-  // Keep the Google search elements visible while Google's script initializes.
-  // This avoids rendering the CSE inside a display:none container.
-  if ((new URLSearchParams(location.search).get("mode") || "web") === "web") {
-    document.documentElement.classList.add("web-search-mode");
-  }
+  const exploreMode = new URLSearchParams(location.search).get("mode") || "web";
+  if (exploreMode === "web") document.documentElement.classList.add("web-search-mode");
+  if (exploreMode === "break") document.documentElement.classList.add("break-search-mode");
 </script>
 </head>
 <body class="explore-page">
@@ -24,7 +22,6 @@
 </header>
 
 <main class="explore-shell">
-  <!-- AI / Break keep Sam's original custom search bar. -->
   <form id="exploreForm" class="explore-searchbar">
     <span id="searchGlyph">⌕</span>
     <input id="exploreInput" autocomplete="off" autofocus maxlength="300" placeholder="What do you want to explore?">
@@ -33,7 +30,6 @@
 
   <div id="suggestions" class="explore-suggestions"></div>
 
-  <!-- Web Search: Google search box + Google results on the SAME page. -->
   <section id="googleWebSearch" class="google-web-search" aria-label="Web search">
     <div class="google-searchbox-card">
       <div class="gcse-searchbox"
@@ -41,7 +37,6 @@
            data-enableAutoComplete="true"
            data-autoCompleteMaxCompletions="6"></div>
     </div>
-
     <div class="google-results-panel">
       <div class="google-results-title">🔎 Search results</div>
       <div class="gcse-searchresults"
@@ -51,13 +46,39 @@
     </div>
   </section>
 
+  <section id="googleImageSearch" class="google-image-search" aria-label="Image search">
+    <div class="google-searchbox-card">
+      <div class="gcse-searchbox"
+           data-gname="samImageSearch"
+           data-enableAutoComplete="true"
+           data-autoCompleteMaxCompletions="8"></div>
+    </div>
+    <div class="google-image-results-panel">
+      <div class="google-results-title">🌿 Pictures for Sam</div>
+      <div class="gcse-searchresults"
+           data-gname="samImageSearch"
+           data-enableImageSearch="true"
+           data-defaultToImageSearch="true"
+           data-disableWebSearch="true"
+           data-imageSearchLayout="classic"
+           data-imageSearchResultSetSize="large"
+           data-image_filter="1"></div>
+    </div>
+  </section>
+
   <section id="loading" class="explore-loading hidden">
     <div class="spinner"></div>
     <strong id="loadingText">Searching…</strong>
   </section>
-
   <section id="results" class="explore-results"></section>
 </main>
+
+<div id="imageLightbox" class="image-lightbox hidden" role="dialog" aria-modal="true" aria-label="Larger picture">
+  <button id="closeImageLightbox" class="image-lightbox-close" type="button" aria-label="Close">×</button>
+  <div class="image-lightbox-inner">
+    <img id="lightboxImage" src="" alt="">
+  </div>
+</div>
 
 <script>
 window.__gcse = {
@@ -85,6 +106,6 @@ window.__gcse = {
 };
 </script>
 <script async src="https://cse.google.com/cse.js?cx=518c9e656d6e04393"></script>
-<script src="explore.js?v=20260925-008"></script>
+<script src="explore.js?v=20260925-009"></script>
 </body>
 </html>
