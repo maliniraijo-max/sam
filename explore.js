@@ -12,7 +12,11 @@
   $("suggestions").innerHTML=c.suggest.map(x=>'<button type="button">'+x.replace(/</g,"&lt;")+'</button>').join("");
   document.querySelectorAll(".explore-suggestions button").forEach(b=>b.onclick=()=>{$("exploreInput").value=b.textContent;$("exploreForm").requestSubmit()});
   if(mode==="break") document.body.classList.add("break-mode");
-  if(mode==="web"){document.getElementById("exploreForm").classList.add("hidden");document.getElementById("suggestions").classList.add("hidden");document.getElementById("googleWebSearch").classList.remove("hidden");}
+  if(mode==="web"){
+    document.getElementById("exploreForm").classList.add("hidden");
+    document.getElementById("suggestions").classList.add("hidden");
+    document.getElementById("googleWebSearch").classList.remove("hidden");
+  }
   const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
   function showLoading(on){$("loading").classList.toggle("hidden",!on);if(on)$("results").innerHTML="";}
   function sourceCard(x,i){
