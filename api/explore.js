@@ -11,7 +11,7 @@ async function geminiText(query){
   if(!key) throw new Error("GEMINI_API_KEY is not configured on Vercel.");
   const prompt=`You are helping an 11-year-old learner. Answer the user's question simply and accurately. Use Google Search grounding for current or factual information. Keep the answer to 2-5 short paragraphs or bullets. Do not mention being an AI. USER QUESTION: ${query}`;
   const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key="+encodeURIComponent(key),{
-    method:"POST",headers:{"Content-Type":"application/json"},
+    method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
     body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt}]}],tools:[{google_search:{}}],generationConfig:{maxOutputTokens:900}})
   });
   const d=await r.json().catch(()=>({}));
@@ -30,9 +30,9 @@ async function geminiImage(query){
   const key=process.env.GEMINI_API_KEY;
   if(!key) return null;
   const prompt=`Create one appealing child-friendly illustration for this question. No words, captions, labels, logos, or UI. Make the picture visually useful for understanding the subject and suitable for an 11-year-old: ${query}`;
-  const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key="+encodeURIComponent(key),{
-    method:"POST",headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{responseModalities:["IMAGE"],imageConfig:{aspectRatio:"4:3",imageSize:"1K"}},tools:[{google_search:{search_types:["web_search","image_search"]}}]})
+  const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent",{
+    method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
+    body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt}]}],generationConfig:{responseModalities:["IMAGE"],imageConfig:{aspectRatio:"4:3",imageSize:"1K"}},tools:[{google_search:{searchTypes:{webSearch:{},imageSearch:{}}}}]})
   });
   const d=await r.json().catch(()=>({}));
   if(!r.ok)return null;
