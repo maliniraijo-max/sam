@@ -17,7 +17,8 @@ async function geminiText(query){
   const key=process.env.GEMINI_API_KEY;
   if(!key) throw new Error("GEMINI_API_KEY is not configured on Vercel.");
   const prompt=`You are helping an 11-year-old learner. Answer the user's question simply and accurately. Use Google Search grounding for current or factual information. Keep the answer to 2-5 short paragraphs or bullets. Do not mention being an AI. USER QUESTION: ${query}`;
-  const models=["gemini-3.6-flash","gemini-3.5-flash","gemini-3.1-flash-lite"];
+  // Current Gemini models with Google Search grounding.
+  const models=["gemini-3.8-flash","gemini-3.7-flash","gemini-3.5-flash"];
   let last="Gemini search failed.";
   for(const model of models){
     const ctl=timeoutSignal(18000);
