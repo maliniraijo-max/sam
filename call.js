@@ -1,0 +1,309 @@
+(()=> {
+"use strict";
+
+const $=id=>document.getElementById(id);
+const params=new URLSearchParams(location.search);
+const initialMode=params.get("mode");
+const initialCode=(params.get("code")||"").replace(/[^a-z0-9]/gi,"").slice(0,6).toUpperCase();
+
+let mode=null;
+let peer=null;
+let localStream=null;
+let currentCall=null;
+let pendingCall=null;
+let timerId=null;
+let callStartedAt=0;
+let muted=false;
+
+const PEER_PREFIX="sam-teacher-";
+const PEER_OPTIONS={host:"0.peerjs.com",port:443,path:"/",secure:true,debug:1};
+
+function setStatus(message,kind="normal"){
+  const el=$(mode==="teacher"?"teacherStatus":"studentStatus");
+  if(el)el.textContent=message;
+  const dot=$(mode==="teacher"?"teacherStatusDot":"studentStatusDot");
+  if(dot)dot.className="call-status-dot "+(kind==="ok"?"ok":kind==="error"?"error":"");
+}
+
+function showError(message){
+  const box=$("callError");
+  box.textContent=message;
+  box.classList.remove("hidden");
+}
+
+function clearError(){
+  $("callError").classList.add("hidden");
+  $("callError").textContent="";
+}
+
+function formatTime(seconds){
+  const m=String(Math.floor(seconds/60)).padStart(2,"0");
+  const s=String(seconds%60).padStart(2,"0");
+  return m+":"+s;
+}
+
+function startTimer(){
+  stopTimer();
+  callStartedAt=Date.now();
+  $("callTimer").textContent="00:00";
+  timerId=setInterval(()=>$("callTimer").textContent=formatTime(Math.floor((Date.now()-callStartedAt)/1000)),1000);
+}
+
+function stopTimer(){
+  if(timerId)clearInterval(timerId);
+  timerId=null;
+}
+
+function randomCode(){
+  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let out="";
+  for(let i=0;i<6;i++)out+=chars[Math.floor(Math.random()*chars.length)];
+  return out;
+}
+
+async function getMicrophone(){
+  if(localStream)return localStream;
+  if(!navigator.mediaDevices?.getUserMedia)throw new Error("This browser does not provide microphone access.");
+  localStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true},video:false});
+  localStream.getAudioTracks().forEach(t=>t.enabled=!muted);
+  return localStream;
+}
+
+function stopLocalStream(){
+  if(localStream){
+    localStream.getTracks().forEach(t=>t.stop());
+    localStream=null;
+  }
+}
+
+function cleanupCall(keepPeer=true){
+  stopTimer();
+  if(currentCall){try{currentCall.close();}catch(e){}}
+  currentCall=null;
+  $("remoteAudio").srcObject=null;
+  $("activeCall").classList.add("hidden");
+  if(keepPeer){
+    if(mode==="teacher")setStatus("Room is open. Waiting for the next call.","ok");
+    else setStatus("Call ended. You can call again.","normal");
+  }
+}
+
+function showActiveCall(title){
+  $("rolePicker").classList.add("hidden");
+  $("teacherSetup").classList.add("hidden");
+  $("studentSetup").classList.add("hidden");
+  $("incomingBox").classList.add("hidden");
+  $("activeCall").classList.remove("hidden");
+  $("activeTitle").textContent=title;
+  $("activeStatus").textContent="Connecting audio…";
+  $("muteBtn").classList.toggle("is-muted",muted);
+  $("muteBtn").querySelector("small").textContent=muted?"Unmute":"Mute";
+}
+
+function onRemoteStream(stream){
+  const audio=$("remoteAudio");
+  audio.srcObject=stream;
+  audio.volume=Number($("volumeSlider").value||1);
+  audio.play().catch(()=>{});
+  $("activeStatus").textContent="Connected — you can speak now.";
+  startTimer();
+}
+
+function handleCallClosed(){
+  cleanupCall(true);
+}
+
+function handleCallError(err){
+  console.warn("CALL",err);
+  $("activeStatus").textContent="Connection problem.";
+  showError("The audio connection could not be completed. Please try the room code again.");
+  cleanupCall(true);
+}
+
+function attachCall(call){
+  currentCall=call;
+  call.on("stream",onRemoteStream);
+  call.on("close",handleCallClosed);
+  call.on("error",handleCallError);
+}
+
+function beep(){
+  try{
+    const C=window.AudioContext||window.webkitAudioContext;
+    if(!C)return;
+    const ctx=new C();
+    const osc=ctx.createOscillator(),gain=ctx.createGain();
+    osc.frequency.value=760;gain.gain.value=.05;
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.start();osc.stop(ctx.currentTime+.25);
+  }catch(e){}
+}
+
+async function startTeacher(){
+  mode="teacher";
+  clearError();
+  $("rolePicker").classList.add("hidden");
+  $("teacherSetup").classList.remove("hidden");
+  const code=randomCode();
+  $("teacherCode").textContent=code;
+  sessionStorage.setItem("samTeacherCode",code);
+  try{
+    await getMicrophone();
+    const peerId=PEER_PREFIX+code.toLowerCase();
+    peer=new Peer(peerId,PEER_OPTIONS);
+    peer.on("open",id=>{
+      setStatus("🟢 Teacher room is open. Waiting for Sam…","ok");
+      const link=location.origin+location.pathname+"?mode=student&code="+encodeURIComponent(code);
+      $("copyLinkBtn").dataset.link=link;
+    });
+    peer.on("call",call=>{
+      if(currentCall||pendingCall){call.close();return;}
+      pendingCall=call;
+      $("incomingBox").classList.remove("hidden");
+      setStatus("📞 Incoming call from a student.","normal");
+      beep();
+    });
+    peer.on("error",err=>{
+      console.warn("PEER",err);
+      if(err.type==="unavailable-id"){
+        showError("This room code is already in use. Please reload and create a new teacher room.");
+      }else{
+        showError("Teacher room connection problem: "+(err.message||err.type||"unknown error"));
+      }
+      setStatus("Room connection problem.","error");
+    });
+    peer.on("disconnected",()=>setStatus("Connection to the signaling service was interrupted.","error"));
+  }catch(err){
+    showError(err.message||"Microphone permission is required to start a teacher room.");
+    setStatus("Microphone not available.","error");
+  }
+}
+
+async function acceptCall(){
+  if(!pendingCall)return;
+  clearError();
+  try{
+    const call=pendingCall;
+    pendingCall=null;
+    const stream=await getMicrophone();
+    showActiveCall("Sam is calling");
+    call.answer(stream);
+    attachCall(call);
+    $("activeStatus").textContent="Call accepted — connecting audio…";
+  }catch(err){
+    showError(err.message||"Could not access the microphone.");
+    try{pendingCall?.close();}catch(e){}
+    pendingCall=null;
+    $("incomingBox").classList.add("hidden");
+    setStatus("Could not accept the call.","error");
+  }
+}
+
+function declineCall(){
+  if(pendingCall){try{pendingCall.close();}catch(e){}}
+  pendingCall=null;
+  $("incomingBox").classList.add("hidden");
+  setStatus("Room is open. Waiting for the next call.","ok");
+}
+
+async function startStudent(){
+  mode="student";
+  clearError();
+  $("rolePicker").classList.add("hidden");
+  $("studentSetup").classList.remove("hidden");
+  $("roomCodeInput").value=initialCode;
+  if(initialCode) setStatus("Room code loaded. Tap Call Teacher.");
+}
+
+async function joinTeacher(){
+  const code=$("roomCodeInput").value.replace(/[^a-z0-9]/gi,"").slice(0,6).toUpperCase();
+  $("roomCodeInput").value=code;
+  clearError();
+  if(code.length!==6){showError("Please enter the 6-character teacher room code.");return;}
+  $("joinBtn").disabled=true;
+  try{
+    const stream=await getMicrophone();
+    setStatus("Connecting to teacher…");
+    peer=new Peer(undefined,PEER_OPTIONS);
+    peer.on("open",id=>{
+      const teacherId=PEER_PREFIX+code.toLowerCase();
+      const call=peer.call(teacherId,stream,{metadata:{role:"student",name:"Sam"}});
+      if(!call){throw new Error("The teacher room could not be reached.");}
+      showActiveCall("Calling teacher…");
+      attachCall(call);
+      $("activeStatus").textContent="Calling teacher…";
+    });
+    peer.on("error",err=>{
+      console.warn("PEER",err);
+      const msg=err.type==="peer-unavailable"?"Teacher room not found. Check the code and make sure the teacher has opened the room.":(err.message||err.type||"connection problem");
+      showError(msg);
+      setStatus("Could not reach the teacher.","error");
+      $("joinBtn").disabled=false;
+    });
+  }catch(err){
+    showError(err.message||"Microphone permission is required to make a call.");
+    setStatus("Microphone not available.","error");
+    $("joinBtn").disabled=false;
+  }
+}
+
+function toggleMute(){
+  muted=!muted;
+  if(localStream)localStream.getAudioTracks().forEach(t=>t.enabled=!muted);
+  $("muteBtn").classList.toggle("is-muted",muted);
+  $("muteBtn").querySelector("span").textContent=muted?"🔇":"🎤";
+  $("muteBtn").querySelector("small").textContent=muted?"Unmute":"Mute";
+  $("activeStatus").textContent=muted?"Microphone muted.":"Connected — you can speak now.";
+}
+
+function endCall(){
+  cleanupCall(true);
+}
+
+async function copyStudentLink(){
+  const link=$("copyLinkBtn").dataset.link;
+  if(!link)return;
+  try{
+    await navigator.clipboard.writeText(link);
+    $("copyLinkBtn").textContent="✓ Student Link Copied";
+    setTimeout(()=>$("copyLinkBtn").textContent="🔗 Copy Student Link",1800);
+  }catch(e){
+    prompt("Copy this student link:",link);
+  }
+}
+
+function resetToRolePicker(){
+  if(peer){try{peer.destroy();}catch(e){}}
+  peer=null;
+  stopLocalStream();
+  cleanupCall(false);
+  stopTimer();
+  mode=null;
+  $("teacherSetup").classList.add("hidden");
+  $("studentSetup").classList.add("hidden");
+  $("activeCall").classList.add("hidden");
+  $("rolePicker").classList.remove("hidden");
+}
+
+document.querySelectorAll(".call-role-btn").forEach(btn=>btn.addEventListener("click",()=>btn.dataset.mode==="teacher"?startTeacher():startStudent()));
+$("joinBtn").addEventListener("click",joinTeacher);
+$("roomCodeInput").addEventListener("input",e=>e.target.value=e.target.value.replace(/[^a-z0-9]/gi,"").slice(0,6).toUpperCase());
+$("roomCodeInput").addEventListener("keydown",e=>{if(e.key==="Enter")joinTeacher();});
+$("acceptBtn").addEventListener("click",acceptCall);
+$("declineBtn").addEventListener("click",declineCall);
+$("muteBtn").addEventListener("click",toggleMute);
+$("endBtn").addEventListener("click",endCall);
+$("copyLinkBtn").addEventListener("click",copyStudentLink);
+$("volumeSlider").addEventListener("input",e=>$("remoteAudio").volume=Number(e.target.value));
+
+if(initialMode==="teacher")startTeacher();
+else if(initialMode==="student")startStudent();
+
+window.addEventListener("beforeunload",()=>{
+  stopTimer();
+  if(currentCall)try{currentCall.close();}catch(e){}
+  if(pendingCall)try{pendingCall.close();}catch(e){}
+  if(peer)try{peer.destroy();}catch(e){}
+  stopLocalStream();
+});
+})();
