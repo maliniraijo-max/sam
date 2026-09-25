@@ -54,7 +54,12 @@
       <p id="studentStatus" class="call-status">Enter the code your teacher gave you.</p>
     </div>
 
-    <div id="activeCall" class="active-call hidden">
+    <div id="chatPanel" class="chat-panel hidden">
+  <div class="chat-head"><div><strong>💬 Teacher ↔ Student Chat</strong><small>Messages are shared only while this connection is open.</small></div><span id="chatDot" class="chat-dot">●</span></div>
+  <div id="chatMessages" class="chat-messages"><div class="chat-empty">No messages yet. Say hello! 👋</div></div>
+  <div class="chat-compose"><input id="chatInput" maxlength="500" autocomplete="off" placeholder="Type a message…" aria-label="Chat message"><button id="chatSend" class="primary">Send</button></div>
+</div>
+<div id="activeCall" class="active-call hidden">
       <div class="call-live">
         <span class="live-pill"><i></i> LIVE AUDIO</span>
         <span id="callTimer">00:00</span>
