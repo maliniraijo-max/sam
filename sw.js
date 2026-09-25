@@ -1,7 +1,9 @@
-const CACHE_NAME = "sam-learning-shell-v33";
+const CACHE_NAME = "sam-learning-shell-v34";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./chat.html",
+  "./chat.js?v=20260925-001",
   "./style.css",
   "./script.js?v=20260924-106",
   "./manifest.json",
@@ -16,7 +18,9 @@ const APP_SHELL = [
   "./explore.html",
   "./site-viewer.html",
   "./site-viewer.js?v=20260925-001",
-  "./explore.js?v=20260925-013"
+  "./explore.js?v=20260925-013",
+  "./api/family-chat.js",
+  "./api/whatsapp-webhook.js"
 ];
 
 self.addEventListener("install", event => {
