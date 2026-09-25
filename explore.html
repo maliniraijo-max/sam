@@ -22,11 +22,36 @@
     <button type="submit" aria-label="Search">Search</button>
   </form>
   <div id="suggestions" class="explore-suggestions"></div>
-  <section id="googleWebSearch" class="google-web-search hidden"><div class="google-searchbox"><div class="gcse-searchbox" data-gname="samweb"></div></div><div class="google-results-panel"><div class="google-results-title">🔎 Search results</div><div class="gcse-searchresults" data-gname="samweb" data-webSearchSafesearch="active"></div></div></section>
+  <section id="googleWebSearch" class="google-web-search hidden"><div class="google-results-panel"><div class="google-results-title">🔎 Search results</div><div class="gcse-search"></div></div></section>
   <section id="loading" class="explore-loading hidden"><div class="spinner"></div><strong id="loadingText">Searching…</strong></section>
   <section id="results" class="explore-results"></section>
 </main>
+<script>
+window.__gcse = {
+  parsetags: 'onload',
+  searchCallbacks: {
+    web: {
+      rendered: function(gname, query, promos, resultEls) {
+        resultEls.forEach(function(el) {
+          var links = el.querySelectorAll('a.gs-title, a.gs-visibleUrl');
+          links.forEach(function(link) {
+            var href = link.href;
+            if (!/^https?:\\/\\//i.test(href)) return;
+            link.target = '_self';
+            link.addEventListener('click', function(ev) {
+              ev.preventDefault();
+              ev.stopPropagation();
+              var back = location.href.split('#')[0];
+              location.href = 'site-viewer.html?url=' + encodeURIComponent(href) + '&return=' + encodeURIComponent(back);
+            }, true);
+          });
+        });
+      }
+    }
+  }
+};
+</script>
 <script async src="https://cse.google.com/cse.js?cx=518c9e656d6e04393"></script>
-<script src="explore.js?v=20260925-005"></script>
+<script src="explore.js?v=20260925-007"></script>
 </body>
 </html>
