@@ -11,7 +11,7 @@ const APP_SHELL = [
   "./quiz.js?v=20260925-001",
   "./logos-400-data.js?v=20260925-001",
   "./call.html",
-  "./call.js?v=20260925-001",
+  "./call.js?v=20260925-002",
   "./call-home.js?v=20260925-001"
 ];
 
