@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f5fbff">
+  <meta name="description" content="Private family chat for Sam">
+  <title>Family Chat • Sam's Learning</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="chat-page">
+  <header class="chat-hero">
+    <a class="back-home" href="index.html">← Back to Sam's Learning</a>
+    <div class="chat-hero-icon">💬</div>
+    <p class="eyebrow">SAM'S FAMILY SPACE</p>
+    <h1>Family Chat</h1>
+    <p>A little place for Mum & Dad to stay close to Sam.</p>
+  </header>
+
+  <main class="chat-shell">
+    <section class="family-chat-card">
+      <div class="family-chat-head">
+        <div class="family-avatars">
+          <span>💗</span><span>💙</span><span>⭐</span>
+        </div>
+        <div>
+          <h2>Our Family</h2>
+          <p id="connectionText">Checking secure connection…</p>
+        </div>
+        <span id="connectionDot" class="family-connection-dot"></span>
+      </div>
+
+      <div id="pinGate" class="chat-pin-gate">
+        <div class="chat-pin-icon">🔐</div>
+        <h3>Family only</h3>
+        <p>This chat is private. Enter the family PIN to continue.</p>
+        <form id="pinForm" class="pin-form">
+          <input id="pinInput" type="password" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="Family PIN" aria-label="Family PIN">
+          <button class="primary" type="submit">Open Chat</button>
+        </form>
+        <p id="pinError" class="chat-error hidden"></p>
+      </div>
+
+      <div id="chatApp" class="chat-app hidden">
+        <div class="chat-info-strip">
+          <span>👩 <b>Mum</b></span>
+          <span>👨 <b>Dad</b></span>
+          <span>🧒 <b>Sam</b></span>
+          <small>Messages are shown here after WhatsApp is connected.</small>
+        </div>
+
+        <div id="messages" class="family-messages" aria-live="polite">
+          <div class="family-empty">
+            <div>🌿</div>
+            <strong>No messages yet</strong>
+            <p>When Mum or Dad sends a message to the connected family WhatsApp number, it will appear here.</p>
+          </div>
+        </div>
+
+        <form id="chatForm" class="family-compose">
+          <button id="emojiBtn" class="compose-icon" type="button" title="Add emoji" aria-label="Add emoji">😊</button>
+          <input id="messageInput" type="text" maxlength="2000" autocomplete="off" placeholder="Write a message to Mum & Dad…" aria-label="Message">
+          <button id="gifBtn" class="compose-icon" type="button" title="GIFs will be enabled with media setup" aria-label="GIFs">GIF</button>
+          <button class="send-btn" type="submit" aria-label="Send message">➤</button>
+        </form>
+        <div id="emojiTray" class="emoji-tray hidden" aria-label="Emoji choices">
+          <button type="button">❤️</button><button type="button">😊</button><button type="button">😂</button><button type="button">🥰</button><button type="button">👍</button><button type="button">🙏</button><button type="button">🌈</button><button type="button">🌿</button><button type="button">⭐</button><button type="button">🦋</button><button type="button">🐰</button><button type="button">🫶</button>
+        </div>
+        <p id="chatStatus" class="chat-status"></p>
+      </div>
+
+      <div id="setupNotice" class="chat-setup-notice hidden">
+        <strong>WhatsApp connection still needs to be switched on.</strong>
+        <p>The page is ready. The next step is connecting a WhatsApp Business number, webhook and secure message store. Your personal WhatsApp Desktop app cannot be read directly by a website.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Private family space • Made for Sam ❤️</footer>
+  <script src="chat.js?v=20260925-001"></script>
+</body>
+</html>
