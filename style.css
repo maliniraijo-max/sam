@@ -57,6 +57,9 @@ footer{text-align:center;padding:15px 20px 35px;color:#6e8390;font-size:13px}
 /* Web Search uses Google's own search box; hide Sam's fallback bar in web mode. */
 html.web-search-mode #exploreForm{display:none!important}
 html.web-search-mode #suggestions{display:none!important}
+html.ai-search-mode #exploreForm{display:none!important}
+html.ai-search-mode #suggestions{display:none!important}
+html.ai-search-mode .google-web-search{display:block!important}
 
 /* Fresh explore pages */
 .explore-page{background-position:center top}.explore-hero{text-align:center;padding:30px 20px 22px}.back-home{display:inline-block;color:#347e9d;font-weight:900;text-decoration:none;margin-bottom:18px}.explore-icon{font-size:55px;line-height:1}.explore-hero h1{margin:3px 0 6px;font-size:clamp(31px,5vw,48px);color:#18364a}.explore-hero p:last-child{margin:0;color:#587082;font-size:16px}
