@@ -211,13 +211,7 @@ async function startTeacher(){
       $("copyLinkBtn").dataset.link=link;
     });
     peer.on("connection",conn=>attachDataConnection(conn));
-    peer.on("call",call=>{
-      if(currentCall||pendingCall){call.close();return;}
-      pendingCall=call;
-      $("incomingBox").classList.remove("hidden");
-      setStatus("📞 Incoming call from a student.","normal");
-      beep();
-    });
+    
     peer.on("error",err=>{
       console.warn("PEER",err);
       if(err.type==="unavailable-id"){
@@ -286,6 +280,7 @@ async function joinTeacher(){
       $("joinBtn").disabled=true;
     });
     peer.on("call",call=>{
+      if(mode!=="student")return;
       if(currentCall||pendingCall){call.close();return;}
       pendingCall=call;
       $("incomingBox").classList.remove("hidden");
