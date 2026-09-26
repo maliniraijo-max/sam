@@ -1,13 +1,14 @@
 (() => {
   const left = document.getElementById("quickMcqRail");
   const right = document.getElementById("quickMcqRailRight");
+  const johnHost = document.getElementById("johnQuizHost");
   if ((!left && !right) || !window.LOGOS_400_QA?.items) return;
 
   const configs = [
     { key:"Ruth", icon:"🌾", title:"Ruth", subtitle:"Ruth 1–4", target:"left" },
     { key:"1 Samuel", icon:"👑", title:"1 Samuel", subtitle:"1 Samuel 1–7", target:"left" },
     { key:"Ecclesiastes", icon:"📜", title:"Ecclesiastes", subtitle:"Ecclesiastes 1–6", target:"left" },
-    { key:"John", icon:"✝️", title:"John", subtitle:"John 1–12", target:"right" },
+    { key:"John", icon:"✝️", title:"Gospel of John", subtitle:"John 1–12", target:"john" },
     { key:"Galatians", icon:"✉️", title:"Galatians", subtitle:"Galatians 1–6", target:"right" }
   ];
 
@@ -46,12 +47,12 @@
       '<div class="quick-mcq-body"></div></section>';
 
   configs.forEach((cfg, i) => {
-    const host = cfg.target === "right" ? right : left;
+    const host = cfg.target === "john" ? johnHost : (cfg.target === "right" ? right : left);
     if (host) host.insertAdjacentHTML("beforeend", makeCard(cfg, i));
   });
 
   configs.forEach((cfg, i) => {
-    const host = cfg.target === "right" ? right : left;
+    const host = cfg.target === "john" ? johnHost : (cfg.target === "right" ? right : left);
     const card = host?.querySelector('[data-mcq-index="'+i+'"]');
     if (!card) return;
     const body = card.querySelector(".quick-mcq-body");
