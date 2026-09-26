@@ -158,3 +158,52 @@ html.web-search-mode .google-web-search{display:block}
  .quick-mcq-right{margin-top:0}
 }
 @media(max-width:600px){.quick-mcq-rail{grid-template-columns:1fr;margin:0 14px 14px}}
+
+/* Refined home layout: compact tools + prominent John quiz */
+.hero{position:relative}
+.hero-inner{position:relative;max-width:100%;padding:0 170px}
+.hero-tools{position:absolute;right:0;top:0;display:flex;gap:8px;align-items:flex-start}
+.hero-tool{display:flex;align-items:center;gap:8px;min-width:132px;padding:9px 11px;border-radius:15px;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.92);box-shadow:0 8px 24px rgba(31,71,87,.10);text-decoration:none;color:#29495c;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.hero-tool>span{font-size:20px;line-height:1}
+.hero-tool strong{display:block;font-size:11px;line-height:1.15}
+.hero-tool small{display:block;margin-top:2px;font-size:9px;color:#78909c}
+.hero-tool:hover{transform:translateY(-1px);box-shadow:0 11px 28px rgba(31,71,87,.14)}
+.hero-tool.web{border-color:rgba(120,176,194,.28)}
+.hero-tool.ai{border-color:rgba(181,157,207,.28)}
+
+.john-quiz-panel{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto;margin:20px 0}
+.john-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:15px;margin-bottom:14px;border-bottom:1px solid rgba(91,135,151,.18)}
+.john-panel-head h2{margin:2px 0 5px;font-size:26px;line-height:1.15;color:#1f4054}
+.john-panel-head p:last-child{margin:0;color:#657d8c;font-size:13px;font-weight:700}
+.john-badge{background:linear-gradient(180deg,#edf7f8,#e2f0f3);border:1px solid #d4e7eb;border-radius:999px;padding:8px 10px;font-size:11px;font-weight:950;letter-spacing:.08em;color:#3e7187}
+.john-quiz-panel #johnQuizHost{min-height:520px}
+.john-quiz-panel .quick-mcq-card{padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.john-quiz-panel .quick-mcq-head{padding:11px 12px;border-radius:15px;background:rgba(239,249,252,.92);border:1px solid rgba(120,175,192,.20);margin-bottom:13px}
+.john-quiz-panel .quick-mcq-icon{font-size:26px}
+.john-quiz-panel .quick-mcq-book strong{font-size:15px}
+.john-quiz-panel .quick-mcq-book small{font-size:11px}
+.john-quiz-panel .quick-mcq-label{font-size:9px;padding:5px 8px}
+.john-quiz-panel .quick-mcq-count{font-size:10px;margin:2px 0 8px;color:#678696}
+.john-quiz-panel .quick-mcq-card h3{font-size:19px;line-height:1.42;margin:0 0 14px;color:#213f52}
+.john-quiz-panel .quick-mcq-options{gap:8px}
+.john-quiz-panel .quick-mcq-option{padding:11px 12px;border-radius:12px;font-size:14px;line-height:1.35;box-shadow:0 3px 10px rgba(31,71,87,.04)}
+.john-quiz-panel .quick-mcq-option span{width:22px;height:22px;flex-basis:22px;font-size:10px}
+.john-quiz-panel .quick-mcq-feedback{font-size:12px;line-height:1.45;margin-top:10px}
+.john-quiz-panel .quick-mcq-next{font-size:12px;padding:10px 13px;border-radius:11px;margin-top:10px}
+.john-panel-note{margin:15px 0 0;padding:10px 12px;border-radius:13px;background:rgba(255,247,221,.72);color:#74622e;font-size:11px;line-height:1.45}
+
+@media(max-width:1200px){
+  .hero-inner{padding:0 20px 72px}
+  .hero-tools{position:static;justify-content:center;margin-top:18px}
+  .john-quiz-panel{position:relative;top:auto;max-height:none}
+}
+@media(max-width:900px){
+  .app-layout{grid-template-columns:1fr}
+  .john-quiz-panel{order:-1}
+  .hero-inner{padding-left:10px;padding-right:10px}
+}
+@media(max-width:600px){
+  .hero-tools{display:grid;grid-template-columns:1fr 1fr;max-width:330px;margin:16px auto 0}
+  .hero-tool{min-width:0}
+  .john-quiz-panel .quick-mcq-card h3{font-size:17px}
+}
