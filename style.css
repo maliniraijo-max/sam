@@ -138,32 +138,23 @@ html.web-search-mode .google-web-search{display:block}
 
 .video-learning-card{overflow:hidden}.video-search-row{display:flex;gap:10px;align-items:center}.video-topic-input{flex:1;min-width:0;border:2px solid #d6e4e9;border-radius:16px;padding:14px 16px;font:inherit;font-size:17px;outline:none;background:rgba(255,255,255,.92);color:var(--ink)}.video-topic-input:focus{border-color:#78afc0}.video-find-btn{margin-top:0;white-space:nowrap}.video-result{margin-top:18px;padding:14px;border-radius:24px;background:rgba(245,251,252,.9);border:1px solid #d8e8ec}.video-frame-wrap{position:relative;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#102733;box-shadow:0 12px 35px rgba(31,71,87,.14)}.video-frame-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.video-meta{padding:14px 5px 2px}.video-meta h3{margin:0;color:#29495c;font-size:20px;line-height:1.3}.video-meta p{margin:5px 0;color:#6a7f8b;font-size:13px;font-weight:700}@media(max-width:700px){.video-search-row{flex-direction:column;align-items:stretch}.video-find-btn{width:100%}.video-topic-input{font-size:16px}.video-meta h3{font-size:18px}}
 
-/* Quick Bible MCQ rail */
-.quick-mcq-rail{position:fixed;right:22px;left:auto;bottom:102px;z-index:19;width:270px;display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 130px);overflow:auto;padding:2px 3px 8px}
+/* Quick Bible MCQ rails */
+.quick-mcq-rail{position:fixed;bottom:102px;z-index:19;width:270px;display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 130px);overflow:auto;padding:2px 3px 8px}
+.quick-mcq-left{left:22px;right:auto}.quick-mcq-right{right:22px;left:auto}
 .quick-mcq-card{background:rgba(255,255,255,.96);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);border:1px solid rgba(255,255,255,.9);border-radius:18px;padding:13px;box-shadow:0 10px 30px rgba(31,71,87,.16)}
 .quick-mcq-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:9px}
-.quick-mcq-book{display:flex;align-items:center;gap:8px;min-width:0}
-.quick-mcq-icon{font-size:22px}
-.quick-mcq-book strong{display:block;font-size:13px;color:#29495c;line-height:1.15}
-.quick-mcq-book small{display:block;color:#78909c;font-size:10px;margin-top:2px}
+.quick-mcq-book{display:flex;align-items:center;gap:8px;min-width:0}.quick-mcq-icon{font-size:22px}
+.quick-mcq-book strong{display:block;font-size:13px;color:#29495c;line-height:1.15}.quick-mcq-book small{display:block;color:#78909c;font-size:10px;margin-top:2px}
 .quick-mcq-label{font-size:9px;font-weight:900;letter-spacing:.08em;color:#55778a;background:#eaf5f7;border-radius:999px;padding:4px 7px}
 .quick-mcq-count{font-size:9px;font-weight:800;color:#8094a0;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
-.quick-mcq-card h3{font-size:13px;line-height:1.35;margin:0 0 9px;color:#263f51}
-.quick-mcq-options{display:flex;flex-direction:column;gap:5px}
+.quick-mcq-card h3{font-size:13px;line-height:1.35;margin:0 0 9px;color:#263f51}.quick-mcq-options{display:flex;flex-direction:column;gap:5px}
 .quick-mcq-option{display:flex;align-items:flex-start;gap:7px;width:100%;border:1px solid #d5e3e8;background:#fff;border-radius:9px;padding:7px 8px;text-align:left;font:inherit;font-size:11px;line-height:1.25;color:#405a6c;cursor:pointer}
 .quick-mcq-option span{width:17px;height:17px;flex:0 0 17px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#edf5f7;color:#54758a;font-size:9px;font-weight:900}
-.quick-mcq-option:hover:not(:disabled){border-color:#7caebe;background:#f4fafb}
-.quick-mcq-option.correct{background:#e3f5e8;border-color:#68a97a}
-.quick-mcq-option.wrong{background:#fde8e8;border-color:#cc7777}
-.quick-mcq-option:disabled{cursor:default}
-.quick-mcq-feedback{font-size:10px;font-weight:800;margin-top:7px;line-height:1.35}
-.quick-mcq-feedback.is-correct{color:#39744a}
-.quick-mcq-feedback.is-wrong{color:#a24d4d}
-.quick-mcq-next{border:0;background:#347e9d;color:#fff;border-radius:9px;padding:7px 10px;margin-top:8px;font-size:10px;font-weight:800;cursor:pointer}
-.quick-mcq-next.hidden{display:none}
-@media(max-width:1100px){
-  .quick-mcq-rail{position:relative;right:auto;left:auto;bottom:auto;width:auto;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 14px 18px;padding:0}
+.quick-mcq-option:hover:not(:disabled){border-color:#7caebe;background:#f4fafb}.quick-mcq-option.correct{background:#e3f5e8;border-color:#68a97a}.quick-mcq-option.wrong{background:#fde8e8;border-color:#cc7777}.quick-mcq-option:disabled{cursor:default}
+.quick-mcq-feedback{font-size:10px;font-weight:800;margin-top:7px;line-height:1.35}.quick-mcq-feedback.is-correct{color:#39744a}.quick-mcq-feedback.is-wrong{color:#a24d4d}
+.quick-mcq-next{border:0;background:#347e9d;color:#fff;border-radius:9px;padding:7px 10px;margin-top:8px;font-size:10px;font-weight:800;cursor:pointer}.quick-mcq-next.hidden{display:none}
+@media(max-width:1200px){
+ .quick-mcq-rail{position:relative;left:auto;right:auto;bottom:auto;width:auto;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 14px 18px;padding:0}
+ .quick-mcq-right{margin-top:0}
 }
-@media(max-width:600px){
-  .quick-mcq-rail{grid-template-columns:1fr;margin:0 14px 14px}
-}
+@media(max-width:600px){.quick-mcq-rail{grid-template-columns:1fr;margin:0 14px 14px}}
