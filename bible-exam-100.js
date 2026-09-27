@@ -17,12 +17,10 @@
   const submit = document.getElementById("submitBibleExam");
   const note = document.getElementById("examSubmitNote");
   const score = document.getElementById("examScore");
-  const wrongCount = document.getElementById("examWrongCount");
-  const wrongAnswers = document.getElementById("examWrongAnswers");
   const start = document.getElementById("startBibleExam");
 
   let current = 0;
-  const answers = new Array(100).fill(null);
+  let answers = new Array(100).fill(null);
   let submitted = false;
 
   const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
@@ -36,7 +34,7 @@
     progress.style.width = count + "%";
     submit.disabled = count !== 100;
     note.textContent = count === 100
-      ? "All 100 questions are answered. You can submit the examination."
+      ? "All 100 questions are answered. Submit when you are ready."
       : "Answer all 100 questions to unlock Submit Examination.";
     prev.disabled = current === 0;
     next.disabled = current === 99;
@@ -73,38 +71,64 @@
     updateStatus();
   }
 
-  function renderWrongAnswerReview() {
-    const wrong = data.questions.map((q, i) => ({q, i}))
-      .filter(item => answers[item.i] !== item.q.answerIndex);
-
-    wrongCount.textContent = wrong.length + " wrong";
-
-    if (!wrong.length) {
-      wrongAnswers.innerHTML =
-        '<div class="exam-perfect-review"><strong>Excellent work!</strong><span>Every answer was correct. There are no mistakes to review.</span></div>';
-      return;
-    }
-
-    wrongAnswers.innerHTML = wrong.map(({q, i}, n) => {
-      const chosen = q.options[answers[i]];
-      const correct = q.options[q.answerIndex];
-      return '<article class="exam-wrong-item">' +
-        '<div class="exam-wrong-number">' + (n + 1) + '</div>' +
-        '<div class="exam-wrong-body">' +
-          '<div class="exam-wrong-meta">' + esc(q.book) + ' • Chapter ' + esc(q.chapter) + ' • Question ' + (i + 1) + '</div>' +
-          '<h4>' + esc(q.question) + '</h4>' +
-          '<div class="exam-mistake-row"><span class="exam-label your-answer-label">Your answer</span><p>' + esc(chosen) + '</p></div>' +
-          '<div class="exam-mistake-row correct-answer-row"><span class="exam-label correct-answer-label">Correct answer</span><p>' + esc(correct) + '</p></div>' +
-        '</div>' +
-      '</article>';
-    }).join("");
-  }
-
   function startExam() {
     intro.classList.add("hidden");
+    result.classList.add("hidden");
     app.classList.remove("hidden");
     current = 0;
+    answers = new Array(100).fill(null);
+    submitted = false;
     renderQuestion();
+  }
+
+  function showResults() {
+    const wrong = [];
+    let total = 0;
+    data.questions.forEach((q, i) => {
+      if (answers[i] === q.answerIndex) total++;
+      else wrong.push({
+        number: i + 1,
+        book: q.book,
+        chapter: q.chapter,
+        question: q.question,
+        selected: q.options[answers[i]],
+        correct: q.options[q.answerIndex]
+      });
+    });
+
+    score.textContent = total + " / 100";
+
+    const resultDetails = document.getElementById("examWrongAnswers");
+    if (wrong.length === 0) {
+      resultDetails.innerHTML =
+        '<div class="exam-perfect"><div class="exam-perfect-icon">🌟</div><h3>Perfect Score!</h3><p>Every answer was correct.</p></div>';
+    } else {
+      resultDetails.innerHTML =
+        '<div class="exam-mistakes-head"><h3>📚 Questions to Revise</h3><p>'+wrong.length+' question'+(wrong.length===1?'':'s')+' answered incorrectly. Review the correct answers below.</p></div>' +
+        '<div class="exam-mistakes-list">' +
+        wrong.map(w =>
+          '<article class="exam-mistake">' +
+          '<div class="exam-mistake-number">Q'+w.number+'</div>' +
+          '<div class="exam-mistake-body">' +
+          '<div class="exam-mistake-source">'+esc(w.book)+' • Chapter '+esc(w.chapter)+'</div>' +
+          '<h4>'+esc(w.question)+'</h4>' +
+          '<p class="exam-your-answer"><span>Your answer:</span> '+esc(w.selected || "Not answered")+'</p>' +
+          '<p class="exam-correct-answer"><span>✓ Correct answer:</span> '+esc(w.correct)+'</p>' +
+          '</div></article>'
+        ).join("") +
+        '</div>';
+    }
+
+    try {
+      localStorage.setItem("sam_last_bible_exam", JSON.stringify({
+        score: total, wrong, completedAt: new Date().toISOString()
+      }));
+    } catch (_) {}
+
+    app.classList.add("hidden");
+    result.classList.remove("hidden");
+    submitted = true;
+    card.scrollIntoView({behavior:"smooth",block:"start"});
   }
 
   start.addEventListener("click", startExam);
@@ -114,15 +138,7 @@
   next.addEventListener("click", () => {
     if (current < 99) { current++; renderQuestion(); }
   });
-
   submit.addEventListener("click", () => {
-    if (submitted || answers.some(v => v === null)) return;
-    submitted = true;
-    const total = data.questions.reduce((sum, q, i) => sum + (answers[i] === q.answerIndex ? 1 : 0), 0);
-    app.classList.add("hidden");
-    result.classList.remove("hidden");
-    score.textContent = total + " / 100";
-    renderWrongAnswerReview();
-    card.scrollIntoView({behavior:"smooth",block:"start"});
+    if (!submitted && answers.every(v => v !== null)) showResults();
   });
 })();
