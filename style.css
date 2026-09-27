@@ -207,3 +207,51 @@ html.web-search-mode .google-web-search{display:block}
   .hero-tool{min-width:0}
   .john-quiz-panel .quick-mcq-card h3{font-size:17px}
 }
+
+/* 100-question Bible examination */
+.bible-exam-card{padding:30px;margin-top:20px;background:rgba(255,255,255,.95)}
+.exam-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding-bottom:18px;border-bottom:1px solid rgba(91,135,151,.18)}
+.exam-head h2{margin:2px 0 6px;font-size:28px;color:#1e4054}
+.exam-head p:last-child{margin:0;color:#647c8a;font-size:13px;font-weight:700;line-height:1.5}
+.exam-badge{flex:0 0 auto;padding:9px 12px;border-radius:999px;background:#edf7f8;border:1px solid #d6e8ec;color:#3f7287;font-size:11px;font-weight:950;letter-spacing:.08em}
+.exam-intro{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:24px 4px 4px;color:#5c7482;line-height:1.5}
+.exam-intro strong{font-size:17px;color:#29495c}
+.exam-intro .primary{margin-top:7px}
+.exam-app{padding-top:22px}
+.exam-status{display:flex;justify-content:space-between;gap:12px;align-items:center;color:#5c7482;font-size:13px;font-weight:900}
+.exam-progress{height:8px;background:#e8f0f3;border-radius:99px;overflow:hidden;margin:10px 0 22px}
+.exam-progress>div{height:100%;width:0;background:#347e9d;border-radius:99px;transition:width .2s ease}
+.exam-question{padding:20px 21px;border-radius:20px;background:rgba(239,249,252,.85);border:1px solid #d9eaee}
+.exam-question-meta{text-transform:uppercase;letter-spacing:.08em;font-size:10px;font-weight:950;color:#6a8795;margin-bottom:9px}
+.exam-question h3{margin:0;color:#203f52;font-size:21px;line-height:1.45}
+.exam-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.exam-option{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1px solid #d2e2e7;background:#fff;border-radius:14px;padding:13px 14px;font:inherit;font-size:14px;line-height:1.4;color:#405c6c;cursor:pointer;min-height:58px}
+.exam-option:hover{border-color:#7caebe;background:#f5fafb}
+.exam-option.selected{border-color:#347e9d;background:#eaf5f7;box-shadow:0 0 0 2px rgba(52,126,157,.10)}
+.exam-option-letter{width:24px;height:24px;flex:0 0 24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#edf5f7;color:#4d7184;font-size:11px;font-weight:950}
+.exam-option.selected .exam-option-letter{background:#347e9d;color:#fff}
+.exam-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+.exam-nav .primary{margin:0}
+.exam-nav .small-btn:disabled{opacity:.45;cursor:default}
+.exam-jump{margin-top:22px;padding-top:18px;border-top:1px solid rgba(91,135,151,.18)}
+.exam-jump-title{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:950;color:#6c8794;margin-bottom:10px}
+.exam-navigator{display:grid;grid-template-columns:repeat(20,1fr);gap:5px}
+.exam-nav-dot{height:30px;border:1px solid #cfdee4;border-radius:8px;background:#fff;color:#587284;font-size:10px;font-weight:900;cursor:pointer}
+.exam-nav-dot:hover{border-color:#7caebe}
+.exam-nav-dot.answered{background:#eaf5f7;border-color:#b9d8e0;color:#326b82}
+.exam-nav-dot.active{background:#347e9d;color:#fff;border-color:#347e9d}
+.exam-submit{display:block;width:100%;border:0;border-radius:15px;background:#203f52;color:#fff;font-weight:950;font-size:16px;padding:15px 20px;margin-top:20px;cursor:pointer;box-shadow:0 10px 25px rgba(32,63,82,.18)}
+.exam-submit:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.exam-submit-note{text-align:center;color:#748994;font-size:12px;margin:9px 0 0}
+.exam-result{text-align:center;padding:55px 20px 65px}
+.exam-result .eyebrow{margin-bottom:10px}
+.exam-score{font-size:clamp(54px,9vw,86px);line-height:1;font-weight:950;color:#203f52;letter-spacing:-.04em}
+@media(max-width:700px){
+ .bible-exam-card{padding:21px}
+ .exam-head{flex-direction:column}
+ .exam-head h2{font-size:24px}
+ .exam-options{grid-template-columns:1fr}
+ .exam-question h3{font-size:18px}
+ .exam-navigator{grid-template-columns:repeat(10,1fr)}
+ .exam-nav-dot{height:32px}
+}
