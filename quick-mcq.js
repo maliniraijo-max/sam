@@ -5,11 +5,7 @@
   if ((!left && !right) || !window.LOGOS_400_QA?.items) return;
 
   const configs = [
-    { key:"Ruth", icon:"🌾", title:"Ruth", subtitle:"Ruth 1–4", target:"left" },
-    { key:"1 Samuel", icon:"👑", title:"1 Samuel", subtitle:"1 Samuel 1–7", target:"left" },
-    { key:"Ecclesiastes", icon:"📜", title:"Ecclesiastes", subtitle:"Ecclesiastes 1–6", target:"left" },
-    { key:"John", icon:"✝️", title:"Gospel of John", subtitle:"John 1–12", target:"john" },
-    { key:"Galatians", icon:"✉️", title:"Galatians", subtitle:"Galatians 1–6", target:"right" }
+    { key:"John", icon:"✝️", title:"Gospel of John", subtitle:"John 1–12", target:"john" }
   ];
 
   const cleanQuestion = value => {
