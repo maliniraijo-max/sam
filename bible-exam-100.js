@@ -55,7 +55,7 @@
   function renderQuestion() {
     const q = data.questions[current];
     qBox.innerHTML =
-      '<div class="exam-question-meta">'+esc(q.book)+' • Chapter '+esc(q.chapter)+'</div>' +
+      '<div class="exam-question-meta">'+esc(q.book)+'</div>' +
       '<h3>'+esc(q.question)+'</h3>';
     optionsBox.innerHTML = q.options.map((opt, i) =>
       '<button type="button" class="exam-option '+(answers[current]===i?'selected':'')+'" data-index="'+i+'">' +
@@ -112,7 +112,7 @@
           '<article class="exam-mistake">' +
           '<div class="exam-mistake-number">Q'+w.number+'</div>' +
           '<div class="exam-mistake-body">' +
-          '<div class="exam-mistake-source">'+esc(w.book)+' • Chapter '+esc(w.chapter)+'</div>' +
+          '<div class="exam-mistake-source">'+esc(w.book)+'</div>' +
           '<h4>'+esc(w.question)+'</h4>' +
           '<p class="exam-your-answer"><span>Your answer:</span> '+esc(w.selected || "Not answered")+'</p>' +
           '<p class="exam-correct-answer"><span>✓ Correct answer:</span> '+esc(w.correct)+'</p>' +
