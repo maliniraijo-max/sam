@@ -287,3 +287,23 @@ html.web-search-mode .google-web-search{display:block}
  .exam-wrong-body h4{font-size:14px}
  .exam-mistake-row{flex-direction:column;gap:5px}
 }
+
+/* Exam result review */
+.exam-wrong-answers{margin:26px auto 0;text-align:left;max-width:860px}
+.exam-mistakes-head{text-align:center;margin-bottom:16px}
+.exam-mistakes-head h3{margin:0 0 5px;color:#203f52;font-size:20px}
+.exam-mistakes-head p{margin:0;color:#718792;font-size:12px}
+.exam-mistakes-list{display:grid;gap:11px}
+.exam-mistake{display:grid;grid-template-columns:48px 1fr;gap:12px;padding:15px;border:1px solid #dbe8ec;border-radius:16px;background:#fbfdfe}
+.exam-mistake-number{width:40px;height:40px;border-radius:12px;background:#edf4f6;color:#3d7085;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:950}
+.exam-mistake-source{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#78909b;font-weight:950;margin-bottom:5px}
+.exam-mistake h4{margin:0 0 9px;color:#294657;font-size:14px;line-height:1.45}
+.exam-mistake p{margin:5px 0;font-size:12px;line-height:1.45}
+.exam-mistake p span{font-weight:900}
+.exam-your-answer{color:#8a6570}
+.exam-correct-answer{color:#276b58;background:#eef8f4;border-radius:9px;padding:8px 10px}
+.exam-perfect{text-align:center;padding:18px;border-radius:16px;background:#eef8f4;color:#276b58}
+.exam-perfect-icon{font-size:34px}
+.exam-perfect h3{margin:5px 0;color:#245f50}
+.exam-perfect p{margin:0;font-size:13px}
+.exam-retry{margin:22px auto 0}
