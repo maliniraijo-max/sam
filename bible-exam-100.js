@@ -132,6 +132,8 @@
   }
 
   start.addEventListener("click", startExam);
+  const another = document.getElementById("startAnotherBibleExam");
+  if (another) another.addEventListener("click", startExam);
   prev.addEventListener("click", () => {
     if (current > 0) { current--; renderQuestion(); }
   });
