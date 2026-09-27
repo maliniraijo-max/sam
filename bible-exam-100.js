@@ -99,6 +99,8 @@
     score.textContent = total + " / 100";
 
     const resultDetails = document.getElementById("examWrongAnswers");
+    const wrongCount = document.getElementById("examWrongCount");
+    if (wrongCount) wrongCount.textContent = wrong.length + " wrong";
     if (wrong.length === 0) {
       resultDetails.innerHTML =
         '<div class="exam-perfect"><div class="exam-perfect-icon">🌟</div><h3>Perfect Score!</h3><p>Every answer was correct.</p></div>';
