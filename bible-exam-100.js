@@ -17,6 +17,8 @@
   const submit = document.getElementById("submitBibleExam");
   const note = document.getElementById("examSubmitNote");
   const score = document.getElementById("examScore");
+  const wrongCount = document.getElementById("examWrongCount");
+  const wrongAnswers = document.getElementById("examWrongAnswers");
   const start = document.getElementById("startBibleExam");
 
   let current = 0;
@@ -71,6 +73,33 @@
     updateStatus();
   }
 
+  function renderWrongAnswerReview() {
+    const wrong = data.questions.map((q, i) => ({q, i}))
+      .filter(item => answers[item.i] !== item.q.answerIndex);
+
+    wrongCount.textContent = wrong.length + " wrong";
+
+    if (!wrong.length) {
+      wrongAnswers.innerHTML =
+        '<div class="exam-perfect-review"><strong>Excellent work!</strong><span>Every answer was correct. There are no mistakes to review.</span></div>';
+      return;
+    }
+
+    wrongAnswers.innerHTML = wrong.map(({q, i}, n) => {
+      const chosen = q.options[answers[i]];
+      const correct = q.options[q.answerIndex];
+      return '<article class="exam-wrong-item">' +
+        '<div class="exam-wrong-number">' + (n + 1) + '</div>' +
+        '<div class="exam-wrong-body">' +
+          '<div class="exam-wrong-meta">' + esc(q.book) + ' • Chapter ' + esc(q.chapter) + ' • Question ' + (i + 1) + '</div>' +
+          '<h4>' + esc(q.question) + '</h4>' +
+          '<div class="exam-mistake-row"><span class="exam-label your-answer-label">Your answer</span><p>' + esc(chosen) + '</p></div>' +
+          '<div class="exam-mistake-row correct-answer-row"><span class="exam-label correct-answer-label">Correct answer</span><p>' + esc(correct) + '</p></div>' +
+        '</div>' +
+      '</article>';
+    }).join("");
+  }
+
   function startExam() {
     intro.classList.add("hidden");
     app.classList.remove("hidden");
@@ -93,6 +122,7 @@
     app.classList.add("hidden");
     result.classList.remove("hidden");
     score.textContent = total + " / 100";
+    renderWrongAnswerReview();
     card.scrollIntoView({behavior:"smooth",block:"start"});
   });
 })();
