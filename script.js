@@ -475,54 +475,9 @@ function renderSimulation(text,steps){
   html+="</div>";box.innerHTML=html;box.classList.remove("hidden");box.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 
-const LOGOS_LOCAL_SIMULATIONS={"ruth_1":{"book":"Ruth","chapter":1,"title":"Naomi and Ruth return to Bethlehem","facts":["A famine occurs in Bethlehem.","Elimelech takes Naomi and their two sons to Moab.","Elimelech dies in Moab.","Naomi's sons marry Ruth and Orpah.","Both of Naomi's sons die.","Naomi hears that the Lord has provided food for his people in Bethlehem.","Orpah returns to her people after Naomi urges her to go.","Ruth chooses to remain with Naomi.","Ruth pledges to Naomi and to Naomi's God.","Naomi and Ruth arrive in Bethlehem at the beginning of the barley harvest."]},"ruth_2":{"book":"Ruth","chapter":2,"title":"Ruth meets Boaz","facts":["Ruth goes to glean in the fields.","The field belongs to Boaz, a relative of Elimelech.","Boaz asks who Ruth is.","Ruth is known for staying with Naomi.","Boaz tells Ruth to remain in his field.","Boaz orders his workers not to molest Ruth.","Boaz tells Ruth to drink from the water vessels.","Boaz invites Ruth to eat with the workers.","Boaz instructs workers to leave extra grain for Ruth.","Ruth returns to Naomi with grain and tells her about Boaz."]},"ruth_3":{"book":"Ruth","chapter":3,"title":"Ruth asks Boaz to redeem her","facts":["Naomi seeks security for Ruth.","Naomi tells Ruth to go to Boaz at the threshing floor.","Ruth follows Naomi's instructions.","Boaz is surprised to find Ruth at his feet during the night.","Ruth asks Boaz to spread his cloak over her.","Ruth identifies Boaz as a redeemer.","Boaz praises Ruth for her loyalty.","Boaz explains that a nearer redeemer exists.","Boaz promises to settle the matter the next day.","Ruth returns to Naomi with six measures of barley."]},"ruth_4":{"book":"Ruth","chapter":4,"title":"Boaz redeems Ruth","facts":["Boaz goes to the town gate.","Boaz gathers the nearer redeemer and elders.","The nearer redeemer declines to redeem the land and Ruth.","Boaz acquires the property associated with Elimelech's family.","Boaz takes Ruth as his wife.","The elders and people bless the marriage.","Ruth and Boaz have a son.","The child is named Obed.","Obed becomes the father of Jesse.","Jesse becomes the father of David."]},"samuel_1":{"book":"1 Samuel","chapter":1,"title":"Hannah prays for a son","facts":["Elkanah goes yearly to worship at Shiloh.","Hannah is deeply distressed because she has no child.","Hannah prays to the Lord at the sanctuary.","Eli the priest sees Hannah praying.","Hannah promises to dedicate her son to the Lord.","Eli tells Hannah that her prayer will be answered.","Hannah gives birth to Samuel.","Hannah brings Samuel to Eli after he is weaned.","Samuel serves the Lord under Eli.","Hannah offers Samuel to the Lord at Shiloh."]},"samuel_2":{"book":"1 Samuel","chapter":2,"title":"Hannah's song and Eli's sons","facts":["Hannah praises the Lord in prayer.","Hannah's song celebrates God's power and holiness.","Samuel ministers before the Lord as a child.","Eli's sons Hophni and Phinehas are called scoundrels.","Eli's sons take portions of sacrifices improperly.","Eli warns his sons about their behavior.","Samuel grows in the presence of the Lord.","Hannah visits Samuel and brings him a little robe each year.","The Lord blesses Hannah with more children.","A man of God announces judgment against Eli's house."]},"samuel_3":{"book":"1 Samuel","chapter":3,"title":"The Lord calls Samuel","facts":["Samuel ministers to the Lord under Eli.","The word of the Lord is rare in those days.","Samuel hears his name called during the night.","Samuel initially thinks Eli is calling him.","Eli realizes that the Lord is calling Samuel.","Eli tells Samuel to answer the Lord.","The Lord gives Samuel a message about Eli's house.","Samuel is afraid to tell Eli the message.","Eli asks Samuel to tell him everything.","Samuel becomes known throughout Israel as a prophet of the Lord."]},"samuel_4":{"book":"1 Samuel","chapter":4,"title":"The ark is captured","facts":["Israel goes out to fight the Philistines.","Israel suffers a defeat at Ebenezer.","The elders bring the ark of the covenant from Shiloh.","Hophni and Phinehas accompany the ark.","Israel is defeated again.","The Philistines capture the ark.","Hophni and Phinehas die.","A messenger tells Eli that the ark has been captured.","Eli falls from his chair and dies.","Phinehas's wife gives birth to a son and names him Ichabod."]},"samuel_5":{"book":"1 Samuel","chapter":5,"title":"The ark among the Philistines","facts":["The Philistines take the ark to Ashdod.","The ark is placed beside the statue of Dagon.","Dagon is found fallen before the ark.","Dagon falls again and is broken.","The people of Ashdod suffer affliction.","The ark is moved to Gath.","Gath also experiences a plague.","The ark is moved to Ekron.","The people of Ekron fear the ark.","The Philistines decide that the ark must be sent away."]},"samuel_6":{"book":"1 Samuel","chapter":6,"title":"The ark returns to Israel","facts":["The ark remains in Philistine territory for seven months.","Philistine priests and diviners advise sending it back.","The Philistines prepare a new cart for the ark.","Two milk cows are used to pull the cart.","A guilt offering includes golden tumors and mice.","The cows go toward Beth-shemesh.","People of Beth-shemesh see the ark and rejoice.","The ark is placed on the great stone of Joshua.","Some people look into the ark and are struck.","The ark is later taken to Kiriath-jearim."]},"samuel_7":{"book":"1 Samuel","chapter":7,"title":"Samuel leads Israel back to the Lord","facts":["The ark stays at Kiriath-jearim for a long time.","Samuel tells Israel to put away foreign gods.","Israel gathers at Mizpah.","Samuel prays for Israel.","The Philistines hear that Israel has gathered.","The Israelites ask Samuel to cry out to the Lord.","Samuel offers a suckling lamb as a burnt offering.","The Lord throws the Philistines into confusion.","Israel defeats the Philistines.","Samuel sets up a stone called Ebenezer."]},"ecclesiastes_1":{"book":"Ecclesiastes","chapter":1,"title":"The vanity of human toil","facts":["The Teacher introduces the book as words of the Teacher.","The Teacher declares that all is vanity.","Generations come and go.","The sun rises and sets in its cycle.","Rivers run to the sea but the sea is not full.","There is nothing new under the sun.","People remember neither former nor future generations.","The Teacher applies his mind to study and wisdom.","The pursuit of wisdom is described as chasing the wind.","Increasing wisdom is associated with increasing sorrow."]},"ecclesiastes_2":{"book":"Ecclesiastes","chapter":2,"title":"Pleasure, work and wisdom","facts":["The Teacher tests pleasure.","Laughter is examined as a way of testing life.","The Teacher undertakes great works.","The Teacher builds houses and plants vineyards.","The Teacher acquires servants, possessions and wealth.","The Teacher gathers singers and many luxuries.","Wisdom is considered better than folly.","Both wise and foolish people eventually die.","The Teacher finds toil burdensome when its fruits pass to another.","Enjoying food, drink and work is presented as a gift from God."]},"ecclesiastes_3":{"book":"Ecclesiastes","chapter":3,"title":"A time for everything","facts":["There is a time to be born.","There is a time to die.","There is a time to plant and a time to uproot.","There is a time to weep and a time to laugh.","There is a time to mourn and a time to dance.","There is a time to keep silence and a time to speak.","God has made everything suitable for its time.","Human beings cannot fully discover all that God has done.","The Teacher considers judgment and justice.","The Teacher observes that humans and animals both face death."]},"ecclesiastes_4":{"book":"Ecclesiastes","chapter":4,"title":"Oppression and companionship","facts":["The Teacher observes the tears of the oppressed.","The oppressed have no comforter.","The dead are described as having escaped the oppression they saw.","The Teacher sees that toil can be driven by envy of one's neighbor.","A fool folds his hands and consumes his own flesh.","One person working alone may have no companion.","Two are better than one because they have a good reward for their toil.","If one falls, the other can help the companion.","Two can keep warm together.","A threefold cord is not quickly broken."]},"ecclesiastes_5":{"book":"Ecclesiastes","chapter":5,"title":"Worship, promises and wealth","facts":["The Teacher advises guarding one's steps when going to God's house.","Listening is emphasized over careless sacrifice.","Words before God should not be multiplied carelessly.","A vow made to God should be fulfilled.","Dreams and many words can be associated with vanity.","The poor may be oppressed in a province.","The love of money is connected with dissatisfaction.","Abundant wealth can bring many consumers.","The sleep of a laborer is described as sweet.","Enjoying one's allotted wealth is described as a gift from God."]},"ecclesiastes_6":{"book":"Ecclesiastes","chapter":6,"title":"Wealth without enjoyment","facts":["The Teacher describes a person who has wealth but cannot enjoy it.","A stranger may enjoy what another has accumulated.","Human appetite is not satisfied simply by seeing.","The wise person is not exempt from life's limits.","What exists is already known to be human.","People cannot contend with one who is stronger than they are.","More words can increase vanity.","Life is compared with a shadow in its brevity.","The Teacher asks what is good for people during their limited days.","Human beings cannot fully know what will happen after them."]},"john_1":{"book":"Gospel according to John","chapter":1,"title":"The Word and the first disciples","facts":["The Word is described as being with God.","The Word is described as God.","John the Baptist comes as a witness to the light.","John the Baptist denies being the Messiah.","John identifies Jesus as the Lamb of God.","Andrew follows Jesus after John's testimony.","Andrew brings Simon to Jesus.","Jesus gives Simon the name Cephas.","Philip follows Jesus.","Nathanael comes to Jesus after Philip invites him."]},"john_2":{"book":"Gospel according to John","chapter":2,"title":"Cana and the temple","facts":["Jesus attends a wedding at Cana in Galilee.","The wedding runs out of wine.","Jesus's mother tells him about the lack of wine.","Jesus turns water into wine.","The disciples believe in Jesus after the sign.","Jesus goes to Capernaum after the wedding.","Jesus goes to Jerusalem for Passover.","Jesus finds sellers and money changers in the temple.","Jesus drives them out of the temple.","Jesus speaks about the temple of his body."]},"john_3":{"book":"Gospel according to John","chapter":3,"title":"Jesus and Nicodemus","facts":["Nicodemus is a Pharisee and a leader of the Jews.","Nicodemus comes to Jesus by night.","Jesus teaches about being born from above.","Jesus compares the Spirit to the wind.","Jesus recalls the bronze serpent lifted by Moses.","Jesus teaches about God's love for the world.","John the Baptist continues to testify about Jesus.","John says he is not the Messiah.","John describes Jesus as the bridegroom.","John says Jesus must increase while he decreases."]},"john_4":{"book":"Gospel according to John","chapter":4,"title":"The Samaritan woman","facts":["Jesus travels through Samaria.","Jesus rests at Jacob's well.","A Samaritan woman comes to draw water.","Jesus asks the woman for a drink.","Jesus speaks about living water.","The woman has had five husbands.","Jesus identifies himself as the Messiah.","The woman leaves her water jar and tells people about Jesus.","Many Samaritans believe because of the woman's testimony.","Many more believe after hearing Jesus themselves."]},"john_5":{"book":"Gospel according to John","chapter":5,"title":"Healing at Bethesda","facts":["Jesus goes to Jerusalem for a festival.","A pool called Bethesda has many sick people around it.","A man has been ill for thirty-eight years.","Jesus asks the man whether he wants to be made well.","Jesus tells the man to stand up, take his mat and walk.","The healing takes place on the Sabbath.","Some leaders object because the man carries his mat on the Sabbath.","Jesus speaks of God as his Father.","Jesus teaches about the resurrection and judgment.","John the Baptist is mentioned as a witness to Jesus."]},"john_6":{"book":"Gospel according to John","chapter":6,"title":"Bread of Life","facts":["Jesus crosses the Sea of Galilee.","A large crowd follows Jesus because of signs of healing.","Jesus tests Philip about feeding the crowd.","A boy has five barley loaves and two fish.","Jesus gives thanks and distributes the food.","About five thousand men are fed.","Twelve baskets of leftovers are collected.","Jesus walks on the sea toward his disciples.","The crowd seeks Jesus after the feeding.","Jesus teaches that he is the bread of life."]},"john_7":{"book":"Gospel according to John","chapter":7,"title":"Jesus at the Feast of Booths","facts":["Jesus initially remains in Galilee.","Jesus's brothers encourage him to go to Judea.","Jesus goes to the Feast of Booths privately.","Jesus teaches in the temple.","People marvel at Jesus's knowledge.","Jesus says his teaching comes from the One who sent him.","Some people debate whether Jesus is the Christ.","Officers are sent to arrest Jesus.","Jesus speaks of coming to the One who sent him.","Jesus promises living water to those who believe."]},"john_8":{"book":"Gospel according to John","chapter":8,"title":"Light of the world","facts":["Jesus teaches in the temple.","Jesus says he is the light of the world.","Jesus says his testimony is true because he knows where he came from and where he is going.","Jesus speaks about the Father who sent him.","Jesus tells people that knowing him would mean knowing the Father.","Jesus says that those who continue in his word will know the truth.","Jesus says the truth will make people free.","Jesus speaks about people being slaves to sin.","Jesus says that before Abraham was, he is.","Some people take up stones to throw at Jesus."]},"john_9":{"book":"Gospel according to John","chapter":9,"title":"Jesus heals a man born blind","facts":["Jesus sees a man who was blind from birth.","Jesus says the man's blindness is not caused by his parents' sin.","Jesus makes mud with saliva.","Jesus puts the mud on the man's eyes.","The man washes in the pool of Siloam.","The man returns able to see.","Neighbors question how the man received sight.","Pharisees question the healed man.","The man's parents confirm that he was born blind.","The man comes to believe in and worship Jesus."]},"john_10":{"book":"Gospel according to John","chapter":10,"title":"The Good Shepherd","facts":["Jesus teaches about the sheepfold.","The shepherd enters by the gate.","The sheep know the shepherd's voice.","Jesus describes himself as the gate for the sheep.","Jesus says he came so that the sheep may have life abundantly.","Jesus calls himself the good shepherd.","The good shepherd lays down his life for the sheep.","Jesus contrasts the good shepherd with a hired hand.","Jesus says he knows his sheep and they know him.","Jesus says no one can snatch his sheep from his hand."]},"john_11":{"book":"Gospel according to John","chapter":11,"title":"Lazarus is raised","facts":["Lazarus is ill in Bethany.","Mary and Martha are Lazarus's sisters.","Jesus hears that Lazarus is ill but remains where he is for two days.","Jesus travels to Bethany.","Martha meets Jesus before he reaches the village.","Jesus tells Martha that he is the resurrection and the life.","Mary comes to Jesus and weeps.","Jesus weeps at Lazarus's tomb.","Jesus commands Lazarus to come out of the tomb.","Lazarus comes out still wrapped in burial cloths."]},"john_12":{"book":"Gospel according to John","chapter":12,"title":"Jesus enters Jerusalem","facts":["Jesus comes to Bethany before Passover.","Mary anoints Jesus's feet with costly perfume.","Judas Iscariot objects to the perfume.","Jesus enters Jerusalem riding a young donkey.","The crowd takes branches and goes out to meet Jesus.","The crowd cries out about the King of Israel.","Greeks come seeking to see Jesus.","Jesus compares his coming death to a grain of wheat falling into the earth.","Jesus speaks about being lifted up.","Many people still do not believe despite the signs Jesus has done."]},"galatians_1":{"book":"Galatians","chapter":1,"title":"The true gospel","facts":["Paul identifies himself as an apostle.","Paul says his apostleship is through Jesus Christ and God the Father.","Paul greets the churches of Galatia.","Paul expresses astonishment that the Galatians are turning to a different gospel.","Paul says there is no other true gospel.","Paul warns that anyone preaching another gospel should be accursed.","Paul says he is not seeking human approval.","Paul describes his former life in Judaism.","Paul says God set him apart before he was born.","Paul describes receiving his calling by God's grace."]},"galatians_2":{"book":"Galatians","chapter":2,"title":"Justification by faith","facts":["Paul describes going to Jerusalem with Barnabas and Titus.","Titus was not compelled to be circumcised.","Paul says the gospel was entrusted to him for the Gentiles.","James, Cephas and John are described as pillars.","Paul confronts Peter at Antioch.","Peter had withdrawn from eating with Gentiles when certain people arrived.","Paul says a person is not justified by works of the law.","Paul says justification is through faith in Jesus Christ.","Paul says he has been crucified with Christ.","Paul says he lives by faith in the Son of God."]},"galatians_3":{"book":"Galatians","chapter":3,"title":"Faith, law and God's promise","facts":["Paul asks whether the Galatians received the Spirit by works of the law or faith.","Paul points to Abraham's faith.","Those who believe are described as children of Abraham.","Scripture is said to have announced the gospel beforehand to Abraham.","The law brings a curse on failure to keep all its requirements.","Christ redeems people from the curse of the law.","The promise is connected with Abraham's offspring.","Paul explains that the law came later than the promise.","The law is described as a guardian until Christ came.","Those who belong to Christ are described as Abraham's offspring and heirs."]},"galatians_4":{"book":"Galatians","chapter":4,"title":"Sons and heirs","facts":["Paul compares an heir while a child to a servant.","God sends his Son at the fullness of time.","The Son is born of a woman and born under the law.","Believers receive adoption as children.","The Spirit of God's Son is sent into believers' hearts.","Believers can call God Father.","Paul worries that the Galatians are turning back to weak and beggarly elements.","Paul recalls the Galatians receiving him warmly.","Paul uses Hagar and Sarah as an illustration.","Paul says believers are children of the free woman."]},"galatians_5":{"book":"Galatians","chapter":5,"title":"Freedom and life by the Spirit","facts":["Paul urges believers to stand firm in the freedom Christ gives.","Circumcision is discussed as a danger if treated as the basis of justification.","Faith works through love.","Paul says the whole law is summed up in loving one's neighbor.","Paul warns against using freedom as an opportunity for the flesh.","Believers are told to serve one another through love.","Paul says walking by the Spirit opposes gratifying the flesh.","The works of the flesh are listed.","The fruit of the Spirit is listed.","Those who belong to Christ are described as crucifying the flesh with its passions and desires."]},"galatians_6":{"book":"Galatians","chapter":6,"title":"Bear one another's burdens","facts":["Paul tells believers to restore someone caught in a transgression gently.","Believers are told to watch themselves while helping others.","Christians are told to bear one another's burdens.","Each person is encouraged to test their own work.","The one taught the word should share good things with the teacher.","Paul teaches that people reap what they sow.","Sowing to the flesh leads to corruption.","Sowing to the Spirit leads to eternal life.","Believers are urged not to grow weary in doing good.","Paul emphasizes the new creation and the cross of Jesus Christ."]}}
-
 function getLocalSimulation(text){
   const t=text.toLowerCase().replace(/\s+/g," ").trim();
   const has=x=>t.includes(x);
-  // Offline Logos fallback: all 35 syllabus chapters are hard-coded here.
-  // This runs before Gemini, so Search & Find still works if the AI/API is unavailable.
-  const m=t.match(/^(ruth|1\\s*samuel|ecclesiastes|john|gospel\\s+according\\s+to\\s+john|galatians)\\s+(?:chapter\\s*)?(\\d+)$/i);
-  if(m){
-    const aliases={ruth:"ruth", "1 samuel":"samuel", "1samuel":"1_Samuel", ecclesiastes:"ecclesiastes", john:"john", "gospel according to john":"john", galatians:"galatians"};
-    const key=(aliases[m[1].toLowerCase()]||aliases[m[1].toLowerCase().replace(/\\s+/g," ")])+"_"+Number(m[2]);
-    const item=LOGOS_LOCAL_SIMULATIONS[key];
-    if(item){
-      const icons=["📖","🧑","🌾","🙏","🤝","🏠","⚖️","👑","🌟","🧠"];
-      return item.facts.map((label,i)=>({emoji:icons[i],label}));
-    }
-  }
-
-
-  if(has("ruth") && (has("ruth chapter 1") || /^ruth\s+1$/.test(t))) return [
-    {emoji:"👩",label:"Naomi loses her husband and sons"},
-    {emoji:"🏠",label:"Naomi decides to return home"},
-    {emoji:"👭",label:"Ruth chooses to stay with Naomi"},
-    {emoji:"🛤️",label:"They travel to Bethlehem"},
-    {emoji:"🌾",label:"They arrive at barley harvest"}
-  ];
-  if(has("ruth") && (has("ruth chapter 2") || /^ruth\s+2$/.test(t))) return [
-    {emoji:"🌾",label:"Ruth gleans in Boaz's field"},
-    {emoji:"👀",label:"Boaz notices Ruth"},
-    {emoji:"🤝",label:"Boaz protects and welcomes Ruth"},
-    {emoji:"🍞",label:"Ruth eats with Boaz's workers"},
-    {emoji:"🏠",label:"Ruth tells Naomi about Boaz"}
-  ];
-  if(has("ruth") && (has("ruth chapter 3") || /^ruth\s+3$/.test(t))) return [
-    {emoji:"🌙",label:"Naomi gives Ruth a plan"},
-    {emoji:"🌾",label:"Ruth goes to Boaz at night"},
-    {emoji:"🧎",label:"Ruth asks Boaz to help"},
-    {emoji:"🤝",label:"Boaz agrees to act as redeemer"},
-    {emoji:"🌅",label:"Ruth returns safely to Naomi"}
-  ];
-  if(has("ruth") && (has("ruth chapter 4") || /^ruth\s+4$/.test(t))) return [
-    {emoji:"⚖️",label:"Boaz meets the nearer relative"},
-    {emoji:"🤝",label:"Boaz receives the right to redeem"},
-    {emoji:"💍",label:"Boaz marries Ruth"},
-    {emoji:"👶",label:"Ruth and Boaz have a son"},
-    {emoji:"🌳",label:"Their family joins David's line"}
-  ];
-
   if(/equivalent fraction|fraction|fractions/.test(t)) return [
     {emoji:"🍫",label:"Start with the fraction"},
     {emoji:"✖️",label:"Multiply top and bottom"},
@@ -550,14 +505,11 @@ function getLocalSimulation(text){
   ];
   return null;
 }
-
 async function simulate(){
   const input=$("simInput"),box=$("simulation"),text=input.value.trim();
   if(!text){input.focus();box.innerHTML='<div class="sim-title">💡 Type any concept first.</div>';box.classList.remove("hidden");return;}
 
-  // Known visual lessons are rendered directly in the browser.
-  // This makes Bible/science examples reliable even if the AI API is busy,
-  // unavailable, or an old server deployment is still being served.
+  // Known visual lessons are rendered directly in the browser for common school topics.
   const localSteps=getLocalSimulation(text);
   if(localSteps){
     renderSimulation(text,localSteps);
@@ -581,80 +533,3 @@ $("topicBtn").onclick=createTopicLesson;
 $("topicMiniPrev").onclick=()=>{if(topicMiniPage>0){topicMiniPage--;renderTopicMini();}};
 $("topicMiniNext").onclick=()=>{if(topicMiniPage<topicPages.length-1){topicMiniPage++;renderTopicMini();}};
 
-let logosBook="ruth",logosChapter=1;
-
-function logosDeepData(){
-  if(window.LOGOS_DEEP_2026)return window.LOGOS_DEEP_2026;
-  const data={};
-  for(const item of Object.values(LOGOS_LOCAL_SIMULATIONS)){
-    const key=item.book==="Ruth"?"ruth":item.book==="1 Samuel"?"samuel":item.book==="Ecclesiastes"?"ecclesiastes":item.book==="John"?"john":"galatians";
-    if(!data[key])data[key]={label:(key==="ruth"?"🌾 Ruth":key==="samuel"?"👑 1 Samuel":key==="ecclesiastes"?"📜 Ecclesiastes":key==="john"?"✝️ Gospel according to John":"✉️ Galatians"),range:[1,key==="ruth"?4:key==="samuel"?7:key==="ecclesiastes"?6:key==="john"?12:6],chapters:{}};
-    data[key].chapters[item.chapter]={title:item.title,facts:item.facts};
-  }
-  return data;
-}
-
-function validateLogosData(){
-  const data=logosDeepData();
-  if(!data)return {ok:false,books:0,chapters:0,points:0};
-  let books=0,chapters=0,points=0;
-  for(const book of Object.values(data)){
-    books++;
-    for(const ch of Object.values(book.chapters||{})){
-      chapters++;
-      if(!Array.isArray(ch.facts)||ch.facts.length!==10)return {ok:false,books,chapters,points};
-      if(ch.facts.some(x=>typeof x!=="string"||!x.trim()))return {ok:false,books,chapters,points};
-      points+=ch.facts.length;
-    }
-  }
-  return {ok:books===5&&chapters===35&&points===350,books,chapters,points};
-}
-
-function renderLogosBooks(){
-  const box=$("logosBooks");if(!box)return;
-  const data=logosDeepData();
-  if(!data){box.innerHTML='<p class="logos-empty">Logos study data could not be loaded.</p>';return;}
-  box.innerHTML="";
-  Object.entries(data).forEach(([key,book])=>{
-    const group=document.createElement("div");group.className="logos-book";
-    const title=document.createElement("button");title.className="logos-book-title";
-    title.innerHTML=esc(book.label)+" <span>"+book.range[0]+"–"+book.range[1]+"</span>";
-    title.onclick=()=>{logosBook=key;renderLogosBooks();renderLogosChapter();};
-    group.appendChild(title);
-    const nums=document.createElement("div");nums.className="logos-chapters";
-    for(let n=book.range[0];n<=book.range[1];n++){
-      const b=document.createElement("button");
-      b.className="logos-chapter-btn"+(key===logosBook&&n===logosChapter?" active":"");
-      b.textContent=n;b.title=book.label+" Chapter "+n;
-      b.onclick=()=>{logosBook=key;logosChapter=n;renderLogosBooks();renderLogosChapter();};
-      nums.appendChild(b);
-    }
-    group.appendChild(nums);box.appendChild(group);
-  });
-}
-
-function renderLogosChapter(){
-  const box=$("logosChapterView");if(!box)return;
-  const data=logosDeepData(),book=data?.[logosBook],ch=book?.chapters?.[logosChapter];
-  if(!book||!ch||!Array.isArray(ch.facts)||ch.facts.length!==10){
-    box.innerHTML='<p class="logos-empty">This chapter does not have the required 10 study points.</p>';return;
-  }
-  box.innerHTML='<div class="logos-chapter-head"><div><span>'+esc(book.label)+'</span><h3>Chapter '+logosChapter+': '+esc(ch.title)+'</h3><small class="logos-point-count">5 Study Points</small></div><button id="logosQuizBtn" class="logos-quiz-btn">📝 Chapter Quiz</button></div>'+
-    '<div class="logos-events">'+ch.facts.slice(0,5).map((x,i)=>'<div class="logos-event"><b>'+(i+1)+'</b><span>'+esc(x)+'</span></div>').join("")+'</div>'+
-    '<div class="logos-memory"><strong>🧠 Remember</strong><p>Learn these 10 points, then take the 10-question chapter quiz.</p></div>';
-  $("logosQuizBtn").onclick=()=>{window.location.href="quiz.html?book="+encodeURIComponent(logosBook)+"&chapter="+logosChapter;};
-}
-
-(function bootLogosStudy(){
-  const finish=()=>{
-    const check=validateLogosData();
-    renderLogosBooks();renderLogosChapter();
-    if(!check.ok)console.error("LOGOS DATA VALIDATION FAILED",check);
-  };
-  if(window.LOGOS_DEEP_2026)finish();
-  else{
-    const s=document.createElement("script");
-    s.src="./logos-data.js?v=20260924-103&fresh="+Date.now();
-    s.onload=finish;s.onerror=finish;document.head.appendChild(s);
-  }
-})();
