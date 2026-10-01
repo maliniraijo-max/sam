@@ -10,6 +10,8 @@ const APP_SHELL = [
   "./mousetronaut.js?v=20261001-001",
   "./flowering-fruiting.html",
   "./flowering-fruiting.js?v=20261001-001",
+  "./fractions.html",
+  "./fractions.js?v=20261001-001",
   "./results.js?v=20261001-001",
   "./video.js?v=20260925-001",
   "./manifest.json",
