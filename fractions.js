@@ -124,8 +124,8 @@ function submitQuiz(){
  document.getElementById("reviewBtn").onclick=()=>{result.classList.add("hidden");current=0;renderReview()};
 }
 function renderReview(){
- progress.textContent="Review";
- const rows=questions.map((q,i)=>`<div class="review-row ${answers[i]===q.a?"review-correct":"review-wrong"}"><div><strong>Q${i+1}. ${q.q}</strong><div>Your answer: ${q.o[answers[i]]}</div><div>Correct answer: ${q.o[q.a]}</div></div></div>`).join("");
+ progress.textContent="Review Incorrect Answers";
+ const rows=questions.map((q,i)=>({q,i})).filter(x=>answers[x.i]!==x.q.a).map(x=>`<div class="review-row review-wrong"><div><strong>Q${x.i+1}. ${x.q.q}</strong><div>Your answer: ${x.q.o[answers[x.i]]}</div><div>Correct answer: ${x.q.o[x.q.a]}</div></div></div>`).join("");
  area.innerHTML=`<div class="review-list">${rows}</div><div class="mcq-nav"><a class="quiz-home" href="index.html">← Return to Sam's Learning</a></div>`;
 }
 render();
