@@ -101,18 +101,8 @@ const questions = [
 
 let current=0, answers=Array(questions.length).fill(null), submitted=false;
 const area=document.getElementById("quizArea"), result=document.getElementById("quizResult"), progress=document.getElementById("quizProgress");
-function render(){
- const item=questions[current];
- progress.textContent=`Question ${current+1} of ${questions.length}`;
- area.innerHTML=`<div class="mcq-question"><div class="mcq-number">QUESTION ${current+1}</div><h2>${item.q}</h2><div class="mcq-options">${item.o.map((opt,i)=>`<button class="mcq-option ${answers[current]===i?"selected":""}" data-i="${i}" ${submitted?"disabled":""}><span>${String.fromCharCode(65+i)}</span><b>${opt}</b></button>`).join("")}</div><div class="mcq-nav"><button class="nav-btn" id="prevQ" ${current===0?"disabled":""}>← Previous</button><span class="mcq-nav-count">${current+1} / ${questions.length}</span><button class="nav-btn" id="nextQ" ${current===questions.length-1?"disabled":""}>Next →</button></div></div>`;
- area.querySelectorAll(".mcq-option").forEach(b=>b.onclick=()=>{if(submitted)return;const picked=Number(b.dataset.i);answers[current]=picked;render();if(picked!==questions[current].a){const note=document.createElement("div");note.className="answer-feedback";note.textContent="Correct answer: "+questions[current].o[questions[current].a];const card=area.querySelector(".mcq-question");if(card)card.appendChild(note);}});
- document.getElementById("prevQ").onclick=()=>{if(current>0){current--;render()}};
- document.getElementById("nextQ").onclick=()=>{if(current<questions.length-1){current++;render()}};
- if(current===questions.length-1 && !submitted){
-   const wrap=document.createElement("div");wrap.innerHTML='<button class="primary" id="submitQuiz">Submit Quiz</button>';area.querySelector(".mcq-question").appendChild(wrap);
-   document.getElementById("submitQuiz").onclick=submitQuiz;
- }
-}
+function updateSubmitVisibility(){const btn=document.getElementById("submitQuiz");if(btn)btn.style.display=answers.every(a=>a!==null)?"inline-flex":"none";}
+function render(){const item=questions[current],chosen=answers[current];progress.textContent=`Question ${current+1} of ${questions.length}`;const feedback=chosen===null?"":(chosen===item.a?'<div class="answer-feedback answer-correct"><strong>✓ Correct!</strong></div>':`<div class="answer-feedback answer-wrong"><strong>✗ Incorrect.</strong> Correct answer: ${item.o[item.a]}</div>`);area.innerHTML=`<div class="mcq-question"><div class="mcq-number">QUESTION ${current+1}</div><h2>${item.q}</h2><div class="mcq-options">${item.o.map((opt,i)=>`<button class="mcq-option ${chosen===i?"selected":""}" data-i="${i}" ${chosen!==null?"disabled":""}><span>${String.fromCharCode(65+i)}</span><b>${opt}</b></button>`).join("")}</div>${feedback}<div class="mcq-nav"><button class="nav-btn" id="prevQ" ${current===0?"disabled":""}>← Previous</button><span class="mcq-nav-count">${chosen===null?"Choose one":"Answer locked"}</span><button class="nav-btn" id="nextQ" ${current===questions.length-1?"disabled":""}>Next →</button></div></div>`;area.querySelectorAll(".mcq-option").forEach(b=>b.onclick=()=>{if(answers[current]!==null)return;answers[current]=Number(b.dataset.i);render();});document.getElementById("prevQ").onclick=()=>{if(current>0){current--;render()}};document.getElementById("nextQ").onclick=()=>{if(current<questions.length-1){current++;render()}};if(current===questions.length-1&&!submitted){const wrap=document.createElement("div");wrap.innerHTML='<button class="primary" id="submitQuiz" style="display:none">Submit Quiz</button>';area.querySelector(".mcq-question").appendChild(wrap);document.getElementById("submitQuiz").onclick=submitQuiz;updateSubmitVisibility();}}
 function submitQuiz(){
  if(answers.some(a=>a===null)){alert("Please answer all the questions before submitting.");return;}
  submitted=true;let score=0;
