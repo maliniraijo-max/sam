@@ -7,11 +7,14 @@ function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",
 function renderQuestion(){
  const x=questions[current],chosen=answers[current];
  progress.textContent=(current+1)+" / "+questions.length;
- area.innerHTML='<div class="mcq-question"><div class="mcq-number">QUESTION '+(current+1)+'</div><h2>'+esc(x.q)+'</h2><div class="mcq-options">'+x.o.map((v,i)=>'<button class="mcq-option '+(chosen===i?'selected':'')+'" data-i="'+i+'"><span>'+String.fromCharCode(65+i)+'</span><b>'+esc(v)+'</b></button>').join('')+'</div><div class="mcq-nav"><button class="nav-btn" id="prevQ" '+(current===0?'disabled':'')+'>← Previous</button><span class="mcq-nav-count">'+(chosen===null?'Choose one':'Answer selected')+'</span><button class="nav-btn" id="nextQ" '+(current===questions.length-1?'disabled':'')+'>Next →</button></div></div>';
- area.querySelectorAll(".mcq-option").forEach(btn=>btn.onclick=()=>{const picked=Number(btn.dataset.i);answers[current]=picked;renderQuestion();if(picked!==questions[current].a){const note=document.createElement("div");note.className="answer-feedback";note.innerHTML="<strong>Correct answer:</strong> "+esc(questions[current].o[questions[current].a]);const card=area.querySelector(".mcq-question");if(card)card.appendChild(note);}});
+ const feedback=chosen===null?"":(chosen===x.a?'<div class="answer-feedback answer-correct"><strong>✓ Correct!</strong></div>':'<div class="answer-feedback answer-wrong"><strong>✗ Incorrect.</strong> Correct answer: '+esc(x.o[x.a])+'</div>');
+ area.innerHTML='<div class="mcq-question"><div class="mcq-number">QUESTION '+(current+1)+'</div><h2>'+esc(x.q)+'</h2><div class="mcq-options">'+x.o.map((v,i)=>'<button class="mcq-option '+(chosen===i?'selected':'')+'" data-i="'+i+'" '+(chosen!==null?'disabled':'')+'><span>'+String.fromCharCode(65+i)+'</span><b>'+esc(v)+'</b></button>').join('')+'</div>'+feedback+'<div class="mcq-nav"><button class="nav-btn" id="prevQ" '+(current===0?'disabled':'')+'>← Previous</button><span class="mcq-nav-count">'+(chosen===null?'Choose one':'Answer locked')+'</span><button class="nav-btn" id="nextQ" '+(current===questions.length-1?'disabled':'')+'>Next →</button></div></div>';
+ area.querySelectorAll(".mcq-option").forEach(btn=>btn.onclick=()=>{if(answers[current]!==null)return;answers[current]=Number(btn.dataset.i);renderQuestion();});
  document.getElementById("prevQ").onclick=()=>{if(current>0){current--;renderQuestion()}};
  document.getElementById("nextQ").onclick=()=>{if(current<questions.length-1){current++;renderQuestion()}};
+ updateSubmitVisibility();
 }
+function updateSubmitVisibility(){if(typeof submit!=="undefined")submit.style.display=answers.every(x=>x!==null)?"inline-flex":"none";}
 function submitQuiz(){
  const unanswered=answers.filter(x=>x===null).length;
  if(unanswered){alert("Please answer all "+unanswered+" remaining question"+(unanswered===1?"":"s")+" before submitting.");return;}
@@ -24,4 +27,4 @@ function submitQuiz(){
  window.scrollTo({top:0,behavior:"smooth"});
 }
 renderQuestion();
-const submit=document.createElement("button");submit.className="primary";submit.textContent="Submit Test & Show Score";submit.onclick=submitQuiz;area.after(submit);
+const submit=document.createElement("button");submit.className="primary";submit.textContent="Submit Test & Show Score";submit.onclick=submitQuiz;submit.style.display="none";area.after(submit);updateSubmitVisibility();
