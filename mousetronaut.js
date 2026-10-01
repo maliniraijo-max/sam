@@ -27,4 +27,4 @@ function submitQuiz(){
  window.scrollTo({top:0,behavior:"smooth"});
 }
 renderQuestion();
-const submit=document.createElement("button");submit.className="primary";submit.textContent="Submit Test & Show Score";submit.onclick=submitQuiz;submit.style.display="none";area.after(submit);updateSubmitVisibility();
+var submit=document.createElement("button");submit.className="primary";submit.textContent="Submit Test & Show Score";submit.onclick=submitQuiz;submit.style.display="none";area.after(submit);updateSubmitVisibility();
