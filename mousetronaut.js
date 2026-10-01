@@ -16,7 +16,7 @@ function submitQuiz(){
  const unanswered=answers.filter(x=>x===null).length;
  if(unanswered){alert("Please answer all "+unanswered+" remaining question"+(unanswered===1?"":"s")+" before submitting.");return;}
  const score=questions.reduce((n,q,i)=>n+(answers[i]===q.a?1:0),0);
- const wrong=questions.map((q,i)=>({q,i})).filter(x=>answers[x.i]!==x.q.a);
+ const wrong=questions.map((q,i)=>({q,i})).filter(x=>answers[x.i]!==x.q.a);recordQuizAttempt("Mousetronaut",score,questions.length);
  result.classList.remove("hidden");
  result.innerHTML='<div class="result-icon">🚀</div><h2>Test Complete!</h2><p><strong>'+score+' / '+questions.length+'</strong></p><p class="mcq-result-note">Your score is shown only after submission.</p><div style="margin-top:22px;text-align:left"><h3>Questions to review: '+wrong.length+'</h3>'+ (wrong.length?wrong.map(x=>'<div style="padding:12px 0;border-top:1px solid #e4edf0"><strong>Q'+(x.i+1)+'. '+esc(x.q.q)+'</strong><br>Your answer: '+esc(x.q.o[answers[x.i]])+'<br><b>Correct answer: '+esc(x.q.o[x.q.a])+'</b></div>').join(''):'<p>🎉 All answers are correct!</p>')+'</div><button class="primary" id="retryBtn">Try Again</button><a class="quiz-home" href="index.html">Return to Sam’s Learning</a>';
  area.classList.add("hidden");progress.textContent="Submitted";
