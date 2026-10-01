@@ -8,7 +8,7 @@ function renderQuestion(){
  const x=questions[current],chosen=answers[current];
  progress.textContent=(current+1)+" / "+questions.length;
  area.innerHTML='<div class="mcq-question"><div class="mcq-number">QUESTION '+(current+1)+'</div><h2>'+esc(x.q)+'</h2><div class="mcq-options">'+x.o.map((v,i)=>'<button class="mcq-option '+(chosen===i?'selected':'')+'" data-i="'+i+'"><span>'+String.fromCharCode(65+i)+'</span><b>'+esc(v)+'</b></button>').join('')+'</div><div class="mcq-nav"><button class="nav-btn" id="prevQ" '+(current===0?'disabled':'')+'>← Previous</button><span class="mcq-nav-count">'+(chosen===null?'Choose one':'Answer selected')+'</span><button class="nav-btn" id="nextQ" '+(current===questions.length-1?'disabled':'')+'>Next →</button></div></div>';
- area.querySelectorAll(".mcq-option").forEach(btn=>btn.onclick=()=>{answers[current]=Number(btn.dataset.i);renderQuestion();});
+ area.querySelectorAll(".mcq-option").forEach(btn=>btn.onclick=()=>{const picked=Number(btn.dataset.i);answers[current]=picked;renderQuestion();if(picked!==questions[current].a){const note=document.createElement("div");note.className="answer-feedback";note.innerHTML="<strong>Correct answer:</strong> "+esc(questions[current].o[questions[current].a]);const card=area.querySelector(".mcq-question");if(card)card.appendChild(note);}});
  document.getElementById("prevQ").onclick=()=>{if(current>0){current--;renderQuestion()}};
  document.getElementById("nextQ").onclick=()=>{if(current<questions.length-1){current++;renderQuestion()}};
 }
