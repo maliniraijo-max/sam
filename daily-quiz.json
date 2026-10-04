@@ -62,6 +62,226 @@
           ],
           "answer": 0,
           "why": "Beavers build dams from branches, mud and other materials."
+        },
+        {
+          "q": "Which animal has a trunk?",
+          "options": [
+            "Elephant",
+            "Tiger",
+            "Rabbit",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is known for a pouch?",
+          "options": [
+            "Kangaroo",
+            "Lion",
+            "Horse",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal has stripes?",
+          "options": [
+            "Zebra",
+            "Camel",
+            "Panda",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is a great climber?",
+          "options": [
+            "Monkey",
+            "Hippo",
+            "Rhino",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal lives in a hive?",
+          "options": [
+            "Bee",
+            "Fox",
+            "Deer",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal makes honey?",
+          "options": [
+            "Honeybee",
+            "Wolf",
+            "Otter",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is known for its mane?",
+          "options": [
+            "Lion",
+            "Rabbit",
+            "Seal",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal has a shell?",
+          "options": [
+            "Tortoise",
+            "Cheetah",
+            "Giraffe",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal lives mainly in water and has fins?",
+          "options": [
+            "Fish",
+            "Horse",
+            "Goat",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is famous for its tusks?",
+          "options": [
+            "Elephant",
+            "Frog",
+            "Fox",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal can live in very cold Arctic regions?",
+          "options": [
+            "Polar bear",
+            "Camel",
+            "Monkey",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is a big cat?",
+          "options": [
+            "Tiger",
+            "Zebra",
+            "Goat",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal has a bushy tail and stores nuts?",
+          "options": [
+            "Squirrel",
+            "Whale",
+            "Cow",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is known for its spots?",
+          "options": [
+            "Leopard",
+            "Horse",
+            "Seal",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is a slow-moving tree dweller?",
+          "options": [
+            "Sloth",
+            "Cheetah",
+            "Wolf",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal has antlers?",
+          "options": [
+            "Deer",
+            "Rabbit",
+            "Penguin",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is a sea mammal?",
+          "options": [
+            "Dolphin",
+            "Eagle",
+            "Lizard",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal has a very long tongue?",
+          "options": [
+            "Giraffe",
+            "Panda",
+            "Zebra",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is known for making a web?",
+          "options": [
+            "Spider",
+            "Duck",
+            "Elephant",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which animal is a nocturnal mammal?",
+          "options": [
+            "Bat",
+            "Cow",
+            "Horse",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
         }
       ]
     },
@@ -124,6 +344,226 @@
           ],
           "answer": 1,
           "why": "Many birds combine twigs, grass, leaves, mud and other materials to build nests."
+        },
+        {
+          "q": "Which bird lays eggs?",
+          "options": [
+            "Chicken",
+            "Dog",
+            "Cat",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird has a hooked beak?",
+          "options": [
+            "Eagle",
+            "Duck",
+            "Sparrow",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird is a good swimmer?",
+          "options": [
+            "Penguin",
+            "Eagle",
+            "Owl",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird has colourful feathers?",
+          "options": [
+            "Parrot",
+            "Crow",
+            "Vulture",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird is known for a beautiful song?",
+          "options": [
+            "Nightingale",
+            "Ostrich",
+            "Penguin",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird has a long bill for probing mud?",
+          "options": [
+            "Ibis",
+            "Eagle",
+            "Owl",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird is a scavenger?",
+          "options": [
+            "Vulture",
+            "Hummingbird",
+            "Swan",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird has a fan-shaped tail?",
+          "options": [
+            "Peacock",
+            "Penguin",
+            "Duck",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird is very small and can hover?",
+          "options": [
+            "Hummingbird",
+            "Ostrich",
+            "Crow",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird lives in Antarctica?",
+          "options": [
+            "Penguin",
+            "Peacock",
+            "Parrot",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird is a common farm bird?",
+          "options": [
+            "Hen",
+            "Eagle",
+            "Owl",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird catches fish with a sharp beak?",
+          "options": [
+            "Kingfisher",
+            "Sparrow",
+            "Peacock",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird has webbed feet?",
+          "options": [
+            "Duck",
+            "Eagle",
+            "Parrot",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird is famous for copying sounds?",
+          "options": [
+            "Parrot",
+            "Swan",
+            "Ostrich",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird has a long neck?",
+          "options": [
+            "Swan",
+            "Sparrow",
+            "Woodpecker",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird builds a nest from twigs?",
+          "options": [
+            "Sparrow",
+            "Penguin",
+            "Eagle",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird can see very well while hunting?",
+          "options": [
+            "Eagle",
+            "Chicken",
+            "Duck",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird is flightless?",
+          "options": [
+            "Emu",
+            "Robin",
+            "Parrot",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird is known for its red breast?",
+          "options": [
+            "Robin",
+            "Pelican",
+            "Ostrich",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which bird has a strong chisel-like bill?",
+          "options": [
+            "Woodpecker",
+            "Swan",
+            "Flamingo",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
         }
       ]
     },
@@ -186,6 +626,226 @@
           ],
           "answer": 1,
           "why": "Gravity provides the force that keeps planets in orbit."
+        },
+        {
+          "q": "Which planet is closest to Earth in size?",
+          "options": [
+            "Venus",
+            "Jupiter",
+            "Neptune",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which planet has the most famous ring system?",
+          "options": [
+            "Saturn",
+            "Mars",
+            "Mercury",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which planet is called the Blue Planet?",
+          "options": [
+            "Earth",
+            "Mars",
+            "Venus",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which planet is farthest from the Sun?",
+          "options": [
+            "Neptune",
+            "Earth",
+            "Mercury",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which planet is the largest?",
+          "options": [
+            "Jupiter",
+            "Mars",
+            "Venus",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which planet is smallest?",
+          "options": [
+            "Mercury",
+            "Saturn",
+            "Neptune",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What is Earth's shape approximately?",
+          "options": [
+            "Sphere",
+            "Cube",
+            "Triangle",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What do we call a person who travels into space?",
+          "options": [
+            "Astronaut",
+            "Pilot",
+            "Sailor",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What vehicle carries astronauts into space?",
+          "options": [
+            "Rocket",
+            "Submarine",
+            "Train",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What is the Moon made mostly of?",
+          "options": [
+            "Rock and dust",
+            "Wood",
+            "Clouds",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What is a star?",
+          "options": [
+            "A huge ball of hot gas",
+            "A planet",
+            "A cloud of water",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What is a galaxy?",
+          "options": [
+            "A huge collection of stars",
+            "One planet",
+            "A moon",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What does a telescope help us observe?",
+          "options": [
+            "Distant objects in space",
+            "Soil",
+            "Ocean fish",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What is a crater?",
+          "options": [
+            "A bowl-shaped depression",
+            "A star",
+            "A planet",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which object orbits Earth?",
+          "options": [
+            "Moon",
+            "Sun",
+            "Jupiter",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What causes seasons?",
+          "options": [
+            "Earth's tilted axis and revolution",
+            "Moon phases only",
+            "Clouds",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What is a satellite?",
+          "options": [
+            "An object that orbits another object",
+            "A type of star",
+            "A comet tail",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "Which planet is famous for its rings?",
+          "options": [
+            "Saturn",
+            "Earth",
+            "Mars",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What is sunlight?",
+          "options": [
+            "Light from the Sun",
+            "Moonlight",
+            "Starlight only",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "q": "What is the solar system?",
+          "options": [
+            "The Sun and objects that orbit it",
+            "Only Earth",
+            "Only the Moon",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
         }
       ]
     },
@@ -291,6 +951,906 @@
           ],
           "answer": 1,
           "why": "The skull surrounds and protects the brain."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which part absorbs water?",
+          "options": [
+            "Root",
+            "Flower",
+            "Fruit",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which part makes food?",
+          "options": [
+            "Leaf",
+            "Root",
+            "Seed",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which gas is used in photosynthesis?",
+          "options": [
+            "Carbon dioxide",
+            "Oxygen",
+            "Helium",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which pigment makes leaves green?",
+          "options": [
+            "Chlorophyll",
+            "Keratin",
+            "Melanin",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which part supports the plant?",
+          "options": [
+            "Stem",
+            "Petal",
+            "Seed",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which part protects a seed?",
+          "options": [
+            "Seed coat",
+            "Stigma",
+            "Anther",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which process starts seed growth?",
+          "options": [
+            "Germination",
+            "Pollination",
+            "Transpiration",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which part produces pollen?",
+          "options": [
+            "Anther",
+            "Stigma",
+            "Sepal",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which part receives pollen?",
+          "options": [
+            "Stigma",
+            "Anther",
+            "Root",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What develops into a fruit?",
+          "options": [
+            "Ovary",
+            "Leaf",
+            "Root",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What develops into a seed?",
+          "options": [
+            "Ovule",
+            "Petal",
+            "Stem",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What do stomata allow?",
+          "options": [
+            "Gas exchange",
+            "Root growth",
+            "Fruit colour",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What is pollination?",
+          "options": [
+            "Transfer of pollen",
+            "Making roots",
+            "Leaf fall",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What is fertilisation?",
+          "options": [
+            "Fusion of reproductive cells",
+            "Water absorption",
+            "Seed drying",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What do roots anchor?",
+          "options": [
+            "The plant",
+            "The flower only",
+            "The fruit only",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What do leaves need for photosynthesis?",
+          "options": [
+            "Light",
+            "Sound",
+            "Salt",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What is transpiration?",
+          "options": [
+            "Loss of water vapour",
+            "Seed formation",
+            "Fruit eating",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What is a fruit's main role?",
+          "options": [
+            "Protect and help disperse seeds",
+            "Make roots",
+            "Absorb sunlight",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What is nectar useful for?",
+          "options": [
+            "Attracting pollinators",
+            "Making roots",
+            "Making soil",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Why are flowers important?",
+          "options": [
+            "They help flowering plants reproduce",
+            "They absorb all water",
+            "They make rocks",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What is a seed?",
+          "options": [
+            "A structure containing a young plant",
+            "A root hair",
+            "A flower petal",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What do leaves exchange through stomata?",
+          "options": [
+            "Gases",
+            "Bones",
+            "Rocks",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What do roots commonly absorb with water?",
+          "options": [
+            "Minerals",
+            "Sunlight",
+            "Flowers",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "What is photosynthesis?",
+          "options": [
+            "Making food using light",
+            "Making seeds by wind",
+            "Making soil",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Why do plants need water?",
+          "options": [
+            "For life processes including photosynthesis",
+            "To make sound",
+            "To make stones",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What do vertebrates have?",
+          "options": [
+            "A backbone",
+            "Feathers only",
+            "Scales only",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What is an invertebrate?",
+          "options": [
+            "An animal without a backbone",
+            "A plant",
+            "A bird",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which group feeds young with milk?",
+          "options": [
+            "Mammals",
+            "Birds",
+            "Fish",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which group has feathers?",
+          "options": [
+            "Birds",
+            "Mammals",
+            "Reptiles",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which group includes snakes?",
+          "options": [
+            "Reptiles",
+            "Birds",
+            "Mammals",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which group includes frogs?",
+          "options": [
+            "Amphibians",
+            "Birds",
+            "Mammals",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What do herbivores eat?",
+          "options": [
+            "Plants",
+            "Only rocks",
+            "Only insects",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What do carnivores eat?",
+          "options": [
+            "Other animals",
+            "Only grass",
+            "Only fruit",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What do omnivores eat?",
+          "options": [
+            "Plants and animals",
+            "Only plants",
+            "Only meat",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What is a habitat?",
+          "options": [
+            "A place where an organism lives",
+            "A body part",
+            "A food",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What is camouflage?",
+          "options": [
+            "Blending with surroundings",
+            "Making food",
+            "Growing wings",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What is migration?",
+          "options": [
+            "Seasonal movement from one place to another",
+            "Sleeping all winter",
+            "Changing species",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What is adaptation?",
+          "options": [
+            "A helpful survival feature",
+            "A type of food",
+            "A disease",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What is a predator?",
+          "options": [
+            "An animal that hunts",
+            "An animal that is always hunted",
+            "A plant",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What is prey?",
+          "options": [
+            "An animal hunted by another",
+            "A plant root",
+            "A habitat",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "What is a food chain?",
+          "options": [
+            "A sequence showing feeding relationships",
+            "A nest",
+            "A skeleton",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which is a producer?",
+          "options": [
+            "Grass",
+            "Rabbit",
+            "Tiger",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which is a consumer?",
+          "options": [
+            "Rabbit",
+            "Grass",
+            "Tree",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which animal is nocturnal?",
+          "options": [
+            "Owl",
+            "Cow",
+            "Horse",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which animal is an insect?",
+          "options": [
+            "Butterfly",
+            "Frog",
+            "Lizard",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which animal has six legs?",
+          "options": [
+            "Ant",
+            "Spider",
+            "Snail",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which animal has eight legs?",
+          "options": [
+            "Spider",
+            "Ant",
+            "Butterfly",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which animal breathes with gills?",
+          "options": [
+            "Fish",
+            "Dog",
+            "Eagle",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which animal breathes air with lungs?",
+          "options": [
+            "Dolphin",
+            "Goldfish",
+            "Jellyfish",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Why do animals need food?",
+          "options": [
+            "For energy and nutrients",
+            "To make sunlight",
+            "To become plants",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which organ pumps blood?",
+          "options": [
+            "Heart",
+            "Lung",
+            "Brain",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which organs help breathing?",
+          "options": [
+            "Lungs",
+            "Kidneys",
+            "Eyes",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which organ helps us think?",
+          "options": [
+            "Brain",
+            "Stomach",
+            "Heart",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which organ filters blood?",
+          "options": [
+            "Kidneys",
+            "Lungs",
+            "Ears",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which organ stores urine?",
+          "options": [
+            "Bladder",
+            "Heart",
+            "Brain",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which organ digests food?",
+          "options": [
+            "Stomach",
+            "Lung",
+            "Skull",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Where are most nutrients absorbed?",
+          "options": [
+            "Small intestine",
+            "Heart",
+            "Lung",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which sense organ sees?",
+          "options": [
+            "Eyes",
+            "Ears",
+            "Nose",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which sense organ hears?",
+          "options": [
+            "Ears",
+            "Eyes",
+            "Skin",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which sense organ smells?",
+          "options": [
+            "Nose",
+            "Tongue",
+            "Eye",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which sense organ tastes?",
+          "options": [
+            "Tongue",
+            "Ear",
+            "Knee",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What is the largest organ?",
+          "options": [
+            "Skin",
+            "Heart",
+            "Brain",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What protects the brain?",
+          "options": [
+            "Skull",
+            "Knee",
+            "Hand",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What protects the heart and lungs?",
+          "options": [
+            "Rib cage",
+            "Skull",
+            "Pelvis",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What supports the body?",
+          "options": [
+            "Skeleton",
+            "Hair",
+            "Skin",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What connects muscle to bone?",
+          "options": [
+            "Tendon",
+            "Vein",
+            "Nerve",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What connects bone to bone?",
+          "options": [
+            "Ligament",
+            "Tendon",
+            "Artery",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What carries blood away from heart?",
+          "options": [
+            "Arteries",
+            "Veins",
+            "Nerves",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What carries blood toward heart?",
+          "options": [
+            "Veins",
+            "Arteries",
+            "Tendons",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which gas do cells need?",
+          "options": [
+            "Oxygen",
+            "Helium",
+            "Smoke",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which gas is breathed out?",
+          "options": [
+            "Carbon dioxide",
+            "Oxygen",
+            "Helium",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Why does the heart beat?",
+          "options": [
+            "To pump blood",
+            "To digest food",
+            "To hear",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "What is a joint?",
+          "options": [
+            "Where bones meet",
+            "A blood cell",
+            "A muscle",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Why do muscles matter?",
+          "options": [
+            "They help produce movement",
+            "They make urine",
+            "They see",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Why do we need a balanced diet?",
+          "options": [
+            "For nutrients and energy",
+            "For sunlight",
+            "For sound",
+            "None of these"
+          ],
+          "answer": 0,
+          "why": "This is an important fact to remember."
         }
       ]
     }
