@@ -1,4 +1,4 @@
-const CACHE_NAME = "sam-learning-shell-v44";
+const CACHE_NAME = "sam-learning-shell-v47";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -19,6 +19,14 @@ const APP_SHELL = [
   "./catechism-quiz.html",
   "./catechism.css?v=20261004-001",
   "./catechism.js?v=20261004-001",
+  "./catechism-learning.html",
+  "./catechism-ppt.css?v=20261004-001",
+  "./catechism-ppt.js?v=20261004-001",
+  "./catechism-chapter1.html",
+  "./catechism-chapter2.html",
+  "./catechism-chapter3.html",
+  "./catechism-chapter4.html",
+  "./catechism-chapter5.html",
   "./results.js?v=20261001-001",
   "./video.js?v=20260925-001",
   "./manifest.json",
