@@ -1,0 +1,298 @@
+{
+  "date": "2026-10-04",
+  "displayDate": "Sunday, 4 October 2026",
+  "intro": "A fresh daily mix for Sam: animals, birds, space and science.",
+  "categories": {
+    "animals": {
+      "title": "Animal Quiz",
+      "icon": "🦁",
+      "description": "Wild, wonderful and surprising animal facts.",
+      "questions": [
+        {
+          "q": "Which animal is the largest living land animal?",
+          "options": [
+            "African elephant",
+            "Giraffe",
+            "Hippopotamus",
+            "Rhinoceros"
+          ],
+          "answer": 0,
+          "why": "The African elephant is the largest living land animal."
+        },
+        {
+          "q": "Which animal is famous for changing its skin colour to help it blend in?",
+          "options": [
+            "Camel",
+            "Chameleon",
+            "Penguin",
+            "Kangaroo"
+          ],
+          "answer": 1,
+          "why": "Chameleons are well known for changing colour and pattern."
+        },
+        {
+          "q": "What do pandas mainly eat?",
+          "options": [
+            "Grass",
+            "Bamboo",
+            "Fish",
+            "Fruit"
+          ],
+          "answer": 1,
+          "why": "Bamboo makes up most of a giant panda’s diet."
+        },
+        {
+          "q": "Which mammal can fly using true powered flight?",
+          "options": [
+            "Flying squirrel",
+            "Bat",
+            "Sugar glider",
+            "Colugo"
+          ],
+          "answer": 1,
+          "why": "Bats are mammals capable of true powered flight."
+        },
+        {
+          "q": "Which animal is known for building dams?",
+          "options": [
+            "Beaver",
+            "Otter",
+            "Fox",
+            "Badger"
+          ],
+          "answer": 0,
+          "why": "Beavers build dams from branches, mud and other materials."
+        }
+      ]
+    },
+    "birds": {
+      "title": "Bird Quiz",
+      "icon": "🦜",
+      "description": "Feathers, flight, nests and amazing bird abilities.",
+      "questions": [
+        {
+          "q": "Which bird is the largest living bird?",
+          "options": [
+            "Eagle",
+            "Ostrich",
+            "Swan",
+            "Emu"
+          ],
+          "answer": 1,
+          "why": "The ostrich is the largest living bird."
+        },
+        {
+          "q": "What covers a bird’s body and helps with flight and warmth?",
+          "options": [
+            "Scales",
+            "Fur",
+            "Feathers",
+            "Shell"
+          ],
+          "answer": 2,
+          "why": "Feathers help birds fly, stay warm and protect their bodies."
+        },
+        {
+          "q": "Which bird is famous for hovering while feeding from flowers?",
+          "options": [
+            "Hummingbird",
+            "Ostrich",
+            "Penguin",
+            "Crow"
+          ],
+          "answer": 0,
+          "why": "Hummingbirds can hover while feeding on nectar."
+        },
+        {
+          "q": "Which bird cannot fly but is an excellent swimmer?",
+          "options": [
+            "Robin",
+            "Penguin",
+            "Sparrow",
+            "Parrot"
+          ],
+          "answer": 1,
+          "why": "Penguins cannot fly, but their wings are adapted for swimming."
+        },
+        {
+          "q": "What do many birds use to build nests?",
+          "options": [
+            "Only stones",
+            "Twigs, grass and other materials",
+            "Only feathers",
+            "Only sand"
+          ],
+          "answer": 1,
+          "why": "Many birds combine twigs, grass, leaves, mud and other materials to build nests."
+        }
+      ]
+    },
+    "space": {
+      "title": "Space Quiz",
+      "icon": "🚀",
+      "description": "Planets, stars, Moon missions and our giant universe.",
+      "questions": [
+        {
+          "q": "Which star is at the centre of our solar system?",
+          "options": [
+            "Sirius",
+            "The Sun",
+            "Polaris",
+            "Betelgeuse"
+          ],
+          "answer": 1,
+          "why": "The Sun is the star at the centre of our solar system."
+        },
+        {
+          "q": "Which planet is famous for its large visible rings?",
+          "options": [
+            "Mars",
+            "Venus",
+            "Saturn",
+            "Mercury"
+          ],
+          "answer": 2,
+          "why": "Saturn has a spectacular system of rings made mostly of ice and rocky particles."
+        },
+        {
+          "q": "What is Earth’s natural satellite?",
+          "options": [
+            "The Moon",
+            "Mars",
+            "The Sun",
+            "Venus"
+          ],
+          "answer": 0,
+          "why": "The Moon is Earth’s natural satellite."
+        },
+        {
+          "q": "Which planet is known as the Red Planet?",
+          "options": [
+            "Jupiter",
+            "Mars",
+            "Neptune",
+            "Uranus"
+          ],
+          "answer": 1,
+          "why": "Mars looks reddish because of iron-rich minerals on its surface."
+        },
+        {
+          "q": "What force keeps planets in orbit around the Sun?",
+          "options": [
+            "Magnetism",
+            "Gravity",
+            "Sound",
+            "Friction"
+          ],
+          "answer": 1,
+          "why": "Gravity provides the force that keeps planets in orbit."
+        }
+      ]
+    },
+    "science": {
+      "title": "Science Quiz",
+      "icon": "🔬",
+      "description": "Choose a mini-world: plants, animals or our body.",
+      "subtopics": [
+        {
+          "title": "Plants",
+          "icon": "🌱"
+        },
+        {
+          "title": "Animals",
+          "icon": "🐾"
+        },
+        {
+          "title": "Our Body",
+          "icon": "🫀"
+        }
+      ],
+      "questions": [
+        {
+          "subtopic": "Plants",
+          "q": "Which part of a plant usually absorbs water from the soil?",
+          "options": [
+            "Flower",
+            "Root",
+            "Fruit",
+            "Leaf"
+          ],
+          "answer": 1,
+          "why": "Roots absorb water and minerals from the soil."
+        },
+        {
+          "subtopic": "Plants",
+          "q": "Which gas do green plants take in for photosynthesis?",
+          "options": [
+            "Oxygen",
+            "Nitrogen",
+            "Carbon dioxide",
+            "Hydrogen"
+          ],
+          "answer": 2,
+          "why": "Plants use carbon dioxide, water and light energy during photosynthesis."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Which body covering is typical of fish?",
+          "options": [
+            "Feathers",
+            "Fur",
+            "Scales",
+            "Hair"
+          ],
+          "answer": 2,
+          "why": "Most fish have scales covering their bodies."
+        },
+        {
+          "subtopic": "Animals",
+          "q": "Animals that eat both plants and other animals are called what?",
+          "options": [
+            "Herbivores",
+            "Carnivores",
+            "Omnivores",
+            "Producers"
+          ],
+          "answer": 2,
+          "why": "Omnivores eat both plant and animal foods."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which organ pumps blood around the body?",
+          "options": [
+            "Lungs",
+            "Brain",
+            "Heart",
+            "Stomach"
+          ],
+          "answer": 2,
+          "why": "The heart is a muscular organ that pumps blood around the body."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which organ helps us breathe by taking oxygen into the body?",
+          "options": [
+            "Lungs",
+            "Kidneys",
+            "Liver",
+            "Skin"
+          ],
+          "answer": 0,
+          "why": "The lungs take oxygen into the body and remove carbon dioxide."
+        },
+        {
+          "subtopic": "Our Body",
+          "q": "Which part of the body protects the brain?",
+          "options": [
+            "Rib cage",
+            "Skull",
+            "Pelvis",
+            "Knee"
+          ],
+          "answer": 1,
+          "why": "The skull surrounds and protects the brain."
+        }
+      ]
+    }
+  }
+}
