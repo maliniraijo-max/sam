@@ -1,0 +1,12 @@
+let D=null,i=0,score=0,locked=false;
+async function start(){try{const r=await fetch("daily-world.json?"+Date.now(),{cache:"no-store"});D=await r.json();render()}catch(e){document.getElementById("quizHost").innerHTML="<p>Quiz is loading… please refresh.</p>"}}
+function render(){
+ const q=D.quiz[i];locked=false;
+ document.getElementById("quizHost").innerHTML='<div class="daily-world-quiz-q"><div class="daily-world-kicker">'+q.category.toUpperCase()+' • QUESTION '+(i+1)+' OF '+D.quiz.length+'</div><h2>'+q.q+'</h2><div id="opts" class="daily-world-quiz-options">'+q.options.map((x,n)=>'<button class="daily-world-quiz-option" data-n="'+n+'">'+String.fromCharCode(65+n)+'. '+x+'</button>').join("")+'</div><div id="fb"></div></div><div class="daily-world-quiz-nav"><button id="prevQ" class="daily-world-nav">← Previous</button><span style="font-size:12px;font-weight:850;color:#718792">Keep going!</span><button id="nextQ" class="daily-world-nav primary">Next →</button></div>';
+ document.querySelectorAll(".daily-world-quiz-option").forEach(b=>b.onclick=()=>answer(Number(b.dataset.n)));
+ document.getElementById("prevQ").disabled=i===0;document.getElementById("nextQ").textContent=i===D.quiz.length-1?"Finish":"Next →";
+ document.getElementById("prevQ").onclick=()=>{if(i>0){i--;render()}};document.getElementById("nextQ").onclick=()=>{if(i<D.quiz.length-1){i++;render()}else finish()};
+}
+function answer(n){if(locked)return;locked=true;document.querySelectorAll(".daily-world-quiz-option").forEach((b,j)=>{b.disabled=true;if(j===n)b.style.borderColor=j===D.quiz[i].answer?"#5aa776":"#c98d8d";if(j===D.quiz[i].answer)b.style.background="#edf8f1"});const ok=n===D.quiz[i].answer;if(ok)score++;document.getElementById("fb").innerHTML='<div class="daily-world-feedback '+(ok?"correct":"wrong")+'">'+(ok?"✓ Correct!":"✗ Not quite.")+" "+D.quiz[i].why+"</div>"}
+function finish(){document.getElementById("quizHost").innerHTML='<div class="daily-world-score show"><div style="font-size:50px">🎉</div><h2>Brain Spark complete!</h2><div class="score-number">'+score+' / '+D.quiz.length+'</div><p>'+ (score===D.quiz.length?"Amazing! You remembered the whole adventure.":"Great try! Revisit today’s slides and see what you can discover again.")+'</p><a class="daily-world-quiz-btn" href="daily-world.html">🌍 Explore Today Again</a></div>'}
+start();
