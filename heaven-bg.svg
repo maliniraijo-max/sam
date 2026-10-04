@@ -1,29 +1,34 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
 <defs>
- <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffdf7"/><stop offset=".45" stop-color="#fff7df"/><stop offset="1" stop-color="#f7efe0"/></linearGradient>
- <radialGradient id="sun"><stop stop-color="#fffdf0" stop-opacity=".98"/><stop offset="1" stop-color="#fffdf0" stop-opacity="0"/></radialGradient>
- <linearGradient id="water" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#eaf7f5"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#dcefeb"/></linearGradient>
- <filter id="blur"><feGaussianBlur stdDeviation="28"/></filter>
- <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+ <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffdf8"/><stop offset=".5" stop-color="#fff8e9"/><stop offset="1" stop-color="#f1eadb"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#fff3bd" stop-opacity=".95"/><stop offset="1" stop-color="#fff3bd" stop-opacity="0"/></radialGradient>
+ <linearGradient id="water" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#d9eeee"/><stop offset=".35" stop-color="#ffffff"/><stop offset=".7" stop-color="#d7ece8"/><stop offset="1" stop-color="#fffdf5"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="24"/></filter>
+ <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
 </defs>
 <rect width="1600" height="900" fill="url(#sky)"/>
-<circle cx="800" cy="170" r="300" fill="url(#sun)"/>
-<g fill="#fff" opacity=".72" filter="url(#blur)">
- <ellipse cx="230" cy="180" rx="260" ry="90"/><ellipse cx="520" cy="125" rx="300" ry="75"/>
- <ellipse cx="1100" cy="135" rx="330" ry="85"/><ellipse cx="1430" cy="230" rx="280" ry="90"/>
+<ellipse cx="820" cy="155" rx="360" ry="250" fill="url(#glow)"/>
+<!-- soft heavenly clouds -->
+<g fill="#ffffff" opacity=".82" filter="url(#blur)">
+ <ellipse cx="170" cy="170" rx="260" ry="72"/><ellipse cx="430" cy="120" rx="300" ry="82"/>
+ <ellipse cx="1120" cy="125" rx="330" ry="78"/><ellipse cx="1450" cy="190" rx="250" ry="70"/>
+ <ellipse cx="280" cy="330" rx="250" ry="55"/><ellipse cx="1320" cy="330" rx="280" ry="60"/>
 </g>
-<path d="M0 440 Q180 310 360 430 T720 405 T1080 420 T1440 390 T1600 420 V900 H0Z" fill="#eadfc9" opacity=".55"/>
-<path d="M0 500 Q190 390 390 500 T780 475 T1160 490 T1600 455 V900 H0Z" fill="#d9e8df" opacity=".7"/>
-<g opacity=".78" fill="#fff">
- <path d="M290 390 C310 500 350 620 385 900 L510 900 C470 620 440 500 430 390Z"/>
- <path d="M1040 410 C1015 520 980 630 945 900 L1085 900 C1110 650 1135 530 1170 410Z"/>
+<!-- distant soft hills -->
+<path d="M0 470 C180 400 310 410 470 475 C620 535 760 475 900 455 C1080 430 1210 470 1370 435 C1480 410 1550 430 1600 450 L1600 900 L0 900Z" fill="#e8dfce" opacity=".68"/>
+<path d="M0 535 C190 475 350 485 500 540 C660 600 820 520 970 510 C1140 500 1300 535 1600 500 L1600 900 L0 900Z" fill="#dceae2" opacity=".78"/>
+<!-- main waterfall, smooth and vertical -->
+<path d="M735 390 C760 480 752 585 725 690 C700 785 695 845 690 900 L910 900 C900 835 895 770 870 690 C842 585 840 480 865 390 Z" fill="url(#water)" opacity=".96"/>
+<path d="M785 410 C800 520 790 650 775 760 C764 820 760 865 760 900 L825 900 C824 845 818 800 808 750 C790 645 790 520 805 410Z" fill="#ffffff" opacity=".8"/>
+<!-- mist -->
+<g fill="#fff" opacity=".72" filter="url(#soft)">
+ <ellipse cx="800" cy="875" rx="330" ry="62"/>
+ <ellipse cx="260" cy="700" rx="250" ry="55"/>
+ <ellipse cx="1330" cy="690" rx="270" ry="55"/>
 </g>
-<path d="M350 430 C370 590 400 700 445 900 H900 C840 770 780 650 735 505 C650 545 550 550 350 430Z" fill="url(#water)" opacity=".94"/>
-<path d="M445 900 C500 740 545 625 610 540 C650 570 690 650 735 760 C780 650 820 570 860 535 C900 650 950 760 1005 900Z" fill="#fff" opacity=".7"/>
-<g fill="#fff" opacity=".65" filter="url(#soft)">
- <ellipse cx="210" cy="640" rx="230" ry="65"/><ellipse cx="1360" cy="620" rx="300" ry="70"/>
-</g>
-<g fill="#d8c08a" opacity=".35">
- <circle cx="150" cy="735" r="5"/><circle cx="220" cy="680" r="4"/><circle cx="1330" cy="700" r="5"/><circle cx="1450" cy="760" r="4"/>
+<!-- gentle golden light particles -->
+<g fill="#d5b66a" opacity=".42">
+ <circle cx="190" cy="690" r="4"/><circle cx="320" cy="750" r="3"/><circle cx="1360" cy="720" r="4"/>
+ <circle cx="1460" cy="640" r="3"/><circle cx="540" cy="240" r="3"/><circle cx="1080" cy="270" r="3"/>
 </g>
 </svg>
