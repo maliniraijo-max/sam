@@ -45,7 +45,16 @@
           "summary": "India defeated Pakistan by 19 runs in the men’s T20 cricket final and retained the Asian Games gold medal.",
           "fun": "India made 211/6. Abhishek Sharma scored 61 and Tilak Varma made an unbeaten 51.",
           "image": "https://www.icc-cricket.com/static-assets/images/icc-cricket-image-2026-10-03.jpg",
-          "source": "ICC + PM India, 3 Oct 2026"
+          "source": "ICC + PM India, 3 Oct 2026",
+          "people": [
+            {
+              "name": "Narendra Modi",
+              "role": "Prime Minister of India",
+              "bio": "Narendra Modi is the Prime Minister of India. He took office for a third term on 9 June 2024.",
+              "why": "He congratulated the Indian men’s cricket team after its Asian Games gold-medal win.",
+              "link": "https://www.pmindia.gov.in/en/page/1726/"
+            }
+          ]
         },
         {
           "emoji": "🌾☀️",
@@ -76,7 +85,16 @@
           "summary": "German Chancellor Friedrich Merz visited Kyiv and announced more support for Ukraine as the war continues.",
           "fun": "Germany announced a package including military and energy support and plans for closer drone cooperation.",
           "image": "https://d3i6fh83elv35t.cloudfront.net/static/2024/12/2024-12-09T110715Z_662506156_RC2LLBA9BAOJ_RTRMADP_3_UKRAINE-CRISIS-GERMANY-MERZ-1024x720.jpg",
-          "source": "Reuters/AP, 4 Oct 2026"
+          "source": "Reuters/AP, 4 Oct 2026",
+          "people": [
+            {
+              "name": "Friedrich Merz",
+              "role": "Federal Chancellor of Germany",
+              "bio": "Friedrich Merz is the Federal Chancellor, or head of Germany’s federal government. He has served as Chancellor since 6 May 2025.",
+              "why": "He visited Kyiv and announced support for Ukraine in today’s story.",
+              "link": "https://www.bundesregierung.de/breg-en/federal-government/friedrich-merz-2341938"
+            }
+          ]
         },
         {
           "emoji": "🗳️🇧🇷",
