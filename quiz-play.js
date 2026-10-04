@@ -7,13 +7,13 @@ async function boot(){
 }
 function render(){
  const c=DATA.categories[topic],q=questions[i];locked=false;
- $("quizApp").innerHTML='<div class="quiz-q"><div style="font-size:11px;font-weight:950;letter-spacing:.12em;color:#6b818d">'+esc(c.icon)+' '+esc((subtopic?subtopic+" • ":"")+c.title.toUpperCase())+'</div><h2>'+esc(q.q)+'</h2><div class="quiz-options">'+q.options.map((o,n)=>'<button class="quiz-option" data-n="'+n+'">'+esc(o)+'</button>').join("")+'</div><div id="quizFeedback" aria-live="polite"></div></div><div class="quiz-nav"><button id="prevQ" '+(i===0?"disabled":"")+'>&larr; Previous</button><span class="quiz-counter">'+(i+1)+' / '+c.questions.length+'</span><button id="nextQ" class="primary" disabled>Next &rarr;</button></div>';
+ $("quizApp").innerHTML='<div class="quiz-q"><div style="font-size:11px;font-weight:950;letter-spacing:.12em;color:#6b818d">'+esc(c.icon)+' '+esc((subtopic?subtopic+" • ":"")+c.title.toUpperCase())+'</div><h2>'+esc(q.q)+'</h2><div class="quiz-options">'+q.options.map((o,n)=>'<button class="quiz-option" data-n="'+n+'">'+esc(o)+'</button>').join("")+'</div><div id="quizFeedback" aria-live="polite"></div></div><div class="quiz-nav"><button id="prevQ" '+(i===0?"disabled":"")+'>&larr; Previous</button><span class="quiz-counter">'+(i+1)+' / '+questions.length+'</span><button id="nextQ" class="primary" disabled>Next &rarr;</button></div>';
  document.querySelectorAll(".quiz-option").forEach(b=>b.onclick=()=>answer(Number(b.dataset.n)));
  $("prevQ").onclick=()=>{if(i>0){i--;render()}};
  $("nextQ").onclick=()=>{if(i<questions.length-1){i++;render()}else{finish()}};
 }
 function answer(n){
- if(locked)return;locked=true;const q=questions[i],ok=n===q.answer;
+ if(locked)return;locked=true;const q=questions[i],ok=n===q.answer;if(ok)score++;
  document.querySelectorAll(".quiz-option").forEach((b,j)=>{b.disabled=true;if(j===q.answer)b.style.borderColor="#6bb487";if(j===n&&!ok)b.style.borderColor="#d58d84";});
  $("quizFeedback").className="quiz-feedback "+(ok?"correct":"wrong");$("quizFeedback").textContent=ok?"✓ Correct! "+q.why:"✗ Not quite. Correct answer: "+q.options[q.answer]+". "+q.why;
  $("quizApp").querySelector("#nextQ").disabled=false;
