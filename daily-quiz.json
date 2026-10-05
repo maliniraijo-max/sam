@@ -1853,6 +1853,2447 @@
           "why": "This is an important fact to remember."
         }
       ]
+    },
+    "english": {
+      "title": "English Quiz",
+      "icon": "📚",
+      "description": "Grammar, vocabulary, comprehension, spelling and language skills.",
+      "subtopics": [
+        {
+          "title": "Grammar",
+          "icon": "🔤"
+        },
+        {
+          "title": "Meanings & Synonyms",
+          "icon": "🟰"
+        },
+        {
+          "title": "Antonyms",
+          "icon": "↔️"
+        },
+        {
+          "title": "Comprehension",
+          "icon": "📖"
+        },
+        {
+          "title": "Prepositions",
+          "icon": "📍"
+        },
+        {
+          "title": "Fill in the Blanks",
+          "icon": "✏️"
+        },
+        {
+          "title": "Spelling & Word Use",
+          "icon": "🔡"
+        },
+        {
+          "title": "Sentence Building & Punctuation",
+          "icon": "📝"
+        }
+      ],
+      "questions": [
+        {
+          "q": "She ___ to school every day.",
+          "options": [
+            "goes",
+            "go",
+            "going",
+            "gone"
+          ],
+          "answer": 0,
+          "why": "She takes the singular verb goes.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "They ___ football after school.",
+          "options": [
+            "plays",
+            "play",
+            "playing",
+            "played"
+          ],
+          "answer": 1,
+          "why": "They takes the base verb play.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Which word is a noun?",
+          "options": [
+            "quickly",
+            "beautiful",
+            "garden",
+            "run"
+          ],
+          "answer": 2,
+          "why": "Garden is a naming word.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Which word is a verb?",
+          "options": [
+            "blue",
+            "happiness",
+            "slowly",
+            "jump"
+          ],
+          "answer": 3,
+          "why": "Jump names an action.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Which word is an adjective?",
+          "options": [
+            "bright",
+            "run",
+            "carefully",
+            "teacher"
+          ],
+          "answer": 0,
+          "why": "Bright describes something.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Which word is an adverb?",
+          "options": [
+            "quick",
+            "quickly",
+            "rabbit",
+            "jump"
+          ],
+          "answer": 1,
+          "why": "Quickly tells how an action happens.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the correct article: I saw ___ elephant.",
+          "options": [
+            "a",
+            "the",
+            "an",
+            "no article"
+          ],
+          "answer": 2,
+          "why": "An comes before the vowel sound in elephant.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the correct article: She has ___ red bag.",
+          "options": [
+            "an",
+            "the",
+            "no article",
+            "a"
+          ],
+          "answer": 3,
+          "why": "A comes before the consonant sound in red.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Riya is kind. ___ helps everyone.",
+          "options": [
+            "She",
+            "He",
+            "They",
+            "It"
+          ],
+          "answer": 0,
+          "why": "She refers to Riya.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "The boys are ready. ___ can begin.",
+          "options": [
+            "He",
+            "They",
+            "It",
+            "She"
+          ],
+          "answer": 1,
+          "why": "They refers to the plural boys.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the plural of child.",
+          "options": [
+            "childs",
+            "childes",
+            "children",
+            "childrens"
+          ],
+          "answer": 2,
+          "why": "The plural of child is children.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the plural of leaf.",
+          "options": [
+            "leafs",
+            "leafes",
+            "leaf",
+            "leaves"
+          ],
+          "answer": 3,
+          "why": "The common plural is leaves.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the past tense of go.",
+          "options": [
+            "went",
+            "goed",
+            "gone",
+            "going"
+          ],
+          "answer": 0,
+          "why": "Went is the past tense of go.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the past tense of eat.",
+          "options": [
+            "eated",
+            "ate",
+            "eaten",
+            "eating"
+          ],
+          "answer": 1,
+          "why": "Ate is the past tense of eat.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Which sentence is in the future tense?",
+          "options": [
+            "I visited Grandma.",
+            "I visit Grandma.",
+            "I will visit Grandma.",
+            "I am visiting Grandma now."
+          ],
+          "answer": 2,
+          "why": "Will visit shows a future action.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Which sentence is a question?",
+          "options": [
+            "I am going home.",
+            "Please open the door.",
+            "What a lovely day!",
+            "Where are you going?"
+          ],
+          "answer": 3,
+          "why": "A direct question asks something.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Which sentence is a command?",
+          "options": [
+            "Please close the door.",
+            "The door is closed.",
+            "Is the door closed?",
+            "What a big door!"
+          ],
+          "answer": 0,
+          "why": "A command tells someone to do something.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "I wanted to play, ___ it was raining.",
+          "options": [
+            "and",
+            "but",
+            "or",
+            "so"
+          ],
+          "answer": 1,
+          "why": "But shows contrast.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Would you like tea ___ juice?",
+          "options": [
+            "but",
+            "because",
+            "or",
+            "so"
+          ],
+          "answer": 2,
+          "why": "Or gives a choice.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "I wore a coat ___ it was cold.",
+          "options": [
+            "or",
+            "but",
+            "and",
+            "because"
+          ],
+          "answer": 3,
+          "why": "Because gives the reason.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the correct sentence.",
+          "options": [
+            "The dog runs fast.",
+            "The dog run fast.",
+            "The dogs runs fast.",
+            "The dog running fast."
+          ],
+          "answer": 0,
+          "why": "A singular dog takes runs.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "This is ___ book.",
+          "options": [
+            "me",
+            "my",
+            "I",
+            "mine"
+          ],
+          "answer": 1,
+          "why": "My comes before the noun book.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "A lion is ___ than a cat.",
+          "options": [
+            "big",
+            "biggest",
+            "bigger",
+            "more big"
+          ],
+          "answer": 2,
+          "why": "Bigger is the comparative form.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Mount Everest is the ___ mountain above sea level.",
+          "options": [
+            "higher",
+            "high",
+            "most high",
+            "highest"
+          ],
+          "answer": 3,
+          "why": "Highest is the superlative form.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the correct sentence.",
+          "options": [
+            "Sam and I went home.",
+            "Me and Sam went home.",
+            "Sam and me went home.",
+            "I and Sam goes home."
+          ],
+          "answer": 0,
+          "why": "Sam and I is the correct subject form.",
+          "subtopic": "Grammar"
+        },
+        {
+          "q": "Choose the synonym of \"happy\".",
+          "options": [
+            "joyful",
+            "angry",
+            "tired",
+            "sad"
+          ],
+          "answer": 0,
+          "why": "joyful is the synonym of happy.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"big\".",
+          "options": [
+            "tiny",
+            "large",
+            "narrow",
+            "weak"
+          ],
+          "answer": 1,
+          "why": "large is the synonym of big.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"begin\".",
+          "options": [
+            "finish",
+            "stop",
+            "start",
+            "close"
+          ],
+          "answer": 2,
+          "why": "start is the synonym of begin.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"silent\".",
+          "options": [
+            "noisy",
+            "bright",
+            "fast",
+            "quiet"
+          ],
+          "answer": 3,
+          "why": "quiet is the synonym of silent.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"clever\".",
+          "options": [
+            "smart",
+            "lazy",
+            "rough",
+            "sad"
+          ],
+          "answer": 0,
+          "why": "smart is the synonym of clever.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"brave\".",
+          "options": [
+            "afraid",
+            "courageous",
+            "weak",
+            "sleepy"
+          ],
+          "answer": 1,
+          "why": "courageous is the synonym of brave.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"tiny\".",
+          "options": [
+            "huge",
+            "wide",
+            "small",
+            "heavy"
+          ],
+          "answer": 2,
+          "why": "small is the synonym of tiny.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"rapid\".",
+          "options": [
+            "slow",
+            "late",
+            "still",
+            "fast"
+          ],
+          "answer": 3,
+          "why": "fast is the synonym of rapid.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"beautiful\".",
+          "options": [
+            "pretty",
+            "ugly",
+            "plain",
+            "rough"
+          ],
+          "answer": 0,
+          "why": "pretty is the synonym of beautiful.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"angry\".",
+          "options": [
+            "calm",
+            "furious",
+            "cheerful",
+            "gentle"
+          ],
+          "answer": 1,
+          "why": "furious is the synonym of angry.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"ancient\".",
+          "options": [
+            "new",
+            "young",
+            "old",
+            "modern"
+          ],
+          "answer": 2,
+          "why": "old is the synonym of ancient.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"assist\".",
+          "options": [
+            "hurt",
+            "hide",
+            "leave",
+            "help"
+          ],
+          "answer": 3,
+          "why": "help is the synonym of assist.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"purchase\".",
+          "options": [
+            "buy",
+            "sell",
+            "borrow",
+            "break"
+          ],
+          "answer": 0,
+          "why": "buy is the synonym of purchase.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"reply\".",
+          "options": [
+            "ask",
+            "answer",
+            "forget",
+            "hide"
+          ],
+          "answer": 1,
+          "why": "answer is the synonym of reply.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"ill\".",
+          "options": [
+            "healthy",
+            "strong",
+            "sick",
+            "fresh"
+          ],
+          "answer": 2,
+          "why": "sick is the synonym of ill.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"correct\".",
+          "options": [
+            "wrong",
+            "false",
+            "late",
+            "right"
+          ],
+          "answer": 3,
+          "why": "right is the synonym of correct.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"rapidly\".",
+          "options": [
+            "quickly",
+            "slowly",
+            "quietly",
+            "rarely"
+          ],
+          "answer": 0,
+          "why": "quickly is the synonym of rapidly.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"dangerous\".",
+          "options": [
+            "safe",
+            "risky",
+            "gentle",
+            "easy"
+          ],
+          "answer": 1,
+          "why": "risky is the synonym of dangerous.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"famous\".",
+          "options": [
+            "unknown",
+            "hidden",
+            "well-known",
+            "quiet"
+          ],
+          "answer": 2,
+          "why": "well-known is the synonym of famous.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"journey\".",
+          "options": [
+            "room",
+            "meal",
+            "game",
+            "trip"
+          ],
+          "answer": 3,
+          "why": "trip is the synonym of journey.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"honest\".",
+          "options": [
+            "truthful",
+            "dishonest",
+            "rude",
+            "careless"
+          ],
+          "answer": 0,
+          "why": "truthful is the synonym of honest.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"fortunate\".",
+          "options": [
+            "unlucky",
+            "lucky",
+            "poor",
+            "angry"
+          ],
+          "answer": 1,
+          "why": "lucky is the synonym of fortunate.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"protect\".",
+          "options": [
+            "damage",
+            "drop",
+            "guard",
+            "forget"
+          ],
+          "answer": 2,
+          "why": "guard is the synonym of protect.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"discover\".",
+          "options": [
+            "lose",
+            "break",
+            "hide",
+            "find"
+          ],
+          "answer": 3,
+          "why": "find is the synonym of discover.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the synonym of \"huge\".",
+          "options": [
+            "enormous",
+            "tiny",
+            "narrow",
+            "weak"
+          ],
+          "answer": 0,
+          "why": "enormous is the synonym of huge.",
+          "subtopic": "Meanings & Synonyms"
+        },
+        {
+          "q": "Choose the antonym of \"hot\".",
+          "options": [
+            "cold",
+            "warm",
+            "boiling",
+            "bright"
+          ],
+          "answer": 0,
+          "why": "cold is the antonym of hot.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"early\".",
+          "options": [
+            "soon",
+            "late",
+            "quick",
+            "first"
+          ],
+          "answer": 1,
+          "why": "late is the antonym of early.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"strong\".",
+          "options": [
+            "powerful",
+            "brave",
+            "weak",
+            "heavy"
+          ],
+          "answer": 2,
+          "why": "weak is the antonym of strong.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"happy\".",
+          "options": [
+            "joyful",
+            "cheerful",
+            "glad",
+            "sad"
+          ],
+          "answer": 3,
+          "why": "sad is the antonym of happy.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"open\".",
+          "options": [
+            "closed",
+            "wide",
+            "large",
+            "free"
+          ],
+          "answer": 0,
+          "why": "closed is the antonym of open.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"fast\".",
+          "options": [
+            "quick",
+            "slow",
+            "rapid",
+            "speedy"
+          ],
+          "answer": 1,
+          "why": "slow is the antonym of fast.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"near\".",
+          "options": [
+            "close",
+            "beside",
+            "far",
+            "next"
+          ],
+          "answer": 2,
+          "why": "far is the antonym of near.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"ancient\".",
+          "options": [
+            "old",
+            "historic",
+            "past",
+            "modern"
+          ],
+          "answer": 3,
+          "why": "modern is the antonym of ancient.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"kind\".",
+          "options": [
+            "unkind",
+            "gentle",
+            "helpful",
+            "friendly"
+          ],
+          "answer": 0,
+          "why": "unkind is the antonym of kind.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"noisy\".",
+          "options": [
+            "loud",
+            "quiet",
+            "busy",
+            "bright"
+          ],
+          "answer": 1,
+          "why": "quiet is the antonym of noisy.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"empty\".",
+          "options": [
+            "blank",
+            "hollow",
+            "full",
+            "clear"
+          ],
+          "answer": 2,
+          "why": "full is the antonym of empty.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"victory\".",
+          "options": [
+            "success",
+            "win",
+            "prize",
+            "defeat"
+          ],
+          "answer": 3,
+          "why": "defeat is the antonym of victory.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"arrive\".",
+          "options": [
+            "depart",
+            "reach",
+            "come",
+            "enter"
+          ],
+          "answer": 0,
+          "why": "depart is the antonym of arrive.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"increase\".",
+          "options": [
+            "grow",
+            "decrease",
+            "rise",
+            "add"
+          ],
+          "answer": 1,
+          "why": "decrease is the antonym of increase.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"careful\".",
+          "options": [
+            "alert",
+            "cautious",
+            "careless",
+            "watchful"
+          ],
+          "answer": 2,
+          "why": "careless is the antonym of careful.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"difficult\".",
+          "options": [
+            "hard",
+            "tough",
+            "complex",
+            "easy"
+          ],
+          "answer": 3,
+          "why": "easy is the antonym of difficult.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"generous\".",
+          "options": [
+            "selfish",
+            "kind",
+            "giving",
+            "helpful"
+          ],
+          "answer": 0,
+          "why": "selfish is the antonym of generous.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"remember\".",
+          "options": [
+            "recall",
+            "forget",
+            "know",
+            "learn"
+          ],
+          "answer": 1,
+          "why": "forget is the antonym of remember.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"beautiful\".",
+          "options": [
+            "pretty",
+            "lovely",
+            "ugly",
+            "attractive"
+          ],
+          "answer": 2,
+          "why": "ugly is the antonym of beautiful.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"begin\".",
+          "options": [
+            "start",
+            "open",
+            "launch",
+            "end"
+          ],
+          "answer": 3,
+          "why": "end is the antonym of begin.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"visible\".",
+          "options": [
+            "invisible",
+            "clear",
+            "bright",
+            "seen"
+          ],
+          "answer": 0,
+          "why": "invisible is the antonym of visible.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"polite\".",
+          "options": [
+            "kind",
+            "rude",
+            "respectful",
+            "gentle"
+          ],
+          "answer": 1,
+          "why": "rude is the antonym of polite.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"safe\".",
+          "options": [
+            "secure",
+            "protected",
+            "dangerous",
+            "careful"
+          ],
+          "answer": 2,
+          "why": "dangerous is the antonym of safe.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"accept\".",
+          "options": [
+            "receive",
+            "agree",
+            "take",
+            "refuse"
+          ],
+          "answer": 3,
+          "why": "refuse is the antonym of accept.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Choose the antonym of \"bright\".",
+          "options": [
+            "dark",
+            "shiny",
+            "light",
+            "glowing"
+          ],
+          "answer": 0,
+          "why": "dark is the antonym of bright.",
+          "subtopic": "Antonyms"
+        },
+        {
+          "q": "Where did Maya find the bird?",
+          "options": [
+            "Near the garden gate",
+            "At school",
+            "In a river",
+            "On a bus"
+          ],
+          "answer": 0,
+          "why": "The passage says: Near the garden gate.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "Why did Maya call her father?",
+          "options": [
+            "She wanted lunch",
+            "The bird could not fly",
+            "The gate was locked",
+            "It was raining"
+          ],
+          "answer": 1,
+          "why": "The passage says: The bird could not fly.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "Where did they place the bird?",
+          "options": [
+            "In a pond",
+            "At school",
+            "In a safe box",
+            "Under a tree"
+          ],
+          "answer": 2,
+          "why": "The passage says: In a safe box.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "Who did they contact?",
+          "options": [
+            "A bus driver",
+            "A teacher",
+            "A shopkeeper",
+            "A local wildlife helper"
+          ],
+          "answer": 3,
+          "why": "The passage says: A local wildlife helper.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What happened at the end?",
+          "options": [
+            "The bird returned to a tree",
+            "It went to school",
+            "It stayed in the box",
+            "Maya kept it forever"
+          ],
+          "answer": 0,
+          "why": "The passage says: The bird returned to a tree.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "When does Arun help?",
+          "options": [
+            "Every Monday",
+            "Every Saturday",
+            "Every night",
+            "Only in winter"
+          ],
+          "answer": 1,
+          "why": "The passage says: Every Saturday.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What does Arun do to the soil?",
+          "options": [
+            "He paints it",
+            "He freezes it",
+            "He loosens it",
+            "He removes it"
+          ],
+          "answer": 2,
+          "why": "The passage says: He loosens it.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What did Arun notice?",
+          "options": [
+            "A bird",
+            "A broken pot",
+            "A new tree",
+            "A tomato turning red"
+          ],
+          "answer": 3,
+          "why": "The passage says: A tomato turning red.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What does red colour show?",
+          "options": [
+            "The tomato is becoming ripe",
+            "The plant is dying",
+            "The soil is dry",
+            "The leaves are falling"
+          ],
+          "answer": 0,
+          "why": "The passage says: The tomato is becoming ripe.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What is the passage mainly about?",
+          "options": [
+            "Going to school",
+            "Helping in a kitchen garden",
+            "Cooking a cake",
+            "Buying vegetables"
+          ],
+          "answer": 1,
+          "why": "The passage says: Helping in a kitchen garden.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What did the club build?",
+          "options": [
+            "A robot",
+            "A boat",
+            "A simple weather station",
+            "A telescope"
+          ],
+          "answer": 2,
+          "why": "The passage says: A simple weather station.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What measures rainfall?",
+          "options": [
+            "A thermometer",
+            "A ruler",
+            "A compass",
+            "A rain gauge"
+          ],
+          "answer": 3,
+          "why": "The passage says: A rain gauge.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What measures temperature?",
+          "options": [
+            "A thermometer",
+            "A rain gauge",
+            "A clock",
+            "A balance"
+          ],
+          "answer": 0,
+          "why": "The passage says: A thermometer.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "When did students record observations?",
+          "options": [
+            "Only Sundays",
+            "Each afternoon",
+            "At midnight",
+            "Once a year"
+          ],
+          "answer": 1,
+          "why": "The passage says: Each afternoon.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What did they notice?",
+          "options": [
+            "Every day was equal",
+            "There was no rain",
+            "Some days were much wetter",
+            "Temperature never changed"
+          ],
+          "answer": 2,
+          "why": "The passage says: Some days were much wetter.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What kind of book did Ravi choose?",
+          "options": [
+            "A cookbook",
+            "A comic only",
+            "A dictionary",
+            "A mystery book"
+          ],
+          "answer": 3,
+          "why": "The passage says: A mystery book.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What was the book about?",
+          "options": [
+            "A young explorer",
+            "A chef",
+            "A football team",
+            "A school bus"
+          ],
+          "answer": 0,
+          "why": "The passage says: A young explorer.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "How many pages did he plan to read each evening?",
+          "options": [
+            "Two",
+            "Ten",
+            "Twenty",
+            "One"
+          ],
+          "answer": 1,
+          "why": "The passage says: Ten.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What did he write after finishing?",
+          "options": [
+            "A poem",
+            "A shopping list",
+            "A short review",
+            "A letter"
+          ],
+          "answer": 2,
+          "why": "The passage says: A short review.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What helped Ravi finish?",
+          "options": [
+            "A bicycle",
+            "A television show",
+            "A holiday",
+            "A reading plan"
+          ],
+          "answer": 3,
+          "why": "The passage says: A reading plan.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "Where was the picnic?",
+          "options": [
+            "Near a pond",
+            "On a mountain",
+            "In a classroom",
+            "At a station"
+          ],
+          "answer": 0,
+          "why": "The passage says: Near a pond.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What did the children see above the water?",
+          "options": [
+            "Eagles",
+            "Dragonflies",
+            "Bats",
+            "Owls"
+          ],
+          "answer": 1,
+          "why": "The passage says: Dragonflies.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "Where were the frogs hiding?",
+          "options": [
+            "Under a table",
+            "In a car",
+            "Among the plants",
+            "On a roof"
+          ],
+          "answer": 2,
+          "why": "The passage says: Among the plants.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "What should they not do?",
+          "options": [
+            "Watch frogs",
+            "Look at fish",
+            "Eat fruit",
+            "Throw rubbish into the pond"
+          ],
+          "answer": 3,
+          "why": "The passage says: Throw rubbish into the pond.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "Why keep the pond clean?",
+          "options": [
+            "Animals depend on clean water",
+            "It makes the picnic longer",
+            "It attracts cars",
+            "It removes plants"
+          ],
+          "answer": 0,
+          "why": "The passage says: Animals depend on clean water.",
+          "subtopic": "Comprehension"
+        },
+        {
+          "q": "The book is ___ the table.",
+          "options": [
+            "on",
+            "at",
+            "to",
+            "by"
+          ],
+          "answer": 0,
+          "why": "The correct preposition is on.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "Sam walked ___ the park.",
+          "options": [
+            "on",
+            "to",
+            "at",
+            "by"
+          ],
+          "answer": 1,
+          "why": "The correct preposition is to.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The cat is hiding ___ the bed.",
+          "options": [
+            "to",
+            "at",
+            "under",
+            "on"
+          ],
+          "answer": 2,
+          "why": "The correct preposition is under.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "We wake up ___ the morning.",
+          "options": [
+            "on",
+            "at",
+            "to",
+            "in"
+          ],
+          "answer": 3,
+          "why": "The correct preposition is in.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The class starts ___ 9 o'clock.",
+          "options": [
+            "at",
+            "in",
+            "on",
+            "by"
+          ],
+          "answer": 0,
+          "why": "The correct preposition is at.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "My birthday is ___ Monday.",
+          "options": [
+            "in",
+            "on",
+            "at",
+            "to"
+          ],
+          "answer": 1,
+          "why": "The correct preposition is on.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "She has lived here ___ 2020.",
+          "options": [
+            "for",
+            "at",
+            "since",
+            "on"
+          ],
+          "answer": 2,
+          "why": "The correct preposition is since.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "We waited ___ two hours.",
+          "options": [
+            "since",
+            "at",
+            "on",
+            "for"
+          ],
+          "answer": 3,
+          "why": "The correct preposition is for.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The bird flew ___ the tree.",
+          "options": [
+            "over",
+            "at",
+            "on",
+            "for"
+          ],
+          "answer": 0,
+          "why": "The correct preposition is over.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "He jumped ___ the river.",
+          "options": [
+            "at",
+            "into",
+            "on",
+            "by"
+          ],
+          "answer": 1,
+          "why": "The correct preposition is into.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The train went ___ the tunnel.",
+          "options": [
+            "at",
+            "on",
+            "through",
+            "by"
+          ],
+          "answer": 2,
+          "why": "The correct preposition is through.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The shop is ___ the bank and the school.",
+          "options": [
+            "through",
+            "into",
+            "over",
+            "between"
+          ],
+          "answer": 3,
+          "why": "The correct preposition is between.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The children walked ___ the road.",
+          "options": [
+            "across",
+            "at",
+            "by",
+            "into"
+          ],
+          "answer": 0,
+          "why": "The correct preposition is across.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "Please sit ___ me.",
+          "options": [
+            "into",
+            "beside",
+            "through",
+            "over"
+          ],
+          "answer": 1,
+          "why": "The correct preposition is beside.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The picture is ___ the wall.",
+          "options": [
+            "in",
+            "at",
+            "on",
+            "to"
+          ],
+          "answer": 2,
+          "why": "The correct preposition is on.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The gift is ___ Sam.",
+          "options": [
+            "at",
+            "on",
+            "by",
+            "for"
+          ],
+          "answer": 3,
+          "why": "The correct preposition is for.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "I went to school ___ my friend.",
+          "options": [
+            "with",
+            "at",
+            "on",
+            "into"
+          ],
+          "answer": 0,
+          "why": "The correct preposition is with.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The dog ran ___ the gate.",
+          "options": [
+            "in",
+            "towards",
+            "at",
+            "since"
+          ],
+          "answer": 1,
+          "why": "The correct preposition is towards.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The teacher stood ___ the students.",
+          "options": [
+            "into",
+            "through",
+            "among",
+            "over"
+          ],
+          "answer": 2,
+          "why": "The correct preposition is among.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "We stayed home ___ the rain.",
+          "options": [
+            "at",
+            "to",
+            "on",
+            "during"
+          ],
+          "answer": 3,
+          "why": "The correct preposition is during.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "He came home ___ dinner.",
+          "options": [
+            "after",
+            "at",
+            "to",
+            "by"
+          ],
+          "answer": 0,
+          "why": "The correct preposition is after.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "Finish your work ___ lunch.",
+          "options": [
+            "into",
+            "before",
+            "on",
+            "at"
+          ],
+          "answer": 1,
+          "why": "The correct preposition is before.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The ball rolled ___ the chair.",
+          "options": [
+            "at",
+            "to",
+            "behind",
+            "since"
+          ],
+          "answer": 2,
+          "why": "The correct preposition is behind.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "She is good ___ drawing.",
+          "options": [
+            "on",
+            "in",
+            "to",
+            "at"
+          ],
+          "answer": 3,
+          "why": "The correct preposition is at.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "The keys are ___ the drawer.",
+          "options": [
+            "inside",
+            "above",
+            "towards",
+            "during"
+          ],
+          "answer": 0,
+          "why": "The correct preposition is inside.",
+          "subtopic": "Prepositions"
+        },
+        {
+          "q": "I ___ an apple every morning.",
+          "options": [
+            "eat",
+            "eats",
+            "eating",
+            "ate"
+          ],
+          "answer": 0,
+          "why": "The correct word is eat.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "The sun ___ in the east.",
+          "options": [
+            "rise",
+            "rises",
+            "rising",
+            "rose"
+          ],
+          "answer": 1,
+          "why": "The correct word is rises.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "We ___ a movie yesterday.",
+          "options": [
+            "watch",
+            "watches",
+            "watched",
+            "watching"
+          ],
+          "answer": 2,
+          "why": "The correct word is watched.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "She ___ her homework tomorrow.",
+          "options": [
+            "finished",
+            "finish",
+            "finishing",
+            "will finish"
+          ],
+          "answer": 3,
+          "why": "The correct word is will finish.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "There ___ three books on the desk.",
+          "options": [
+            "are",
+            "is",
+            "was",
+            "be"
+          ],
+          "answer": 0,
+          "why": "The correct word is are.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "There ___ a pencil in my bag.",
+          "options": [
+            "are",
+            "is",
+            "were",
+            "be"
+          ],
+          "answer": 1,
+          "why": "The correct word is is.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "Sam is ___ than his brother.",
+          "options": [
+            "tall",
+            "tallest",
+            "taller",
+            "more tall"
+          ],
+          "answer": 2,
+          "why": "The correct word is taller.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "This is the ___ cake I have tasted.",
+          "options": [
+            "sweeter",
+            "sweet",
+            "more sweet",
+            "sweetest"
+          ],
+          "answer": 3,
+          "why": "The correct word is sweetest.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "Please ___ the window.",
+          "options": [
+            "open",
+            "opens",
+            "opened",
+            "opening"
+          ],
+          "answer": 0,
+          "why": "The correct word is open.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "The children ___ playing outside.",
+          "options": [
+            "is",
+            "are",
+            "was",
+            "be"
+          ],
+          "answer": 1,
+          "why": "The correct word is are.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "My mother ___ cooking now.",
+          "options": [
+            "are",
+            "am",
+            "is",
+            "be"
+          ],
+          "answer": 2,
+          "why": "The correct word is is.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "I ___ reading a book now.",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "answer": 3,
+          "why": "The correct word is am.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "They ___ finished their work.",
+          "options": [
+            "have",
+            "has",
+            "having",
+            "had been"
+          ],
+          "answer": 0,
+          "why": "The correct word is have.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "He ___ finished his work.",
+          "options": [
+            "have",
+            "has",
+            "having",
+            "are"
+          ],
+          "answer": 1,
+          "why": "The correct word is has.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "We ___ to the museum last Sunday.",
+          "options": [
+            "go",
+            "goes",
+            "went",
+            "going"
+          ],
+          "answer": 2,
+          "why": "The correct word is went.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "The baby is sleeping ___.",
+          "options": [
+            "quiet",
+            "quietness",
+            "quieter",
+            "quietly"
+          ],
+          "answer": 3,
+          "why": "The correct word is quietly.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "The flowers are ___ beautiful.",
+          "options": [
+            "very",
+            "many",
+            "much",
+            "few"
+          ],
+          "answer": 0,
+          "why": "The correct word is very.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "I have ___ pencils.",
+          "options": [
+            "much",
+            "many",
+            "little",
+            "any"
+          ],
+          "answer": 1,
+          "why": "The correct word is many.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "There is ___ water in the bottle.",
+          "options": [
+            "many",
+            "few",
+            "much",
+            "several"
+          ],
+          "answer": 2,
+          "why": "The correct word is much.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "Would you like ___ orange?",
+          "options": [
+            "a",
+            "many",
+            "few",
+            "an"
+          ],
+          "answer": 3,
+          "why": "The correct word is an.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "She bought ___ umbrella.",
+          "options": [
+            "an",
+            "a",
+            "the",
+            "some"
+          ],
+          "answer": 0,
+          "why": "The correct word is an.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "Each student ___ a book.",
+          "options": [
+            "have",
+            "has",
+            "having",
+            "are"
+          ],
+          "answer": 1,
+          "why": "The correct word is has.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "The news ___ interesting.",
+          "options": [
+            "are",
+            "were",
+            "is",
+            "be"
+          ],
+          "answer": 2,
+          "why": "The correct word is is.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "If it rains, we ___ stay indoors.",
+          "options": [
+            "would",
+            "are",
+            "were",
+            "will"
+          ],
+          "answer": 3,
+          "why": "The correct word is will.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "Sam ___ his teeth twice a day.",
+          "options": [
+            "brushes",
+            "brush",
+            "brushing",
+            "brushed"
+          ],
+          "answer": 0,
+          "why": "The correct word is brushes.",
+          "subtopic": "Fill in the Blanks"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "beautiful",
+            "beautifull",
+            "beutiful",
+            "beautifal"
+          ],
+          "answer": 0,
+          "why": "beautiful is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "becaus",
+            "because",
+            "becouse",
+            "beacuse"
+          ],
+          "answer": 1,
+          "why": "because is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "freind",
+            "frend",
+            "friend",
+            "friand"
+          ],
+          "answer": 2,
+          "why": "friend is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "scool",
+            "shcool",
+            "schoole",
+            "school"
+          ],
+          "answer": 3,
+          "why": "school is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "different",
+            "diffrent",
+            "defferent",
+            "diferent"
+          ],
+          "answer": 0,
+          "why": "different is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "neccessary",
+            "necessary",
+            "necessery",
+            "nesessary"
+          ],
+          "answer": 1,
+          "why": "necessary is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "tommorow",
+            "tomorow",
+            "tomorrow",
+            "tommorrow"
+          ],
+          "answer": 2,
+          "why": "tomorrow is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "libary",
+            "librery",
+            "lybrary",
+            "library"
+          ],
+          "answer": 3,
+          "why": "library is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "environment",
+            "enviroment",
+            "envirnoment",
+            "enviornment"
+          ],
+          "answer": 0,
+          "why": "environment is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "knowlege",
+            "knowledge",
+            "nolledge",
+            "knowladge"
+          ],
+          "answer": 1,
+          "why": "knowledge is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "recieve",
+            "receeve",
+            "receive",
+            "receve"
+          ],
+          "answer": 2,
+          "why": "receive is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "beleive",
+            "belive",
+            "beleeve",
+            "believe"
+          ],
+          "answer": 3,
+          "why": "believe is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "February",
+            "Febuary",
+            "Februry",
+            "Febraury"
+          ],
+          "answer": 0,
+          "why": "February is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "Wensday",
+            "Wednesday",
+            "Wednsday",
+            "Wednesdy"
+          ],
+          "answer": 1,
+          "why": "Wednesday is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "restarant",
+            "restraunt",
+            "restaurant",
+            "restaurent"
+          ],
+          "answer": 2,
+          "why": "restaurant is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "adventur",
+            "advencher",
+            "adventuree",
+            "adventure"
+          ],
+          "answer": 3,
+          "why": "adventure is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "surprise",
+            "suprise",
+            "surprize",
+            "suprize"
+          ],
+          "answer": 0,
+          "why": "surprise is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "importent",
+            "important",
+            "impotant",
+            "importannt"
+          ],
+          "answer": 1,
+          "why": "important is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "langauge",
+            "langwage",
+            "language",
+            "languge"
+          ],
+          "answer": 2,
+          "why": "language is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "calender",
+            "calandar",
+            "callendar",
+            "calendar"
+          ],
+          "answer": 3,
+          "why": "calendar is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "excellent",
+            "exellent",
+            "excelent",
+            "excellant"
+          ],
+          "answer": 0,
+          "why": "excellent is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "intresting",
+            "interesting",
+            "interessting",
+            "intrestinng"
+          ],
+          "answer": 1,
+          "why": "interesting is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "diferent",
+            "defferent",
+            "different",
+            "diffrant"
+          ],
+          "answer": 2,
+          "why": "different is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "knowladge",
+            "knowlege",
+            "nollege",
+            "knowledge"
+          ],
+          "answer": 3,
+          "why": "knowledge is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Choose the correctly spelled word.",
+          "options": [
+            "beautiful",
+            "beutiful",
+            "beautifull",
+            "butiful"
+          ],
+          "answer": 0,
+          "why": "beautiful is the correct spelling.",
+          "subtopic": "Spelling & Word Use"
+        },
+        {
+          "q": "Which sentence needs a question mark?",
+          "options": [
+            "Where is my book?",
+            "The book is blue.",
+            "Close the book.",
+            "The book is new."
+          ],
+          "answer": 0,
+          "why": "A direct question ends with a question mark.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence needs an exclamation mark?",
+          "options": [
+            "I have a pencil.",
+            "What a wonderful surprise!",
+            "Where is Sam?",
+            "Please open it."
+          ],
+          "answer": 1,
+          "why": "An exclamation expresses strong feeling.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Choose the sentence with correct capitalisation.",
+          "options": [
+            "my friend lives in kerala.",
+            "My Friend lives in kerala.",
+            "My friend lives in Kerala.",
+            "my Friend Lives in Kerala."
+          ],
+          "answer": 2,
+          "why": "The first word and proper noun Kerala are capitalised.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence is punctuated correctly?",
+          "options": [
+            "Sam said \"Hello\"",
+            "Sam said, Hello!",
+            "Sam said Hello",
+            "Sam said, \"Hello!\""
+          ],
+          "answer": 3,
+          "why": "A direct quotation needs quotation marks.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Choose the best sentence order.",
+          "options": [
+            "The little bird sang sweetly.",
+            "Sweetly little sang bird the.",
+            "Bird the little sweetly sang.",
+            "Sang the sweetly little bird."
+          ],
+          "answer": 0,
+          "why": "The first sentence has natural English word order.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence is complete?",
+          "options": [
+            "Because it was raining.",
+            "The dog barked loudly.",
+            "Running through the park.",
+            "When Sam arrived."
+          ],
+          "answer": 1,
+          "why": "The first has a complete subject and predicate.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "I was tired, ___ I finished my homework.",
+          "options": [
+            "or",
+            "because",
+            "but",
+            "if"
+          ],
+          "answer": 2,
+          "why": "But shows contrast.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Sam likes cats ___ dogs.",
+          "options": [
+            "but",
+            "because",
+            "although",
+            "and"
+          ],
+          "answer": 3,
+          "why": "And joins similar ideas.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Hurry up, ___ we will miss the bus.",
+          "options": [
+            "or",
+            "and",
+            "because",
+            "although"
+          ],
+          "answer": 0,
+          "why": "Or shows the alternative consequence.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence uses commas correctly?",
+          "options": [
+            "After lunch we, went outside.",
+            "After lunch, we went outside.",
+            "After, lunch we went outside.",
+            "After lunch we went, outside."
+          ],
+          "answer": 1,
+          "why": "The comma separates the introductory phrase.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence lists items correctly?",
+          "options": [
+            "I bought apples bananas and grapes.",
+            "I bought, apples bananas, and grapes.",
+            "I bought apples, bananas, and grapes.",
+            "I bought apples, bananas and, grapes."
+          ],
+          "answer": 2,
+          "why": "Commas separate items in a list.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Choose the correct contraction for do not.",
+          "options": [
+            "dont",
+            "doesn't",
+            "didn't",
+            "don't"
+          ],
+          "answer": 3,
+          "why": "Don't is the contraction of do not.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Choose the correct contraction for I am.",
+          "options": [
+            "I'm",
+            "Im",
+            "I'am",
+            "I m"
+          ],
+          "answer": 0,
+          "why": "I'm is the standard contraction.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Choose the correct contraction for cannot.",
+          "options": [
+            "cant",
+            "can't",
+            "can'nt",
+            "cannotn't"
+          ],
+          "answer": 1,
+          "why": "Can't is the common contraction.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence uses an apostrophe correctly?",
+          "options": [
+            "Riyas book is new.",
+            "Riya book's is new.",
+            "Riya's book is new.",
+            "Riya's books is new."
+          ],
+          "answer": 2,
+          "why": "Riya's shows possession.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "The boys ___ happy.",
+          "options": [
+            "is",
+            "am",
+            "be",
+            "are"
+          ],
+          "answer": 3,
+          "why": "Boys is plural.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence is polite?",
+          "options": [
+            "Could you please help me?",
+            "Give me that!",
+            "Move!",
+            "You must help me now!"
+          ],
+          "answer": 0,
+          "why": "Could you please is a polite request.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which is the best title for a passage about caring for a puppy?",
+          "options": [
+            "The Blue Sky",
+            "How to Care for a Puppy",
+            "A Trip to Mars",
+            "My Favourite Vegetable"
+          ],
+          "answer": 1,
+          "why": "The first title matches the topic.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence is more precise?",
+          "options": [
+            "The thing went there.",
+            "It did something.",
+            "The tiny bird flew quickly.",
+            "The animal moved."
+          ],
+          "answer": 2,
+          "why": "The first sentence gives clear details.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence shows a future action?",
+          "options": [
+            "We visited the museum yesterday.",
+            "We visit the museum every week.",
+            "We are at the museum now.",
+            "We will visit the museum tomorrow."
+          ],
+          "answer": 3,
+          "why": "Will visit shows future time.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence is a command?",
+          "options": [
+            "Please sit down.",
+            "The chair is blue.",
+            "Are you sitting?",
+            "What a chair!"
+          ],
+          "answer": 0,
+          "why": "A command asks someone to do something.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence is a statement?",
+          "options": [
+            "Is the sun shining?",
+            "The sun is shining.",
+            "What a bright sun!",
+            "Please look outside."
+          ],
+          "answer": 1,
+          "why": "A statement gives information.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence has a comparative adjective?",
+          "options": [
+            "Mia is tall.",
+            "Mia is the tallest.",
+            "Mia is taller than Ana.",
+            "Mia runs quickly."
+          ],
+          "answer": 2,
+          "why": "Taller compares two people.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence has a superlative adjective?",
+          "options": [
+            "This tree is tall.",
+            "This tree is taller.",
+            "This tree grows quickly.",
+            "This is the tallest tree."
+          ],
+          "answer": 3,
+          "why": "Tallest compares one with a whole group.",
+          "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "Which sentence is correctly written?",
+          "options": [
+            "Sam and I went home.",
+            "Sam and me went home.",
+            "Me and Sam went home.",
+            "Sam and I goes home."
+          ],
+          "answer": 0,
+          "why": "Sam and I is the correct subject form.",
+          "subtopic": "Sentence Building & Punctuation"
+        }
+      ]
     }
   }
 }
