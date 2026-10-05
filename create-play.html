@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Create & Play • Sam's Learning</title><link rel="stylesheet" href="create-play.css?v=20261005-001"></head>
+<body>
+<main class="cp-shell">
+<header class="cp-top"><a href="index.html">← Back to Sam's Learning</a><span>🌟 CREATIVE ARCADE</span></header>
+<section class="cp-hero"><div class="orbit">🧱 ✨ 🚀 💡 🧩 🎮</div><p class="eyebrow">SAM'S CREATIVE ARCADE</p><h1>🌟 Create & Play</h1><p>Build • Code • Explore • Invent</p><div class="loop"><span>PLAY</span><i>→</i><span>THINK</span><i>→</i><span>CREATE</span><i>→</i><span>EXPLAIN</span><i>→</i><span>SAVE</span></div></section>
+<section class="passport"><div><span class="passport-icon">🪪</span><div><small>CREATOR PASSPORT</small><h2>Sam's Creative Journey</h2></div></div><div class="badges" id="badges"><span>🧱 Builder</span><span>💡 Inventor</span><span>🎮 Game Creator</span></div></section>
+<section class="mission-grid">
+<a class="mission-card build" href="#world"><span class="mission-icon">🧱</span><div><small>BUILD YOUR WORLD</small><h2>Minecraft Creative</h2><p>Build cities, animal sanctuaries, space stations and amazing worlds.</p></div><b>Explore missions →</b></a>
+<a class="mission-card code" href="#code"><span class="mission-icon">💻</span><div><small>CREATE YOUR OWN GAME</small><h2>Scratch</h2><p>Make games, animations and stories with blocks of code.</p></div><b>Try a creator mission →</b></a>
+<a class="mission-card puzzle" href="#puzzle"><span class="mission-icon">🧩</span><div><small>BUILD & SOLVE</small><h2>Construction Lab</h2><p>Tangrams, patterns, spatial puzzles and hands-on challenges.</p></div><b>Start building →</b></a>
+<a class="mission-card life" href="#life"><span class="mission-icon">🌱</span><div><small>BUILD A LIFE</small><h2>Sandbox Planner</h2><p>Plan a farm, choose resources and make thoughtful decisions.</p></div><b>Plan your world →</b></a>
+<a class="mission-card make" href="#make"><span class="mission-icon">🎨</span><div><small>MAKE SOMETHING</small><h2>Creative Studio</h2><p>Draw, invent, design characters, posters, comics and stories.</p></div><b>Open the studio →</b></a>
+<a class="mission-card brain" href="#brain"><span class="mission-icon">🧠✨</span><div><small>BRAIN LAB</small><h2>Invent Anything</h2><p>Create silly characters, robots, creatures, planets and inventions.</p></div><b>Invent now →</b></a>
+</section>
+
+<section id="world" class="cp-panel"><div class="panel-head"><div><small>MISSION 01 • BUILD</small><h2>🧱 Build Your World</h2><p>Pick one real-world build challenge, then open your creative building game.</p></div></div><div class="challenge-grid" id="worldChallenges"></div><a class="external-btn" href="https://education.minecraft.net/" target="_blank" rel="noopener">🌎 Open Minecraft Education ↗</a></section>
+
+<section id="code" class="cp-panel"><div class="panel-head"><div><small>MISSION 02 • CODE</small><h2>💻 Create Your Own Game</h2><p>Choose a Scratch mission. Build it, then come back and explain what you made.</p></div></div><div class="challenge-grid" id="codeChallenges"></div><a class="external-btn" href="https://scratch.mit.edu/" target="_blank" rel="noopener">💻 Open Scratch ↗</a></section>
+
+<section id="puzzle" class="cp-panel"><div class="panel-head"><div><small>MISSION 03 • THINK</small><h2>🧩 Build & Solve</h2><p>Use the construction games already inside Sam's Games area.</p></div></div><div class="quick-actions"><a href="games.html#tangram">🔺 Tangram Builder</a><a href="games.html#sequence">🔢 Pattern Builder</a><a href="games.html#odd">🕵️ Odd One Out</a><a href="games.html#memory">🧠 Memory Builder</a></div></section>
+
+<section id="life" class="cp-panel"><div class="panel-head"><div><small>MISSION 04 • PLAN</small><h2>🌱 Build a Life</h2><p>A calm sandbox planning challenge — no timer, no leaderboard.</p></div></div><div class="life-box"><div class="life-scene">🌳 🏡 🌻 🐔 🌾 💧</div><h3 id="lifeTitle">Design a Happy Farm</h3><p id="lifePrompt">Choose what your farm needs first.</p><div class="life-options"><button onclick="chooseLife(this,'🌱 Plant crops')">🌱 Plant crops</button><button onclick="chooseLife(this,'🐔 Add animals')">🐔 Add animals</button><button onclick="chooseLife(this,'💧 Save water')">💧 Save water</button><button onclick="chooseLife(this,'🏡 Build a home')">🏡 Build a home</button></div><p id="lifeFeedback" class="feedback"></p></div></section>
+
+<section id="make" class="cp-panel"><div class="panel-head"><div><small>MISSION 05 • CREATE</small><h2>🎨 Make Something</h2><p>Use an idea starter, then create it with paper, drawing tools or your favourite creative app.</p></div></div><div class="idea-box"><div id="ideaEmoji">🚀</div><h3 id="ideaTitle">Design a Spacecraft</h3><p id="ideaPrompt">What will it look like? What problem will it solve?</p><button onclick="newIdea()">🎲 Give Me Another Idea</button></div></section>
+
+<section id="brain" class="cp-panel"><div class="panel-head"><div><small>MISSION 06 • INVENT</small><h2>🧠✨ Brain Lab</h2><p>Invent something completely original. Give it a name and one special power.</p></div></div><div class="invent-box"><div id="inventEmoji">🤖</div><div id="inventName">Cosmic Noodle Robot</div><p id="inventPower">Special power: turns boring moments into adventures.</p><button onclick="invent()">✨ Invent Something</button></div></section>
+<section class="explain-panel"><div>🗣️</div><div><small>CREATOR CHALLENGE</small><h2>Don't just make it. Explain it.</h2><p>After creating something, tell Sam's Learning: <b>What did you make? How does it work? What would you change?</b></p></div></section>
+<footer>Made for Sam • Create something. Explain something. Keep exploring.</footer>
+</main><script src="create-play.js?v=20261005-001"></script></body></html>
