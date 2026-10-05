@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Games • Sam's Learning</title><link rel="stylesheet" href="games.css?v=20261005-001"></head>
+<body><main class="games-shell">
+<header class="games-top"><a href="index.html">← Back to Sam's Learning</a><span>🎮 PLAY & LEARN</span></header>
+<section class="games-hero"><p class="eyebrow">SAM'S GAME ZONE</p><h1>🎮 Games</h1><p>Draw • Colour • Think • Spot • Remember</p><div class="game-pills"><span>🐾 Animals</span><span>🎨 Colours</span><span>🧠 Thinking</span><span>👀 Visual Skills</span></div></section>
+<section class="games-grid">
+<a class="game-card" href="#dots"><div class="game-icon">🔵</div><h2>Connect the Dots</h2><p>Join the dots in order and discover a cartoon animal.</p><b>Play →</b></a>
+<a class="game-card" href="#colour"><div class="game-icon">🎨</div><h2>Animal Colour Studio</h2><p>Pick a brush colour and tap an animal part to fill it.</p><b>Play →</b></a>
+<a class="game-card" href="#odd"><div class="game-icon">🕵️</div><h2>Odd One Out</h2><p>Look carefully and find the picture that does not belong.</p><b>Play →</b></a>
+<a class="game-card" href="#memory"><div class="game-icon">🧠</div><h2>Animal Memory</h2><p>Flip cards and find matching animal pairs.</p><b>Play →</b></a>
+<a class="game-card" href="#silhouette"><div class="game-icon">🔎</div><h2>Who Am I?</h2><p>Look at the silhouette and choose the animal.</p><b>Play →</b></a>
+<a class="game-card" href="#sequence"><div class="game-icon">🔢</div><h2>What Comes Next?</h2><p>Spot the pattern and choose what should come next.</p><b>Play →</b></a>
+</section>
+<section id="dots" class="game-panel"><div class="panel-head"><div><span class="tag">1 • CONNECT</span><h2>🔵 Connect the Dots</h2><p>Tap the dots in number order.</p></div><button class="reset" onclick="startDots()">New Animal</button></div><canvas id="dotCanvas" width="700" height="430"></canvas><p id="dotStatus" class="game-status">Start at 1.</p></section>
+<section id="colour" class="game-panel"><div class="panel-head"><div><span class="tag">2 • CREATE</span><h2>🎨 Animal Colour Studio</h2><p>Choose a colour, then tap an animal part.</p></div><button class="reset" onclick="resetColour()">Reset</button></div>
+<div class="palette" id="palette"></div>
+<div class="colour-stage"><svg id="animalSvg" viewBox="0 0 600 430" role="img" aria-label="Cartoon animal colouring page">
+<ellipse class="paint-part" data-part="body" cx="290" cy="250" rx="145" ry="95"/><circle class="paint-part" data-part="head" cx="445" cy="185" r="78"/>
+<ellipse class="paint-part" data-part="ear1" cx="405" cy="105" rx="28" ry="48"/><ellipse class="paint-part" data-part="ear2" cx="480" cy="105" rx="28" ry="48"/>
+<ellipse class="paint-part" data-part="leg1" cx="205" cy="335" rx="27" ry="70"/><ellipse class="paint-part" data-part="leg2" cx="285" cy="342" rx="27" ry="70"/><ellipse class="paint-part" data-part="leg3" cx="360" cy="342" rx="27" ry="70"/>
+<path class="paint-part" data-part="tail" d="M155 235 C70 190 60 310 130 300 C85 280 105 235 155 235Z"/>
+<circle class="eye" cx="475" cy="170" r="7"/><circle class="eye" cx="420" cy="170" r="7"/><path class="face-line" d="M440 205 Q450 220 460 205"/></svg></div>
+<p id="colourStatus" class="game-status">Choose a colour. Then tap a body part!</p></section>
+<section id="odd" class="game-panel"><div class="panel-head"><div><span class="tag">3 • THINK</span><h2>🕵️ Odd One Out</h2><p>Find the one that is different.</p></div><button class="reset" onclick="newOdd()">Next</button></div><div id="oddGrid" class="odd-grid"></div><p id="oddStatus" class="game-status">Which one is different?</p></section>
+<section id="memory" class="game-panel"><div class="panel-head"><div><span class="tag">4 • REMEMBER</span><h2>🧠 Animal Memory</h2><p>Find all the matching pairs.</p></div><button class="reset" onclick="newMemory()">New Game</button></div><div id="memoryGrid" class="memory-grid"></div><p id="memoryStatus" class="game-status">Find the matching pairs.</p></section>
+<section id="silhouette" class="game-panel"><div class="panel-head"><div><span class="tag">5 • LOOK</span><h2>🔎 Who Am I?</h2><p>Choose the animal that matches the silhouette.</p></div><button class="reset" onclick="newSilhouette()">Next</button></div><div id="silhouetteGame"></div></section>
+<section id="sequence" class="game-panel"><div class="panel-head"><div><span class="tag">6 • PATTERN</span><h2>🔢 What Comes Next?</h2><p>Look for the repeating pattern.</p></div><button class="reset" onclick="newSequence()">Next</button></div><div id="sequenceGame"></div></section>
+</main><script src="games.js?v=20261005-001"></script></body></html>
