@@ -1890,6 +1890,22 @@
         {
           "title": "Sentence Building & Punctuation",
           "icon": "📝"
+        },
+        {
+          "title": "Idioms & Phrases",
+          "icon": "💡"
+        },
+        {
+          "title": "Homophones",
+          "icon": "🔊"
+        },
+        {
+          "title": "Word Formation",
+          "icon": "🧩"
+        },
+        {
+          "title": "Sentence Rearrangement",
+          "icon": "🔀"
         }
       ],
       "questions": [
@@ -4292,6 +4308,1181 @@
           "answer": 0,
           "why": "Sam and I is the correct subject form.",
           "subtopic": "Sentence Building & Punctuation"
+        },
+        {
+          "q": "What does the phrase mean? \"a piece of cake\"",
+          "options": [
+            "very easy",
+            "very expensive",
+            "very noisy",
+            "very cold"
+          ],
+          "answer": 0,
+          "why": "A piece of cake means something is very easy.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"break the ice\"",
+          "options": [
+            "break something",
+            "start a friendly conversation",
+            "feel cold",
+            "stop talking"
+          ],
+          "answer": 1,
+          "why": "Break the ice means make people feel comfortable.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"once in a blue moon\"",
+          "options": [
+            "every day",
+            "at night",
+            "very rarely",
+            "very quickly"
+          ],
+          "answer": 2,
+          "why": "It means something happens very rarely.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"hit the nail on the head\"",
+          "options": [
+            "hit a nail",
+            "make a mistake",
+            "work slowly",
+            "say exactly the right thing"
+          ],
+          "answer": 3,
+          "why": "It means to be exactly right.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"under the weather\"",
+          "options": [
+            "feeling unwell",
+            "standing outside",
+            "feeling excited",
+            "being late"
+          ],
+          "answer": 0,
+          "why": "Under the weather means feeling unwell.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"spill the beans\"",
+          "options": [
+            "cook dinner",
+            "tell a secret",
+            "drop food",
+            "plant seeds"
+          ],
+          "answer": 1,
+          "why": "It means reveal a secret.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"raining cats and dogs\"",
+          "options": [
+            "animals are falling",
+            "raining lightly",
+            "raining very heavily",
+            "the sky is clear"
+          ],
+          "answer": 2,
+          "why": "It means raining heavily.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"a blessing in disguise\"",
+          "options": [
+            "a hidden person",
+            "a lucky coin",
+            "a costume",
+            "something good that first seemed bad"
+          ],
+          "answer": 3,
+          "why": "It describes an unexpected good result.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"cost an arm and a leg\"",
+          "options": [
+            "be very expensive",
+            "be free",
+            "be painful",
+            "be tiny"
+          ],
+          "answer": 0,
+          "why": "It means cost a lot of money.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"keep an eye on\"",
+          "options": [
+            "close your eyes",
+            "watch carefully",
+            "draw an eye",
+            "sleep"
+          ],
+          "answer": 1,
+          "why": "It means watch or monitor something.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"in hot water\"",
+          "options": [
+            "taking a bath",
+            "feeling warm",
+            "in trouble",
+            "cooking"
+          ],
+          "answer": 2,
+          "why": "It can mean being in trouble.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"call it a day\"",
+          "options": [
+            "make a phone call",
+            "start work",
+            "wake up",
+            "stop working for now"
+          ],
+          "answer": 3,
+          "why": "It means finish the day's work.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"piece of advice\"",
+          "options": [
+            "a helpful suggestion",
+            "a broken object",
+            "a story",
+            "a question"
+          ],
+          "answer": 0,
+          "why": "Advice is a helpful suggestion.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"on cloud nine\"",
+          "options": [
+            "very high up",
+            "very happy",
+            "very tired",
+            "very angry"
+          ],
+          "answer": 1,
+          "why": "It means extremely happy.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"in a nutshell\"",
+          "options": [
+            "inside a nut",
+            "in secret",
+            "in a few words",
+            "very slowly"
+          ],
+          "answer": 2,
+          "why": "It means briefly.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"the tip of the iceberg\"",
+          "options": [
+            "the whole problem",
+            "a frozen lake",
+            "a mountain",
+            "a small visible part of a bigger thing"
+          ],
+          "answer": 3,
+          "why": "It means only a small part is visible.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"go the extra mile\"",
+          "options": [
+            "make an extra effort",
+            "walk one mile",
+            "stop early",
+            "travel abroad"
+          ],
+          "answer": 0,
+          "why": "It means make more effort than expected.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"look after\"",
+          "options": [
+            "look behind",
+            "take care of",
+            "search for",
+            "ignore"
+          ],
+          "answer": 1,
+          "why": "Look after means take care of.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"give up\"",
+          "options": [
+            "give a gift",
+            "start again",
+            "stop trying",
+            "help someone"
+          ],
+          "answer": 2,
+          "why": "Give up means stop trying.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"look forward to\"",
+          "options": [
+            "look behind",
+            "avoid something",
+            "forget something",
+            "feel excited about something in the future"
+          ],
+          "answer": 3,
+          "why": "It means feel happy about an upcoming event.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"make up your mind\"",
+          "options": [
+            "decide",
+            "invent a story",
+            "change your face",
+            "sleep"
+          ],
+          "answer": 0,
+          "why": "It means make a decision.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"out of the blue\"",
+          "options": [
+            "from the sky literally",
+            "unexpectedly",
+            "very slowly",
+            "after planning"
+          ],
+          "answer": 1,
+          "why": "It means unexpectedly.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"a storm in a teacup\"",
+          "options": [
+            "a real storm",
+            "a hot drink",
+            "a small problem made to seem huge",
+            "a weather report"
+          ],
+          "answer": 2,
+          "why": "It describes a lot of fuss about a small matter.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"practice makes perfect\"",
+          "options": [
+            "practice is useless",
+            "only luck matters",
+            "work should stop",
+            "practice improves skill"
+          ],
+          "answer": 3,
+          "why": "It reminds us that practice helps us improve.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "What does the phrase mean? \"better late than never\"",
+          "options": [
+            "doing something late is better than not doing it",
+            "always be early",
+            "never arrive",
+            "wait forever"
+          ],
+          "answer": 0,
+          "why": "It means a late action is better than no action.",
+          "subtopic": "Idioms & Phrases"
+        },
+        {
+          "q": "Choose the correct word:  \"I can ___ the music.\"",
+          "options": [
+            "hear",
+            "here",
+            "hare",
+            "her"
+          ],
+          "answer": 0,
+          "why": "Hear means perceive sound.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"Come ___ and sit down.\"",
+          "options": [
+            "hear",
+            "here",
+            "hare",
+            "her"
+          ],
+          "answer": 1,
+          "why": "Here refers to this place.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The rabbit has soft ___.\"",
+          "options": [
+            "fir",
+            "fair",
+            "fur",
+            "far"
+          ],
+          "answer": 2,
+          "why": "Fur is the hair covering an animal.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"We planted a ___ tree.\"",
+          "options": [
+            "fur",
+            "far",
+            "fair",
+            "fir"
+          ],
+          "answer": 3,
+          "why": "Fir is a type of tree.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The sun is very ___.\"",
+          "options": [
+            "bright",
+            "bride",
+            "write",
+            "right"
+          ],
+          "answer": 0,
+          "why": "Bright means giving off much light.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"Please ___ your name.\"",
+          "options": [
+            "right",
+            "write",
+            "rite",
+            "wright"
+          ],
+          "answer": 1,
+          "why": "Write means form words with letters.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"Turn ___ at the corner.\"",
+          "options": [
+            "write",
+            "rite",
+            "right",
+            "writ"
+          ],
+          "answer": 2,
+          "why": "Right indicates a direction.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"I ate a ___ of cake.\"",
+          "options": [
+            "peace",
+            "peas",
+            "pice",
+            "piece"
+          ],
+          "answer": 3,
+          "why": "Piece means a portion.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"We want world ___.\"",
+          "options": [
+            "peace",
+            "piece",
+            "peas",
+            "please"
+          ],
+          "answer": 0,
+          "why": "Peace means freedom from conflict.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The dog wagged its ___.\"",
+          "options": [
+            "tale",
+            "tail",
+            "tile",
+            "tall"
+          ],
+          "answer": 1,
+          "why": "Tail is the animal body part.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"Grandpa told a funny ___.\"",
+          "options": [
+            "tail",
+            "tile",
+            "tale",
+            "tall"
+          ],
+          "answer": 2,
+          "why": "A tale is a story.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The ___ is shining.\"",
+          "options": [
+            "son",
+            "some",
+            "seen",
+            "sun"
+          ],
+          "answer": 3,
+          "why": "Sun is the star in our sky.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"My ___ is eleven years old.\"",
+          "options": [
+            "son",
+            "sun",
+            "some",
+            "soon"
+          ],
+          "answer": 0,
+          "why": "Son means a male child.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"We will meet ___ morning.\"",
+          "options": [
+            "to-morrowed",
+            "tomorrow",
+            "tomato",
+            "tomorow"
+          ],
+          "answer": 1,
+          "why": "Tomorrow means the day after today.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The bird flew ___ the tree.\"",
+          "options": [
+            "oar",
+            "ore",
+            "over",
+            "our"
+          ],
+          "answer": 2,
+          "why": "Over shows position or movement above.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"This is ___ house.\"",
+          "options": [
+            "hour",
+            "are",
+            "ore",
+            "our"
+          ],
+          "answer": 3,
+          "why": "Our shows belonging to us.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The meeting lasted one ___.\"",
+          "options": [
+            "hour",
+            "our",
+            "are",
+            "ore"
+          ],
+          "answer": 0,
+          "why": "An hour is a unit of time.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"I ___ a new book.\"",
+          "options": [
+            "bot",
+            "bought",
+            "boat",
+            "bout"
+          ],
+          "answer": 1,
+          "why": "Bought is the past tense of buy.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The ship is on the ___.\"",
+          "options": [
+            "see",
+            "she",
+            "sea",
+            "si"
+          ],
+          "answer": 2,
+          "why": "Sea means a large body of salt water.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"Can you ___ the rainbow?\"",
+          "options": [
+            "sea",
+            "seeed",
+            "she",
+            "see"
+          ],
+          "answer": 3,
+          "why": "See means use your eyes.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The flower is very ___.\"",
+          "options": [
+            "sweet",
+            "suite",
+            "sweat",
+            "sweit"
+          ],
+          "answer": 0,
+          "why": "Sweet can describe taste or smell.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"We stayed in a hotel ___.\"",
+          "options": [
+            "sweet",
+            "suite",
+            "sweat",
+            "suit"
+          ],
+          "answer": 1,
+          "why": "A suite is a set of rooms.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"Please ___ the door.\"",
+          "options": [
+            "clothes",
+            "clows",
+            "close",
+            "cloze"
+          ],
+          "answer": 2,
+          "why": "Close means shut.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"Put your ___ in the cupboard.\"",
+          "options": [
+            "close",
+            "cloze",
+            "clows",
+            "clothes"
+          ],
+          "answer": 3,
+          "why": "Clothes are things we wear.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Choose the correct word:  \"The answer is ___.\"",
+          "options": [
+            "right",
+            "write",
+            "rite",
+            "wright"
+          ],
+          "answer": 0,
+          "why": "Right means correct.",
+          "subtopic": "Homophones"
+        },
+        {
+          "q": "Which word is formed correctly from \"happy + -ness\"",
+          "options": [
+            "happiness",
+            "happyment",
+            "happiful",
+            "happying"
+          ],
+          "answer": 0,
+          "why": "The noun formed from happy is happiness.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"kind + -ness\"",
+          "options": [
+            "kindful",
+            "kindness",
+            "kindment",
+            "kindy"
+          ],
+          "answer": 1,
+          "why": "Kindness is the noun form.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"care + -ful\"",
+          "options": [
+            "careing",
+            "carement",
+            "careful",
+            "carer"
+          ],
+          "answer": 2,
+          "why": "Careful means full of care.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"help + -ful\"",
+          "options": [
+            "helpness",
+            "helpment",
+            "helpingful",
+            "helpful"
+          ],
+          "answer": 3,
+          "why": "Helpful means giving help.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"hope + -less\"",
+          "options": [
+            "hopeless",
+            "hopement",
+            "hopeful-less",
+            "hopingless"
+          ],
+          "answer": 0,
+          "why": "Hopeless means without hope.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"use + -ful\"",
+          "options": [
+            "useness",
+            "useful",
+            "usement",
+            "useing"
+          ],
+          "answer": 1,
+          "why": "Useful means having a use.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"quick + -ly\"",
+          "options": [
+            "quicknessly",
+            "quickful",
+            "quickly",
+            "quickment"
+          ],
+          "answer": 2,
+          "why": "Quickly is the adverb form.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"slow + -ly\"",
+          "options": [
+            "slownessly",
+            "slowful",
+            "slowment",
+            "slowly"
+          ],
+          "answer": 3,
+          "why": "Slowly is the adverb form.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"teach + -er\"",
+          "options": [
+            "teacher",
+            "teachful",
+            "teachness",
+            "teachment"
+          ],
+          "answer": 0,
+          "why": "Teacher names a person who teaches.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"farm + -er\"",
+          "options": [
+            "farmful",
+            "farmer",
+            "farmness",
+            "farmment"
+          ],
+          "answer": 1,
+          "why": "Farmer names a person who farms.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"read + -er\"",
+          "options": [
+            "readful",
+            "readness",
+            "reader",
+            "readment"
+          ],
+          "answer": 2,
+          "why": "Reader names a person who reads.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"act + -or\"",
+          "options": [
+            "actful",
+            "actness",
+            "actment",
+            "actor"
+          ],
+          "answer": 3,
+          "why": "Actor names a person who acts.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"kind + un-\"",
+          "options": [
+            "unkind",
+            "unkindful",
+            "kindun",
+            "unkinding"
+          ],
+          "answer": 0,
+          "why": "Un- can make the opposite meaning.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"happy + un-\"",
+          "options": [
+            "happyun",
+            "unhappy",
+            "unhappily",
+            "unhappiness"
+          ],
+          "answer": 1,
+          "why": "Unhappy means not happy.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"fair + un-\"",
+          "options": [
+            "fairun",
+            "unfairly",
+            "unfair",
+            "unfairness"
+          ],
+          "answer": 2,
+          "why": "Unfair means not fair.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"possible + im-\"",
+          "options": [
+            "unpossible",
+            "possibleim",
+            "impossibility",
+            "impossible"
+          ],
+          "answer": 3,
+          "why": "Impossible means not possible.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"regular + ir-\"",
+          "options": [
+            "irregular",
+            "unregular",
+            "regularir",
+            "irregulary"
+          ],
+          "answer": 0,
+          "why": "Irregular means not regular.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"appear + dis-\"",
+          "options": [
+            "unappear",
+            "disappear",
+            "appearless",
+            "disappearingly"
+          ],
+          "answer": 1,
+          "why": "Disappear means go out of sight.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"agree + dis-\"",
+          "options": [
+            "unagree",
+            "agreeful",
+            "disagree",
+            "disagreemently"
+          ],
+          "answer": 2,
+          "why": "Disagree means not agree.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"write + re-\"",
+          "options": [
+            "unwrite",
+            "writeful",
+            "rewriterly",
+            "rewrite"
+          ],
+          "answer": 3,
+          "why": "Rewrite means write again.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"play + re-\"",
+          "options": [
+            "replay",
+            "unplay",
+            "playful",
+            "replaying"
+          ],
+          "answer": 0,
+          "why": "Replay means play again.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"cycle + bi-\"",
+          "options": [
+            "tricycle",
+            "bicycle",
+            "cyclical",
+            "bicyclic"
+          ],
+          "answer": 1,
+          "why": "A bicycle has two wheels.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"view + re-\"",
+          "options": [
+            "unview",
+            "viewful",
+            "review",
+            "reviewing"
+          ],
+          "answer": 2,
+          "why": "Review means look at again.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"heat + -er\"",
+          "options": [
+            "heatful",
+            "heatness",
+            "heatment",
+            "heater"
+          ],
+          "answer": 3,
+          "why": "Heater names something that heats.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "q": "Which word is formed correctly from \"dark + -ness\"",
+          "options": [
+            "darkness",
+            "darkful",
+            "darkment",
+            "darking"
+          ],
+          "answer": 0,
+          "why": "Darkness is the noun form of dark.",
+          "subtopic": "Word Formation"
+        },
+        {
+          "0": "Arrange: bird / the / sings",
+          "1": "The bird sings.",
+          "2": [
+            "Bird the sings.",
+            "Sings the bird.",
+            "The sings bird."
+          ],
+          "3": "The subject comes before the verb.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: is / blue / sky / the",
+          "1": "The sky is blue.",
+          "2": [
+            "Blue the sky is.",
+            "Is blue the sky.",
+            "The blue is sky."
+          ],
+          "3": "The sentence follows subject + verb + adjective.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: Sam / likes / science",
+          "1": "Sam likes science.",
+          "2": [
+            "Likes Sam science.",
+            "Science Sam likes.",
+            "Sam science likes."
+          ],
+          "3": "The natural order is subject + verb + object.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: quickly / ran / dog / the",
+          "1": "The dog ran quickly.",
+          "2": [
+            "Quickly dog the ran.",
+            "Ran the quickly dog.",
+            "The quickly dog ran."
+          ],
+          "3": "The natural order gives the subject first.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: flowers / beautiful / are / these",
+          "1": "These flowers are beautiful.",
+          "2": [
+            "Beautiful these are flowers.",
+            "Flowers beautiful these are.",
+            "Are these beautiful flowers."
+          ],
+          "3": "These flowers is the subject.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: every / reads / night / she",
+          "1": "She reads every night.",
+          "2": [
+            "Reads she every night.",
+            "Every she reads night.",
+            "She every night reads."
+          ],
+          "3": "The natural order is She + reads + time phrase.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: football / playing / boys / are / the",
+          "1": "The boys are playing football.",
+          "2": [
+            "Playing the boys football are.",
+            "Football are the boys playing.",
+            "The boys football are playing."
+          ],
+          "3": "The sentence uses present continuous.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: has / a / Sam / bicycle",
+          "1": "Sam has a bicycle.",
+          "2": [
+            "A bicycle Sam has.",
+            "Has Sam a bicycle.",
+            "Sam a has bicycle."
+          ],
+          "3": "The natural order is subject + verb + object.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: in / lives / Kerala / she",
+          "1": "She lives in Kerala.",
+          "2": [
+            "In Kerala she lives.",
+            "Lives she in Kerala.",
+            "She in lives Kerala."
+          ],
+          "3": "The place phrase comes after the verb.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: delicious / cake / the / is",
+          "1": "The cake is delicious.",
+          "2": [
+            "Delicious the is cake.",
+            "Is delicious the cake.",
+            "The delicious is cake."
+          ],
+          "3": "The adjective follows the linking verb.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: morning / birds / sing / the / in",
+          "1": "The birds sing in the morning.",
+          "2": [
+            "In birds the morning sing.",
+            "Sing the birds morning in.",
+            "The morning birds sing in."
+          ],
+          "3": "The time phrase comes at the end.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: book / reading / I / am / a",
+          "1": "I am reading a book.",
+          "2": [
+            "A book I am reading.",
+            "Reading I a book am.",
+            "I a book am reading."
+          ],
+          "3": "Present continuous uses am + reading.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: can / swim / fish",
+          "1": "Fish can swim.",
+          "2": [
+            "Can fish swim.",
+            "Swim fish can.",
+            "Fish swim can."
+          ],
+          "3": "The modal can comes before the base verb.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: opened / the / teacher / door / the",
+          "1": "The teacher opened the door.",
+          "2": [
+            "The door opened teacher the.",
+            "Opened the teacher the door.",
+            "The teacher the door opened."
+          ],
+          "3": "The subject comes before the verb and object.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: lunch / after / we / played",
+          "1": "We played after lunch.",
+          "2": [
+            "After we lunch played.",
+            "Played we after lunch.",
+            "We after played lunch."
+          ],
+          "3": "We played is followed by the time phrase.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: very / is / elephant / large / the",
+          "1": "The elephant is very large.",
+          "2": [
+            "Very the elephant is large.",
+            "The large is elephant very.",
+            "The elephant very large is."
+          ],
+          "3": "The adjective phrase follows is.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: homework / finished / has / he / his",
+          "1": "He has finished his homework.",
+          "2": [
+            "Finished he has his homework.",
+            "His homework he has finished.",
+            "He his homework has finished."
+          ],
+          "3": "Present perfect uses has + finished.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: because / stayed / it / rained / we / home",
+          "1": "We stayed home because it rained.",
+          "2": [
+            "Because we it rained stayed home.",
+            "We because stayed it home rained.",
+            "Stayed home we because it."
+          ],
+          "3": "The main idea comes before the reason clause.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: should / plants / water / we / the",
+          "1": "We should water the plants.",
+          "2": [
+            "Should we plants water the.",
+            "Water we should plants the.",
+            "We the plants should water."
+          ],
+          "3": "Should comes before the base verb.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: tallest / is / tree / this / the",
+          "1": "This is the tallest tree.",
+          "2": [
+            "The tallest this is tree.",
+            "Is this tree the tallest.",
+            "This the tree is tallest."
+          ],
+          "3": "The natural sentence begins with This.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: carefully / road / cross / the / children / the",
+          "1": "The children cross the road carefully.",
+          "2": [
+            "Carefully the road children cross the.",
+            "The road the children carefully cross.",
+            "Cross carefully the children road the."
+          ],
+          "3": "The adverb carefully describes how they cross.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: friend / my / doctor / is / a",
+          "1": "My friend is a doctor.",
+          "2": [
+            "A doctor my friend is.",
+            "My is friend a doctor.",
+            "Friend my doctor a is."
+          ],
+          "3": "The possessive phrase My friend is the subject.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: stars / night / we / see / at",
+          "1": "We see stars at night.",
+          "2": [
+            "At stars we night see.",
+            "See we at night stars.",
+            "We at night see stars."
+          ],
+          "3": "The time phrase can come at the end.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: never / late / is / Sam",
+          "1": "Sam is never late.",
+          "2": [
+            "Never Sam late is.",
+            "Sam never is late.",
+            "Is Sam never late."
+          ],
+          "3": "Never comes before the adjective after is.",
+          "subtopic": "Sentence Rearrangement"
+        },
+        {
+          "0": "Arrange: library / books / many / has / the",
+          "1": "The library has many books.",
+          "2": [
+            "Many books has the library.",
+            "The many library has books.",
+            "Has the library many books."
+          ],
+          "3": "The library is the subject.",
+          "subtopic": "Sentence Rearrangement"
         }
       ]
     }
