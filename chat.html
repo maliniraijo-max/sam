@@ -61,9 +61,19 @@
         <form id="chatForm" class="family-compose">
           <button id="emojiBtn" class="compose-icon" type="button" title="Add emoji" aria-label="Add emoji">😊</button>
           <input id="messageInput" type="text" maxlength="2000" autocomplete="off" placeholder="Write a message to Mum & Dad…" aria-label="Message">
-          <button id="gifBtn" class="compose-icon" type="button" title="GIFs will be enabled with media setup" aria-label="GIFs">GIF</button>
+          <button id="gifBtn" class="compose-icon" type="button" title="Search animated GIFs" aria-label="Search animated GIFs">GIF</button><button id="stickerBtn" class="compose-icon sticker-top-btn" type="button" title="Stickers" aria-label="Open stickers">✨</button>
           <button class="send-btn" type="submit" aria-label="Send message">➤</button>
         </form>
+        <div id="gifPanel" class="chat-media-panel hidden">
+          <div class="media-panel-head"><strong>🎞️ Find a GIF</strong><button id="closeGifPanel" type="button">×</button></div>
+          <input id="gifSearch" type="search" placeholder="Search funny, animals, happy, wow…" autocomplete="off" aria-label="Search GIFs">
+          <div id="gifGrid" class="gif-grid"></div>
+        </div>
+        <div id="stickerPanel" class="chat-media-panel sticker-panel hidden">
+          <div class="media-panel-head"><strong>✨ Stickers</strong><button id="closeStickerPanel" type="button">×</button></div>
+          <div id="stickerGrid" class="sticker-grid"></div>
+        </div>
+        <div id="stickerStage" class="sticker-stage hidden" aria-live="polite"><div id="stickerLarge"></div></div>
         <div id="emojiTray" class="emoji-tray hidden" aria-label="Emoji choices">
           <button type="button">❤️</button><button type="button">😊</button><button type="button">😂</button><button type="button">🥰</button><button type="button">👍</button><button type="button">🙏</button><button type="button">🌈</button><button type="button">🌿</button><button type="button">⭐</button><button type="button">🦋</button><button type="button">🐰</button><button type="button">🫶</button>
         </div>
@@ -78,6 +88,6 @@
   </main>
 
   <footer>Private family space • Made for Sam ❤️</footer>
-  <script src="chat.js?v=20260925-001"></script>
+  <script src="chat.js?v=20261005-002"></script>
 </body>
 </html>
