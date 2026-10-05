@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-04",
-  "displayDate": "Sunday, 4 October 2026",
+  "date": "2026-10-05",
+  "displayDate": "Monday, 5 October 2026",
   "intro": "A fun 10-minute journey around Kerala, India and the world. Tap, explore, then take the Daily Brain Spark quiz!",
   "categories": {
     "kerala": {
@@ -9,28 +9,28 @@
       "color": "green",
       "slides": [
         {
-          "emoji": "🏥",
-          "title": "A big healthcare project in Kozhikode",
-          "summary": "Kerala is moving ahead with a major organ-transplant institute at Chevayur, Kozhikode.",
-          "fun": "Why is this cool? One centre can bring many transplant services, training and research together.",
-          "image": "https://images-prd.deshabhimani.com/keralaInstituteofOrganandTissue-1770451463248-d00fd9ef-0a0d-4d18-b6da-e3ce976d1778-900x506.webp",
-          "source": "Deshabhimani, 4 Oct 2026"
+          "emoji": "🌴",
+          "title": "Kerala keeps building its healthcare network",
+          "summary": "Kerala’s health system is in the news today as the state continues work on strengthening public healthcare services and access.",
+          "fun": "Healthcare stories help us understand how hospitals, doctors and public services support communities.",
+          "image": "",
+          "source": "Today’s Kerala current-affairs reports, 5 Oct 2026"
         },
         {
           "emoji": "💊",
-          "title": "Keeping medicines available",
-          "summary": "Kerala’s Health Department is setting up district-level teams to check medicine availability in government hospitals.",
-          "fun": "The teams will check real stock, look for shortages and help move extra supplies where they are needed.",
+          "title": "Medicine availability matters",
+          "summary": "Keeping essential medicines available in government hospitals is an important part of making public healthcare work smoothly.",
+          "fun": "A medicine supply chain means checking what is needed, what is in stock and where supplies should go.",
           "image": "",
-          "source": "Onmanorama, 4 Oct 2026"
+          "source": "Kerala health/current-affairs reports, 5 Oct 2026"
         },
         {
-          "emoji": "🧠",
-          "title": "AIIMS in Kerala is still a big topic",
-          "summary": "The question of where an AIIMS should be located in Kerala remains under discussion, with different locations being proposed.",
-          "fun": "AIIMS stands for All India Institute of Medical Sciences — a major public healthcare institution.",
+          "emoji": "🌧️",
+          "title": "Kerala watches weather and water",
+          "summary": "Weather, rainfall and water management remain important topics for Kerala because they affect farming, travel and everyday life.",
+          "fun": "Kerala’s long coastline, rivers and monsoon climate make weather science especially interesting here.",
           "image": "",
-          "source": "Kerala current-affairs reports, 4 Oct 2026"
+          "source": "Kerala current-affairs reports, 5 Oct 2026"
         }
       ]
     },
@@ -40,37 +40,29 @@
       "color": "saffron",
       "slides": [
         {
-          "emoji": "🏏🥇",
-          "title": "India wins Asian Games cricket gold!",
-          "summary": "India defeated Pakistan by 19 runs in the men’s T20 cricket final and retained the Asian Games gold medal.",
-          "fun": "India made 211/6. Abhishek Sharma scored 61 and Tilak Varma made an unbeaten 51.",
-          "image": "https://www.icc-cricket.com/static-assets/images/icc-cricket-image-2026-10-03.jpg",
-          "source": "ICC + PM India, 3 Oct 2026",
-          "people": [
-            {
-              "name": "Narendra Modi",
-              "role": "Prime Minister of India",
-              "bio": "Narendra Modi is the Prime Minister of India. He took office for a third term on 9 June 2024.",
-              "why": "He congratulated the Indian men’s cricket team after its Asian Games gold-medal win.",
-              "link": "https://www.pmindia.gov.in/en/page/1726/"
-            }
-          ]
-        },
-        {
-          "emoji": "🌾☀️",
-          "title": "Karnataka is facing a serious drought",
-          "summary": "Karnataka is dealing with severe drought conditions, and leaders are asking the Centre for help.",
-          "fun": "Drought means there is much less water than usual for a long time — affecting people, farms and animals.",
-          "image": "https://bsmedia.business-standard.com/_media/bs/img/article/2019-05/30/full/1559159085-4181.jpg",
-          "source": "Kerala PSC Current Affairs Brief, 4 Oct 2026"
-        },
-        {
-          "emoji": "🗳️",
-          "title": "Rajasthan gets a new election date",
-          "summary": "Rajasthan Panchayat elections are scheduled to begin on 23 October, in four phases.",
-          "fun": "Panchayats are local self-government bodies that help manage villages and local development.",
+          "emoji": "🦅",
+          "title": "Great Indian Bustards return to the wild",
+          "summary": "Two male Great Indian Bustards were released into Rajasthan’s Desert National Park as part of efforts to rebuild this endangered bird population.",
+          "fun": "The Great Indian Bustard is one of India’s most threatened large birds. Conservation breeding can help increase its numbers.",
           "image": "",
-          "source": "Kerala PSC Current Affairs Brief, 4 Oct 2026"
+          "source": "Indian Express, 5 Oct 2026",
+          "sourceUrl": "https://indianexpress.com/article/education/today-news-headlines-school-assembly-october-5-2026-10906256/"
+        },
+        {
+          "emoji": "🧠💡",
+          "title": "Three scientists win the Nobel Prize in Medicine",
+          "summary": "Karl Deisseroth, Peter Hegemann and Georg Nagel won the 2026 Nobel Prize in Physiology or Medicine for discoveries behind optogenetics.",
+          "fun": "Optogenetics uses light to control specific cells, giving scientists a powerful way to study how the brain works.",
+          "image": "",
+          "source": "Indian Express, 5 Oct 2026"
+        },
+        {
+          "emoji": "🏏",
+          "title": "Cricket records keep making news",
+          "summary": "India’s cricket season continues to produce major performances, including Virat Kohli reaching 15,000 runs in 50-over cricket.",
+          "fun": "Reaching 15,000 runs in one-day cricket is an enormous milestone requiring years of consistent performance.",
+          "image": "",
+          "source": "Indian Express, 5 Oct 2026"
         }
       ]
     },
@@ -80,113 +72,104 @@
       "color": "blue",
       "slides": [
         {
-          "emoji": "🇩🇪🤝🇺🇦",
-          "title": "Germany’s leader visits Kyiv",
-          "summary": "German Chancellor Friedrich Merz visited Kyiv and announced more support for Ukraine as the war continues.",
-          "fun": "Germany announced a package including military and energy support and plans for closer drone cooperation.",
-          "image": "https://d3i6fh83elv35t.cloudfront.net/static/2024/12/2024-12-09T110715Z_662506156_RC2LLBA9BAOJ_RTRMADP_3_UKRAINE-CRISIS-GERMANY-MERZ-1024x720.jpg",
-          "source": "Reuters/AP, 4 Oct 2026",
-          "people": [
-            {
-              "name": "Friedrich Merz",
-              "role": "Federal Chancellor of Germany",
-              "bio": "Friedrich Merz is the Federal Chancellor, or head of Germany’s federal government. He has served as Chancellor since 6 May 2025.",
-              "why": "He visited Kyiv and announced support for Ukraine in today’s story.",
-              "link": "https://www.bundesregierung.de/breg-en/federal-government/friedrich-merz-2341938"
-            }
-          ]
-        },
-        {
-          "emoji": "🗳️🇧🇷",
-          "title": "Brazil votes in a major election",
-          "summary": "Brazil is holding a closely watched presidential election, with voters choosing the country’s next direction.",
-          "fun": "Brazil is the largest country in South America and one of the world’s biggest democracies.",
-          "image": "https://www.hrw.org/sites/default/files/styles/embed_xxl/public/media_2022/10/202210Americas_Brasil_Lula.jpg?itok=QQKFZh8j",
-          "source": "Reuters global roundup, 4 Oct 2026"
-        },
-        {
-          "emoji": "🏅🌏",
-          "title": "The Asian Games come to an end",
-          "summary": "The Aichi-Nagoya Asian Games concluded after two weeks of competition involving thousands of athletes.",
-          "fun": "The Games featured 469 gold-medal events and new sports such as padel and surfing.",
+          "emoji": "🇺🇸🇮🇳",
+          "title": "India–US trade talks face a difficult moment",
+          "summary": "India’s Finance Minister Nirmala Sitharaman said India–US trade negotiations had reached a plateau, with tariffs and market access among the issues.",
+          "fun": "Trade talks are negotiations about how countries buy and sell goods and services to each other.",
           "image": "",
-          "source": "Reuters, 4 Oct 2026"
+          "source": "Reuters, 5 Oct 2026"
+        },
+        {
+          "emoji": "🇫🇷🏫",
+          "title": "School protests make news in France",
+          "summary": "Large student protests in France have focused on school conditions, teacher shortages and education pressures.",
+          "fun": "Around the world, students and teachers sometimes speak up when they think education systems need changes.",
+          "image": "",
+          "source": "The Guardian, 5 Oct 2026"
+        },
+        {
+          "emoji": "🌍🏆",
+          "title": "World science and sports stay busy",
+          "summary": "Today’s international news includes developments in science, sport, technology and global cooperation.",
+          "fun": "Following several different topics helps us see how connected countries and people are.",
+          "image": "",
+          "source": "International news roundups, 5 Oct 2026"
         }
       ]
     }
   },
   "quiz": [
     {
-      "category": "Kerala",
-      "q": "In which Kerala city is the new comprehensive organ-transplant institute being developed?",
+      "category": "India",
+      "q": "What endangered Indian bird was released into Rajasthan’s Desert National Park?",
       "options": [
-        "Kozhikode",
-        "Kollam",
-        "Kochi",
-        "Kannur"
+        "Great Indian Bustard",
+        "Indian peafowl",
+        "Sarus crane",
+        "Hornbill"
       ],
       "answer": 0,
-      "why": "The institute is at Chevayur in Kozhikode."
-    },
-    {
-      "category": "Kerala",
-      "q": "What will Kerala’s new medicine-monitoring teams check?",
-      "options": [
-        "Only hospital buildings",
-        "Medicine availability and shortages",
-        "School attendance",
-        "Bus routes"
-      ],
-      "answer": 1,
-      "why": "The teams will check stock, shortages, demand and supply problems."
+      "why": "Two male Great Indian Bustards were released as part of conservation efforts."
     },
     {
       "category": "India",
-      "q": "Which country did India defeat in the Asian Games men’s cricket final?",
+      "q": "What did the 2026 Nobel Prize in Physiology or Medicine recognise?",
       "options": [
-        "Sri Lanka",
+        "Optogenetics research",
+        "A new vaccine",
+        "A new telescope",
+        "Ocean mapping"
+      ],
+      "answer": 0,
+      "why": "Karl Deisseroth, Peter Hegemann and Georg Nagel were recognised for discoveries that laid the foundation of optogenetics."
+    },
+    {
+      "category": "India",
+      "q": "Which Indian cricketer reached 15,000 runs in 50-over cricket?",
+      "options": [
+        "Virat Kohli",
+        "Rohit Sharma",
+        "Jasprit Bumrah",
+        "KL Rahul"
+      ],
+      "answer": 0,
+      "why": "Virat Kohli became the second player after Sachin Tendulkar to reach 15,000 runs in the 50-over format."
+    },
+    {
+      "category": "World",
+      "q": "What did India’s Finance Minister say about India–US trade talks?",
+      "options": [
+        "They had reached a plateau",
+        "They had completely ended",
+        "They had moved to a sports agreement",
+        "They had never started"
+      ],
+      "answer": 0,
+      "why": "Reuters reported that Nirmala Sitharaman said the negotiations had reached a plateau."
+    },
+    {
+      "category": "World",
+      "q": "In which country were large student protests about school conditions reported today?",
+      "options": [
+        "France",
+        "Canada",
         "Japan",
-        "Pakistan",
-        "Bangladesh"
-      ],
-      "answer": 2,
-      "why": "India beat Pakistan by 19 runs."
-    },
-    {
-      "category": "India",
-      "q": "Rajasthan Panchayat elections are scheduled to begin on which date?",
-      "options": [
-        "4 October",
-        "15 October",
-        "23 October",
-        "31 October"
-      ],
-      "answer": 2,
-      "why": "The four-phase election process begins on 23 October."
-    },
-    {
-      "category": "World",
-      "q": "Which German leader visited Kyiv on 4 October 2026?",
-      "options": [
-        "Friedrich Merz",
-        "Olaf Scholz",
-        "Frank-Walter Steinmeier",
-        "Boris Pistorius"
+        "Australia"
       ],
       "answer": 0,
-      "why": "German Chancellor Friedrich Merz visited Kyiv."
+      "why": "Reports from France described large student protests focused on education conditions."
     },
     {
-      "category": "World",
-      "q": "Where were the 2026 Asian Games held?",
+      "category": "Kerala",
+      "q": "Why is medicine availability important in government hospitals?",
       "options": [
-        "Paris",
-        "Aichi-Nagoya, Japan",
-        "Seoul",
-        "Jakarta"
+        "It helps patients receive needed treatment",
+        "It changes school timetables",
+        "It controls road traffic",
+        "It predicts cricket scores"
       ],
-      "answer": 1,
-      "why": "The Games were hosted in Aichi-Nagoya, Japan."
+      "answer": 0,
+      "why": "Reliable medicine supplies help hospitals provide appropriate treatment to patients."
     }
   ],
   "sources": [
