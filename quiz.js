@@ -8,7 +8,7 @@ async function boot(){
 function renderHub(){
  const entries=Object.entries(DATA.categories);
  $("quizGrid").innerHTML=entries.map(([key,c])=>{
-   if(c.subtopics) return '<div class="quiz-topic-card quiz-science-card"><span class="quiz-topic-icon">'+esc(c.icon)+'</span><h2>'+esc(c.title)+'</h2><p>'+esc(c.description)+'</p><div class="science-subtopics">'+c.subtopics.map(s=>'<a class="science-subtopic" href="quiz-play.html?topic=science&subtopic='+encodeURIComponent(s.title)+'">'+esc(s.icon)+' '+esc(s.title)+' <b>→</b></a>').join("")+'</div><span class="quiz-topic-cta">Choose a quiz →</span></div>';
+   if(c.subtopics) return '<div class="quiz-topic-card quiz-science-card"><span class="quiz-topic-icon">'+esc(c.icon)+'</span><h2>'+esc(c.title)+'</h2><p>'+esc(c.description)+'</p><div class="science-subtopics">'+c.subtopics.map(s=>'<a class="science-subtopic" href="quiz-play.html?topic='+key+'&subtopic='+encodeURIComponent(s.title)+'">'+esc(s.icon)+' '+esc(s.title)+' <b>→</b></a>').join("")+'</div><span class="quiz-topic-cta">Choose a quiz →</span></div>';
    return '<a class="quiz-topic-card" href="quiz-play.html?topic='+esc(key)+'"><span class="quiz-topic-icon">'+esc(c.icon)+'</span><h2>'+esc(c.title)+'</h2><p>'+esc(c.description)+'</p><span class="quiz-topic-cta">Start today’s quiz →</span></a>';
  }).join("");
 }
