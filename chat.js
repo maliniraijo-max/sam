@@ -1,12 +1,9 @@
 (() => {
   const $ = id => document.getElementById(id);
-  const pinGate = $("pinGate");
   const chatApp = $("chatApp");
   const setupNotice = $("setupNotice");
   const messagesEl = $("messages");
   const pinForm = $("pinForm");
-  const pinInput = $("pinInput");
-  const pinError = $("pinError");
   const chatForm = $("chatForm");
   const messageInput = $("messageInput");
   const chatStatus = $("chatStatus");
@@ -14,7 +11,6 @@
   const connectionDot = $("connectionDot");
   const emojiTray = $("emojiTray");
 
-  let pin = sessionStorage.getItem("familyChatPin") || "";
   let pollTimer = null;
   let firstRender = true;
 
@@ -57,7 +53,7 @@
   }
 
   async function api(path, options = {}) {
-    const headers = Object.assign({ "Content-Type":"application/json", "X-Family-Pin":pin }, options.headers || {});
+    const headers = Object.assign({ "Content-Type":"application/json" }, options.headers || {});
     const response = await fetch(path, Object.assign({}, options, { headers }));
     let data = {};
     try { data = await response.json(); } catch (_) {}
@@ -77,11 +73,7 @@
       if (!data.configured) setupNotice.classList.remove("hidden");
     } catch (error) {
       if (error.status === 401) {
-        sessionStorage.removeItem("familyChatPin");
-        pin = "";
-        chatApp.classList.add("hidden");
-        pinGate.classList.remove("hidden");
-        showPinError("That PIN is not correct.");
+        setConnection(false, "Chat authorization failed");
         stopPolling();
         return;
       }
@@ -105,25 +97,6 @@
     if (pollTimer) clearInterval(pollTimer);
     pollTimer = null;
   }
-
-  function showPinError(text) {
-    pinError.textContent = text;
-    pinError.classList.remove("hidden");
-  }
-
-  pinForm.addEventListener("submit", async event => {
-    event.preventDefault();
-    const value = pinInput.value.trim();
-    if (!value) return;
-    pin = value;
-    sessionStorage.setItem("familyChatPin", pin);
-    pinError.classList.add("hidden");
-    pinGate.classList.add("hidden");
-    chatApp.classList.remove("hidden");
-    firstRender = true;
-    await loadMessages();
-    startPolling();
-  });
 
   chatForm.addEventListener("submit", async event => {
     event.preventDefault();
@@ -175,9 +148,6 @@
   $("stickerBtn").addEventListener("click",()=>{stickerPanel.classList.toggle("hidden");gifPanel.classList.add("hidden")});$("closeStickerPanel").addEventListener("click",()=>stickerPanel.classList.add("hidden"));
   stickerGrid.addEventListener("click",e=>{const b=e.target.closest('.sticker-tile');if(!b)return;const x=stickers[+b.dataset.sticker];stickerPanel.classList.add('hidden');stickerLarge.innerHTML='<div class="sticker-big-emoji">'+x[0]+'</div><strong>'+x[1]+'</strong><small>'+x[2]+'</small>';stickerStage.classList.remove('hidden');stickerStage.classList.add('sticker-playing');setTimeout(()=>{stickerStage.classList.remove('sticker-playing');setTimeout(()=>stickerStage.classList.add('hidden'),800)},60000);});
 
-  if (pin) {
-    pinGate.classList.add("hidden");
-    chatApp.classList.remove("hidden");
-    startPolling();
-  }
+  chatApp.classList.remove("hidden");
+  startPolling();
 })();
