@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6fbff">
+<title>Learn Math as Fun • Sam's Learning</title>
+<link rel="stylesheet" href="learn-math-fun.css?v=20261006-001">
+</head>
+<body>
+<header class="math-hero">
+  <a class="back-link" href="index.html">← Sam's Learning</a>
+  <div class="hero-orb">➗</div>
+  <p class="eyebrow">SAM'S MATH ADVENTURE</p>
+  <h1>Learn Math as Fun! 🚀</h1>
+  <p class="hero-sub">Solve • Explore • Battle • Unlock • Master</p>
+  <div class="hero-stats">
+    <div><span id="stars">0</span><small>⭐ Stars</small></div>
+    <div><span id="coins">0</span><small>🪙 Coins</small></div>
+    <div><span id="streak">0</span><small>🔥 Streak</small></div>
+  </div>
+</header>
+
+<main class="math-shell">
+  <section class="player-card">
+    <div class="avatar">🧙‍♂️</div>
+    <div class="player-copy"><span class="tiny-label">MATH EXPLORER</span><h2>Sam's Adventure</h2><p id="rank">Starter Explorer</p></div>
+    <div class="progress-box"><strong id="level">Level 1</strong><div class="xp-track"><i id="xpBar"></i></div><small id="xpText">0 / 100 XP</small></div>
+  </section>
+
+  <section class="quest-board">
+    <div class="section-head"><div><p class="eyebrow">TODAY'S ADVENTURE</p><h2>Choose a Mission</h2></div><span class="badge">🎯 3 missions</span></div>
+    <div class="mission-grid">
+      <button class="mission mission-blue" data-mode="fractions"><span class="mission-art">🍕➗</span><span><b>Fraction Forest</b><small>Parts • equivalent fractions • compare</small></span><em>+25 ⭐</em></button>
+      <button class="mission mission-purple" data-mode="number"><span class="mission-art">🔢🗺️</span><span><b>Number Mountain</b><small>Place value • factors • patterns</small></span><em>+25 ⭐</em></button>
+      <button class="mission mission-green" data-mode="geometry"><span class="mission-art">📐🏰</span><span><b>Shape Castle</b><small>Angles • shapes • perimeter</small></span><em>+25 ⭐</em></button>
+      <button class="mission mission-gold" data-mode="challenge"><span class="mission-art">⚡🧠</span><span><b>Brain Boss</b><small>Mixed maths challenge</small></span><em>+40 ⭐</em></button>
+    </div>
+  </section>
+
+  <section class="world-card">
+    <div class="world-map">
+      <div class="map-title"><span>🗺️</span><div><p class="eyebrow">THE MATH WORLD</p><h2>Sam's Map</h2></div></div>
+      <div class="path">
+        <div class="world-node active"><span>🌱</span><b>Starter Island</b><small>Unlocked</small></div>
+        <div class="path-line"></div>
+        <div class="world-node"><span>🌲</span><b>Fraction Forest</b><small>Mission ready</small></div>
+        <div class="path-line"></div>
+        <div class="world-node"><span>⛰️</span><b>Number Mountain</b><small>Mission ready</small></div>
+        <div class="path-line"></div>
+        <div class="world-node"><span>🏰</span><b>Shape Castle</b><small>Mission ready</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reward-card">
+    <div><p class="eyebrow">COLLECTION</p><h2>🏆 Math Treasure Chest</h2></div>
+    <div class="rewards">
+      <span title="First mission">🥇</span><span title="10 stars">⭐</span><span title="50 stars">💎</span><span title="100 stars">🦉</span><span title="Master">🚀</span>
+    </div>
+  </section>
+</main>
+
+<div id="gameModal" class="game-modal hidden" aria-hidden="true">
+  <div class="game-panel">
+    <div class="game-top"><div><span class="tiny-label" id="gameLabel">MISSION</span><h2 id="gameTitle">Math Mission</h2></div><button id="closeGame" class="close-btn">×</button></div>
+    <div class="battle-scene"><div id="heroAvatar">🧙‍♂️</div><div class="versus">VS</div><div id="enemy">🐲</div></div>
+    <div class="energy"><span>❤️</span><div><i id="energyBar"></i></div><b id="energyText">3 / 3</b></div>
+    <div class="question-card">
+      <p id="questionNumber">Question 1 of 5</p>
+      <h3 id="question">Ready?</h3>
+      <div id="options" class="options"></div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </div>
+    <div class="game-bottom"><span id="gameScore">0 ⭐</span><span id="gameProgress">1 / 5</span></div>
+  </div>
+</div>
+
+<div id="resultModal" class="game-modal hidden" aria-hidden="true">
+ <div class="result-panel">
+   <div class="result-emoji">🎉</div><p class="eyebrow">MISSION COMPLETE</p><h2 id="resultTitle">Amazing!</h2>
+   <p id="resultText"></p><div class="result-rewards"><span>⭐ <b id="earnedStars">0</b></span><span>🪙 <b id="earnedCoins">0</b></span><span>⚡ <b id="earnedXp">0</b> XP</span></div>
+   <button id="playAgain" class="primary-btn">Play another mission →</button><a href="index.html" class="secondary-btn">Back to Sam's Learning</a>
+ </div>
+</div>
+<script src="learn-math-fun.js?v=20261006-001"></script>
+</body>
+</html>
