@@ -242,6 +242,265 @@ const activityMap={
 ["When do we commemorate the passion and death of Jesus in the Holy Qurbana?","During Holy Mass, the Church remembers Jesus’ journey to Calvary and His sacrifice, especially in the Eucharistic celebration and the prayer in which the priest holds his hand like a cross."]
 ]};
 
+
+/* 360-degree chapter practice: varied, type-in, answer-reveal activities */
+const exerciseMap360={
+1:{
+A:{title:"Fill in the blanks",icon:"🧩",items:[
+["God promised a ___ even after sin entered human history.","Saviour"],
+["Balaam spoke about a ___ rising from Israel.","star"],
+["Angel ___ announced Jesus’ birth to Mary.","Gabriel"],
+["Jesus was born in ___ and laid in a manger.","Bethlehem"],
+["The wise men offered gold, ___ and myrrh.","frankincense"]
+]},
+B:{title:"One-word answers",icon:"🔎",items:[
+["Who announced Jesus’ birth to Mary?","Gabriel"],
+["Who ordered the census?","Augustus"],
+["Where was Jesus laid after His birth?","Manger"],
+["Who hurried to Bethlehem after hearing the angels?","Shepherds"],
+["What is the Syriac name for the Annunciation Season?","Subara"]
+]},
+C:{title:"Answer in one sentence",icon:"💬",items:[
+["Why did Mary and Joseph travel to Bethlehem?","They travelled to Bethlehem because Emperor Augustus had ordered a census."],
+["Why was Jesus laid in a manger?","Jesus was laid in a manger because there was no room for Mary and Joseph in the inn."],
+["What did the shepherds do after hearing the angel’s message?","They hurried to Bethlehem, saw Jesus and praised and glorified God."],
+["What did the wise men do when they found Jesus?","They knelt down, worshipped Jesus and offered Him gold, frankincense and myrrh."]
+]},
+D:{title:"Match the following",icon:"🔗",pairs:[
+["Balaam","Star and ruler rising from Israel"],["Gabriel","Announced Jesus’ birth to Mary"],["Bethlehem","Birthplace of Jesus"],["Shepherds","Heard the angelic announcement"],["Wise men","Offered gold, frankincense and myrrh"]
+]},
+E:{title:"Put the story in order",icon:"🪄",items:[
+["Mary receives the Annunciation","2"],["Jesus is born in Bethlehem","3"],["Wise men worship Jesus","5"],["Shepherds hear the angels","4"],["God’s promise of a Saviour","1"]
+]}
+},
+2:{
+A:{title:"Fill in the blanks",icon:"🧩",items:[
+["John the Baptist preached ___.","repentance"],
+["John baptized people in the River ___.","Jordan"],
+["The Holy Spirit descended like a ___.","dove"],
+["John called Jesus the ___ of God.","Lamb"],
+["Christ means the ___.","anointed"]
+]},
+B:{title:"One-word answers",icon:"🔎",items:[
+["Who prepared people to receive Jesus?","John"],
+["Which Person of the Trinity spoke from heaven?","Father"],
+["What feast is celebrated on January 6?","Deneha"],
+["What does Deneha mean?","Revelation"],
+["What is Jesus called in John 8:12?","Light"]
+]},
+C:{title:"Answer in one sentence",icon:"💬",items:[
+["Why was Jesus baptized by John?","Jesus was baptized to fulfil the Father’s plan and to begin His public mission."],
+["What happened when Jesus came out of the water?","The heavens opened, the Spirit descended like a dove and the Father’s voice was heard."],
+["How was the Holy Trinity revealed at Jesus’ baptism?","The Son was baptized, the Holy Spirit descended and the Father spoke from heaven."],
+["What did John mean by calling Jesus the Lamb of God?","John proclaimed that Jesus is the One who takes away the sin of the world."]
+]},
+D:{title:"Match the following",icon:"🔗",pairs:[
+["John the Baptist","Prepared people for Jesus"],["River Jordan","Place of John’s preaching and baptism"],["Dove","Form in which the Spirit descended"],["Deneha","Feast of Epiphany"],["Christ","The Anointed"]
+]},
+E:{title:"Put the baptism story in order",icon:"🪄",items:[
+["The Father speaks from heaven","4"],["John prepares the people","1"],["Jesus is baptized","2"],["The Spirit descends like a dove","3"],["John calls Jesus the Lamb of God","5"]
+]}
+},
+3:{
+A:{title:"Fill in the blanks",icon:"🧩",items:[
+["Jesus fasted and prayed for ___ days and ___ nights.","forty"],
+["Satan tempted Jesus to turn stones into ___.","bread"],
+["The second temptation was to ___ God.","test"],
+["Satan offered Jesus the ___ of the world.","kingdoms"],
+["Jesus overcame temptation through God’s Word, fasting and ___.","prayer"]
+]},
+B:{title:"One-word answers",icon:"🔎",items:[
+["Who tempted Jesus in the wilderness?","Satan"],
+["What food was Jesus tempted to make from stones?","Bread"],
+["What season prepares us for Easter?","Lent"],
+["Which Sunday begins Holy Week?","Palm"],
+["What is conversation with God called?","Prayer"]
+]},
+C:{title:"Answer in one sentence",icon:"💬",items:[
+["How did Jesus answer the first temptation?","Jesus answered with God’s Word that we do not live by bread alone but by every word from God."],
+["What was Satan asking Jesus to do in the second temptation?","Satan asked Jesus to throw Himself down from the temple and test God."],
+["What did Satan offer Jesus in the third temptation?","Satan offered Jesus the kingdoms of the world if Jesus would worship him."],
+["What does the lesson teach us about overcoming temptation?","Prayer, God’s Word, fasting, self-control and doing good strengthen us to resist temptation."]
+]},
+D:{title:"Match the following",icon:"🔗",pairs:[
+["First temptation","Turn stones into bread"],["Second temptation","Test God"],["Third temptation","Worship Satan for worldly kingdoms"],["Lent","Preparation for Easter"],["Holy Week","Begins with Palm Sunday"]
+]},
+E:{title:"Put the temptation story in order",icon:"🪄",items:[
+["Jesus chooses to worship God alone","5"],["Jesus enters the wilderness","1"],["Satan offers the kingdoms","4"],["Jesus is tempted to make bread","2"],["Jesus is tempted to test God","3"]
+]}
+},
+4:{
+A:{title:"Fill in the blanks",icon:"🧩",items:[
+["Jesus read from the scroll of the prophet ___.","Isaiah"],
+["Jesus proclaimed good news to the ___.","poor"],
+["Jesus promised liberation to those in ___.","bondage"],
+["Jesus proclaimed sight for the ___.","blind"],
+["Jesus revealed the ___ of God.","Kingdom"]
+]},
+B:{title:"One-word answers",icon:"🔎",items:[
+["Which prophet’s scroll did Jesus read?","Isaiah"],
+["What is the community Jesus reveals called?","Kingdom"],
+["Name one value of God’s Kingdom.","Justice"],
+["How many Gospels are there?","Four"],
+["Which Gospel tells of Jesus reading Isaiah at Nazareth?","Luke"]
+]},
+C:{title:"Answer in one sentence",icon:"💬",items:[
+["What did Jesus proclaim at Nazareth?","Jesus proclaimed good news to the poor, liberation to captives, sight to the blind, freedom to the oppressed and the Lord’s favour."],
+["What is the Kingdom of God?","It is a community where God is Father and people live as brothers and sisters in justice, peace, joy, love and sharing."],
+["How did Jesus bring total liberation?","He forgave sins, healed sickness and challenged spiritual blindness, injustice, exploitation and falsehood."],
+["How does the Church continue Jesus’ mission?","The Church continues His mission through prayer, service and works that bring God’s love and justice to people."]
+]},
+D:{title:"Match the following",icon:"🔗",pairs:[
+["Poor","Good news"],["People in bondage","Liberation"],["Blind","Sight"],["Oppressed","Freedom"],["Kingdom of God","Justice, peace, joy, love and sharing"]
+]},
+E:{title:"Build Jesus’ mission in order",icon:"🪄",items:[
+["Freedom for the oppressed","4"],["Good news to the poor","1"],["The year acceptable to the Lord","5"],["Sight for the blind","3"],["Liberation for those in bondage","2"]
+]}
+},
+5:{
+A:{title:"Fill in the blanks",icon:"🧩",items:[
+["At ___ Jesus changed water into wine.","Cana"],
+["Mary told the attendants, “Do whatever he ___ you.”","tells"],
+["Jesus calmed the great ___ on the Sea of Galilee.","storm"],
+["The man at Bethzatha had been ill for ___ years.","thirty-eight"],
+["Jesus raised ___ from the dead.","Lazarus"]
+]},
+B:{title:"One-word answers",icon:"🔎",items:[
+["Who told the attendants to obey Jesus?","Mary"],
+["Where did Jesus change water into wine?","Cana"],
+["Where did Jesus heal the man ill for thirty-eight years?","Bethzatha"],
+["Who was raised from the dead at Bethany?","Lazarus"],
+["What did Jesus reveal through His signs?","Glory"]
+]},
+C:{title:"Answer in one sentence",icon:"💬",items:[
+["What problem happened at the wedding in Cana?","The wedding family ran out of wine."],
+["What did Jesus do when the storm became dangerous?","Jesus rebuked the wind and sea and brought calm."],
+["What did Jesus say to Martha?","Jesus said, “I am the resurrection and the life.”"],
+["Why are Jesus’ miracles important?","His signs reveal His divine glory and call people to believe in Him."]
+]},
+D:{title:"Match the sign with its place",icon:"🔗",pairs:[
+["Water changed to wine","Cana"],["Storm calmed","Sea of Galilee"],["Man healed","Bethzatha"],["Lazarus raised","Bethany"],["“I am the resurrection and the life”","Jesus’ words to Martha"]
+]},
+E:{title:"Put the signs in order",icon:"🪄",items:[
+["Lazarus is raised","4"],["Water becomes wine","1"],["The man at Bethzatha is healed","3"],["The storm is calmed","2"]
+]}
+},
+6:{
+A:{title:"Fill in the blanks",icon:"🧩",items:[
+["The younger son left his ___ and went to a far country.","father"],
+["He wasted his property and later came to his ___.","senses"],
+["The father ran to his son and ___ him.","embraced"],
+["The shepherd searched for one lost ___.","sheep"],
+["There is great ___ in heaven when a sinner repents.","joy"]
+]},
+B:{title:"One-word answers",icon:"🔎",items:[
+["Who welcomed the returning son?","Father"],
+["What animal was lost in Jesus’ story?","Sheep"],
+["What object did the woman search for?","Coin"],
+["What should a sinner do after recognizing sin?","Repent"],
+["What fills heaven when a sinner repents?","Joy"]
+]},
+C:{title:"Answer in one sentence",icon:"💬",items:[
+["What happened before the younger son returned home?","He suffered, realized his mistake, repented and decided to return to his father."],
+["How did the father receive his returning son?","The father ran to him, embraced him and welcomed him home with joy."],
+["What do the lost sheep and lost coin teach us?","They show that God lovingly seeks the lost and rejoices when what is lost is found."],
+["What should we learn about judging others?","We should repent of our own sins, accept God’s mercy and avoid judging others harshly."]
+]},
+D:{title:"Match the story with its lesson",icon:"🔗",pairs:[
+["Prodigal son","Repentance and the Father’s mercy"],["Lost sheep","The shepherd searches until he finds it"],["Lost coin","Careful searching and joyful finding"],["Repentant sinner","Joy in heaven"],["Jesus’ forgiveness","Mercy instead of condemnation"]
+]},
+E:{title:"Put the mercy story in order",icon:"🪄",items:[
+["The father welcomes him","4"],["The son leaves home","1"],["The son realizes his mistake","3"],["The son wastes his share","2"],["The family celebrates his return","5"]
+]}
+},
+7:{
+A:{title:"Fill in the blanks",icon:"🧩",items:[
+["Isaiah says the servant was wounded for our ___.","transgressions"],
+["The bronze ___ was lifted up in the wilderness.","serpent"],
+["Jesus was lifted up on the ___ for our salvation.","cross"],
+["Jesus said, “When I am lifted up from the earth, I will draw all people to ___.”","myself"],
+["The suffering servant carries our wounds and ___.","pain"]
+]},
+B:{title:"One-word answers",icon:"🔎",items:[
+["Which prophet describes the suffering servant in Isaiah 52–53?","Isaiah"],
+["What was lifted on a pole in the wilderness?","Serpent"],
+["Where was Jesus lifted up?","Cross"],
+["Who was the suffering servant fulfilled in?","Jesus"],
+["What does Jesus offer through His suffering?","Salvation"]
+]},
+C:{title:"Answer in one or two sentences",icon:"💬",items:[
+["How did Jesus fulfil the suffering-servant prophecies?","Jesus accepted suffering, rejection and death and took upon Himself our wounds and pain for our salvation."],
+["Why is the bronze serpent a symbol of Jesus?","As the bronze serpent was lifted up so that people might live, Jesus was lifted up on the cross so that believers may receive life and salvation."],
+["What does Jesus’ cross mean for us?","The cross shows Jesus’ love and sacrifice and calls us to trust Him for salvation."],
+["How should disciples respond to people who suffer?","We should comfort those who suffer and serve them with love, remembering that Jesus took our wounds upon Himself."]
+]},
+D:{title:"Match the symbol or person with its meaning",icon:"🔗",pairs:[
+["Isaiah 53","The suffering servant prophecy"],["Bronze serpent","A symbol fulfilled in Jesus"],["Cross","Jesus’ saving sacrifice"],["Jesus","The suffering servant"],["Disciples","Comfort and serve those who suffer"]
+]},
+E:{title:"Follow the suffering-servant story",icon:"🪄",items:[
+["Jesus is raised on the cross","4"],["The people complain in the wilderness","1"],["God gives the bronze serpent","2"],["Jesus accepts suffering for salvation","3"],["Believers look to Jesus with hope","5"]
+]}
+},
+8:{
+A:{title:"Fill in the blanks",icon:"🧩",items:[
+["Jesus prayed at the Mount of ___.","Olives"],
+["Jesus said, “Not my will but yours be ___.”","done"],
+["Judas betrayed Jesus with a ___.","kiss"],
+["Peter denied Jesus ___ times.","three"],
+["Jesus died on the ___ for our salvation.","cross"]
+]},
+B:{title:"One-word answers",icon:"🔎",items:[
+["Who betrayed Jesus?","Judas"],
+["Who denied Jesus three times?","Peter"],
+["Who strengthened Jesus in Gethsemane?","Angel"],
+["Who said Jesus was innocent after His death?","Centurion"],
+["What day commemorates Jesus’ Passion and crucifixion?","Good Friday"]
+]},
+C:{title:"Answer in one or two sentences",icon:"💬",items:[
+["What did Jesus pray at Gethsemane?","Jesus prayed, “Father, if you are willing, remove this cup from me; yet, not my will but yours be done.”"],
+["What happened after Peter denied Jesus three times?","The cock crowed, Jesus looked at Peter, Peter remembered Jesus’ words and went out and wept bitterly."],
+["What happened on the journey to Calvary?","Jesus carried His cross, and Simon of Cyrene was made to help Him carry it."],
+["What did the centurion say after Jesus died?","The centurion said, “Truly this man was innocent.”"]
+]},
+D:{title:"Match the person with what happened",icon:"🔗",pairs:[
+["Judas","Betrayed Jesus with a kiss"],["Peter","Denied Jesus three times"],["Pilate","Handed Jesus over to be crucified"],["Simon of Cyrene","Helped carry the cross"],["Centurion","Declared Jesus innocent"]
+]},
+E:{title:"Put the Passion story in order",icon:"🪄",items:[
+["Jesus dies on the cross","6"],["Judas betrays Jesus","2"],["Jesus prays at Gethsemane","1"],["Peter denies Jesus","3"],["Jesus is taken before Pilate and mocked","4"],["Jesus journeys to Calvary","5"]
+]}
+}
+};
+
+const shuffleCopy=a=>a.slice().sort(()=>Math.random()-.5);
+const speech=t=>{
+  if("speechSynthesis" in window){
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(t);
+    u.lang="en-IN";u.rate=.84;u.pitch=1;
+    speechSynthesis.speak(u);
+  }
+};
+const practiceInput=(q,ans,placeholder)=>{
+  return '<div class="practice-item"><div class="practice-prompt"><button class="read-item" type="button" title="Read aloud" aria-label="Read aloud">🔊</button><span>'+esc(q)+'</span></div><input class="practice-input" type="text" placeholder="'+esc(placeholder||"Type your answer here…")+'"><button class="show-perfect" type="button">📖 Show answer</button><div class="perfect-answer">'+esc(ans)+'</div></div>';
+};
+const renderPracticeSet=(key,data,chapter)=>{
+  const title=data.title, icon=data.icon||"✏️";
+  if(key==="D"){
+    const rights=shuffleCopy(data.pairs.map(p=>p[1]));
+    const rows=data.pairs.map((p,i)=>{
+      const answerLetter=String.fromCharCode(65+rights.indexOf(p[1]));
+      return '<div class="match-practice-row"><div class="match-left"><b>'+(i+1)+'.</b><span>'+esc(p[0])+'</span></div><div class="match-right"><div class="match-options">'+rights.map((r,j)=>'<span><b>'+String.fromCharCode(65+j)+'.</b> '+esc(r)+'</span>').join("")+'</div><input class="practice-input match-input" type="text" maxlength="1" placeholder="Type A, B, C…"><button class="show-perfect" type="button">📖 Show answer</button><div class="perfect-answer">'+esc(answerLetter+" — "+p[1])+'</div></div></div>';
+    }).join("");
+    return '<section class="exercise-block exercise-match"><div class="exercise-heading"><span>'+icon+'</span><div><h3>Exercise '+key+' • '+esc(title)+'</h3><p>Type the letter of the correct match. The right-hand choices are shuffled each time.</p></div><button class="read-exercise" type="button">🔊 Read aloud</button></div><div class="match-practice">'+rows+'</div></section>';
+  }
+  if(key==="E"){
+    const shuffled=shuffleCopy(data.items);
+    return '<section class="exercise-block"><div class="exercise-heading"><span>'+icon+'</span><div><h3>Exercise '+key+' • '+esc(title)+'</h3><p>Type the correct order number beside each event.</p></div><button class="read-exercise" type="button">🔊 Read aloud</button></div><div class="practice-list">'+shuffled.map(x=>practiceInput(x[0],x[1],"Type 1, 2, 3…")).join("")+'</div></section>';
+  }
+  const instruction=key==="A"?"Type the missing word.":key==="B"?"Type one word only.":"Type a short, clear answer. You can look at the perfect answer whenever you want.";
+  return '<section class="exercise-block"><div class="exercise-heading"><span>'+icon+'</span><div><h3>Exercise '+key+' • '+esc(title)+'</h3><p>'+instruction+'</p></div><button class="read-exercise" type="button">🔊 Read aloud</button></div><div class="practice-list">'+data.items.map(x=>practiceInput(x[0],x[1],key==="B"?"One word…":key==="A"?"Missing word…":"Write your answer…")).join("")+'</div></section>';
+};
+
 const id=Number(new URLSearchParams(location.search).get("lesson")||document.body.dataset.lesson||1),lesson=lessons[id]||lessons[1];
 const area=document.getElementById("lessonArea"),progress=document.getElementById("lessonProgress"),bar=document.getElementById("progressBar");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -258,8 +517,8 @@ const activities=activityMap[id]||[];
 area.innerHTML=
 '<section class="study-card story-card"><div class="section-tag">📖 FIRST • LEARN THE STORY</div><h2>Easy Chapter Story</h2><p class="story-lead">Read these parts in order. The language is simpler, but the important teaching points, names, events and meaning of the chapter are kept.</p><div class="story-parts">'+story+'</div><div class="memory-strip"><b>🧠 Remember the flow:</b> '+esc(lesson.flow.join(" → "))+'</div></section>'+
 '<section class="study-card terms-card"><div class="section-tag">🧠 SECOND • IMPORTANT WORDS</div><h2>Words You Should Know</h2><div class="terms-grid">'+terms+'</div></section>'+
-'<section class="study-card exercises-card"><div class="section-tag">✍️ THIRD • CHAPTER ACTIVITY</div><h2>Let’s Find Out the Answer</h2><p class="section-help">These questions bring in the important exercises and teaching points from the chapter. Sam does <b>not</b> have to type or attempt anything. Tap <b>Show perfect answer</b> whenever you want to see the answer.</p><div class="activity-list">'+activities.map((a,i)=>'<article class="activity-item"><div class="activity-no">'+(i+1)+'</div><div class="activity-body"><h3>'+esc(a[0])+'</h3><button class="show-activity-answer" type="button">📖 Show perfect answer</button><div class="activity-answer">'+esc(a[1])+'</div></div></article>').join("")+'</div></section>'+
-'<nav class="chapter-nav"><a class="nav-btn" href="'+(id>1?"catechism-quiz.html?lesson="+(id-1):"#")+'" '+(id===1?'aria-disabled="true"':'')+'>← Previous Chapter</a><a class="all-chapters" href="catechism.html">All 8 Chapters</a><a class="nav-btn" href="'+(id<8?"catechism-quiz.html?lesson="+(id+1):"#")+'" '+(id===8?'aria-disabled="true"':'')+'>Next Chapter →</a></nav>';
+'<section class="study-card exercises-card"><div class="section-tag">✍️ THIRD • TEXTBOOK Q&amp;A</div><h2>Important Chapter Questions</h2><p class="section-help">These are the textbook-aligned question answers already prepared for this chapter. The perfect answer can be shown at any time.</p><div class="activity-list">'+activities.map((a,i)=>'<article class="activity-item"><div class="activity-no">'+(i+1)+'</div><div class="activity-body"><h3>'+esc(a[0])+'</h3><button class="show-activity-answer" type="button">📖 Show perfect answer</button><div class="activity-answer">'+esc(a[1])+'</div></div></article>').join("")+'</div></section>'+
+'<section class="study-card practice-lab"><div class="section-tag">🎯 FOURTH • 360° PRACTICE LAB</div><h2>Learn It in Many Different Ways</h2><p class="section-help">Every exercise covers a different part of the chapter. Type your answer in the box, then use <b>Show answer</b> to see the exact answer. There is <b>no right/wrong message</b>, so Sam can learn by comparing and rewriting.</p><div class="exercise-stack">'+Object.entries(exerciseMap360[id]||{}).map(([k,v])=>renderPracticeSet(k,v,id)).join("")+'</div></section><nav class="chapter-nav"><nav class="chapter-nav"><a class="nav-btn" href="'+(id>1?"catechism-quiz.html?lesson="+(id-1):"#")+'" '+(id===1?'aria-disabled="true"':'')+'>← Previous Chapter</a><a class="all-chapters" href="catechism.html">All 8 Chapters</a><a class="nav-btn" href="'+(id<8?"catechism-quiz.html?lesson="+(id+1):"#")+'" '+(id===8?'aria-disabled="true"':'')+'>Next Chapter →</a></nav>';
 area.querySelectorAll(".show-activity-answer").forEach(btn=>btn.addEventListener("click",()=>btn.nextElementSibling.classList.toggle("visible")));
 }
 render();
