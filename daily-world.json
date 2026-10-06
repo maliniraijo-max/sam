@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-05",
-  "displayDate": "Monday, 5 October 2026",
-  "intro": "A fun 10-minute journey around Kerala, India and the world. Tap, explore, then take the Daily Brain Spark quiz!",
+  "date": "2026-10-06",
+  "displayDate": "Tuesday, 6 October 2026",
+  "intro": "A fun 10-minute journey around Kerala, India and the world. Read the stories, discover a fun fact, then take the Daily Brain Spark quiz!",
   "categories": {
     "kerala": {
       "title": "Kerala",
@@ -9,28 +9,31 @@
       "color": "green",
       "slides": [
         {
-          "emoji": "🌴",
-          "title": "Kerala keeps building its healthcare network",
-          "summary": "Kerala’s health system is in the news today as the state continues work on strengthening public healthcare services and access.",
-          "fun": "Healthcare stories help us understand how hospitals, doctors and public services support communities.",
-          "image": "",
-          "source": "Today’s Kerala current-affairs reports, 5 Oct 2026"
-        },
-        {
-          "emoji": "💊",
-          "title": "Medicine availability matters",
-          "summary": "Keeping essential medicines available in government hospitals is an important part of making public healthcare work smoothly.",
-          "fun": "A medicine supply chain means checking what is needed, what is in stock and where supplies should go.",
-          "image": "",
-          "source": "Kerala health/current-affairs reports, 5 Oct 2026"
+          "emoji": "🐘",
+          "title": "Kerala says goodbye to a beloved temple elephant",
+          "summary": "Pallatt Brahmadathan, a 54-year-old temple elephant known for Kerala festivals, died after being struck by lightning. He had been a familiar presence at temple festivals and had carried the sacred thidambu at Thrissur Pooram.",
+          "fun": "Brahmadathan was brought to Kerala from Arunachal Pradesh 28 years ago and was remembered for his calm nature.",
+          "image": "https://images.indianexpress.com/2026/10/Pallatt-Brahmadathan.jpg?w=1024",
+          "source": "The Indian Express, 6 Oct 2026",
+          "sourceUrl": "https://indianexpress.com/article/india/kerala-elephant-pallatt-brahmadathan-dies-10908152/"
         },
         {
           "emoji": "🌧️",
-          "title": "Kerala watches weather and water",
-          "summary": "Weather, rainfall and water management remain important topics for Kerala because they affect farming, travel and everyday life.",
-          "fun": "Kerala’s long coastline, rivers and monsoon climate make weather science especially interesting here.",
+          "title": "Rain watch continues across Kerala",
+          "summary": "The India Meteorological Department is warning of rain, thunderstorms and gusty winds in Kerala. Several districts, including Ernakulam, Idukki, Thrissur, Palakkad, Malappuram and Wayanad, are under a yellow alert for 6 October.",
+          "fun": "A yellow alert is a reminder to stay weather-aware and take care during heavy rain and thunderstorms.",
           "image": "",
-          "source": "Kerala current-affairs reports, 5 Oct 2026"
+          "source": "Kerala Kaumudi / IMD weather report, 4 Oct 2026, updated for 6 Oct",
+          "sourceUrl": "https://www.keralakaumudi.com/en/KERALA/GENERAL/kerala-rainfall-warning-in-ernakulam-1811026"
+        },
+        {
+          "emoji": "🌉",
+          "title": "New bridges are coming to Vaduthala",
+          "summary": "A current Kerala affairs report says construction of the Vaduthala railway overbridge and the Perandoor-Vaduthala bridge is set to begin on 7 October. The projects are intended to improve connections and ease travel in the area.",
+          "fun": "Bridges are examples of civil engineering: engineers design structures that help people cross roads, railways or water safely.",
+          "image": "",
+          "source": "Kerala PSC Current Affairs Brief, 6 Oct 2026",
+          "sourceUrl": "https://keralapscstudymaterialandexam.com/current-affairs/2026-10-06/"
         }
       ]
     },
@@ -40,29 +43,31 @@
       "color": "saffron",
       "slides": [
         {
-          "emoji": "🦅",
-          "title": "Great Indian Bustards return to the wild",
-          "summary": "Two male Great Indian Bustards were released into Rajasthan’s Desert National Park as part of efforts to rebuild this endangered bird population.",
-          "fun": "The Great Indian Bustard is one of India’s most threatened large birds. Conservation breeding can help increase its numbers.",
+          "emoji": "🔬",
+          "title": "India wins big at the Astronomy & Astrophysics Olympiad",
+          "summary": "India's five-member team returned from the 19th International Olympiad on Astronomy and Astrophysics in Hanoi with four gold medals and one silver. The event ran from 25 September to 5 October.",
+          "fun": "Astronomy studies objects and events in space, while astrophysics uses physics to understand how the universe works.",
           "image": "",
-          "source": "Indian Express, 5 Oct 2026",
-          "sourceUrl": "https://indianexpress.com/article/education/today-news-headlines-school-assembly-october-5-2026-10906256/"
+          "source": "Akashvani News / current-affairs report, 6 Oct 2026",
+          "sourceUrl": "https://gknow.in/current-affairs-6-october-2026/"
         },
         {
-          "emoji": "🧠💡",
-          "title": "Three scientists win the Nobel Prize in Medicine",
-          "summary": "Karl Deisseroth, Peter Hegemann and Georg Nagel won the 2026 Nobel Prize in Physiology or Medicine for discoveries behind optogenetics.",
-          "fun": "Optogenetics uses light to control specific cells, giving scientists a powerful way to study how the brain works.",
+          "emoji": "🔐",
+          "title": "India demonstrates a free-space quantum key link",
+          "summary": "India has demonstrated a 5.56-kilometre free-space quantum key distribution link between BISAG-N and IIT Gandhinagar. The technology explores highly secure ways of sharing encryption keys.",
+          "fun": "Quantum key distribution uses ideas from quantum physics to help detect attempts to secretly interfere with a key-sharing process.",
           "image": "",
-          "source": "Indian Express, 5 Oct 2026"
+          "source": "Daily Current Affairs, 6 Oct 2026",
+          "sourceUrl": "https://www.freejobalert.com/articles/daily-current-affairs-6-october-2026-10455"
         },
         {
-          "emoji": "🏏",
-          "title": "Cricket records keep making news",
-          "summary": "India’s cricket season continues to produce major performances, including Virat Kohli reaching 15,000 runs in 50-over cricket.",
-          "fun": "Reaching 15,000 runs in one-day cricket is an enormous milestone requiring years of consistent performance.",
+          "emoji": "🏔️",
+          "title": "Mountain Guardian 2026 begins in Uttarakhand",
+          "summary": "The Indian Army's Mountain Guardian 2026 exercise began on 5 October at Chaubattia, Uttarakhand, and is scheduled through 18 October. It focuses on practising skills for high-altitude mountain conditions.",
+          "fun": "High-altitude areas can be cold, steep and oxygen-poor, so people working there need special training and equipment.",
           "image": "",
-          "source": "Indian Express, 5 Oct 2026"
+          "source": "Daily Current Affairs, 6 Oct 2026",
+          "sourceUrl": "https://www.freejobalert.com/articles/daily-current-affairs-6-october-2026-10455"
         }
       ]
     },
@@ -72,113 +77,149 @@
       "color": "blue",
       "slides": [
         {
-          "emoji": "🇺🇸🇮🇳",
-          "title": "India–US trade talks face a difficult moment",
-          "summary": "India’s Finance Minister Nirmala Sitharaman said India–US trade negotiations had reached a plateau, with tariffs and market access among the issues.",
-          "fun": "Trade talks are negotiations about how countries buy and sell goods and services to each other.",
+          "emoji": "🧊🔬",
+          "title": "A 'ghost particle' helps win the Physics Nobel",
+          "summary": "Francis Halzen won the 2026 Nobel Prize in Physics for pioneering the detection of high-energy neutrinos with the IceCube observatory at the South Pole. Neutrinos are tiny particles that rarely interact with matter.",
+          "fun": "IceCube uses about a cubic kilometre of Antarctic ice and thousands of sensors to catch clues from neutrinos arriving from space.",
           "image": "",
-          "source": "Reuters, 5 Oct 2026"
+          "source": "Reuters, 6 Oct 2026",
+          "sourceUrl": "https://www.reuters.com/science/francis-halzen-wins-2026-nobel-prize-physics-2026-10-06/",
+          "people": [
+            {
+              "name": "Francis Halzen",
+              "role": "Belgian-American physicist",
+              "bio": "Francis Halzen is a physicist known for leading the IceCube neutrino observatory project at the South Pole.",
+              "why": "He received the 2026 Nobel Prize in Physics for pioneering high-energy neutrino detection.",
+              "link": "https://www.nobelprize.org/prizes/physics/2026/"
+            }
+          ]
         },
         {
-          "emoji": "🇫🇷🏫",
-          "title": "School protests make news in France",
-          "summary": "Large student protests in France have focused on school conditions, teacher shortages and education pressures.",
-          "fun": "Around the world, students and teachers sometimes speak up when they think education systems need changes.",
+          "emoji": "💡🧠",
+          "title": "Scientists honoured for using light to study the brain",
+          "summary": "Karl Deisseroth, Peter Hegemann and Georg Nagel received the 2026 Nobel Prize in Physiology or Medicine for discoveries that made optogenetics possible. Optogenetics lets scientists use light to control specific nerve cells.",
+          "fun": "The method gives researchers a precise way to switch certain nerve cells on or off and study how brain circuits work.",
           "image": "",
-          "source": "The Guardian, 5 Oct 2026"
+          "source": "Reuters, 5 Oct 2026",
+          "sourceUrl": "https://www.reuters.com/business/healthcare-pharmaceuticals/deisseroth-hegemann-nagelwin-2026-nobel-medicine-prize-2026-10-05/",
+          "people": [
+            {
+              "name": "Karl Deisseroth",
+              "role": "American scientist",
+              "bio": "Karl Deisseroth is a scientist and physician whose work helped develop optogenetics, a light-based method for studying nerve cells.",
+              "why": "He shared the 2026 Nobel Prize in Physiology or Medicine.",
+              "link": "https://www.nobelprize.org/prizes/medicine/2026/"
+            }
+          ]
         },
         {
-          "emoji": "🌍🏆",
-          "title": "World science and sports stay busy",
-          "summary": "Today’s international news includes developments in science, sport, technology and global cooperation.",
-          "fun": "Following several different topics helps us see how connected countries and people are.",
+          "emoji": "🌌🛰️",
+          "title": "NASA shows a giant auroral oval from space",
+          "summary": "NASA's Astronomy Picture of the Day for 6 October features a complete auroral oval observed by the SMILE spacecraft using ultraviolet light. The mission studies how the solar wind interacts with Earth's magnetic environment.",
+          "fun": "A complete auroral oval is too large to see as one circle from the ground, but a spacecraft high above Earth can observe it.",
           "image": "",
-          "source": "International news roundups, 5 Oct 2026"
+          "source": "NASA Science, 6 Oct 2026",
+          "sourceUrl": "https://science.nasa.gov/image-article/apod-2026-october-6-a-complete-auroral-oval-from-smile/"
         }
       ]
     }
   },
   "quiz": [
     {
-      "category": "India",
-      "q": "What endangered Indian bird was released into Rajasthan’s Desert National Park?",
+      "q": "Which Kerala temple elephant was remembered in today's news?",
       "options": [
-        "Great Indian Bustard",
-        "Indian peafowl",
-        "Sarus crane",
-        "Hornbill"
+        "Pallatt Brahmadathan",
+        "Airavata",
+        "Gajendra",
+        "Brahmaputra"
       ],
       "answer": 0,
-      "why": "Two male Great Indian Bustards were released as part of conservation efforts."
+      "why": "The 54-year-old temple elephant Pallatt Brahmadathan died after being struck by lightning."
     },
     {
-      "category": "India",
-      "q": "What did the 2026 Nobel Prize in Physiology or Medicine recognise?",
+      "q": "Which weather condition is Kerala watching on 6 October?",
       "options": [
-        "Optogenetics research",
-        "A new vaccine",
-        "A new telescope",
-        "Ocean mapping"
+        "Rain and thunderstorms",
+        "Snowstorms",
+        "Dust storms only",
+        "Heat waves only"
       ],
       "answer": 0,
-      "why": "Karl Deisseroth, Peter Hegemann and Georg Nagel were recognised for discoveries that laid the foundation of optogenetics."
+      "why": "IMD forecasts rain, thunderstorms and gusty winds in parts of Kerala."
     },
     {
-      "category": "India",
-      "q": "Which Indian cricketer reached 15,000 runs in 50-over cricket?",
+      "q": "What kind of structure is being built at Vaduthala to improve travel?",
       "options": [
-        "Virat Kohli",
-        "Rohit Sharma",
-        "Jasprit Bumrah",
-        "KL Rahul"
+        "Bridges",
+        "Dams",
+        "Airports",
+        "Tunnels under the sea"
       ],
       "answer": 0,
-      "why": "Virat Kohli became the second player after Sachin Tendulkar to reach 15,000 runs in the 50-over format."
+      "why": "The current-affairs report says the Vaduthala railway overbridge and Perandoor-Vaduthala bridge are set to begin construction."
     },
     {
-      "category": "World",
-      "q": "What did India’s Finance Minister say about India–US trade talks?",
+      "q": "How many gold medals did India's five-member IOAA team win?",
       "options": [
-        "They had reached a plateau",
-        "They had completely ended",
-        "They had moved to a sports agreement",
-        "They had never started"
+        "Four",
+        "One",
+        "Two",
+        "Five"
       ],
       "answer": 0,
-      "why": "Reuters reported that Nirmala Sitharaman said the negotiations had reached a plateau."
+      "why": "The team returned with four gold medals and one silver."
     },
     {
-      "category": "World",
-      "q": "In which country were large student protests about school conditions reported today?",
+      "q": "What does QKD stand for in the India science story?",
       "options": [
-        "France",
-        "Canada",
-        "Japan",
-        "Australia"
+        "Quantum Key Distribution",
+        "Quick Knowledge Database",
+        "Quantum Kite Design",
+        "Key Quality Device"
       ],
       "answer": 0,
-      "why": "Reports from France described large student protests focused on education conditions."
+      "why": "QKD is a method for sharing encryption keys using quantum principles."
     },
     {
-      "category": "Kerala",
-      "q": "Why is medicine availability important in government hospitals?",
+      "q": "Where is Mountain Guardian 2026 being held?",
       "options": [
-        "It helps patients receive needed treatment",
-        "It changes school timetables",
-        "It controls road traffic",
-        "It predicts cricket scores"
+        "Chaubattia, Uttarakhand",
+        "Kochi, Kerala",
+        "Jaipur, Rajasthan",
+        "Chennai, Tamil Nadu"
       ],
       "answer": 0,
-      "why": "Reliable medicine supplies help hospitals provide appropriate treatment to patients."
+      "why": "The exercise began at Chaubattia in Uttarakhand."
+    },
+    {
+      "q": "What particle helped Francis Halzen win the Physics Nobel?",
+      "options": [
+        "Neutrino",
+        "Electron",
+        "Proton",
+        "Photon"
+      ],
+      "answer": 0,
+      "why": "The Nobel recognised pioneering work on high-energy neutrino detection."
+    },
+    {
+      "q": "What does NASA's SMILE mission study in today's story?",
+      "options": [
+        "The solar wind and Earth's magnetic environment",
+        "Deep-sea fish",
+        "Volcanoes on Venus",
+        "Plant roots"
+      ],
+      "answer": 0,
+      "why": "SMILE studies how the solar wind interacts with Earth's magnetosphere."
     }
   ],
   "sources": [
+    "The Indian Express",
+    "IMD weather reporting / Kerala Kaumudi",
+    "Kerala PSC Current Affairs Brief",
+    "Akashvani News",
     "Reuters",
-    "Associated Press",
-    "ICC",
-    "Prime Minister’s Office of India",
-    "Onmanorama",
-    "Deshabhimani",
-    "Indian Express/current-affairs reports"
+    "NASA Science"
   ]
 }
