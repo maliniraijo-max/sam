@@ -520,5 +520,44 @@ area.innerHTML=
 '<section class="study-card exercises-card"><div class="section-tag">✍️ THIRD • TEXTBOOK Q&amp;A</div><h2>Important Chapter Questions</h2><p class="section-help">These are the textbook-aligned question answers already prepared for this chapter. The perfect answer can be shown at any time.</p><div class="activity-list">'+activities.map((a,i)=>'<article class="activity-item"><div class="activity-no">'+(i+1)+'</div><div class="activity-body"><h3>'+esc(a[0])+'</h3><button class="show-activity-answer" type="button">📖 Show perfect answer</button><div class="activity-answer">'+esc(a[1])+'</div></div></article>').join("")+'</div></section>'+
 '<section class="study-card practice-lab"><div class="section-tag">🎯 FOURTH • 360° PRACTICE LAB</div><h2>Learn It in Many Different Ways</h2><p class="section-help">Every exercise covers a different part of the chapter. Type your answer in the box, then use <b>Show answer</b> to see the exact answer. There is <b>no right/wrong message</b>, so Sam can learn by comparing and rewriting.</p><div class="exercise-stack">'+Object.entries(exerciseMap360[id]||{}).map(([k,v])=>renderPracticeSet(k,v,id)).join("")+'</div></section><nav class="chapter-nav"><nav class="chapter-nav"><a class="nav-btn" href="'+(id>1?"catechism-quiz.html?lesson="+(id-1):"#")+'" '+(id===1?'aria-disabled="true"':'')+'>← Previous Chapter</a><a class="all-chapters" href="catechism.html">All 8 Chapters</a><a class="nav-btn" href="'+(id<8?"catechism-quiz.html?lesson="+(id+1):"#")+'" '+(id===8?'aria-disabled="true"':'')+'>Next Chapter →</a></nav>';
 area.querySelectorAll(".show-activity-answer").forEach(btn=>btn.addEventListener("click",()=>btn.nextElementSibling.classList.toggle("visible")));
+
+// Practice-lab controls: answers are always available, and every read-aloud button uses
+// the browser's built-in speech synthesis. No answer checking is performed.
+const speakText=(text)=>{
+  if(!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(String(text).replace(/\s+/g," ").trim());
+  u.lang="en-IN";
+  u.rate=0.82;
+  u.pitch=1;
+  window.speechSynthesis.speak(u);
+};
+
+area.querySelectorAll(".show-perfect").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const answer=btn.nextElementSibling;
+    if(answer) answer.classList.toggle("visible");
+  });
+});
+
+area.querySelectorAll(".read-item").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const item=btn.closest(".practice-item");
+    if(!item) return;
+    const prompt=item.querySelector(".practice-prompt span");
+    const answer=item.querySelector(".perfect-answer");
+    speakText((prompt?prompt.textContent:"")+(answer&&answer.classList.contains("visible")?" Answer: "+answer.textContent:""));
+  });
+});
+
+area.querySelectorAll(".read-exercise").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const block=btn.closest(".exercise-block");
+    if(!block) return;
+    const heading=block.querySelector("h3");
+    const prompts=[...block.querySelectorAll(".practice-prompt span,.match-left span")].map(x=>x.textContent);
+    speakText((heading?heading.textContent+" ":"")+prompts.join(". "));
+  });
+});
 }
 render();
