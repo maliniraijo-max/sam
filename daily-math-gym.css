@@ -1,0 +1,55 @@
+.math-gym-page{min-height:100vh;background:linear-gradient(180deg,#eef9fb,#fffdf7)}
+.math-gym-shell{max-width:980px;margin:auto;padding:18px 17px 55px}
+.math-gym-top{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.math-gym-top>a{color:#347e9d;text-decoration:none;font-weight:850}
+.math-gym-brand{text-align:center}.math-gym-brand span{display:block;font-size:9px;letter-spacing:.16em;font-weight:950;color:#718695}
+.math-gym-brand strong{font-size:19px;color:#294255}.math-gym-date{font-size:11px;font-weight:850;color:#718695}
+.math-gym-hero{text-align:center;padding:30px 10px 22px}
+.gym-badge{display:inline-block;padding:7px 11px;border-radius:999px;background:#fff4cf;border:1px solid #eadb9f;color:#816824;font-size:10px;font-weight:950;letter-spacing:.12em}
+.math-gym-hero h1{margin:12px 0 8px;font-size:clamp(34px,7vw,58px);line-height:1.02;color:#243d50;letter-spacing:-.035em}
+.math-gym-hero>p{max-width:700px;margin:0 auto;color:#657b88;line-height:1.55;font-size:16px}
+.gym-principle{display:inline-block;margin-top:17px;padding:13px 18px;border-radius:18px;background:rgba(255,255,255,.9);border:1px solid #dcebef;box-shadow:0 9px 25px rgba(31,71,87,.07);color:#466372}
+.gym-parent-note{font-size:11px!important;margin-top:12px!important;color:#89979d!important}
+.gym-progress-wrap{display:flex;gap:7px;justify-content:center;align-items:center;margin:8px 0 17px;flex-wrap:wrap}
+.gym-progress-dot{width:10px;height:10px;border-radius:50%;background:#dce7ea}.gym-progress-dot.active{background:#347e9d;box-shadow:0 0 0 4px rgba(52,126,157,.12)}.gym-progress-dot.done{background:#76ad91}
+.gym-stage{background:#fff;border:1px solid #dce9ed;border-radius:28px;padding:24px;box-shadow:0 18px 55px rgba(31,71,87,.10)}
+.gym-stage-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.gym-stage-kicker{font-size:10px;font-weight:950;letter-spacing:.13em;color:#78909b;margin:0 0 7px}
+.gym-stage h2{margin:0;color:#28475a;font-size:25px;line-height:1.25}.gym-counter{font-size:11px;font-weight:900;color:#718792;white-space:nowrap}
+.gym-instruction{margin:10px 0 0;color:#5f7481;line-height:1.5}
+.pattern-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+.pattern-card{min-height:125px;border-radius:19px;background:#f6fbfc;border:1px solid #dcecef;padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.pattern-card .fraction{font-size:30px;font-weight:950;color:#28495c;line-height:1}
+.fraction-stack{display:inline-flex;flex-direction:column;align-items:center;min-width:56px;vertical-align:middle}
+.fraction-stack .num{border-bottom:3px solid #496a7a;padding:0 6px 4px}
+.fraction-stack .den{padding:4px 6px 0}
+.pattern-card small{margin-top:9px;color:#82939b;font-size:10px}
+.equal-row{display:flex;justify-content:center;align-items:center;gap:13px;flex-wrap:wrap;margin:22px 0}
+.equal-sign{font-size:27px;font-weight:950;color:#78919e}.same-pill{padding:8px 12px;border-radius:999px;background:#eef8f2;color:#377052;font-weight:900;font-size:12px}
+.gym-question{padding:18px;border-radius:21px;background:#f7fbfd;border:1px solid #dcebef;margin-top:18px}
+.gym-question h3{margin:0 0 12px;color:#29475a;font-size:19px;line-height:1.4}
+.answer-options{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.answer-btn{border:1px solid #d1e0e5;background:#fff;border-radius:14px;padding:13px;text-align:left;font:inherit;color:#405d6b;font-weight:750;cursor:pointer;transition:.15s}
+.answer-btn:hover{border-color:#79adbe;background:#f5fbfc}.answer-btn:disabled{cursor:default}
+.answer-btn.correct{background:#edf8f1;border-color:#a9d4b7;color:#286743}.answer-btn.wrong{background:#fff4f2;border-color:#e2bbb4;color:#934b42}
+.gym-feedback{min-height:23px;margin-top:12px;font-size:13px;font-weight:800;line-height:1.45;color:#647983}
+.gym-feedback.good{color:#2d704b}.gym-feedback.try{color:#8b554e}
+.gym-input-row{display:flex;justify-content:center;gap:9px;align-items:center;flex-wrap:wrap;margin:18px 0}
+.gym-input{width:95px;padding:12px 9px;border:2px solid #d5e4e8;border-radius:13px;text-align:center;font-size:21px;font-weight:900;color:#29485a;outline:none;background:#fff}
+.gym-input:focus{border-color:#78afc0}
+.gym-check,.gym-next{border:0;border-radius:13px;padding:12px 17px;font-weight:900;cursor:pointer}
+.gym-check{background:#347e9d;color:#fff}.gym-next{background:#eaf5f7;color:#356174}
+.gym-next-wrap{text-align:center;margin-top:18px}.gym-next.hidden{display:none}
+.observe-box{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:19px 0}
+.observe-item{padding:16px;border-radius:18px;background:#fff8df;border:1px solid #efdfad;text-align:center}
+.observe-item strong{display:block;color:#725e24;font-size:12px;margin-bottom:8px}.observe-item span{font-size:25px;font-weight:950;color:#3d5968}
+.pattern-strip{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0;padding:18px;border-radius:21px;background:linear-gradient(135deg,#f2fbff,#f7fbf4);border:1px solid #dcebea}
+.strip-frac{font-size:24px;font-weight:950;color:#315267}.strip-arrow{font-size:19px;color:#8aa0aa}
+.gym-complete{text-align:center;padding:20px 8px}.gym-complete .big{font-size:52px}.gym-complete h2{font-size:30px;color:#29475a;margin:7px 0}.gym-complete p{color:#6a7f8a;line-height:1.5}
+.gym-discovery{display:grid;grid-template-columns:65px 1fr;gap:16px;margin-top:18px;padding:23px;border-radius:25px;background:linear-gradient(135deg,#eef9f3,#fff9e8);border:1px solid #dbe8dc;box-shadow:0 13px 38px rgba(44,81,61,.08)}
+.discovery-icon{width:58px;height:58px;border-radius:18px;background:#fff;display:grid;place-items:center;font-size:31px;box-shadow:0 5px 15px rgba(50,80,60,.08)}
+.gym-kicker{margin:0 0 5px;font-size:10px;letter-spacing:.14em;font-weight:950;color:#688374}.gym-discovery h2{margin:0;color:#294a3c}.gym-discovery>div>p:not(.gym-kicker){color:#60786c;line-height:1.5}
+.discovery-choices{display:grid;gap:8px;margin-top:12px}.discovery-choice{border:1px solid #cfe0d4;background:#fff;border-radius:14px;padding:12px;text-align:left;font:inherit;color:#466356;font-weight:750;cursor:pointer}.discovery-choice:hover{background:#f7fbf8}.discovery-choice.correct{background:#edf8f1;border-color:#a9d4b7;color:#286743}.discovery-choice.wrong{background:#fff4f2;border-color:#e2bbb4;color:#934b42}
+.math-gym-footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px;color:#82929a;font-size:11px;text-align:center}.math-gym-footer span:last-child{font-weight:850}
+.hidden{display:none!important}
+@media(max-width:650px){.math-gym-top{flex-wrap:wrap}.math-gym-brand{order:-1;width:100%;text-align:left}.math-gym-stage{padding:17px}.pattern-grid{grid-template-columns:repeat(2,1fr)}.answer-options{grid-template-columns:1fr}.observe-box{grid-template-columns:1fr}.gym-discovery{grid-template-columns:1fr}.discovery-icon{width:52px;height:52px}.gym-stage-head{flex-direction:column}.math-gym-date{align-self:flex-end}}
