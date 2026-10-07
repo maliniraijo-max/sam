@@ -1,130 +1,133 @@
 /*
- DAILY MATH GYM — MANUAL CONTENT
- Today: Equivalent Fractions
- This version teaches through a visual story before asking questions.
+ DAILY MATH GYM — MANUAL TOPIC LIBRARY
+ Equivalent Fractions is preserved as a saved simulation.
+ Adding Like Fractions is today's second pattern-training simulation.
 */
-const GYM={
- date:"2026-10-07",
- title:"Equivalent Fractions",
- intro:"We are going to discover a fraction pattern by watching the same amount get split into smaller equal pieces.",
- stages:[
-  {kicker:"STORY 1 • SEE IT",title:"Meet one half",instruction:"Imagine a chocolate bar. One half is shaded. It is one piece out of two.",kind:"visual",num:1,den:2,action:"Split each piece"},
-  {kicker:"STORY 2 • SPLIT IT",title:"Watch the numbers change",instruction:"Split every piece into two equal pieces. Watch BOTH numbers.",kind:"split",num:1,den:2,action:"Split each piece"},
-  {kicker:"STORY 3 • NOTICE",title:"Same amount. More pieces.",instruction:"Look at the three fractions together. The bar has not gained chocolate — we only made smaller equal pieces.",kind:"notice",num:4,den:8,action:null},
-  {kicker:"BUILD 1 • YOU TRY",title:"Build 1/2 → ?",instruction:"If BOTH numbers are doubled, what fraction do we make?",kind:"input",fromNum:1,fromDen:2,answerNum:2,answerDen:4},
-  {kicker:"BUILD 2 • YOU TRY AGAIN",title:"Build 2/4 → ?",instruction:"Double BOTH numbers again. What fraction comes next?",kind:"input",fromNum:2,fromDen:4,answerNum:4,answerDen:8},
-  {kicker:"BUILD 3 • GENERATE",title:"Make your own equivalent fraction",instruction:"Start with 3/5. Double the numerator and double the denominator.",kind:"input",fromNum:3,fromDen:5,answerNum:6,answerDen:10}
- ],
- discovery:{
-  text:"Now say the pattern in your own words.",
-  prompts:[
-   {q:"When we split every piece into TWO, what happens to the numerator?",answers:["It doubles","It stays the same"],correct:0},
-   {q:"When we split every piece into TWO, what happens to the denominator?",answers:["It doubles","It becomes smaller"],correct:0},
-   {q:"If 1/2 becomes 2/4, what happened to the amount shaded?",answers:["It stayed the same","It became twice as much"],correct:0}
-  ]
+const TOPICS={
+ equivalent:{
+  label:"Equivalent Fractions",icon:"🟨",date:"2026-10-07",
+  intro:"Watch the same amount get split into smaller equal pieces. Then use the pattern to generate equivalent fractions.",
+  stages:[
+   {k:"STORY 1 • SEE IT",title:"Meet one half",instruction:"Imagine a chocolate bar. One half is shaded. It is one piece out of two.",kind:"split",n:1,d:2},
+   {k:"STORY 2 • SPLIT IT",title:"Watch the numbers change",instruction:"Split every piece into two equal pieces. Watch BOTH numbers.",kind:"split",n:1,d:2},
+   {k:"STORY 3 • NOTICE",title:"Same amount. More pieces.",instruction:"Look at the three fractions together. We have not added chocolate. We only made smaller equal pieces.",kind:"notice"},
+   {k:"BUILD 1 • YOU TRY",title:"Build 1/2 → ?",instruction:"If BOTH numbers are doubled, what fraction do we make?",kind:"input",fn:1,fd:2,an:2,ad:4},
+   {k:"BUILD 2 • YOU TRY AGAIN",title:"Build 2/4 → ?",instruction:"Double BOTH numbers again. What fraction comes next?",kind:"input",fn:2,fd:4,an:4,ad:8},
+   {k:"BUILD 3 • GENERATE",title:"Make your own equivalent fraction",instruction:"Start with 3/5. Double the numerator and double the denominator.",kind:"input",fn:3,fd:5,an:6,ad:10}
+  ],
+  discovery:{
+   text:"Now say the pattern you discovered.",
+   prompts:[
+    ["When every piece is split into TWO, what happens to the numerator?",["It doubles","It stays the same"],0],
+    ["When every piece is split into TWO, what happens to the denominator?",["It doubles","It becomes smaller"],0],
+    ["If 1/2 becomes 2/4, what happened to the amount shaded?",["It stayed the same","It became twice as much"],0]
+   ],
+   final:"Same amount. More equal pieces. To generate an equivalent fraction, multiply the numerator and denominator by the same number."
+  }
+ },
+ adding:{
+  label:"Adding Like Fractions",icon:"🍕",date:"2026-10-07",
+  intro:"Two friends share pizza. Watch what happens when we combine pieces that are the same size.",
+  stages:[
+   {k:"STORY 1 • SEE IT",title:"One quarter of a pizza",instruction:"A pizza is cut into 4 equal pieces. One piece is shaded.",kind:"pizza",a:1,b:4},
+   {k:"STORY 2 • ADD IT",title:"A friend brings two more quarters",instruction:"The pieces are the SAME SIZE. We can count them together.",kind:"add",a:1,b:4,c:2},
+   {k:"STORY 3 • NOTICE",title:"Count the pieces — keep the bottom",instruction:"We now have three quarter-pieces. The denominator stays 4 because the pieces are still quarters.",kind:"noticeAdd"},
+   {k:"BUILD 1 • YOU TRY",title:"1/4 + 2/4 = ?",instruction:"Count the same-sized pieces. Add the top numbers.",kind:"inputAdd",a:1,b:2,d:4,an:3},
+   {k:"BUILD 2 • YOU TRY AGAIN",title:"2/5 + 1/5 = ?",instruction:"These are fifths. Count how many fifths you have altogether.",kind:"inputAdd",a:2,b:1,d:5,an:3},
+   {k:"BUILD 3 • GENERATE",title:"4/7 + 2/7 = ?",instruction:"The pieces are sevenths. Add the numerators and keep the denominator.",kind:"inputAdd",a:4,b:2,d:7,an:6}
+  ],
+  discovery:{
+   text:"Now explain the pattern in your own words.",
+   prompts:[
+    ["When we add like fractions, what happens to the numerator?",["We add the numerators","We add the denominators"],0],
+    ["In 1/4 + 2/4, why does the 4 stay?",["The pieces are still fourths","Because 1 + 2 = 4"],0],
+    ["What is 3/4 in the pizza story?",["Three quarter-sized pieces","Three whole pizzas"],0]
+   ],
+   final:"For like fractions, the pieces have the same size. Add the numerators and keep the denominator: 1/4 + 2/4 = 3/4."
+  }
  }
 };
-const $=id=>document.getElementById(id);
-let stageIndex=0,discoveryIndex=0;
-function fraction(n,d){return '<span class="fraction-stack"><span class="num">'+n+'</span><span class="den">'+d+'</span></span>';}
-function pieces(n,d){
- let html='<div class="fraction-visual" aria-label="'+n+' shaded pieces out of '+d+'">';
- for(let i=0;i<d;i++) html+='<span class="piece '+(i<n?'shaded':'')+'"></span>';
- return html+'</div>';
-}
-function renderProgress(){
- $("gymProgress").innerHTML=GYM.stages.map((_,i)=>'<span class="gym-progress-dot '+(i<stageIndex?"done":i===stageIndex?"active":"")+'"></span>').join("");
-}
-function header(s){
- return '<div class="gym-stage-head"><div><p class="gym-stage-kicker">'+s.kicker+'</p><h2>'+s.title+'</h2><p class="gym-instruction">'+s.instruction+'</p></div><span class="gym-counter">'+(stageIndex+1)+' / '+GYM.stages.length+'</span></div>';
-}
-function nextButton(){return '<div class="gym-next-wrap"><button id="nextStage" class="gym-next hidden">Next →</button></div>';}
-function renderStage(){
- renderProgress();
- const s=GYM.stages[stageIndex];
- let html=header(s);
- if(s.kind==="visual"){
-  html+='<div class="story-visual">'+pieces(s.num,s.den)+'<div class="big-fraction">'+fraction(s.num,s.den)+'</div><div class="same-amount">ONE HALF OF THE BAR IS SHADED</div></div>';
-  html+='<button id="splitBtn" class="split-action">✂️ '+s.action+'</button><div id="stageFeedback" class="gym-feedback"></div>';
- }else if(s.kind==="split"){
-  html+='<div class="story-visual">'+pieces(s.num,s.den)+'<div class="big-fraction">'+fraction(s.num,s.den)+'</div><div class="same-amount">Watch the pieces — then split them.</div></div>';
-  html+='<button id="splitBtn" class="split-action">✂️ '+s.action+'</button><div id="stageFeedback" class="gym-feedback"></div>';
- }else if(s.kind==="notice"){
-  html+='<div class="comparison-story"><div>'+pieces(1,2)+'<strong>1 / 2</strong></div><div class="story-arrow">→</div><div>'+pieces(2,4)+'<strong>2 / 4</strong></div><div class="story-arrow">→</div><div>'+pieces(4,8)+'<strong>4 / 8</strong></div></div>';
-  html+='<div class="notice-callout">👀 <b>1/2 → 2/4 → 4/8</b><br>Each time, the top number doubles AND the bottom number doubles.</div><div class="gym-feedback good">The amount shaded stayed the same. We changed how many equal pieces we used to describe it.</div>';
- }else if(s.kind==="input"){
-  html+='<div class="build-visual">'+pieces(s.fromNum,s.fromDen)+'<div class="build-equation">'+fraction(s.fromNum,s.fromDen)+' <span>→</span> <b>double BOTH numbers</b> <span>→</span> <span class="question-fraction">?</span></div></div>';
-  html+='<div class="gym-question"><h3>Build the new fraction yourself.</h3><div class="gym-input-row"><input id="numInput" class="gym-input" inputmode="numeric" aria-label="numerator" placeholder="numerator"><span class="equal-sign">/</span><input id="denInput" class="gym-input" inputmode="numeric" aria-label="denominator" placeholder="denominator"><button id="inputCheck" class="gym-check">Check my fraction</button></div><div id="stageFeedback" class="gym-feedback"></div></div>';
- }
- html+=nextButton();
- $("gymStage").innerHTML=html;
- const next=$("nextStage");
- if(next){
-   next.textContent = stageIndex===GYM.stages.length-1 ? "Finish →" : "Next slide →";
-   if(s.kind==="notice") next.classList.remove("hidden");
- }
 
- if(s.kind==="visual"||s.kind==="split") attachSplit(s);
- if(s.kind==="input") attachInput(s);
- $("nextStage").onclick=()=>{stageIndex++; if(stageIndex<GYM.stages.length)renderStage(); else finishStory();};
+const $=id=>document.getElementById(id);
+let topicKey="equivalent",stageIndex=0,discoveryIndex=0;
+
+function active(){return TOPICS[topicKey]}
+function fraction(n,d){return '<span class="fraction-stack"><span class="num">'+n+'</span><span class="den">'+d+'</span></span>'}
+function pieces(n,d,extra=""){
+ let h='<div class="fraction-visual" style="--piece-count:'+d+'" aria-label="'+n+' shaded pieces out of '+d+'">';
+ for(let i=0;i<d;i++)h+='<span class="piece '+(i<n?"shaded ":"")+'"></span>';
+ return h+'</div>'
 }
-function attachSplit(s){
- $("splitBtn").onclick=()=>{
-  const fb=$("stageFeedback");
-  let nextN=s.num*2,nextD=s.den*2;
-  $("gymStage").classList.add("gym-reveal");
-  const visual=document.querySelector(".story-visual");
-  visual.innerHTML=pieces(nextN,nextD)+'<div class="big-fraction">'+fraction(nextN,nextD)+'</div><div class="same-amount">The shaded pieces AND all pieces doubled.</div>';
-  $("splitBtn").disabled=true;
-  fb.innerHTML='🔎 Look: <b>'+s.num+' → '+nextN+'</b> and <b>'+s.den+' → '+nextD+'</b>. Both numbers doubled, but the shaded amount stayed the same.';
-  fb.className="gym-feedback good";
-  $("nextStage").classList.remove("hidden");
- };
-}
-function attachInput(s){
- $("inputCheck").onclick=()=>{
-  const n=Number($("numInput").value),d=Number($("denInput").value),fb=$("stageFeedback");
-  if(n===s.answerNum&&d===s.answerDen){
-   fb.innerHTML='✓ You generated it! '+s.fromNum+' → '+n+' and '+s.fromDen+' → '+d+'. <b>Both doubled.</b>';
-   fb.className="gym-feedback good"; $("inputCheck").disabled=true; $("nextStage").classList.remove("hidden");
-  }else{
-   fb.innerHTML='👀 Go back to the pattern: <b>double the top AND double the bottom</b>. Then try again.';
-   fb.className="gym-feedback try";
-  }
- };
-}
-function finishStory(){
- renderProgress();
- $("gymStage").innerHTML='<div class="gym-complete"><div class="big">🧠✨</div><h2>Now you generate it.</h2><p>You watched the pieces split, noticed both numbers doubling, and then made the next fraction yourself.</p><button id="discoveryBtn" class="gym-next">Show me the 3-question check →</button></div>';
- $("gymDiscovery").classList.remove("hidden");
- $("discoveryBtn").onclick=()=>renderDiscovery();
-}
-function renderDiscovery(){
- const d=GYM.discovery,p=d.prompts[discoveryIndex];
- $("discoveryText").textContent=d.text;
- $("discoveryChoices").innerHTML='<div class="story-question"><strong>Question '+(discoveryIndex+1)+' of '+d.prompts.length+'</strong><h3>'+p.q+'</h3><div class="discovery-choices">'+p.answers.map((x,i)=>'<button class="discovery-choice" data-i="'+i+'">'+x+'</button>').join("")+'</div><div id="discoveryFeedback" class="gym-feedback"></div></div>';
- [...document.querySelectorAll(".discovery-choice")].forEach((b,i)=>b.onclick=()=>{
-  if(i===p.correct){
-   b.classList.add("correct");$("discoveryFeedback").innerHTML='✓ You noticed it. <b>'+p.answers[p.correct]+'.</b>';
-   $("discoveryFeedback").className="gym-feedback good";
-   setTimeout(()=>{discoveryIndex++; if(discoveryIndex<d.prompts.length)renderDiscovery(); else finishDiscovery();},500);
-  }else{
-   b.classList.add("wrong");$("discoveryFeedback").innerHTML='Look at the picture again. Watch what happens to both numbers when every piece is split into two.';
-   $("discoveryFeedback").className="gym-feedback try";
-   setTimeout(()=>b.classList.remove("wrong"),600);
-  }
+function renderTopics(){
+ $("gymTopics").innerHTML=Object.entries(TOPICS).map(([key,t])=>'<button type="button" class="gym-topic '+(key===topicKey?"selected":"")+'" data-topic="'+key+'">'+t.icon+' '+t.label+'</button>').join("");
+ [...document.querySelectorAll(".gym-topic")].forEach(b=>b.onclick=()=>{
+  if(b.dataset.topic===topicKey)return;
+  topicKey=b.dataset.topic;stageIndex=0;discoveryIndex=0;
+  $("gymDiscovery").classList.add("hidden");
+  renderAll();
  });
 }
+function renderProgress(){
+ const t=active();
+ $("gymProgress").innerHTML=t.stages.map((_,i)=>'<span class="gym-progress-dot '+(i<stageIndex?"done":i===stageIndex?"active":"")+'"></span>').join("");
+}
+function header(s){
+ return '<div class="gym-stage-head"><div><p class="gym-stage-kicker">'+s.k+'</p><h2>'+s.title+'</h2><p class="gym-instruction">'+s.instruction+'</p></div><span class="gym-counter">'+(stageIndex+1)+' / '+active().stages.length+'</span></div>'
+}
+function nextButton(){return '<div class="gym-next-wrap"><button type="button" id="nextStage" class="gym-next">Next slide →</button></div>'}
+function renderStage(){
+ const s=active().stages[stageIndex]; renderProgress(); let h=header(s);
+ if(s.kind==="split"){
+  h+='<div class="story-visual">'+pieces(s.n,s.d)+'<div class="big-fraction">'+fraction(s.n,s.d)+'</div><div class="same-amount">Watch the pieces — then split every piece into two.</div></div><button type="button" id="splitBtn" class="split-action">✂️ Split each piece</button><div id="stageFeedback" class="gym-feedback"></div>';
+ }else if(s.kind==="notice"){
+  h+='<div class="comparison-story"><div>'+pieces(1,2)+'<strong>1 / 2</strong></div><div class="story-arrow">→</div><div>'+pieces(2,4)+'<strong>2 / 4</strong></div><div class="story-arrow">→</div><div>'+pieces(4,8)+'<strong>4 / 8</strong></div></div><div class="notice-callout">👀 <b>1/2 → 2/4 → 4/8</b><br>Both the top and bottom numbers double.</div><div class="gym-feedback good">Same amount. More equal pieces.</div>';
+ }else if(s.kind==="input"){
+  h+='<div class="build-visual">'+pieces(s.fn,s.fd)+'<div class="build-equation">'+fraction(s.fn,s.fd)+' <span>→</span> <b>double BOTH numbers</b> <span>→</span> <span class="question-fraction">?</span></div></div><div class="gym-question"><h3>Build the new fraction yourself.</h3><div class="gym-input-row"><input id="numInput" class="gym-input" inputmode="numeric" placeholder="numerator" aria-label="numerator"><span class="equal-sign">/</span><input id="denInput" class="gym-input" inputmode="numeric" placeholder="denominator" aria-label="denominator"><button type="button" id="inputCheck" class="gym-check">Check my fraction</button></div><div id="stageFeedback" class="gym-feedback"></div></div>';
+ }else if(s.kind==="pizza"){
+  h+='<div class="pizza-story">'+pieces(1,4)+'<div class="big-fraction">'+fraction(1,4)+'</div><div class="same-amount">🍕 One quarter = one piece out of four</div></div>';
+ }else if(s.kind==="add"){
+  h+='<div class="addition-story"><div class="add-side"><span>Friend A</span>'+pieces(1,4)+'<b>1/4</b></div><div class="plus">+</div><div class="add-side"><span>Friend B</span>'+pieces(2,4)+'<b>2/4</b></div></div><div class="combine-arrow">↓ Combine the same-sized pieces ↓</div><div id="combinedPizza" class="combined-pizza">'+pieces(0,4)+'</div><button type="button" id="combineBtn" class="split-action">🍕 Combine the pieces</button><div id="stageFeedback" class="gym-feedback"></div>';
+ }else if(s.kind==="noticeAdd"){
+  h+='<div class="addition-equation">'+fraction(1,4)+' <b>+</b> '+fraction(2,4)+' <b>=</b> '+fraction(3,4)+'</div><div class="notice-callout">👀 We counted <b>1 quarter + 2 quarters = 3 quarters.</b><br>The bottom stays 4 because the pieces are still quarters.</div><div class="pizza-count">'+pieces(3,4)+'</div><div class="gym-feedback good">Like-sized pieces can be counted together.</div>';
+ }else if(s.kind==="inputAdd"){
+  h+='<div class="addition-equation">'+fraction(s.a,s.d)+' <b>+</b> '+fraction(s.b,s.d)+' <b>=</b> <span class="question-fraction">?</span></div><div class="gym-question"><h3>How many '+s.d+'ths do you have?</h3><div class="gym-input-row"><input id="numInput" class="gym-input" inputmode="numeric" placeholder="numerator" aria-label="answer numerator"><span class="equal-sign">/</span><span class="gym-fixed-den">'+s.d+'</span><button type="button" id="inputCheck" class="gym-check">Check</button></div><div id="stageFeedback" class="gym-feedback"></div></div>';
+ }
+ h+=nextButton(); $("gymStage").innerHTML=h;
+ $("nextStage").onclick=()=>{stageIndex++;if(stageIndex<active().stages.length)renderStage();else finishStory()};
+ if(s.kind==="split")attachSplit(s); if(s.kind==="input")attachInput(s); if(s.kind==="add")attachAdd(s); if(s.kind==="inputAdd")attachAddInput(s);
+}
+function attachSplit(s){
+ $("splitBtn").onclick=()=>{const nn=s.n*2,nd=s.d*2;document.querySelector(".story-visual").innerHTML=pieces(nn,nd)+'<div class="big-fraction">'+fraction(nn,nd)+'</div><div class="same-amount"><b>'+s.n+' → '+nn+'</b> and <b>'+s.d+' → '+nd+'</b>. Both doubled.</div>';$("splitBtn").disabled=true;$("stageFeedback").innerHTML='🔎 Look at BOTH numbers: they doubled together. The amount did not change.';$("stageFeedback").className="gym-feedback good"};
+}
+function attachInput(s){
+ $("inputCheck").onclick=()=>{const n=Number($("numInput").value),d=Number($("denInput").value);if(n===s.an&&d===s.ad){$("stageFeedback").innerHTML='✓ You generated it. Both numbers doubled.';$("stageFeedback").className="gym-feedback good";$("inputCheck").disabled=true}else{$("stageFeedback").innerHTML='👀 Look at the pattern: double the top AND double the bottom.';$("stageFeedback").className="gym-feedback try"}}
+}
+function attachAdd(s){
+ $("combineBtn").onclick=()=>{ $("combinedPizza").innerHTML=pieces(s.a+s.c,s.b);$("combineBtn").disabled=true;$("stageFeedback").innerHTML='🔎 Count them: 1 quarter + 2 quarters = 3 quarters. We counted pieces of the same size.';$("stageFeedback").className="gym-feedback good";}
+}
+function attachAddInput(s){
+ $("inputCheck").onclick=()=>{const n=Number($("numInput").value);if(n===s.an){$("stageFeedback").innerHTML='✓ You counted the pieces correctly: '+s.a+' + '+s.b+' = '+n+' '+s.d+'ths.';$("stageFeedback").className="gym-feedback good";$("inputCheck").disabled=true}else{$("stageFeedback").innerHTML='👀 Count the same-sized pieces. Add the top numbers and keep '+s.d+' on the bottom.';$("stageFeedback").className="gym-feedback try"}}
+}
+function finishStory(){
+ $("gymDiscovery").classList.remove("hidden");discoveryIndex=0;renderDiscovery();window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
+}
+function renderDiscovery(){
+ const d=active().discovery,p=d.prompts[discoveryIndex];
+ $("discoveryText").textContent=d.text;
+ $("discoveryChoices").innerHTML='<div class="story-question"><strong>UNDERSTANDING • '+(discoveryIndex+1)+' / '+d.prompts.length+'</strong><h3>'+p[0]+'</h3><div class="discovery-choices">'+p[1].map((x,i)=>'<button type="button" class="discovery-choice" data-i="'+i+'">'+x+'</button>').join("")+'</div><div id="discoveryFeedback" class="gym-feedback"></div></div>';
+ [...document.querySelectorAll(".discovery-choice")].forEach((b,i)=>b.onclick=()=>{if(i===p[2]){b.classList.add("correct");$("discoveryFeedback").textContent="✓ You found the pattern.";$("discoveryFeedback").className="gym-feedback good";setTimeout(()=>{discoveryIndex++;if(discoveryIndex<d.prompts.length)renderDiscovery();else finishDiscovery()},450)}else{b.classList.add("wrong");$("discoveryFeedback").textContent=topicKey==="adding"?"Look at the pizza pieces again. They are the same size.":"Look at both numbers in the picture again.";$("discoveryFeedback").className="gym-feedback try";setTimeout(()=>b.classList.remove("wrong"),600)}});
+}
 function finishDiscovery(){
- $("discoveryText").textContent="You found the rule by watching the pattern.";
- $("discoveryChoices").innerHTML='<div class="final-rule"><div class="rule-visual">'+fraction(1,2)+' <span>→</span> '+fraction(2,4)+' <span>→</span> '+fraction(4,8)+'</div><h2>Same amount. More equal pieces.</h2><p>To generate an equivalent fraction, multiply the numerator and denominator by the same number. Today we used ×2.</p><div class="rule-memory">🧠 1/2 → double top + double bottom → 2/4 → 4/8</div></div>';
- $("discoveryFeedback").textContent="Pattern workout complete.";
+ const d=active().discovery;
+ $("discoveryText").textContent="Now you can explain the idea.";
+ $("discoveryChoices").innerHTML='<div class="final-rule"><div class="rule-visual">'+d.final+'</div><p>This is the part to remember — because you discovered it before seeing the rule.</p></div>';
+ $("discoveryFeedback").textContent="Understanding check complete.";
  $("discoveryFeedback").className="gym-feedback good";
 }
-function boot(){
- const dt=new Date(GYM.date+"T12:00:00");
+function renderAll(){
+ const t=active(),dt=new Date(t.date+"T12:00:00");
+ $("gymTitle").textContent=t.label;$("gymIntro").textContent=t.intro;$("gymFooterTopic").textContent="Today: "+t.label;
  $("gymDate").textContent=new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric"}).format(dt);
- $("gymTitle").textContent=GYM.title;$("gymIntro").textContent=GYM.intro;$("gymFooterTopic").textContent="Today: "+GYM.title;
- renderStage();
+ renderTopics();renderProgress();renderStage();
 }
-boot();
+renderAll();
