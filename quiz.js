@@ -140,6 +140,17 @@ function buildData(){
 }
 
 async function boot(){
+ try{
+   const r=await fetch("daily-quiz.json?"+Date.now(),{cache:"no-store"});
+   const fresh=await r.json();
+   const usable=["animals","birds","space","science","english"].every(k=>fresh.categories&&fresh.categories[k]);
+   if(usable){
+     DATA=fresh;
+     try{localStorage.setItem("samsDailyQuizBankV2",JSON.stringify(DATA));}catch(e){}
+     renderHub();
+     return;
+   }
+ }catch(e){}
  buildData();
  renderHub();
 }
