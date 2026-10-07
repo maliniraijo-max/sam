@@ -9,11 +9,10 @@ const GYM={
  intro:"We are going to discover a fraction pattern by watching the same amount get split into smaller equal pieces.",
  stages:[
   {kicker:"STORY 1 • SEE IT",title:"Meet one half",instruction:"Imagine a chocolate bar. One half is shaded. It is one piece out of two.",kind:"visual",num:1,den:2,action:"Split each piece"},
-  {kicker:"STORY 2 • SPLIT IT",title:"Watch what happens",instruction:"Tap the button. We will split every piece into two equal pieces. Watch BOTH numbers.",kind:"split",num:1,den:2,action:"Split each piece"},
-  {kicker:"STORY 3 • SPLIT IT AGAIN",title:"Can you see the pattern?",instruction:"Every piece is split into two again. The shaded pieces and all the pieces both double.",kind:"split",num:2,den:4,action:"Split each piece"},
-  {kicker:"STORY 4 • NOTICE",title:"The amount did not change",instruction:"The picture has more pieces, but the shaded amount is still exactly the same.",kind:"notice",num:4,den:8,action:null},
-  {kicker:"BUILD 1 • YOU TRY",title:"Build the next fraction",instruction:"Start with 1/2. If BOTH numbers are doubled, what fraction do we make?",kind:"input",fromNum:1,fromDen:2,answerNum:2,answerDen:4},
-  {kicker:"BUILD 2 • YOU TRY AGAIN",title:"Start with 2/4",instruction:"Double BOTH numbers again. What fraction comes next?",kind:"input",fromNum:2,fromDen:4,answerNum:4,answerDen:8},
+  {kicker:"STORY 2 • SPLIT IT",title:"Watch the numbers change",instruction:"Split every piece into two equal pieces. Watch BOTH numbers.",kind:"split",num:1,den:2,action:"Split each piece"},
+  {kicker:"STORY 3 • NOTICE",title:"Same amount. More pieces.",instruction:"Look at the three fractions together. The bar has not gained chocolate — we only made smaller equal pieces.",kind:"notice",num:4,den:8,action:null},
+  {kicker:"BUILD 1 • YOU TRY",title:"Build 1/2 → ?",instruction:"If BOTH numbers are doubled, what fraction do we make?",kind:"input",fromNum:1,fromDen:2,answerNum:2,answerDen:4},
+  {kicker:"BUILD 2 • YOU TRY AGAIN",title:"Build 2/4 → ?",instruction:"Double BOTH numbers again. What fraction comes next?",kind:"input",fromNum:2,fromDen:4,answerNum:4,answerDen:8},
   {kicker:"BUILD 3 • GENERATE",title:"Make your own equivalent fraction",instruction:"Start with 3/5. Double the numerator and double the denominator.",kind:"input",fromNum:3,fromDen:5,answerNum:6,answerDen:10}
  ],
  discovery:{
@@ -51,8 +50,8 @@ function renderStage(){
   html+='<div class="story-visual">'+pieces(s.num,s.den)+'<div class="big-fraction">'+fraction(s.num,s.den)+'</div><div class="same-amount">Watch the pieces — then split them.</div></div>';
   html+='<button id="splitBtn" class="split-action">✂️ '+s.action+'</button><div id="stageFeedback" class="gym-feedback"></div>';
  }else if(s.kind==="notice"){
-  html+='<div class="comparison-story"><div>'+pieces(1,2)+'<strong>1 / 2</strong></div><div class="story-arrow">→</div><div>'+pieces(4,8)+'<strong>4 / 8</strong></div></div>';
-  html+='<div class="notice-callout">👀 More pieces. <b>Same shaded amount.</b></div><div class="gym-feedback good">The whole bar did not get bigger. We only cut the same pieces into smaller equal pieces.</div>';
+  html+='<div class="comparison-story"><div>'+pieces(1,2)+'<strong>1 / 2</strong></div><div class="story-arrow">→</div><div>'+pieces(2,4)+'<strong>2 / 4</strong></div><div class="story-arrow">→</div><div>'+pieces(4,8)+'<strong>4 / 8</strong></div></div>';
+  html+='<div class="notice-callout">👀 <b>1/2 → 2/4 → 4/8</b><br>Each time, the top number doubles AND the bottom number doubles.</div><div class="gym-feedback good">The amount shaded stayed the same. We changed how many equal pieces we used to describe it.</div></div><div class="gym-question">👀 More pieces. <b>Same shaded amount.</b></div><div class="gym-feedback good">The whole bar did not get bigger. We only cut the same pieces into smaller equal pieces.</div>';
  }else if(s.kind==="input"){
   html+='<div class="build-visual">'+pieces(s.fromNum,s.fromDen)+'<div class="build-equation">'+fraction(s.fromNum,s.fromDen)+' <span>→</span> <b>double BOTH numbers</b> <span>→</span> <span class="question-fraction">?</span></div></div>';
   html+='<div class="gym-question"><h3>Build the new fraction yourself.</h3><div class="gym-input-row"><input id="numInput" class="gym-input" inputmode="numeric" aria-label="numerator" placeholder="numerator"><span class="equal-sign">/</span><input id="denInput" class="gym-input" inputmode="numeric" aria-label="denominator" placeholder="denominator"><button id="inputCheck" class="gym-check">Check my fraction</button></div><div id="stageFeedback" class="gym-feedback"></div></div>';
