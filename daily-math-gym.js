@@ -58,6 +58,8 @@ function renderStage(){
  }
  html+=nextButton();
  $("gymStage").innerHTML=html;
+ const next=$("nextStage");
+ if(next) next.textContent = stageIndex===GYM.stages.length-1 ? "Finish →" : "Next slide →";
  if(s.kind==="visual"||s.kind==="split") attachSplit(s);
  if(s.kind==="input") attachInput(s);
  $("nextStage").onclick=()=>{stageIndex++; if(stageIndex<GYM.stages.length)renderStage(); else finishStory();};
