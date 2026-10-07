@@ -136,7 +136,7 @@ function buildData(){
      categories[t.key]={title:t.title,icon:t.icon,description:t.description,questions:shuffle(t.questions.map((x,n)=>makeQuestion(x,n)),seed+ti*97)};
    }
  });
- DATA={displayDate:new Intl.DateTimeFormat("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(new Date()),categories};
+ DATA={displayDate:new Intl.DateTimeFormat("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(new Date()),categories};\n try{localStorage.setItem("samsDailyQuizBankV2",JSON.stringify(DATA));}catch(e){}
 }
 
 async function boot(){
