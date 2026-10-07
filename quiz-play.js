@@ -2,8 +2,24 @@ let DATA=null,topic=null,subtopic=null,questions=[],i=0,score=0,locked=false;
 const $=id=>document.getElementById(id);
 const esc=v=>String(v??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]));
 async function boot(){
- try{const r=await fetch("daily-quiz.json?"+Date.now(),{cache:"no-store"});DATA=await r.json();const params=new URLSearchParams(location.search);topic=params.get("topic")||"animals";subtopic=params.get("subtopic")||"";if(!DATA.categories[topic])topic="animals";questions=DATA.categories[topic].questions.filter(q=>!subtopic||q.subtopic===subtopic);if(!questions.length)questions=DATA.categories[topic].questions;render();}
- catch(e){$("quizApp").innerHTML="<h2>Quiz is loading…</h2><p>Please refresh in a moment.</p>";}
+ try{
+   const saved=localStorage.getItem("samsDailyQuizBankV2");
+   if(saved) DATA=JSON.parse(saved);
+   else {
+     const r=await fetch("daily-quiz.json?"+Date.now(),{cache:"no-store"});
+     DATA=await r.json();
+   }
+   const params=new URLSearchParams(location.search);
+   topic=params.get("topic")||"animals";
+   subtopic=params.get("subtopic")||"";
+   if(!DATA.categories[topic]) topic="animals";
+   const cat=DATA.categories[topic];
+   questions=cat.subtopics ? ((cat.subtopics.find(s=>s.title===subtopic)||cat.subtopics[0]).questions) : cat.questions;
+   if(!questions.length) throw new Error("No questions");
+   render();
+ }catch(e){
+   $("quizApp").innerHTML='<h2>Quiz is loading…</h2><p>Open the Daily Quiz page once, then choose a topic.</p><a class="quiz-back" href="quiz.html">← Back to Daily Quiz</a>';
+ }
 }
 function render(){
  const c=DATA.categories[topic],q=questions[i];locked=false;
