@@ -74,7 +74,7 @@ function renderProgress(){
 function header(s){
  return '<div class="gym-stage-head"><div><p class="gym-stage-kicker">'+s.k+'</p><h2>'+s.title+'</h2><p class="gym-instruction">'+s.instruction+'</p></div><span class="gym-counter">'+(stageIndex+1)+' / '+active().stages.length+'</span></div>'
 }
-function nextButton(){return '<div class="gym-next-wrap"><button type="button" id="nextStage" class="gym-next">Next slide →</button></div>'}
+function nextButton(){return '<div class="gym-next-wrap"><button type="button" id="nextStage" class="gym-next hidden">Next slide →</button></div>'}
 function renderStage(){
  const s=active().stages[stageIndex]; renderProgress(); let h=header(s);
  if(s.kind==="split"){
@@ -94,19 +94,19 @@ function renderStage(){
  }
  h+=nextButton(); $("gymStage").innerHTML=h;
  $("nextStage").onclick=()=>{stageIndex++;if(stageIndex<active().stages.length)renderStage();else finishStory()};
- if(s.kind==="split")attachSplit(s); if(s.kind==="input")attachInput(s); if(s.kind==="add")attachAdd(s); if(s.kind==="inputAdd")attachAddInput(s);
+ if(s.kind==="notice"||s.kind==="noticeAdd"||s.kind==="pizza") $("nextStage").classList.remove("hidden"); if(s.kind==="split")attachSplit(s); if(s.kind==="input")attachInput(s); if(s.kind==="add")attachAdd(s); if(s.kind==="inputAdd")attachAddInput(s);
 }
 function attachSplit(s){
- $("splitBtn").onclick=()=>{const nn=s.n*2,nd=s.d*2;document.querySelector(".story-visual").innerHTML=pieces(nn,nd)+'<div class="big-fraction">'+fraction(nn,nd)+'</div><div class="same-amount"><b>'+s.n+' → '+nn+'</b> and <b>'+s.d+' → '+nd+'</b>. Both doubled.</div>';$("splitBtn").disabled=true;$("stageFeedback").innerHTML='🔎 Look at BOTH numbers: they doubled together. The amount did not change.';$("stageFeedback").className="gym-feedback good"};
+ $("splitBtn").onclick=()=>{const nn=s.n*2,nd=s.d*2;document.querySelector(".story-visual").innerHTML=pieces(nn,nd)+'<div class="big-fraction">'+fraction(nn,nd)+'</div><div class="same-amount"><b>'+s.n+' → '+nn+'</b> and <b>'+s.d+' → '+nd+'</b>. Both doubled.</div>';$("splitBtn").disabled=true;$("stageFeedback").innerHTML='🔎 Look at BOTH numbers: they doubled together. The amount did not change.';$("stageFeedback").className="gym-feedback good";$("nextStage").classList.remove("hidden")};
 }
 function attachInput(s){
- $("inputCheck").onclick=()=>{const n=Number($("numInput").value),d=Number($("denInput").value);if(n===s.an&&d===s.ad){$("stageFeedback").innerHTML='✓ You generated it. Both numbers doubled.';$("stageFeedback").className="gym-feedback good";$("inputCheck").disabled=true}else{$("stageFeedback").innerHTML='👀 Look at the pattern: double the top AND double the bottom.';$("stageFeedback").className="gym-feedback try"}}
+ $("inputCheck").onclick=()=>{const n=Number($("numInput").value),d=Number($("denInput").value);if(n===s.an&&d===s.ad){$("stageFeedback").innerHTML='✓ You generated it. Both numbers doubled.';$("stageFeedback").className="gym-feedback good";$("inputCheck").disabled=true;$("nextStage").classList.remove("hidden")}else{$("stageFeedback").innerHTML='👀 Look at the pattern: double the top AND double the bottom.';$("stageFeedback").className="gym-feedback try"}}
 }
 function attachAdd(s){
- $("combineBtn").onclick=()=>{ $("combinedPizza").innerHTML=pieces(s.a+s.c,s.b);$("combineBtn").disabled=true;$("stageFeedback").innerHTML='🔎 Count them: 1 quarter + 2 quarters = 3 quarters. We counted pieces of the same size.';$("stageFeedback").className="gym-feedback good";}
+ $("combineBtn").onclick=()=>{ $("combinedPizza").innerHTML=pieces(s.a+s.c,s.b);$("combineBtn").disabled=true;$("nextStage").classList.remove("hidden");$("stageFeedback").innerHTML='🔎 Count them: 1 quarter + 2 quarters = 3 quarters. We counted pieces of the same size.';$("stageFeedback").className="gym-feedback good";}
 }
 function attachAddInput(s){
- $("inputCheck").onclick=()=>{const n=Number($("numInput").value);if(n===s.an){$("stageFeedback").innerHTML='✓ You counted the pieces correctly: '+s.a+' + '+s.b+' = '+n+' '+s.d+'ths.';$("stageFeedback").className="gym-feedback good";$("inputCheck").disabled=true}else{$("stageFeedback").innerHTML='👀 Count the same-sized pieces. Add the top numbers and keep '+s.d+' on the bottom.';$("stageFeedback").className="gym-feedback try"}}
+ $("inputCheck").onclick=()=>{const n=Number($("numInput").value);if(n===s.an){$("stageFeedback").innerHTML='✓ You counted the pieces correctly: '+s.a+' + '+s.b+' = '+n+' '+s.d+'ths.';$("stageFeedback").className="gym-feedback good";$("inputCheck").disabled=true;$("nextStage").classList.remove("hidden")}else{$("stageFeedback").innerHTML='👀 Count the same-sized pieces. Add the top numbers and keep '+s.d+' on the bottom.';$("stageFeedback").className="gym-feedback try"}}
 }
 function finishStory(){
  $("gymDiscovery").classList.remove("hidden");discoveryIndex=0;renderDiscovery();window.scrollTo({top:document.body.scrollHeight,behavior:"smooth"});
