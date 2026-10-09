@@ -23,9 +23,9 @@
 <p id="subject-description">Select a term to organise your learning.</p>
 </section>
 <section class="term-grid" aria-label="Terms">
-<article class="term-card"><span class="term-number">📘</span><h2>Term 1</h2><p>Lessons, notes, activities and revision for Term 1.</p><span class="term-status">Syllabus to be added</span></article>
-<article class="term-card"><span class="term-number">📗</span><h2>Term 2</h2><p>Lessons, notes, activities and revision for Term 2.</p><span class="term-status">Syllabus to be added</span></article>
-<article class="term-card"><span class="term-number">📙</span><h2>Term 3</h2><p>Lessons, notes, activities and revision for Term 3.</p><span class="term-status">Syllabus to be added</span></article>
+<a class="term-card" id="term1" href="term-chapters.html?subject=english&term=1" style="text-decoration:none;color:inherit"><span class="term-number">📘</span><h2>Term 1</h2><p>Chapter summaries, activities and solutions.</p><span class="term-status">Open Term 1 →</span></a>
+<a class="term-card" id="term2" href="term-chapters.html?subject=english&term=2" style="text-decoration:none;color:inherit"><span class="term-number">📗</span><h2>Term 2</h2><p>Chapter summaries, activities and solutions.</p><span class="term-status">Open Term 2 →</span></a>
+<a class="term-card" id="term3" href="term-chapters.html?subject=english&term=3" style="text-decoration:none;color:inherit"><span class="term-number">📙</span><h2>Term 3</h2><p>Chapter summaries, activities and solutions.</p><span class="term-status">Open Term 3 →</span></a>
 </section>
 <footer class="term-note">Sam’s Visual Learning Studio • Class 6 • Learn one step at a time</footer>
 </main>
@@ -46,6 +46,17 @@
  document.title=selected.name+' Terms • Sam’s Visual Learning Studio';
  document.getElementById('subject-title').textContent=selected.name;
  document.getElementById('subject-description').textContent=selected.description;
+ ['term1','term2','term3'].forEach((id,i)=>{document.getElementById(id).href='term-chapters.html?subject='+encodeURIComponent(subject)+'&term='+(i+1)});
+ const statusLabels={
+  english:['6 lessons','6 lessons','3 lessons'],
+  science:['3 chapters','3 chapters','3 chapters'],
+  social:['4 chapters','4 chapters','4 chapters'],
+  maths:['3 chapters','3 chapters','6 chapters'],
+  hindi:['2 lessons','4 lessons','2 lessons'],
+  malayalam2:['3 chapters','4 chapters','2 chapters']
+ };
+ (statusLabels[subject]||[]).forEach((label,i)=>{const card=document.getElementById('term'+(i+1));if(card){const status=card.querySelector('.term-status');status.textContent=label+' · Open →'}});
+
  if(selected.alias){
   const alias=document.createElement('p');
   alias.className='term-alias';
