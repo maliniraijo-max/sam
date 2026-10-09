@@ -10,7 +10,7 @@ tabs.forEach(tab=>tab.addEventListener("click",()=>{
 }));
 
 // Word World: every letter is a separate selectable tile, including repeated letters.
-const words=[
+let words=[
  {word:"CAT",emoji:"🐱",clue:"A pet that says “meow”",tiles:["T","A","C","M","O"]},
  {word:"SUN",emoji:"☀️",clue:"It shines in the daytime sky",tiles:["N","S","U","P","A"]},
  {word:"FISH",emoji:"🐟",clue:"An animal that swims with fins",tiles:["H","F","I","S","T"]},
@@ -31,7 +31,7 @@ $("wordCheck").addEventListener("click",()=>{const answer=picked.map(x=>x.letter
 $("wordNext").addEventListener("click",()=>{wordIndex=(wordIndex+1)%words.length;renderWord();});
 
 // Maths Playground: fractions are generated from data, and the correct answer is computed.
-const pairs=[{a:2,b:3,d:4},{a:1,b:3,d:5},{a:4,b:2,d:6},{a:3,b:3,d:7},{a:1,b:4,d:8}];
+let pairs=[{a:2,b:3,d:4},{a:1,b:3,d:5},{a:4,b:2,d:6},{a:3,b:3,d:7},{a:1,b:4,d:8}];
 let pairIndex=0,mathAnswered=false;
 function fractionBar(id,n,d){const bar=$(id);bar.replaceChildren();for(let i=0;i<d;i++){const p=document.createElement("span");p.className="fraction-piece"+(i<n?" filled":"");bar.append(p);}bar.setAttribute("aria-label",n+" of "+d+" pieces shaded");}
 function renderPair(){const p=pairs[pairIndex];$("fracA-num").textContent=p.a;$("fracA-den").textContent=p.d;$("fracB-num").textContent=p.b;$("fracB-den").textContent=p.d;fractionBar("fracA-bar",p.a,p.d);fractionBar("fracB-bar",p.b,p.d);mathAnswered=false;document.querySelectorAll("#fractionChoices button").forEach(b=>b.disabled=false);setFeedback($("mathFeedback"),"Study the shaded pieces, then choose.");}
@@ -39,7 +39,7 @@ document.querySelectorAll("#fractionChoices button").forEach(button=>button.addE
 $("mathNext").addEventListener("click",()=>{pairIndex=(pairIndex+1)%pairs.length;renderPair();});
 
 // Story Adventures: answer feedback comes from each story's own comprehension key.
-const stories=[
+let stories=[
  {art:"🐦🌳☀️",label:"THE LITTLE HELPER",title:"A Safe Place",text:"After a windy night, Mina found a tiny bird sitting beneath a tree. She watched quietly from a distance while its parent returned with food. Mina smiled because the little bird was safe.",question:"Why did Mina smile?",options:["She saw the bird's parent return.","She found a new toy.","It began to rain."],correct:0},
  {art:"🐢🍃💧",label:"A SLOW AND STEADY DAY",title:"Toby Finds the Pond",text:"Toby the tortoise wanted to reach the pond before sunset. He walked steadily, stopping to drink water and rest in the shade. At last, he reached the pond and saw his friends waiting.",question:"How did Toby reach the pond?",options:["He rushed without stopping.","He walked steadily and took rests.","His friends carried him."],correct:1},
  {art:"🌱☀️🪴",label:"A TINY BEGINNING",title:"Nila's Seed",text:"Nila planted a bean seed in a pot. She gave it water and placed the pot where sunlight could reach it. After some days, a small green shoot appeared above the soil.",question:"What helped Nila's seed grow?",options:["Water and sunlight.","Paint and paper.","A cold dark cupboard."],correct:0}
@@ -49,7 +49,7 @@ function renderStory(){const s=stories[storyIndex];$("storyArt").textContent=s.a
 $("storyNext").addEventListener("click",()=>{storyIndex=(storyIndex+1)%stories.length;renderStory();});
 
 // Discovery Lab: stage order is a simple guided sequence with corrective feedback.
-const stages=[
+let stages=[
  {emoji:"🌰",title:"A seed",description:"A seed contains a tiny baby plant.",question:"What happens when the seed gets water, air and warmth?",options:["A seed begins to sprout","A flower appears straight away","The seed becomes a stone"],correct:0},
  {emoji:"🌱",title:"A sprout",description:"A tiny root and shoot begin to grow.",question:"What grows as the young plant gets bigger?",options:["A shell","Leaves and a stem","Feathers"],correct:1},
  {emoji:"🪴",title:"A young plant",description:"Roots take in water and leaves use sunlight.",question:"What may a healthy mature plant grow?",options:["Wheels","Clouds","Flowers"],correct:2},
@@ -73,5 +73,32 @@ $("clearArt").addEventListener("click",()=>{ctx.clearRect(0,0,canvas.width,canva
 $("saveArt").addEventListener("click",()=>{try{const link=document.createElement("a");link.download="sams-wonder-world-art.png";link.href=canvas.toDataURL("image/png");link.click();setFeedback($("artFeedback"),"Your picture was prepared as a PNG. Check your downloads. 🌟","good");}catch(error){setFeedback($("artFeedback"),"This browser could not save the picture. Try a different browser or device.","try");}});
 
 renderWord();renderPair();renderStory();renderStage();
+loadDailyWonder();
+
+// Load a published daily content pack. If it is missing or malformed, the built-in
+// activities remain usable. The date query and no-store prevent stale daily content.
+async function loadDailyWonder(){
+ try{
+  const response=await fetch("./wonder-world.json?date="+encodeURIComponent(new Date().toISOString().slice(0,10)),{cache:"no-store"});
+  if(!response.ok)throw new Error("Daily content is not available");
+  const pack=await response.json();
+  const validWords=Array.isArray(pack.words)&&pack.words.length>0&&pack.words.every(w=>typeof w.word==="string"&&w.word.length>=2&&Array.isArray(w.tiles)&&w.tiles.length>=w.word.length);
+  const validPairs=Array.isArray(pack.pairs)&&pack.pairs.length>0&&pack.pairs.every(p=>Number.isInteger(p.a)&&Number.isInteger(p.b)&&Number.isInteger(p.d)&&p.d>0&&p.a>=0&&p.b>=0&&p.a<=p.d&&p.b<=p.d);
+  const validStories=Array.isArray(pack.stories)&&pack.stories.length>0&&pack.stories.every(s=>typeof s.text==="string"&&Array.isArray(s.options)&&s.options.length===3&&Number.isInteger(s.correct)&&s.correct>=0&&s.correct<3);
+  const validStages=Array.isArray(pack.stages)&&pack.stages.length>0&&pack.stages.every(s=>Array.isArray(s.options)&&s.options.length===3&&Number.isInteger(s.correct)&&s.correct>=0&&s.correct<3);
+  if(!validWords||!validPairs||!validStories||!validStages)throw new Error("Daily content did not pass validation");
+  words=pack.words;pairs=pack.pairs;stories=pack.stories;stages=pack.stages;
+  wordIndex=0;pairIndex=0;storyIndex=0;stageIndex=0;
+  renderWord();renderPair();renderStory();renderStage();
+  const date=new Date((pack.date||new Date().toISOString().slice(0,10))+"T12:00:00");
+  $("wonderDate").textContent=""+(Number.isNaN(date.getTime())?"Today":date.toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long"}));
+  $("wonderTheme").textContent=pack.theme||"Fresh activities for curious minds.";
+  if(pack.weeklyMission){$("missionTitle").textContent=pack.weeklyMission.title||"Creative explorer";$("missionDescription").textContent=pack.weeklyMission.description||"Make something and explain your idea.";}
+ }catch(error){
+  $("wonderDate").textContent="Today’s adventure";
+  $("wonderTheme").textContent="Using the built-in activity bank while checking for the latest content.";
+ }
+}
+
 tabs.forEach(t=>t.setAttribute("aria-pressed",String(t.classList.contains("active"))));
 })();
