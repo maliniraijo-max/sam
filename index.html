@@ -9,7 +9,7 @@
   <span class="wonder-world-home-arrow">→</span>
 </a><a class="communication-home-card" href="communicate.html" aria-label="Open Let's Talk Communication English">
   <span class="communication-home-icon">💬</span>
-  <span class="communication-home-copy"><strong>Let’s Talk!</strong><small>Communication English • 10 levels • School • Friends • Family</small></span>
+  <span class="communication-home-copy"><strong>Let’s Talk!</strong><small><span id="weeklyTalkIdea">Communication English • 10 levels • School • Friends • Family</span></small></span>
   <span class="communication-home-arrow">→</span>
 </a>
 <a class="daily-math-gym-home-card" href="daily-math-gym.html" aria-label="Open Daily Math Gym">
@@ -38,4 +38,6 @@
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js?v=20261001-006").catch(() => {}));
 }
-</script><script src="results.js?v=20261001-001"></script><script src="video.js?v=20260925-001"></script></body></html>
+</script><script src="results.js?v=20261001-001"></script><script src="video.js?v=20260925-001"></script><script>
+(async()=>{const el=document.getElementById("weeklyTalkIdea");if(!el)return;try{const r=await fetch("./lets-talk-weekly.json?week="+new Date().getFullYear()+"-"+String(new Date().getMonth()+1).padStart(2,"0"),{cache:"no-store"});if(!r.ok)throw Error();const p=await r.json();if(p&&p.idea)el.textContent="This week: "+p.idea+" • Tap to practise";}catch(e){el.textContent="Fresh conversation ideas • School • Friends • Family";}})();
+</script></body></html>
