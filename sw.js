@@ -47,7 +47,7 @@ const APP_SHELL = [
   "./daily-world.json",
   "./quiz.html",
   "./chapter-cards.html",
-  "./chapter-cards.css?v=20261009-002",
+  "./chapter-cards.css?v=20261009-003",
   "./subject-terms.html",
   "./daily-math-gym.html",
   "./daily-math-gym.css?v=20261007-003",
