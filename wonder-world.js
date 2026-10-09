@@ -21,11 +21,11 @@ let wordIndex=0, picked=[];
 function renderWord(){
  const w=words[wordIndex];$("wordPicture").textContent=w.emoji;$("wordClue").textContent=w.clue;
  $("letterBank").replaceChildren();$("wordSlots").replaceChildren();picked=[];
- w.tiles.forEach((letter,index)=>{const b=document.createElement("button");b.type="button";b.textContent=letter;b.setAttribute("aria-label","Choose letter "+letter);b.addEventListener("click",()=>{if(b.disabled)return;picked.push({letter,index});b.disabled=true;renderSlots();setFeedback($("wordFeedback"),"Good exploring! Add another letter or check your word.");});$("letterBank").append(b);});
+ w.tiles.forEach((letter,index)=>{const b=document.createElement("button");b.type="button";b.textContent=letter;b.setAttribute("aria-label","Choose letter "+letter);b.addEventListener("click",()=>{if(b.disabled)return;if(picked.length>=words[wordIndex].word.length)return;picked.push({letter,index});b.disabled=true;if(picked.length>=words[wordIndex].word.length)[...$("letterBank").children].forEach(tile=>{if(!tile.disabled)tile.disabled=true;});renderSlots();setFeedback($("wordFeedback"),"Good exploring! Check your word, or undo a letter to change it.");});$("letterBank").append(b);});
  renderSlots();setFeedback($("wordFeedback"),"Build the word one letter at a time.");
 }
 function renderSlots(){const box=$("wordSlots");box.replaceChildren();for(let i=0;i<words[wordIndex].word.length;i++){const slot=document.createElement("span");slot.className="word-slot";slot.textContent=picked[i]?.letter||"·";box.append(slot);}}
-$("wordUndo").addEventListener("click",()=>{const last=picked.pop();if(last){$("letterBank").children[last.index].disabled=false;renderSlots();setFeedback($("wordFeedback"),"One letter removed. Keep going.");}});
+$("wordUndo").addEventListener("click",()=>{const last=picked.pop();if(last){[...$("letterBank").children].forEach((tile,i)=>{tile.disabled=picked.some(item=>item.index===i);});renderSlots();setFeedback($("wordFeedback"),"One letter removed. Keep going.");}});
 $("wordReset").addEventListener("click",renderWord);
 $("wordCheck").addEventListener("click",()=>{const answer=picked.map(x=>x.letter).join("");if(answer===words[wordIndex].word)setFeedback($("wordFeedback"),"Brilliant! "+answer+" is correct. 🌟","good");else setFeedback($("wordFeedback"),answer.length<words[wordIndex].word.length?"Add "+(words[wordIndex].word.length-answer.length)+" more letter(s), then check again.":"Not quite. Try moving or changing a letter.","try");});
 $("wordNext").addEventListener("click",()=>{wordIndex=(wordIndex+1)%words.length;renderWord();});
