@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6fbff">
+<meta name="description" content="Wonder World: playful reading, maths, stories, science and creativity for Sam.">
+<title>Wonder World • Sam's Learning</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="wonder-world.css?v=20261009-001">
+</head>
+<body class="wonder-page">
+<header class="wonder-top">
+  <a class="wonder-home" href="index.html" aria-label="Back to Sam's Learning home">← Home</a>
+  <div class="wonder-brand"><span aria-hidden="true">🌈</span><div><p class="wonder-eyebrow">SAM'S LEARNING SPACE</p><h1>Wonder World</h1></div></div>
+  <p class="wonder-subtitle">Choose a little adventure. Explore at your own pace.</p>
+</header>
+<main class="wonder-shell">
+  <nav class="wonder-nav" aria-label="Wonder World activities">
+    <button type="button" class="wonder-tab active" data-panel="words">🔤 Word World</button>
+    <button type="button" class="wonder-tab" data-panel="maths">🧩 Maths Playground</button>
+    <button type="button" class="wonder-tab" data-panel="stories">📖 Story Adventures</button>
+    <button type="button" class="wonder-tab" data-panel="discovery">🌱 Discovery Lab</button>
+    <button type="button" class="wonder-tab" data-panel="creative">🎨 Creative Studio</button>
+  </nav>
+  <p class="wonder-help">No timer and no pressure. Try, notice, and try again.</p>
+
+  <section class="wonder-panel active" id="panel-words" aria-labelledby="words-title">
+    <div class="panel-heading"><span class="panel-emoji">🔤</span><div><p class="panel-kicker">SOUND IT OUT</p><h2 id="words-title">Word World</h2><p>Listen to the word, build it with letters, then check your answer.</p></div></div>
+    <div class="activity-card">
+      <div class="word-prompt"><span class="prompt-label">YOUR WORD</span><strong id="wordPicture" aria-hidden="true">🐱</strong><h3 id="wordClue">A pet that says “meow”</h3><p>Tap the letters in the right order.</p></div>
+      <div class="letter-bank" id="letterBank" aria-label="Letter choices"></div>
+      <div class="word-build" aria-label="Your word"><span class="prompt-label">YOUR LETTERS</span><div id="wordSlots" class="word-slots"></div></div>
+      <div class="activity-actions"><button type="button" class="soft-button" id="wordUndo">↶ Undo</button><button type="button" class="soft-button" id="wordReset">Start again</button><button type="button" class="main-button" id="wordCheck">Check word</button></div>
+      <p id="wordFeedback" class="feedback" role="status" aria-live="polite">Build the word one letter at a time.</p>
+      <button type="button" class="next-button" id="wordNext">Next word →</button>
+    </div>
+  </section>
+
+  <section class="wonder-panel" id="panel-maths" aria-labelledby="maths-title" hidden>
+    <div class="panel-heading"><span class="panel-emoji">🧩</span><div><p class="panel-kicker">LOOK FOR THE PATTERN</p><h2 id="maths-title">Maths Playground</h2><p>Compare fractions with the same denominator. The bottom number tells how many equal pieces make one whole.</p></div></div>
+    <div class="activity-card maths-card">
+      <div class="fraction-comparison">
+        <div class="fraction-side"><div class="fraction-number"><span id="fracA-num">2</span><i></i><span id="fracA-den">4</span></div><div class="fraction-bar" id="fracA-bar" aria-label="Two of four pieces shaded"></div></div>
+        <strong class="versus">VS</strong>
+        <div class="fraction-side"><div class="fraction-number"><span id="fracB-num">3</span><i></i><span id="fracB-den">4</span></div><div class="fraction-bar" id="fracB-bar" aria-label="Three of four pieces shaded"></div></div>
+      </div>
+      <p class="maths-tip">Look carefully: both bars have the same number of equal pieces. Which fraction is greater?</p>
+      <div class="choice-row" id="fractionChoices"><button type="button" data-answer="left">Left is greater</button><button type="button" data-answer="equal">They are equal</button><button type="button" data-answer="right">Right is greater</button></div>
+      <p id="mathFeedback" class="feedback" role="status" aria-live="polite">Study the shaded pieces, then choose.</p>
+      <button type="button" class="next-button" id="mathNext">Try another pair →</button>
+    </div>
+  </section>
+
+  <section class="wonder-panel" id="panel-stories" aria-labelledby="stories-title" hidden>
+    <div class="panel-heading"><span class="panel-emoji">📖</span><div><p class="panel-kicker">READ • THINK • TELL</p><h2 id="stories-title">Story Adventures</h2><p>Read a short story and answer one question about what happened.</p></div></div>
+    <article class="story-card">
+      <div class="story-art" aria-hidden="true" id="storyArt">🐦🌳☀️</div>
+      <p class="story-label" id="storyLabel">THE LITTLE HELPER</p>
+      <h3 id="storyTitle">A Safe Place</h3>
+      <p class="story-text" id="storyText">After a windy night, Mina found a tiny bird sitting beneath a tree. She watched quietly from a distance while its parent returned with food. Mina smiled because the little bird was safe.</p>
+      <div class="story-question"><strong id="storyQuestion">Why did Mina smile?</strong><div class="story-options" id="storyOptions"></div></div>
+      <p id="storyFeedback" class="feedback" role="status" aria-live="polite">Choose the answer that matches the story.</p>
+      <button type="button" class="next-button" id="storyNext">Read another story →</button>
+    </article>
+  </section>
+
+  <section class="wonder-panel" id="panel-discovery" aria-labelledby="discovery-title" hidden>
+    <div class="panel-heading"><span class="panel-emoji">🌱</span><div><p class="panel-kicker">NOTICE HOW THINGS GROW</p><h2 id="discovery-title">Discovery Lab</h2><p>Put the plant's life stages in order. Choose what comes next.</p></div></div>
+    <div class="activity-card">
+      <div class="discovery-stage"><span id="stageEmoji" aria-hidden="true">🌰</span><div><p class="prompt-label">STAGE <span id="stageCount">1</span> OF 4</p><h3 id="stageTitle">A seed</h3><p id="stageDescription">A seed contains a tiny baby plant.</p></div></div>
+      <p class="maths-tip" id="stageQuestion">What happens after the seed gets water, air and warmth?</p>
+      <div class="stage-options" id="stageOptions"></div>
+      <p id="discoveryFeedback" class="feedback" role="status" aria-live="polite">Choose the next stage.</p>
+      <button type="button" class="next-button" id="stageNext" disabled>Continue →</button>
+      <button type="button" class="soft-button restart-button" id="stageRestart">Start the life cycle again</button>
+    </div>
+  </section>
+
+  <section class="wonder-panel" id="panel-creative" aria-labelledby="creative-title" hidden>
+    <div class="panel-heading"><span class="panel-emoji">🎨</span><div><p class="panel-kicker">MAKE SOMETHING YOURS</p><h2 id="creative-title">Creative Studio</h2><p>Draw a picture, choose a colour, and save your artwork to your device.</p></div></div>
+    <div class="art-card">
+      <div class="art-tools"><label for="paintColour">Colour <input id="paintColour" type="color" value="#287fa5"></label><label for="brushSize">Brush <input id="brushSize" type="range" min="2" max="24" value="7"><span id="brushValue">7 px</span></label><button type="button" class="soft-button" id="eraserBtn" aria-pressed="false">Eraser</button><button type="button" class="soft-button" id="clearArt">Clear</button><button type="button" class="main-button" id="saveArt">Save picture</button></div>
+      <div class="canvas-wrap"><canvas id="artCanvas" width="900" height="520" aria-label="Drawing canvas. Use a finger or mouse to draw."></canvas></div>
+      <p id="artFeedback" class="feedback" role="status" aria-live="polite">Touch and drag on the canvas to draw. Your picture stays here until you leave or clear it.</p>
+    </div>
+  </section>
+  <footer class="wonder-footer"><a href="index.html">← Back to Sam's Learning Studio</a><span>Explore • Notice • Create</span></footer>
+</main>
+<script src="wonder-world.js?v=20261009-001"></script>
+<script>
+if ("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=20261009-001").catch(()=>{}));
+</script>
+</body></html>
