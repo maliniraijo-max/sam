@@ -1,0 +1,14 @@
+{
+  "weekOf": "2026-10-05",
+  "idea": "Ask a friend what game they enjoy and share one you like",
+  "prompt": "Hi! What game do you enjoy playing? I like ____. What do you like about it?",
+  "skill": "Ask • Listen • Share",
+  "activities": [
+    {"title":"Game Talk","prompt":"Ask a friend what game they enjoy. Share one game you like too."},
+    {"title":"Animal Chat","prompt":"Ask: Which animal do you like most? Then share one interesting thing about that animal."},
+    {"title":"Weekend Story","prompt":"Ask: What was one fun thing you did this weekend? Listen and ask one follow-up question."},
+    {"title":"Kind Compliment","prompt":"Tell someone one kind, specific thing: I like your drawing. What gave you the idea?"},
+    {"title":"Join In","prompt":"Try saying: Can I join you? What should I do first?"},
+    {"title":"Keep It Going","prompt":"After a friend answers, say: Really? Tell me more. Then listen."}
+  ]
+}
