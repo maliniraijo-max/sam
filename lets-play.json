@@ -1,0 +1,42 @@
+{
+  "weekOf": "2026-10-05",
+  "intro": "A fresh set of mini-challenges for this week. Pick one, try it, and tell someone how you solved it.",
+  "activities": [
+    {
+      "emoji": "🔍",
+      "title": "Pattern Detective",
+      "prompt": "Open What Comes Next? Find the repeating pattern, choose the missing item, and explain the clue you noticed.",
+      "skill": "Notice • Predict • Explain"
+    },
+    {
+      "emoji": "🐾",
+      "title": "Animal Memory Mission",
+      "prompt": "Flip two cards at a time. Can you find all the matching animal pairs using as few flips as you can?",
+      "skill": "Look • Remember • Match"
+    },
+    {
+      "emoji": "🎨",
+      "title": "Design a Creature",
+      "prompt": "Open Animal Colour Studio. Choose three colours and make a creature with a colour pattern of your own.",
+      "skill": "Create • Choose • Describe"
+    },
+    {
+      "emoji": "🕵️",
+      "title": "Odd-One-Out Challenge",
+      "prompt": "Find the item that does not belong. Then say one reason why the other three belong together.",
+      "skill": "Compare • Sort • Explain"
+    },
+    {
+      "emoji": "🐘",
+      "title": "Who Am I?",
+      "prompt": "Play Who Am I? Look carefully at the animal silhouette and select the matching animal.",
+      "skill": "Observe • Identify • Check"
+    },
+    {
+      "emoji": "✍️",
+      "title": "Make a Silly Character",
+      "prompt": "Use Make Brainrot Names to invent a character. Give it one helpful superpower and describe it in one sentence.",
+      "skill": "Imagine • Name • Describe"
+    }
+  ]
+}
