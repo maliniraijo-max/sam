@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5fbff">
+<title>Terms • Sam’s Visual Learning Studio</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.term-page{min-height:100vh;background:linear-gradient(180deg,#eef8ff,#fffdf7)}.term-shell{max-width:1000px;margin:auto;padding:18px 18px 48px}.term-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.term-top a{color:#347e9d;text-decoration:none;font-weight:850}.term-brand{text-align:right;color:#294255}.term-brand small{display:block;color:#718695;font-size:10px;font-weight:900;letter-spacing:.13em}.term-hero{text-align:center;padding:42px 8px 28px}.term-badge{display:inline-block;background:#eef5ff;border:1px solid #d7e5f4;color:#58728d;padding:7px 11px;border-radius:99px;font-size:10px;font-weight:950;letter-spacing:.13em}.term-hero h1{font-size:clamp(34px,7vw,52px);line-height:1.08;letter-spacing:-.03em;color:#243d50;margin:14px 0 8px}.term-hero p{margin:0;color:#687d89;font-size:16px}.term-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:10px 0 28px}.term-card{min-height:210px;padding:24px 20px;display:flex;flex-direction:column;gap:12px;border:1px solid #e0eaf1;border-radius:24px;background:#fff;box-shadow:0 10px 28px rgba(31,71,87,.07)}.term-number{width:54px;height:54px;display:grid;place-items:center;border-radius:17px;background:#fff;font-size:27px;box-shadow:0 4px 12px rgba(25,59,99,.07)}.term-card h2{font-size:25px;line-height:1.15;margin:2px 0 0;color:#243d50}.term-card p{font-size:13px;line-height:1.5;margin:0;color:#687d89}.term-status{margin-top:auto;padding-top:9px;font-size:12px;font-weight:850;color:#748695}.term-card:nth-child(1){background:linear-gradient(145deg,#edf6ff,#fff)}.term-card:nth-child(2){background:linear-gradient(145deg,#eafaf2,#fff)}.term-card:nth-child(3){background:linear-gradient(145deg,#fff3e8,#fff)}.term-note{text-align:center;color:#7a8b93;font-size:12px;padding:16px}.term-alias{font-size:14px!important;font-weight:800;color:#517287!important;margin-top:-2px!important}
+@media(max-width:650px){.term-shell{padding:15px 13px 38px}.term-hero{padding:32px 5px 22px}.term-grid{grid-template-columns:1fr;gap:12px}.term-card{min-height:150px;padding:19px;border-radius:19px}.term-card h2{font-size:22px}.term-top{align-items:flex-start}}
+</style>
+</head>
+<body class="term-page">
+<main class="term-shell">
+<header class="term-top">
+<a href="chapter-cards.html">← All Subjects</a>
+<div class="term-brand"><small>CLASS 6</small><strong>📚 Subject Terms</strong></div>
+</header>
+<section class="term-hero">
+<div class="term-badge">YOUR LEARNING SPACE</div>
+<h1 id="subject-title">Choose a subject</h1>
+<p id="subject-description">Select a term to organise your learning.</p>
+</section>
+<section class="term-grid" aria-label="Terms">
+<article class="term-card"><span class="term-number">📘</span><h2>Term 1</h2><p>Lessons, notes, activities and revision for Term 1.</p><span class="term-status">Syllabus to be added</span></article>
+<article class="term-card"><span class="term-number">📗</span><h2>Term 2</h2><p>Lessons, notes, activities and revision for Term 2.</p><span class="term-status">Syllabus to be added</span></article>
+<article class="term-card"><span class="term-number">📙</span><h2>Term 3</h2><p>Lessons, notes, activities and revision for Term 3.</p><span class="term-status">Syllabus to be added</span></article>
+</section>
+<footer class="term-note">Sam’s Visual Learning Studio • Class 6 • Learn one step at a time</footer>
+</main>
+<script>
+(function(){
+ const params=new URLSearchParams(location.search);
+ const subject=params.get('subject')||'english';
+ const subjects={
+  english:{name:'English',description:'Class 6 English • Term 1, Term 2 and Term 3'},
+  science:{name:'Science',description:'Class 6 Science • Term 1, Term 2 and Term 3'},
+  social:{name:'Social Science',description:'Class 6 Social Science • Term 1, Term 2 and Term 3'},
+  hindi:{name:'Hindi',description:'Class 6 Hindi • Term 1, Term 2 and Term 3'},
+  malayalam1:{name:'Malayalam 1',alias:'Kerala Padavali',description:'Class 6 Malayalam 1 • Term 1, Term 2 and Term 3'},
+  malayalam2:{name:'Malayalam 2',alias:'Adishthana Padavali',description:'Class 6 Malayalam 2 • Term 1, Term 2 and Term 3'},
+  maths:{name:'Maths',description:'Class 6 Maths • Term 1, Term 2 and Term 3'}
+ };
+ const selected=subjects[subject]||subjects.english;
+ document.title=selected.name+' Terms • Sam’s Visual Learning Studio';
+ document.getElementById('subject-title').textContent=selected.name;
+ document.getElementById('subject-description').textContent=selected.description;
+ if(selected.alias){
+  const alias=document.createElement('p');
+  alias.className='term-alias';
+  alias.textContent=selected.alias;
+  document.getElementById('subject-title').insertAdjacentElement('afterend',alias);
+ }
+})();
+</script>
+</body>
+</html>
