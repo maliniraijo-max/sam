@@ -1,0 +1,243 @@
+{
+  "date": "2026-10-09",
+  "displayDate": "Friday, 9 October 2026",
+  "theme": "Little Things, Big Discoveries",
+  "words": [
+    {
+      "word": "CLOUD",
+      "emoji": "☁️",
+      "clue": "A white or grey shape made of tiny water drops in the sky",
+      "tiles": [
+        "D",
+        "C",
+        "O",
+        "L",
+        "U",
+        "B",
+        "A"
+      ]
+    },
+    {
+      "word": "PLANT",
+      "emoji": "🌱",
+      "clue": "A living thing that often grows in soil",
+      "tiles": [
+        "T",
+        "P",
+        "L",
+        "A",
+        "N",
+        "S",
+        "E"
+      ]
+    },
+    {
+      "word": "SHELL",
+      "emoji": "🐚",
+      "clue": "A hard outer covering found on some sea animals",
+      "tiles": [
+        "H",
+        "S",
+        "E",
+        "L",
+        "L",
+        "C",
+        "A"
+      ]
+    },
+    {
+      "word": "TRAIN",
+      "emoji": "🚂",
+      "clue": "A vehicle that travels on railway tracks",
+      "tiles": [
+        "R",
+        "T",
+        "A",
+        "I",
+        "N",
+        "E",
+        "O"
+      ]
+    },
+    {
+      "word": "BRAVE",
+      "emoji": "🦁",
+      "clue": "A word meaning ready to face something difficult",
+      "tiles": [
+        "A",
+        "B",
+        "R",
+        "V",
+        "E",
+        "L",
+        "T"
+      ]
+    },
+    {
+      "word": "LIGHT",
+      "emoji": "💡",
+      "clue": "It helps us see things",
+      "tiles": [
+        "G",
+        "L",
+        "I",
+        "H",
+        "T",
+        "N",
+        "A"
+      ]
+    }
+  ],
+  "pairs": [
+    {
+      "a": 1,
+      "b": 4,
+      "d": 5,
+      "topic": "Compare fractions"
+    },
+    {
+      "a": 3,
+      "b": 2,
+      "d": 7,
+      "topic": "Compare fractions"
+    },
+    {
+      "a": 5,
+      "b": 5,
+      "d": 8,
+      "topic": "Equal fractions"
+    },
+    {
+      "a": 2,
+      "b": 6,
+      "d": 9,
+      "topic": "Compare fractions"
+    },
+    {
+      "a": 4,
+      "b": 1,
+      "d": 6,
+      "topic": "Compare fractions"
+    },
+    {
+      "a": 3,
+      "b": 7,
+      "d": 10,
+      "topic": "Compare fractions"
+    }
+  ],
+  "stories": [
+    {
+      "art": "🐿️🌰🍂",
+      "label": "A CLEVER PLAN",
+      "title": "Pip Saves a Nut",
+      "text": "Pip the squirrel found a large nut before the rainy season. He tucked it into a small hole near a tree and covered it with leaves. Later, when the rain began, Pip remembered where he had hidden his food.",
+      "question": "Why did Pip hide the nut?",
+      "options": [
+        "To keep food for later",
+        "To make a new toy",
+        "To help it fly"
+      ],
+      "correct": 0
+    },
+    {
+      "art": "🐝🌼🌞",
+      "label": "A TINY JOURNEY",
+      "title": "The Busy Bee",
+      "text": "A bee visited a yellow flower to collect nectar. Pollen stuck to its fuzzy body. When the bee visited another flower, some pollen rubbed off and helped the plant make seeds.",
+      "question": "How can the bee help a plant?",
+      "options": [
+        "By carrying pollen between flowers",
+        "By pulling up its roots",
+        "By making the soil disappear"
+      ],
+      "correct": 0
+    },
+    {
+      "art": "🚲🌳💧",
+      "label": "A KIND CHOICE",
+      "title": "The Hot Afternoon",
+      "text": "Arun rode his bicycle to the park on a warm afternoon. He brought a bottle of water and stopped in the shade when he felt hot. After resting, he felt ready to ride home safely.",
+      "question": "What did Arun do when he felt hot?",
+      "options": [
+        "He rested in the shade",
+        "He rode faster",
+        "He left his water behind"
+      ],
+      "correct": 0
+    },
+    {
+      "art": "🐢🌊🪸",
+      "label": "LOOK AFTER NATURE",
+      "title": "The Clean Beach",
+      "text": "Maya noticed a plastic wrapper near a tide pool. With an adult's help, she placed it in a rubbish bin. She knew that keeping litter out of the sea helps protect marine animals.",
+      "question": "Why did Maya put the wrapper in the bin?",
+      "options": [
+        "To help keep the sea clean",
+        "To feed the fish",
+        "To build a sandcastle"
+      ],
+      "correct": 0
+    }
+  ],
+  "stages": [
+    {
+      "emoji": "☀️",
+      "title": "Sunlight reaches a puddle",
+      "description": "The Sun warms water on the ground.",
+      "question": "What can happen to some of the warmed water?",
+      "options": [
+        "It evaporates into water vapour",
+        "It turns into a rock",
+        "It becomes soil"
+      ],
+      "correct": 0
+    },
+    {
+      "emoji": "💨",
+      "title": "Water vapour rises",
+      "description": "Water vapour moves up into cooler air.",
+      "question": "What may happen when water vapour cools?",
+      "options": [
+        "It condenses into tiny droplets",
+        "It becomes sand",
+        "It disappears forever"
+      ],
+      "correct": 0
+    },
+    {
+      "emoji": "☁️",
+      "title": "Clouds form",
+      "description": "Tiny water droplets gather to form clouds.",
+      "question": "What may happen when droplets join and grow heavy?",
+      "options": [
+        "Rain may fall",
+        "The cloud becomes a tree",
+        "The water becomes metal"
+      ],
+      "correct": 0
+    },
+    {
+      "emoji": "🌧️",
+      "title": "Water returns to Earth",
+      "description": "Rain replenishes rivers, lakes and the ground.",
+      "question": "What can the Sun do to water again?",
+      "options": [
+        "Warm it so the cycle can continue",
+        "Stop the water cycle forever",
+        "Turn water into leaves"
+      ],
+      "correct": 0
+    }
+  ],
+  "weeklyMission": {
+    "title": "Design a Weather Helper",
+    "description": "Draw a tiny weather station with a rain gauge, a wind sock and a place to record sunny or cloudy days.",
+    "steps": [
+      "Choose three weather tools",
+      "Draw and label each tool",
+      "Explain which tool helps you most"
+    ],
+    "badge": "Curious Observer"
+  }
+}
