@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5fbff"><title>Term Chapters • Sam’s Visual Learning Studio</title><link rel="stylesheet" href="style.css">
+<style>
+.study-page{min-height:100vh;background:linear-gradient(180deg,#eef8ff,#fffdf7);color:#243d50}.study-shell{max-width:1050px;margin:auto;padding:18px 16px 50px}.study-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.study-top a{color:#347e9d;text-decoration:none;font-weight:850}.study-hero{text-align:center;padding:30px 8px 24px}.study-hero h1{font-size:clamp(30px,6vw,48px);margin:12px 0 8px;line-height:1.1}.study-hero p{color:#687d89;margin:0}.study-meta{font-size:11px;letter-spacing:.1em;font-weight:900;color:#58728d;background:#eef5ff;border:1px solid #d7e5f4;border-radius:999px;padding:7px 11px;display:inline-block}.chapter-list{display:grid;grid-template-columns:1fr;gap:14px}.chapter-card{background:white;border:1px solid #dfe9f0;border-radius:20px;box-shadow:0 8px 24px #1f47570b;overflow:hidden}.chapter-head{padding:18px 20px;display:flex;gap:14px;align-items:flex-start}.chapter-index{flex:0 0 42px;height:42px;border-radius:14px;background:#eaf4ff;display:grid;place-items:center;font-weight:900;color:#245b9a}.chapter-head h2{font-size:20px;line-height:1.25;margin:1px 0 5px}.chapter-head p{font-size:13px;color:#71818b;margin:0}.chapter-body{padding:0 20px 20px}.study-section{border-top:1px solid #edf1f4;padding-top:14px;margin-top:14px}.study-section h3{font-size:15px;margin:0 0 8px;color:#28536d}.study-section p,.study-section li{font-size:14px;line-height:1.65}.study-section ul{margin:6px 0 0;padding-left:20px}.qa{background:#f5fafc;border-radius:12px;padding:12px;margin-top:8px}.qa strong{display:block;font-size:13px;margin-bottom:4px}.qa p{margin:0}.source-link{font-size:12px;color:#347e9d;overflow-wrap:anywhere}.term-switch{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 20px}.term-switch a{padding:8px 12px;border:1px solid #d8e5ed;border-radius:99px;background:#fff;color:#3d6479;text-decoration:none;font-size:12px;font-weight:800}.term-switch a.active{background:#dceeff;border-color:#a9cdec}.notice{background:#fff8e7;border:1px solid #f1e2b9;padding:12px 14px;border-radius:14px;font-size:13px;line-height:1.55;margin-bottom:16px}.empty{background:white;border:1px dashed #cbdce5;padding:22px;border-radius:18px;color:#647987}@media(min-width:780px){.chapter-list{grid-template-columns:1fr 1fr}.chapter-card{align-self:start}}@media(max-width:500px){.study-shell{padding:14px 11px 35px}.chapter-head{padding:15px}.chapter-body{padding:0 15px 16px}.chapter-head h2{font-size:18px}}
+</style></head><body class="study-page"><main class="study-shell">
+<header class="study-top"><a href="chapter-cards.html">← All Subjects</a><strong>CLASS 6 • STUDY HUB</strong></header>
+<section class="study-hero"><span class="study-meta" id="term-label">TERM STUDY NOTES</span><h1 id="study-title">Loading chapters…</h1><p id="study-subtitle">Summary • Activities • Solutions</p></section>
+<nav class="term-switch" id="term-switch" aria-label="Select term"></nav>
+<div class="notice">These are original, simplified revision notes and practice activities based on the Class 6 Kerala syllabus and the chapter titles you provided. Use the textbook as the final reference for exact wording and textbook-specific activities.</div>
+<section class="chapter-list" id="chapter-list" aria-live="polite"></section>
+<footer style="text-align:center;color:#7a8b93;font-size:12px;padding:22px">Sam’s Visual Learning Studio • Learn one step at a time</footer>
+</main><script src="class6-study-data.js"></script><script>
+(function(){
+const p=new URLSearchParams(location.search), subject=p.get('subject')||'english', term=Math.min(3,Math.max(1,Number(p.get('term')||1)));
+const names={english:'English',science:'Science',social:'Social Science',hindi:'Hindi',maths:'Maths',malayalam2:'Malayalam 2 — Adishthana Padavali'};
+const data=window.CLASS6_STUDY_DATA||{}, entry=data[subject];
+document.getElementById('study-title').textContent=(names[subject]||'Subject')+' — Term '+term;
+document.getElementById('term-label').textContent=['ONAM / TERM 1','CHRISTMAS / TERM 2','ANNUAL / TERM 3'][term-1];
+document.getElementById('study-subtitle').textContent='Chapter summaries • Practice activities • Answer explanations';
+document.title=(names[subject]||'Subject')+' Term '+term+' • Sam’s Visual Learning Studio';
+const nav=document.getElementById('term-switch');
+for(let t=1;t<=3;t++){const a=document.createElement('a');a.href='term-chapters.html?subject='+encodeURIComponent(subject)+'&term='+t;a.textContent='Term '+t+(t===1?' · Onam':t===2?' · Christmas':' · Annual');if(t===term)a.className='active';nav.appendChild(a)}
+const list=document.getElementById('chapter-list'), chapters=entry&&entry.terms&&entry.terms[term]||[];
+if(!chapters.length){list.innerHTML='<div class="empty">This subject’s chapter list has not been added yet. Malayalam 1 — Kerala Padavali will be added when its term-wise list is provided.</div>';return}
+chapters.forEach((c,i)=>{
+const card=document.createElement('article');card.className='chapter-card';
+const head=document.createElement('div');head.className='chapter-head';
+const idx=document.createElement('div');idx.className='chapter-index';idx.textContent=c.number||i+1;
+const info=document.createElement('div');const h=document.createElement('h2');h.textContent=c.title;const p=document.createElement('p');p.textContent=c.subtitle||'Chapter revision';info.append(h,p);head.append(idx,info);
+const body=document.createElement('div');body.className='chapter-body';
+const sec=(title,content)=>{const s=document.createElement('section');s.className='study-section';const h=document.createElement('h3');h.textContent=title;s.appendChild(h);if(Array.isArray(content)){const ul=document.createElement('ul');content.forEach(v=>{const li=document.createElement('li');li.textContent=v;ul.appendChild(li)});s.appendChild(ul)}else{const p=document.createElement('p');p.textContent=content;s.appendChild(p)}body.appendChild(s)};
+sec('Chapter summary',c.summary||'Review the chapter in the textbook and identify its main idea, key terms and examples.');
+sec('Important points',c.points||['Identify the main idea.','Learn the important words or concepts.','Explain one example in your own words.']);
+const act=document.createElement('section');act.className='study-section';const ah=document.createElement('h3');ah.textContent='Activities with solutions';act.appendChild(ah);
+(c.activities||[]).forEach(q=>{const box=document.createElement('div');box.className='qa';const question=document.createElement('strong');question.textContent='Activity: '+q.q;const answer=document.createElement('p');answer.textContent='Solution: '+q.a;box.append(question,answer);act.appendChild(box)});body.appendChild(act);
+if(c.source){const src=document.createElement('section');src.className='study-section';const h=document.createElement('h3');h.textContent='Reference';const a=document.createElement('a');a.className='source-link';a.href=c.source;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Open chapter reference / textbook solutions';src.append(h,a);body.appendChild(src)}
+card.append(head,body);list.appendChild(card);
+});
+})();
+</script></body></html>
