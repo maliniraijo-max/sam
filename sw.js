@@ -1,4 +1,4 @@
-const CACHE_NAME = "sam-learning-shell-v77";
+const CACHE_NAME = "sam-learning-shell-v78";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -8,8 +8,9 @@ const APP_SHELL = [
   "./videos.js?v=20261009-002",
   "./video-player.html",
   "./video-player.js?v=20261009-002",
-  "./games.css?v=20261005-002",
-  "./games.js?v=20261005-002",
+  "./games.css?v=20261009-003",
+  "./games.js?v=20261009-003",
+  "./lets-play.json",
   "./create-play.html",
   "./learn-math-fun.html",
   "./learn-math-fun.css?v=20261006-001",
