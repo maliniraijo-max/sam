@@ -20,7 +20,7 @@ document.getElementById('study-subtitle').textContent='Chapter summaries • Pra
 document.title=(names[subject]||'Subject')+' Term '+term+' • Sam’s Visual Learning Studio';
 const nav=document.getElementById('term-switch');
 for(let t=1;t<=3;t++){const a=document.createElement('a');a.href='term-chapters.html?subject='+encodeURIComponent(subject)+'&term='+t;a.textContent='Term '+t+(t===1?' · Onam':t===2?' · Christmas':' · Annual');if(t===term)a.className='active';nav.appendChild(a)}
-const termUnits={1:[1,2],2:[3,4],3:[5]};
+const termUnits=subject==='english'?{1:[1,2],2:[3,4],3:[5]}:{1:[1],2:[2],3:[3]};
 const list=document.getElementById('chapter-list'), chapters=entry&&entry.terms?(termUnits[term]||[term]).flatMap(unit=>entry.terms[unit]||[]):[];
 if(!chapters.length){list.innerHTML='<div class="empty">This subject’s chapter list has not been added yet. Malayalam 1 — Kerala Padavali will be added when its term-wise list is provided.</div>';return}
 chapters.forEach((c,i)=>{
