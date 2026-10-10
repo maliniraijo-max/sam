@@ -6,7 +6,7 @@ body{margin:0;background:linear-gradient(180deg,#eef8ff,#fffdf7);color:#243d50;f
 <script src="class6-study-data.js"></script><script>
 (function(){
 const params=new URLSearchParams(location.search),subject=params.get('subject')||'english',term=Number(params.get('term')||1),title=params.get('title')||'';
-if(subject==='science'){location.replace('science-workbook.html?chapter='+encodeURIComponent(Number(title.match(/^\d+/)?.[0]||params.get('chapter')||1)));return;}
+if(subject==='science'){const scienceChapterNumber={'Food for Health':1,'Marvel of the Magnetic Realm':2,'Let’s Stand Straight':3,'Flowering and Fruiting':4,'Association of Substances':5,'Tiny Chambers of Life':6,'The World of Changes':7,'Motion in Daily Life':8,'Better Lifestyle for a Brighter Tomorrow':9}[title]||1;location.replace('science-workbook.html?chapter='+scienceChapterNumber);return;}
 const names={english:'English',science:'Science',social:'Social Science',hindi:'Hindi',maths:'Maths',malayalam2:'Malayalam 2'};
 const data=(window.CLASS6_STUDY_DATA||{})[subject];const unitMap=subject==='english'?{1:[1,2],2:[3,4],3:[5]}:{1:[1],2:[2],3:[3]};
 const chapter=data&&data.terms?(unitMap[term]||[term]).flatMap(u=>data.terms[u]||[]).find(c=>c.title===title):null;
