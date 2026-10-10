@@ -53,6 +53,7 @@ const APP_SHELL = [
   "./chapter-study.html",
   "./science-workbook.html",
   "./science-workbook-data.js",
+  "./science-workbook-patch.js",
   "./class6-study-data.js",
   "./daily-math-gym.html",
   "./daily-math-gym.css?v=20261007-003",
