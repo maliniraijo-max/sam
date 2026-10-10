@@ -136,4 +136,29 @@ chapter(9,"ഉടമസ്ഥത","ഉടമസ്ഥത എന്ന ആശയ�
 ]
 })
 };
+
+/* Extra chapter practice: short, accessible questions with model answers.
+   These are original revision activities, not copied textbook exercise text. */
+const extraEnglishPractice={
+"Names and Names":[["What should classmates do when they find a name difficult to pronounce?","Ask politely how to say it and practise saying it correctly."],["What is one way a new student can learn about a different culture?","Talk respectfully with classmates, listen to their experiences and notice everyday customs."]],
+"The Colours of Earth":[["What do the colours in the song help us understand?","They show the beauty of nature and the variety that connects people with the Earth."],["Give two examples of descriptive colour phrases.","Examples: sky blue and dazzling brown river."]],
+"Crow Boy":[["Why did the other children misunderstand Chibi?","They judged him by his quiet behaviour instead of trying to understand him."],["How did Chibi show his ability?","He carefully observed the crows and demonstrated his special knowledge of them."]],
+"The Boy Who Harnessed the Wind":[["What helped William develop his idea?","His curiosity, library books, observation and experiments with discarded materials."],["What problem did William hope to solve with the windmill?","He hoped to generate electricity and pump water to help his community." ]],
+"The Aeroplane":[["What is one advantage of air travel?","It can carry people and goods over long distances quickly."],["Name two details to look for when reading the lesson.","Words describing flight and the speaker’s feelings or observations about the aeroplane."]],
+"Mousetronaut":[["Who is Meteor?","Meteor is a small mouse who becomes part of a space mission."],["What can we learn from Meteor?","A person’s size does not decide their value; everyone can contribute to a team."]],
+"Six Dots":[["What does Braille help people do?","It helps people who are blind or have low vision read and write through touch."],["How are Braille symbols formed?","They use different patterns of raised dots, commonly arranged in cells of six dots." ]],
+"Hello, I’m a Wheelchair":[["Who speaks in the poem?","Becky’s wheelchair is the speaker."],["What can communities do to make travel easier for wheelchair users?","Provide ramps, smooth paths, lifts and accessible entrances." ]],
+"A Friend Like Simon":[["What did Simon’s mum ask him to do?","She asked him to say hello to Mathew."],["Name one detail that shows Simon likes routine.","He likes to arrange his books and pencils in the same way each day." ]],
+"The Why-Why Girl":[["Who is Moyna?","Moyna is a curious girl who enjoys asking questions and learning about the world."],["Why should children be encouraged to ask questions?","Questions help children explore, understand and learn instead of accepting everything without thinking." ]],
+"The Heart of a Woman":[["What should you look for when explaining the poem or passage?","Identify the speaker, images and feelings, and support your answer with details from the text."],["What is imagery?","Imagery is language that helps readers picture, hear, feel, taste or smell something." ]],
+"The Story of Dalda 13":[["Who was Homai Vyarawalla?","She was a pioneering Indian photojournalist and one of India’s first prominent women press photographers."],["How did Vyarawalla get the name Dalda 13?","The nickname came from her car registration number, DLD 13." ]],
+"Unnikkuttan Goes to School":[["What season is shown in the opening picture?","The rainy season."],["How can a child be helped to feel safe on the first school day?","A friendly teacher, a kind classmate and reassurance from family can help." ]],
+"The Boat":[["What language details can help you imagine a boat on water?","Words describing movement, sounds, the setting and the mood."],["Give two words that describe a boat moving on water.","Gliding and rocking are possible answers." ]],
+"Cousins From Across the Sea":[["What news did Sona Teacher share with the students?","She told them they would go on a study tour the following month."],["How can cousins stay connected when they live far apart?","They can share messages, calls, family stories and visits when possible." ]]
+};
+Object.values(window.CLASS6_STUDY_DATA.english.terms).flat().forEach(ch=>{
+  const extras=extraEnglishPractice[ch.title]||[];
+  ch.activities=(ch.activities||[]).concat(extras.map(([q,a])=>({q,a})));
+});
+
 })();
