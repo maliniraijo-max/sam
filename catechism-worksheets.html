@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fff8e7"><title>Class 6 Catechism • Previous-Year Worksheets</title>
+<style>
+:root{--navy:#193b63;--ink:#26374a;--gold:#e8bd59;--line:#e4e8ec;--paper:#fff;--bg:#f6f8fb}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fff8e7,#f5f9ff);color:var(--ink);font-family:Arial,sans-serif}.wrap{max-width:980px;margin:auto;padding:14px 14px 45px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.top a{color:var(--navy);font-weight:800;text-decoration:none}.hero{text-align:center;padding:18px 4px}.hero .tag{display:inline-block;border-radius:24px;background:#ffefc2;padding:7px 12px;font-size:12px;font-weight:800}.hero h1{font-size:clamp(27px,5vw,40px);margin:12px 0 6px;color:var(--navy)}.hero p{line-height:1.55;color:#617181;margin:0}.tabs,.nav,.actions{display:flex;gap:8px;flex-wrap:wrap}.tabs button,.btn{border:0;border-radius:10px;padding:11px 14px;background:#e7eff8;color:var(--navy);font-weight:800;cursor:pointer}.tabs button.active,.btn.primary{background:var(--navy);color:white}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:17px;margin:13px 0;box-shadow:0 6px 20px #173c600a}.headrow{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap}.headrow h2{margin:0 0 8px;color:var(--navy)}.small{font-size:13px;line-height:1.5;color:#687b8b}.section{margin-top:18px}.section h3{background:#eef4fb;padding:10px 12px;border-radius:10px;color:var(--navy);font-size:16px}.q{border-bottom:1px solid #edf0f3;padding:14px 0}.q:last-child{border-bottom:0}.qt{font-weight:700;line-height:1.55;margin-bottom:9px}.options{display:grid;gap:7px}.option{display:flex;gap:9px;align-items:flex-start;padding:9px 10px;border:1px solid #e0e7ed;border-radius:9px;background:#fbfcfd}.ans{width:100%;min-height:52px;border:1px solid #cdd9e2;border-radius:9px;padding:10px;font:inherit;resize:vertical}.ans.short{min-height:40px}.match{display:grid;grid-template-columns:1fr;gap:8px}.matchrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:center}.matchrow label{font-size:14px;line-height:1.4}.matchrow select{width:100%;min-width:0;border:1px solid #cdd9e2;border-radius:8px;padding:9px;font:inherit;background:white}.answer{display:none;background:#f0f8f1;border:1px solid #d2e9d7;padding:10px 12px;border-radius:9px;line-height:1.55;margin-top:8px;white-space:pre-wrap}.answer.show{display:block}.question-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}.score{font-weight:800;color:var(--navy)}.essay{min-height:180px}.hidden{display:none!important}.notice{background:#fff5d9;border:1px solid #f0d99b;border-radius:12px;padding:12px;line-height:1.55}.footer{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:14px}@media(min-width:700px){.match{grid-template-columns:1fr 1fr}.card{padding:22px}}@media print{body{background:white}.top,.tabs,.question-tools,.footer,.notice{display:none!important}.card{box-shadow:none;break-inside:avoid}.answer{display:block!important}.wrap{max-width:none;padding:0}.essay{min-height:90px}}
+</style></head><body><main class="wrap">
+<header class="top"><a href="catechism.html">← Back to Catechism</a><strong>CLASS 6 • CATECHISM</strong></header>
+<section class="hero"><span class="tag">PREVIOUS-YEAR EXAM PRACTICE</span><h1>Two Catechism Worksheets</h1><p>Answer in the box, choose options, or match from the menus. Each question has a model answer directly underneath.</p></section>
+<div class="notice"><strong>Source note:</strong> Both PDFs uploaded in this chat are byte-for-byte identical copies of the Archdiocese of Ernakulam–Angamaly, Department of Catechesis, First Semester Examination for Std VI dated 03/11/2024. Worksheet 1 follows that paper's questions. Worksheet 2 is a fresh revision worksheet based on the same paper's topics—not a second previous-year paper.</div>
+<section class="card"><div class="tabs" id="tabs"><button class="active" data-w="0">Worksheet 1 • Original paper</button><button data-w="1">Worksheet 2 • Revision practice</button></div><p class="small">Use “Show answer” under any question to check it. For matching questions, select the answer from each menu. Use Print / Save PDF if you want a paper copy.</p><div class="actions"><button class="btn primary" id="show-all">Show all answers</button><button class="btn" id="hide-all">Hide all answers</button><button class="btn" onclick="window.print()">Print / Save PDF</button></div></section>
+<div id="worksheet"></div><footer class="footer"><button class="btn" id="prev">← Previous worksheet</button><span class="score" id="which">Worksheet 1 of 2</span><button class="btn" id="next">Next worksheet →</button></footer>
+</main>
+<script>
+const matchOptions={
+choice:["Salvation","Isaiah","The Anointed","St. John","Trees","Laudato Si","Humans","Word of God","St. Peter","Thrice","Daughters of Jerusalem","Jesus Christ","Five times","The friends of abstinence","Martha"],
+holy:["Palm Sunday","Holy Monday","Holy Tuesday","Spy Wednesday","Maundy Thursday","Good Friday","Holy Saturday","Easter Sunday"],
+pair:["To live together","Declaration","Moses","The Feast of Epiphany","Submission","Isaiah","Divine glory"]
+};
+const worksheets=[
+{title:"Worksheet 1 • Original previous-year paper",subtitle:"Archdiocese of Ernakulam–Angamaly • First Semester Examination • Std VI • 03/11/2024 • 50 marks",sections:[
+{title:"A. Choose and write the correct answer from the box",note:"Original paper: Any ten • 1 mark each",items:[
+{q:"1. The Bible verse says that ______ is the total liberator of humankind.",type:"select",opts:matchOptions.choice,a:"Jesus Christ"},
+{q:"2. The ______ gives us power to overcome temptations.",type:"select",opts:matchOptions.choice,a:"Word of God"},
+{q:"3. The death of Jesus attained for us absolution from our sins and ______.",type:"select",opts:matchOptions.choice,a:"Salvation"},
+{q:"4. The ______ play the most significant role in purifying the air.",type:"select",opts:matchOptions.choice,a:"Trees"},
+{q:"5. The European missionaries qualified the Mar Thoma Christians as ______.",type:"select",opts:matchOptions.choice,a:"The friends of abstinence"},
+{q:"6. Who said to whom, “Didn’t I tell you that if you believed, you’d see the glory of God?”",type:"select",opts:matchOptions.choice,a:"Jesus Christ"},
+{q:"7. What is the meaning of the word “Christ”?",type:"select",opts:matchOptions.choice,a:"The Anointed"},
+{q:"8. How many times did Jesus foretell about His death?",type:"select",opts:matchOptions.choice,a:"Thrice"},
+{q:"9. In which encyclical does Pope Francis describe the Earth as our common home?",type:"select",opts:matchOptions.choice,a:"Laudato Si"},
+{q:"10. Who confessed, “You are the Christ, the Son of the living God.”?",type:"select",opts:matchOptions.choice,a:"St. Peter"},
+{q:"11. Who said to whom, “Do not weep for me, but weep for yourselves and for your children”?",type:"select",opts:matchOptions.choice,a:"Jesus Christ said this to the Daughters of Jerusalem."},
+{q:"12. In which book, chapter, and verse is it written, “The young woman is with child and shall bear a son and shall name him Emmanuel”?",type:"text",a:"Isaiah 7:14."}
+]},
+{title:"B. Classify and fill in the blanks",note:"Original paper: 3 × 2 = 6 marks",items:[
+{q:"13. Arrange the five aspects of Jesus’s mission to liberate humanity from all kinds of bondage in the correct order.",type:"order",opts:["Good news to the poor","Liberation of those in bondage","Sight for the blind","The year acceptable to the Lord","Freedom for the oppressed"],a:"1. Good news to the poor; 2. Liberation of those in bondage; 3. Sight for the blind; 4. Freedom for the oppressed; 5. The year acceptable to the Lord.",hint:"Use the mission statements from the paper's boxes. The sequence follows the order in Luke 4:18–19."},
+{q:"14. Arrange the days of Holy Week in the correct order: Palm Sunday, ______, ______, ______.",type:"text",a:"The paper has three blanks only. The full sequence of the next days is Holy Monday, Holy Tuesday and Spy Wednesday. (Holy Week continues with Maundy Thursday, Good Friday and Holy Saturday, followed by Easter Sunday.)"}
+]},
+{title:"C. Match the following",note:"Original paper: 1 × 5 = 5 marks",items:[
+{q:"15. Match each item to the correct option.",type:"matching",pairs:[["The Bronze Serpent","Moses"],["January 6","The Feast of Epiphany"],["Fasting (Upavaasam)","Submission"],["Subara","Declaration"],["Miracles","Divine glory"]],a:"The Bronze Serpent—Moses; January 6—The Feast of Epiphany; Fasting (Upavaasam)—Submission; Subara—Declaration; Miracles—Divine glory."}
+]},
+{title:"D. Little Catechism, Sathyadeepam, Bible, Logo",note:"Original paper: 1 × 4 = 4 marks",items:[
+{q:"16. What is the Second Joyful Mystery in the Rosary of the Blessed Virgin Mary?",type:"text",a:"The Visitation of the Blessed Virgin Mary to her cousin Elizabeth."},
+{q:"17. To whom did Mother Mary present the scapular as a sign of her special protection?",type:"text",a:"According to the traditional Carmelite account, Mary gave the scapular to St. Simon Stock."},
+{q:"18. Quote Colossians 4:2: “Devote ______.”",type:"text",a:"“Devote yourselves to prayer, being watchful and thankful.” (Wording may vary slightly by Bible translation.)"},
+{q:"19. What do the “Rays of light” symbolize in the logo of the Catechetical Year 2024–2025?",type:"text",a:"The supplied question paper does not provide the logo's explanation. Check the original Catechetical Year 2024–2025 logo/guide for the official intended wording; do not treat a guessed answer as confirmed."}
+]},
+{title:"E. Answer in a sentence",note:"Original paper: 1 × 5 = 5 marks",items:[
+{q:"20. What is the significance of the Baptism of Jesus?",type:"text",a:"Jesus publicly begins His mission; the Father reveals Him as the beloved Son and the Holy Spirit descends upon Him."},
+{q:"21. How did Jesus overcome Satan, the tempter?",type:"text",a:"Jesus overcame the temptations by remaining faithful to the Father and responding with the Word of God."},
+{q:"22. What does St. Paul teach us about the Kingdom of God?",type:"text",a:"Romans 14:17 teaches that the Kingdom of God is righteousness, peace and joy in the Holy Spirit."},
+{q:"23. What did Jesus pray on the Mount of Olives prior to His sacrifice at Calvary on Good Friday?",type:"text",a:"Jesus prayed to the Father in anguish, asking that the cup might pass from Him, yet submitting to the Father's will: “Not my will, but yours be done.”"},
+{q:"24. What does Jesus require of those whose sins are forgiven?",type:"text",a:"They must repent, turn away from sin and forgive others, showing mercy as they have received mercy."}
+]},
+{title:"F. Write any one essay",note:"Original paper: 5 marks • At least one page",items:[
+{q:"25A. God created this beautiful Earth for us, but we have harmed it in many ways. What can we do to help make our planet healthier and more sustainable for ourselves as we grow up and for future generations? Refer to Lesson 2: “Global Warming” in the non-detail textbook.",type:"essay",a:"Model points: God entrusted the Earth to human care. We can plant and protect trees; save electricity and water; walk, cycle or use public transport when possible; reduce, reuse and recycle; avoid littering and burning waste; reduce single-use plastics; protect rivers, soil, forests and wildlife; separate waste and compost biodegradable material; and encourage our families and communities to care for creation. These actions reduce pollution and greenhouse-gas emissions and help protect the Earth for future generations."},
+{q:"25B. How does Jesus seek out sinners and extend forgiveness? Refer to the Parable of the Lost Sheep, the Parable of the Lost Coin and the Parable of the Prodigal Son.",type:"essay",a:"Model points: In the Parable of the Lost Sheep, the shepherd searches for the one sheep that is lost and rejoices when he finds it. In the Parable of the Lost Coin, the woman carefully searches until she finds the coin and celebrates. In the Parable of the Prodigal Son, the father welcomes his repentant son with compassion rather than rejecting him. These parables teach that God seeks those who are lost, welcomes sincere repentance and rejoices when sinners return. Jesus calls us to repent, trust in God's mercy and show forgiveness and compassion to others."}
+]}]},
+{title:"Worksheet 2 • Revision practice",subtitle:"A new practice paper based on the same uploaded examination topics. It is not a second original previous-year paper.",sections:[
+{title:"A. Choose the correct answer",note:"Revision practice • one answer per question",items:[
+{q:"1. The title “Christ” means:",type:"mcq",opts:["The Anointed","The Shepherd","The Teacher"],a:"The Anointed"},
+{q:"2. Which book contains the prophecy about Emmanuel in Isaiah 7:14?",type:"mcq",opts:["Isaiah","Genesis","Acts"],a:"Isaiah"},
+{q:"3. Jesus taught us to resist temptation by relying on:",type:"mcq",opts:["The Word of God","Wealth","Fame"],a:"The Word of God"},
+{q:"4. January 6 is celebrated as:",type:"mcq",opts:["The Feast of Epiphany","Palm Sunday","Good Friday"],a:"The Feast of Epiphany"},
+{q:"5. “Laudato Si’” is an encyclical about care for:",type:"mcq",opts:["Our common home, the Earth","Only church buildings","Only school life"],a:"Our common home, the Earth"},
+{q:"6. Who declared that Jesus is “the Christ, the Son of the living God”?",type:"mcq",opts:["St. Peter","Moses","Isaiah"],a:"St. Peter"},
+{q:"7. The Second Joyful Mystery is:",type:"mcq",opts:["The Visitation","The Nativity","The Finding of Jesus in the Temple"],a:"The Visitation"},
+{q:"8. The Kingdom of God is described in Romans 14:17 as:",type:"mcq",opts:["Righteousness, peace and joy in the Holy Spirit","Power and wealth","Fear and punishment"],a:"Righteousness, peace and joy in the Holy Spirit"},
+{q:"9. In the parable of the lost sheep, the shepherd:",type:"mcq",opts:["Searches for the lost sheep","Leaves every sheep behind","Punishes the sheep before finding it"],a:"Searches for the lost sheep"},
+{q:"10. Which is an example of caring for creation?",type:"mcq",opts:["Saving water and protecting trees","Throwing waste into a river","Burning plastic outdoors"],a:"Saving water and protecting trees"}
+]},
+{title:"B. One-word and short answers",note:"Write in the box; then reveal the model answer.",items:[
+{q:"11. What is the meaning of “Christ”?",type:"text",a:"The Anointed."},
+{q:"12. Name the encyclical that calls the Earth our common home.",type:"text",a:"Laudato Si’."},
+{q:"13. Name the person who received the Ten Commandments and is linked with the Bronze Serpent.",type:"text",a:"Moses."},
+{q:"14. What does the word “Subara” mean in the matching section of the source paper?",type:"text",a:"Declaration."},
+{q:"15. Name the Gospel event commemorated on Palm Sunday.",type:"text",a:"Jesus’ triumphant entry into Jerusalem."},
+{q:"16. What did Jesus say in prayer on the Mount of Olives about the Father's will?",type:"text",a:"“Not my will, but yours be done.”"},
+{q:"17. What three qualities describe the Kingdom of God in Romans 14:17?",type:"text",a:"Righteousness, peace and joy in the Holy Spirit."},
+{q:"18. Name the three parables used to show God's search for sinners in the exam essay question.",type:"text",a:"The Lost Sheep, the Lost Coin and the Prodigal Son."}
+]},
+{title:"C. Put in order and match",note:"Use the menus to practise the associations.",items:[
+{q:"19. Match the Bible/faith item with its association.",type:"matching",pairs:[["The Bronze Serpent","Moses"],["January 6","The Feast of Epiphany"],["Fasting (Upavaasam)","Submission"],["Miracles","Divine glory"],["Christ","The Anointed"]],a:"The Bronze Serpent—Moses; January 6—The Feast of Epiphany; Fasting—Submission; Miracles—Divine glory; Christ—The Anointed."},
+{q:"20. Arrange the days of Holy Week from the beginning of the week to Easter.",type:"order",opts:["Palm Sunday","Holy Monday","Holy Tuesday","Spy Wednesday","Maundy Thursday","Good Friday","Holy Saturday","Easter Sunday"],a:"Palm Sunday → Holy Monday → Holy Tuesday → Spy Wednesday → Maundy Thursday → Good Friday → Holy Saturday → Easter Sunday."}
+]},
+{title:"D. Answer in a sentence",note:"Try independently before revealing the answer.",items:[
+{q:"21. Why is the Baptism of Jesus important?",type:"text",a:"It marks the beginning of Jesus’ public ministry and reveals Him as the beloved Son of the Father, with the Holy Spirit descending upon Him."},
+{q:"22. How can the Word of God help a person face temptation?",type:"text",a:"It reminds the person of God's truth and helps them choose what is right rather than give in to temptation."},
+{q:"23. What do the parables of the Lost Sheep and Lost Coin teach?",type:"text",a:"God lovingly seeks those who are lost and rejoices when they are found and return."},
+{q:"24. What lesson does the Prodigal Son teach about forgiveness?",type:"text",a:"God welcomes those who sincerely repent, and we should show mercy and forgiveness to others."},
+{q:"25. Give two practical ways to protect the Earth for future generations.",type:"text",a:"Examples: plant/protect trees, save water and electricity, reduce plastic, reuse/recycle, separate waste and avoid littering."}
+]},
+{title:"E. Essay practice",note:"Write a developed paragraph or a full-page answer.",items:[
+{q:"26. Explain how Jesus shows God's mercy to sinners, using all three parables: the Lost Sheep, the Lost Coin and the Prodigal Son.",type:"essay",a:"A good answer should explain each parable and connect them to God's mercy. The shepherd searches for one lost sheep; the woman searches carefully for the lost coin; the father welcomes his repentant son. Together they show that God does not abandon sinners but calls them back, welcomes sincere repentance and rejoices when they return. Christians are called to repent, forgive and show compassion."},
+{q:"27. Write a short essay on how a student and family can care for God's creation and reduce the effects of global warming.",type:"essay",a:"A good answer should mention caring for creation as a responsibility; planting and protecting trees; saving electricity and water; walking, cycling or using public transport where possible; reducing, reusing and recycling; avoiding plastic litter and open burning; sorting waste and composting suitable organic waste; and encouraging others to protect nature. Explain that these choices reduce waste, pollution and greenhouse-gas emissions and help keep the planet healthy for future generations."}
+]}]}
+];
+let current=0;const root=document.getElementById('worksheet');
+function el(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
+function buildItem(item,index){
+const box=el('div','q'),title=el('div','qt',item.q);box.appendChild(title);
+if(item.type==='mcq'||item.type==='select'){
+ const wrap=el('div','options');(item.type==='select'?item.opts:item.opts).forEach(opt=>{const lab=el('label','option'),inp=document.createElement('input');inp.type=item.type==='select'?'radio':'radio';inp.name='q-'+current+'-'+index;inp.value=opt;lab.append(inp,document.createTextNode(opt));wrap.appendChild(lab)});box.appendChild(wrap);
+}else if(item.type==='matching'){
+ const wrap=el('div','match');item.pairs.forEach((pair,j)=>{const row=el('div','matchrow'),lab=el('label','',pair[0]),sel=document.createElement('select');sel.innerHTML='<option value="">Choose match…</option>';const options=Array.from(new Set(item.pairs.map(p=>p[1])));options.forEach(o=>{const op=document.createElement('option');op.value=o;op.textContent=o;sel.appendChild(op)});sel.setAttribute('aria-label','Match for '+pair[0]);row.append(lab,sel);wrap.appendChild(row)});box.appendChild(wrap);
+}else if(item.type==='order'){
+ const wrap=el('div','match');item.opts.forEach((op,j)=>{const row=el('div','matchrow'),lab=el('label','',op),sel=document.createElement('select');sel.innerHTML='<option value="">Position…</option>';item.opts.forEach((_,i)=>{const option=document.createElement('option');option.value=String(i+1);option.textContent=String(i+1);sel.appendChild(option)});sel.setAttribute('aria-label','Position for '+op);row.append(lab,sel);wrap.appendChild(row)});box.appendChild(wrap);
+}else{
+ const area=document.createElement('textarea');area.className='ans'+(item.type==='essay'?' essay':'');area.placeholder=item.type==='essay'?'Write your essay here…':'Write your answer here…';area.setAttribute('aria-label',item.q);box.appendChild(area)
+}
+const tools=el('div','question-tools'),button=el('button','btn','Show answer'),answer=el('div','answer',item.a);button.type='button';button.addEventListener('click',()=>{answer.classList.toggle('show');button.textContent=answer.classList.contains('show')?'Hide answer':'Show answer'});tools.appendChild(button);
+if(item.type==='mcq'||item.type==='select'||item.type==='matching'||item.type==='order'){
+ const check=el('button','btn','Check response');check.type='button';const feedback=el('span','small');check.addEventListener('click',()=>{let ok=false;if(item.type==='mcq'||item.type==='select'){const picked=box.querySelector('input:checked');ok=!!picked&&picked.value===item.a;feedback.textContent=!picked?'Choose an answer first.':ok?'Correct!':'Not quite — check the answer below.'}
+else if(item.type==='matching'){const sels=Array.from(box.querySelectorAll('select'));ok=sels.every((s,i)=>s.value===item.pairs[i][1]);feedback.textContent=sels.some(s=>!s.value)?'Complete each match first.':ok?'All matches correct!':'Some matches need correction.'}
+else {const sels=Array.from(box.querySelectorAll('select'));const pairs=item.opts.map((v,i)=>[v,Number(sels[i].value)]).sort((a,b)=>a[1]-b[1]);ok=pairs.every((p,i)=>p[0]===item.opts[i]&&p[1]===i+1);feedback.textContent=sels.some(s=>!s.value)?'Choose a position for each item.':ok?'Correct order!':'Check the model sequence below.'}});tools.append(check,feedback)}
+box.append(tools,answer);return box;
+}
+function render(){root.innerHTML='';const w=worksheets[current];const h=el('section','card');h.append(el('div','headrow',''));const title=el('h2','',w.title);h.innerHTML='';h.appendChild(title);h.appendChild(el('p','small',w.subtitle||''));root.appendChild(h);w.sections.forEach(sec=>{const section=el('section','card section');section.appendChild(el('h3','',sec.title));if(sec.note)section.appendChild(el('p','small',sec.note));sec.items.forEach((it,i)=>section.appendChild(buildItem(it,i)));root.appendChild(section)});document.getElementById('which').textContent='Worksheet '+(current+1)+' of 2';document.getElementById('prev').disabled=current===0;document.getElementById('next').textContent=current===1?'Back to Worksheet 1':'Next worksheet →';document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('active',Number(b.dataset.w)===current));window.scrollTo(0,0)}
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.w);render()}));
+document.getElementById('prev').addEventListener('click',()=>{current=0;render()});document.getElementById('next').addEventListener('click',()=>{current=current===0?1:0;render()});
+document.getElementById('show-all').addEventListener('click',()=>{document.querySelectorAll('.answer').forEach(x=>x.classList.add('show'));document.querySelectorAll('.question-tools .btn').forEach(x=>{if(x.textContent==='Show answer')x.textContent='Hide answer'})});
+document.getElementById('hide-all').addEventListener('click',()=>{document.querySelectorAll('.answer').forEach(x=>x.classList.remove('show'));document.querySelectorAll('.question-tools .btn').forEach(x=>{if(x.textContent==='Hide answer')x.textContent='Show answer'})});
+render();
+</script></body></html>
