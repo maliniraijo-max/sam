@@ -27,7 +27,7 @@ chapters.forEach((c,i)=>{
 const card=document.createElement('article');card.className='chapter-card';
 const head=document.createElement('div');head.className='chapter-head';
 const idx=document.createElement('div');idx.className='chapter-index';idx.textContent=c.number||i+1;
-const info=document.createElement('div');const h=document.createElement('h2');h.textContent=c.title;const p=document.createElement('p');p.textContent=c.subtitle||'Chapter revision';info.append(h,p);head.append(idx,info);
+const info=document.createElement('div');const h=document.createElement('h2');const open=document.createElement('a');open.href='chapter-study.html?subject='+encodeURIComponent(subject)+'&term='+term+'&title='+encodeURIComponent(c.title);open.textContent=c.title;open.style.color='inherit';open.style.textDecoration='none';open.setAttribute('aria-label','Open chapter '+c.title);h.appendChild(open);const p=document.createElement('p');p.textContent=(c.subtitle||'Chapter revision')+' · Tap title to open lesson →';info.append(h,p);head.append(idx,info);
 const body=document.createElement('div');body.className='chapter-body';
 const sec=(title,content)=>{const s=document.createElement('section');s.className='study-section';const h=document.createElement('h3');h.textContent=title;s.appendChild(h);if(Array.isArray(content)){const ul=document.createElement('ul');content.forEach(v=>{const li=document.createElement('li');li.textContent=v;ul.appendChild(li)});s.appendChild(ul)}else{const p=document.createElement('p');p.textContent=content;s.appendChild(p)}body.appendChild(s)};
 sec('Chapter summary',c.summary||'Review the chapter in the textbook and identify its main idea, key terms and examples.');
