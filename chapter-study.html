@@ -18,13 +18,89 @@ document.getElementById('summary').textContent=chapter.summary||'Read the chapte
 (chapter.points||[]).forEach(t=>{const li=document.createElement('li');li.textContent=t;document.getElementById('points').appendChild(li)});
 const acts=document.getElementById('activities');
 (chapter.activities||[]).forEach((a,i)=>{const wrap=document.createElement('div');wrap.className='activity';const q=document.createElement('div');q.className='question';q.textContent=(i+1)+'. '+a.q;const input=document.createElement('textarea');input.className='answer';input.placeholder='Write your answer here…';input.setAttribute('aria-label','Your answer to '+a.q);const btn=document.createElement('button');btn.className='btn';btn.textContent='Show model answer';const model=document.createElement('div');model.className='model';model.textContent=a.a;btn.addEventListener('click',()=>{model.classList.toggle('show');btn.textContent=model.classList.contains('show')?'Hide model answer':'Show model answer'});wrap.append(q,input,btn,model);acts.appendChild(wrap)});
-const slug={'Names and Names':'names-and-names-questions-and-answers','The Colours of Earth':'the-colours-of-earth-questions-and-answers','Crow Boy':'crow-boy-questions-and-answers','The Boy Who Harnessed the Wind':'the-boy-who-harnessed-the-wind-questions-and-answers','The Aeroplane':'the-aeroplane-questions-and-answers','Mousetronaut':'mousetronaut-questions-and-answers','Six Dots':'six-dots-questions-and-answers','Hello, I’m a Wheelchair':'hello-im-a-wheelchair-questions-and-answers','A Friend Like Simon':'a-friend-like-simon-questions-and-answers','The Why-Why Girl':'the-why-why-girl-questions-and-answers','The Heart of a Woman':'the-heart-of-a-woman-questions-and-answers','The Story of Dalda 13':'the-story-of-dalda-13-questions-and-answers','Unnikkuttan Goes to School':'unnikkuttan-goes-to-school-questions-and-answers','The Boat':'the-boat-questions-and-answers','Cousins From Across the Sea':'cousins-from-across-the-sea-questions-and-answers'};
+const slug={
+'Names and Names':'names-and-names-questions-and-answers',
+'The Colours of Earth':'the-colours-of-earth-questions-and-answers',
+'Crow Boy':'crow-boy-questions-and-answers',
+'The Boy Who Harnessed the Wind':'the-boy-who-harnessed-the-wind-questions-and-answers',
+'The Aeroplane':'the-aeroplane-questions-and-answers',
+'Mousetronaut':'mousetronaut-questions-and-answers',
+'Six Dots':'six-dots-questions-and-answers',
+'Hello, I’m a Wheelchair':'hello-im-a-wheelchair-questions-and-answers',
+'A Friend Like Simon':'a-friend-like-simon-questions-and-answers',
+'The Why-Why Girl':'the-why-why-girl-questions-and-answers',
+'The Heart of a Woman':'the-heart-of-a-woman-questions-and-answers',
+'The Story of Dalda 13':'the-story-of-dalda-13-questions-and-answers',
+'Unnikkuttan Goes to School':'unnikkuttan-goes-to-school-questions-and-answers',
+'The Boat':'the-boat-questions-and-answers',
+'Cousins From Across the Sea':'cousins-from-across-the-sea-questions-and-answers'};
 document.getElementById('source').href='https://www.hsslive.guru/'+(slug[chapter.title]||'kerala-syllabus-6th-standard-english-solutions')+'/';
-const quizItems=[
+const chapterQuizBank={
+'Names and Names':[
+{q:'Why did Kunhichirutha dislike how some classmates said her name?',opts:['They said it incorrectly','They forgot her school','They spoke too quietly'],correct:0},
+{q:'Who first pronounced Kunhichirutha’s name correctly outside her family?',opts:['Kate','Mr. Prakash','Ms. Hopkins'],correct:1},
+{q:'What does the story encourage readers to do?',opts:['Avoid people from other places','Respect names and cultural differences','Use nicknames without asking'],correct:1}],
+'The Colours of Earth':[
+{q:'What is the central idea of the song?',opts:['Everyone should look alike','Nature has only a few colours','Differences and colours make the world beautiful'],correct:2},
+{q:'What does “dazzling” mean?',opts:['Very bright or shining','Very quiet','Very cold'],correct:0},
+{q:'Which colour is mentioned with the river?',opts:['Dazzling brown','Bright pink','Silver white'],correct:0}],
+'Crow Boy':[
+{q:'What is Chibi’s nickname?',opts:['Crow Boy','River Boy','Little Teacher'],correct:0},
+{q:'Why do the other children misunderstand Chibi?',opts:['They judge him without understanding him','He refuses to attend school','He never observes birds'],correct:0},
+{q:'What lesson does the story teach?',opts:['Quiet children cannot learn','People should be judged by their strengths, not first impressions','Everyone must have the same interests'],correct:1}],
+'The Boy Who Harnessed the Wind':[
+{q:'Where is William’s story set?',opts:['Malawi','New Jersey','France'],correct:0},
+{q:'What helped William develop his windmill idea?',opts:['Library books and experimentation','A television competition','A school trip to the sea'],correct:0},
+{q:'What did William hope the windmill would help provide?',opts:['Water and electricity','More road signs','A new classroom uniform'],correct:0}],
+'The Aeroplane':[
+{q:'Which detail should support an interpretation of this lesson?',opts:['A detail or image from the actual text','A random fact from another story','Only the chapter number'],correct:0},
+{q:'Aeroplanes are especially useful for…',opts:['Fast long-distance travel','Growing crops directly','Making rain'],correct:0},
+{q:'When explaining a poem, what is helpful?',opts:['Notice descriptive words and images','Ignore the speaker','Skip the text'],correct:0}],
+'Mousetronaut':[
+{q:'What is Meteor?',opts:['A mouse on a space mission','A type of rocket','A planet'],correct:0},
+{q:'What does Meteor’s role show?',opts:['Small team members cannot help','Every team member can contribute','Only the biggest member matters'],correct:1},
+{q:'Which is important during a mission?',opts:['Teamwork and preparation','Working against everyone','Ignoring instructions'],correct:0}],
+'Six Dots':[
+{q:'Who developed the tactile reading system called Braille?',opts:['Louis Braille','William Kamkwamba','Homai Vyarawalla'],correct:0},
+{q:'How are Braille characters read?',opts:['By feeling raised-dot patterns','By hearing bells','By smelling symbols'],correct:0},
+{q:'Why was Braille important?',opts:['It helped blind people read and write more independently','It made books heavier','It replaced spoken language'],correct:0}],
+'Hello, I’m a Wheelchair':[
+{q:'What is the wheelchair’s name in the poem?',opts:['Becky','Moyna','Antoinette'],correct:0},
+{q:'What does the poem ask readers to notice?',opts:['The person using the wheelchair, not just the chair','Only the wheels','The colour of the road'],correct:0},
+{q:'What attitude supports inclusion?',opts:['Respect and understanding','Staring and teasing','Making assumptions'],correct:0}],
+'A Friend Like Simon':[
+{q:'Who tells the story about Simon?',opts:['Mathew','William','Chibi'],correct:0},
+{q:'What routine does Simon prefer?',opts:['Keeping his books and pencils arranged the same way','Changing seats every minute','Skipping every lesson'],correct:0},
+{q:'How can Mathew be a better friend?',opts:['Be patient and try to understand Simon','Stop speaking kindly to him','Make fun of his routines'],correct:0}],
+'The Why-Why Girl':[
+{q:'What is Moyna known for?',opts:['Asking many questions','Avoiding books','Disliking learning'],correct:0},
+{q:'What does Moyna decide to do to find answers?',opts:['Learn to read','Stop asking questions','Leave the village forever'],correct:0},
+{q:'What does the story support?',opts:['Curiosity and education for girls','Keeping children away from school','Never questioning unfairness'],correct:0}],
+'The Heart of a Woman':[
+{q:'What should you use to support an interpretation?',opts:['Images and details from the text','A guess unrelated to the text','Only the title'],correct:0},
+{q:'What can imagery help a reader understand?',opts:['Feelings and experiences','Only page numbers','The price of a book'],correct:0},
+{q:'A strong answer about a poem should…',opts:['Explain an idea and support it with textual details','Avoid mentioning the text','Repeat the question only'],correct:0}],
+'The Story of Dalda 13':[
+{q:'Who was Homai Vyarawalla?',opts:['A pioneering Indian photojournalist','A space scientist','A singer from Malawi'],correct:0},
+{q:'Where did the name “Dalda 13” come from?',opts:['Her car registration number','Her school roll number','A camera model'],correct:0},
+{q:'What quality helped Vyarawalla succeed?',opts:['Skill and perseverance in a field dominated by men','Avoiding difficult assignments','Refusing to learn'],correct:0}],
+'Unnikkuttan Goes to School':[
+{q:'What should a reader use to answer a detail question?',opts:['The events and clues in the chapter','A different chapter’s plot','A random guess'],correct:0},
+{q:'Which can help a child settle into school?',opts:['A supportive teacher and familiar routine','Being laughed at','Having no one to ask for help'],correct:0},
+{q:'When retelling a story, events should be…',opts:['In the correct order','Mixed randomly','Left out entirely'],correct:0}],
+'The Boat':[
+{q:'What helps a reader picture a boat’s movement?',opts:['Movement words and descriptive images','Only the author’s name','A list of unrelated numbers'],correct:0},
+{q:'Which word can describe a boat moving on water?',opts:['Gliding','Boiling','Barking'],correct:0},
+{q:'How should you answer a question about the poem?',opts:['Use a detail from the poem','Use a fact from another story','Ignore the question'],correct:0}],
+'Cousins From Across the Sea':[
+{q:'Where does the class plan to go on a study tour?',opts:['Lakshadweep','Malawi','New Jersey'],correct:0},
+{q:'What does “Lakshadweep” mean in the story?',opts:['One lakh islands','Land of snow','Mountain of stars'],correct:0},
+{q:'What can help relatives stay connected across distance?',opts:['Sharing stories and communicating','Never speaking again','Ignoring each other’s customs'],correct:0}]
+};
+const quizItems=chapterQuizBank[chapter.title]||[
 {q:'What is the best way to answer a chapter question?',opts:['Guess without reading','Use details from the chapter','Copy an unrelated sentence'],correct:1},
 {q:'When comparing your answer with the model answer, you should…',opts:['Look for the main idea and useful details','Memorise without understanding','Leave every question blank'],correct:0},
-{q:'If a question asks “why”, your answer should usually…',opts:['Give a reason','Only repeat the question','Write one random word'],correct:0}
-];
+{q:'If a question asks “why”, your answer should usually…',opts:['Give a reason','Only repeat the question','Write one random word'],correct:0}];
 const quiz=document.getElementById('quiz');quizItems.forEach((item,i)=>{const box=document.createElement('div');box.className='activity';const q=document.createElement('p');q.className='question';q.textContent=(i+1)+'. '+item.q;box.appendChild(q);item.opts.forEach((op,j)=>{const label=document.createElement('label');label.className='quiz-opt';const radio=document.createElement('input');radio.type='radio';radio.name='q'+i;radio.value=j;label.append(radio,document.createTextNode(' '+op));box.appendChild(label)});quiz.appendChild(box)});
 document.getElementById('checkQuiz').addEventListener('click',()=>{let score=0,done=0;quizItems.forEach((q,i)=>{const selected=document.querySelector('input[name="q'+i+'"]:checked');if(selected){done++;if(Number(selected.value)===q.correct)score++}});document.getElementById('score').textContent=done<quizItems.length?'Answer all 3 questions first. You have answered '+done+' of 3.':'Your score: '+score+' / 3. '+(score===3?'Excellent work!':'Review the chapter and try again.')});
 })();
