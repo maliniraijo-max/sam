@@ -11,7 +11,7 @@
 <section class="panel"><div class="nav"><button id="prev">← Previous section</button><span class="counter" id="counter"></span><button id="next">Next section →</button></div><p class="note">At the last section, the next button moves to the first section of the next chapter. Model answers are for checking; try each question before revealing them.</p></section>
 <section class="panel"><h2>🔎 Research references</h2><p class="note">The workbook is a newly written practice set organised around the current chapter sequence. Use the textbook as the final authority for wording and diagrams.</p><div class="source-links"><a href="https://www.hsslive.guru/kerala-syllabus-6th-standard-basic-science-solutions/" target="_blank" rel="noopener">HSSLive: all 9 current chapter guides ↗</a><a href="https://www.labourindia.com/exams/" target="_blank" rel="noopener">Labour India: term examination practice ↗</a><a href="https://scert.kerala.gov.in/" target="_blank" rel="noopener">SCERT Kerala ↗</a><a href="https://byjus.com/kbpe/scert-textbooks-class-6-science/" target="_blank" rel="noopener">BYJU’S textbook reference ↗</a></div></section>
 </main>
-<script src="science-workbook-data.js"></script><script>
+<script src="science-workbook-data.js"></script><script src="science-workbook-patch.js"></script><script>
 (function(){
 const bank=window.SCIENCE_WORKBOOK||{}, ids=Object.keys(bank).map(Number).sort((a,b)=>a-b);
 const params=new URLSearchParams(location.search);let chapterNo=Number(params.get('chapter')||1),sectionNo=Number(params.get('section')||0);
