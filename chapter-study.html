@@ -34,7 +34,19 @@ const slug={
 'Unnikkuttan Goes to School':'unnikkuttan-goes-to-school-questions-and-answers',
 'The Boat':'the-boat-questions-and-answers',
 'Cousins From Across the Sea':'cousins-from-across-the-sea-questions-and-answers'};
-document.getElementById('source').href='https://www.hsslive.guru/'+(slug[chapter.title]||'kerala-syllabus-6th-standard-english-solutions')+'/';
+const scienceSlugs={
+'Food for Health':'class-6-basic-science-chapter-1-question-answer',
+'Marvel of the Magnetic Realm':'class-6-basic-science-chapter-2-question-answer',
+'Let’s Stand Straight':'class-6-basic-science-chapter-3-question-answer',
+'Flowering and Fruiting':'class-6-basic-science-chapter-4-question-answer',
+'Association of Substances':'class-6-basic-science-chapter-5-question-answer',
+'Tiny Chambers of Life':'class-6-basic-science-chapter-6-question-answer',
+'The World of Changes':'class-6-basic-science-chapter-7-question-answer',
+'Motion in Daily Life':'class-6-basic-science-chapter-8-question-answer',
+'Better Lifestyle for a Brighter Tomorrow':'class-6-basic-science-chapter-9-question-answer'};
+
+document.getElementById('source').href=subject==='science'?'https://www.hsslive.guru/'+(scienceSlugs[chapter.title]||'kerala-syllabus-6th-standard-basic-science-solutions')+'/':'https://www.hsslive.guru/'+(slug[chapter.title]||'kerala-syllabus-6th-standard-english-solutions')+'/';
+if(subject==='science')document.getElementById('source').textContent='Open HSSLive Science Chapter '+chapter.number+' solutions ↗';
 const chapterQuizBank={
 'Names and Names':[
 {q:'Why did Kunhichirutha dislike how some classmates said her name?',opts:['They said it incorrectly','They forgot her school','They spoke too quietly'],correct:0},
@@ -97,6 +109,18 @@ const chapterQuizBank={
 {q:'What does “Lakshadweep” mean in the story?',opts:['One lakh islands','Land of snow','Mountain of stars'],correct:0},
 {q:'What can help relatives stay connected across distance?',opts:['Sharing stories and communicating','Never speaking again','Ignoring each other’s customs'],correct:0}]
 };
+const scienceQuizBank={
+'Food for Health':[{q:'Which nutrient is found in plenty in cereals and tubers?',opts:['Carbohydrate','Vitamin C','Water only'],correct:0},{q:'What does a blue-black iodine test show?',opts:['Starch is present','Fat is present','Protein is absent'],correct:0},{q:'Which nutrient supports growth and repair?',opts:['Protein','Only water','Fibre only'],correct:0}],
+'Marvel of the Magnetic Realm':[{q:'What happens between like poles?',opts:['They repel','They attract','Nothing ever happens'],correct:0},{q:'Which material is attracted by a common magnet?',opts:['Iron','Paper','Wood'],correct:0},{q:'What does a compass use?',opts:['A magnetised needle','A glass lens only','A thermometer'],correct:0}],
+'Let’s Stand Straight':[{q:'What does the skeleton do?',opts:['Supports the body and protects organs','Digests all food','Pumps blood'],correct:0},{q:'Where do bones meet?',opts:['At joints','In hair','In nails'],correct:0},{q:'Which protects the brain?',opts:['Skull','Rib cage','Knee joint'],correct:0}],
+'Flowering and Fruiting':[{q:'What is pollination?',opts:['Transfer of pollen from anther to stigma','Growth of roots only','Water loss from leaves'],correct:0},{q:'What does an ovule usually develop into after fertilisation?',opts:['Seed','Leaf','Root hair'],correct:0},{q:'Which can help seeds germinate?',opts:['Water, air and suitable warmth','No air at all','Only darkness in every case'],correct:0}],
+'Association of Substances':[{q:'Which tool separates iron filings from sand?',opts:['Magnet','Sieve with large holes only','Thermometer'],correct:0},{q:'Which method separates an insoluble solid from a liquid?',opts:['Filtration','Magnetising the liquid','Freezing every mixture'],correct:0},{q:'How can salt be recovered from salt water?',opts:['Evaporation','Handpicking','Using a compass'],correct:0}],
+'Tiny Chambers of Life':[{q:'What is the basic unit of life?',opts:['Cell','Organism community','Rock'],correct:0},{q:'Which instrument helps observe tiny cells?',opts:['Microscope','Compass','Barometer'],correct:0},{q:'Which structure is generally present in plant cells but not animal cells?',opts:['Cell wall','Cell membrane only','Cytoplasm only'],correct:0}],
+'The World of Changes':[{q:'Which is a reversible change?',opts:['Melting ice that can be frozen again','Burning paper','Cooking an egg'],correct:0},{q:'Which is generally irreversible?',opts:['Burning paper','Freezing water','Melting wax that can solidify again'],correct:0},{q:'What is useful when studying a change?',opts:['Careful observation','Guessing without looking','Ignoring results'],correct:0}],
+'Motion in Daily Life':[{q:'What helps us decide whether an object has moved?',opts:['A reference point','Its colour only','Its smell'],correct:0},{q:'A fan blade shows which kind of motion?',opts:['Circular','Straight-line only','No motion when running'],correct:0},{q:'Which motion repeats regularly?',opts:['Periodic motion','Random colour change','Dissolving'],correct:0}],
+'Better Lifestyle for a Brighter Tomorrow':[{q:'Which habit supports health?',opts:['Adequate sleep','Skipping all meals','Never washing hands'],correct:0},{q:'Why wash hands with soap?',opts:['To reduce germs and the spread of illness','To make food sweeter','To improve eyesight instantly'],correct:0},{q:'Which supports a balanced lifestyle?',opts:['Nutritious food, activity and rest','Only screen time','Avoiding water'],correct:0}]
+};
+if(subject==='science'&&scienceQuizBank[chapter.title])chapterQuizBank[chapter.title]=scienceQuizBank[chapter.title];
 const quizItems=chapterQuizBank[chapter.title]||[
 {q:'What is the best way to answer a chapter question?',opts:['Guess without reading','Use details from the chapter','Copy an unrelated sentence'],correct:1},
 {q:'When comparing your answer with the model answer, you should…',opts:['Look for the main idea and useful details','Memorise without understanding','Leave every question blank'],correct:0},
