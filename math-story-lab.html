@@ -155,7 +155,7 @@ function promptForStep(){
  };
  const arr=prompts[c.model];let html='<p>'+arr[step]+'</p>';
  if(c.model==="fraction"&&step===3)html+='<div class="controls"><label>Numerator</label><input id="ansN" type="number" min="1" placeholder="top"><label>Denominator</label><input id="ansD" type="number" min="1" placeholder="bottom"></div>';
- else if(c.model==="parts"&&step===3)html+='<div class="controls"><input id="answer" type="text" placeholder="e.g. 1/2" aria-label="Your fraction answer"></div>';
+ else if(c.model==="parts"&&step===3)html+='<p class="muted">Use the fraction box in the model above, then check your answer.</p>';
  else if(c.model==="volume"&&step===3)html+='<div class="controls"><input id="answer" type="number" placeholder="number of cubes" aria-label="Number of cubes"></div>';
  else if(c.model==="decimal"&&(step===2||step===3))html+='<div class="controls"><input id="answer" type="text" placeholder="e.g. 3.75" aria-label="Decimal answer"></div>';
  else if(c.model==="relations"&&step===3)html+='<div class="controls"><input id="answer" type="number" placeholder="spoons" aria-label="Number of spoons"></div>';
@@ -166,7 +166,7 @@ function promptForStep(){
  else if(c.model==="money"&&step===3)html+='<div class="muted">Look at the live basket total above, then check it with your parent or teacher.</div>';
  else if(c.model==="factors"&&step===3)html+='<div class="choice-row">'+[1,2,3,4,5,6,12].map(n=>'<button class="btn choice" data-factor="'+n+'">'+n+'</button>').join('')+'</div>';
  else if(c.model==="fraction"&&step===2)html+='<p class="muted">Tap one choice in the model above.</p>';
- else if(c.model==="parts"&&step===2)html+='<div class="choice-row">'+[2,3,4,5].map(n=>'<button class="btn choice" data-parts="'+n+'">'+n+' eighths</button>').join('')+'</div>';
+ else if(c.model==="parts"&&step===2)html+='<p class="muted">Tap the matching total in the cake model above.</p>';
  else if(c.model==="factors"&&step===0)html+='<div class="choice-row"><button class="btn choice" data-equal="yes">Equal rows</button><button class="btn choice" data-equal="no">Leftovers</button></div>';
  return html;
 }
