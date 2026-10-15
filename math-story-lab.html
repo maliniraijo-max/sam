@@ -202,4 +202,5 @@ function showRecap(){$("lesson").classList.add("hidden");$("recap").classList.re
 document.addEventListener("click",e=>{const b=e.target.closest("[data-parts]");if(b){state.partsChoice=Number(b.dataset.parts);setFeedback(state.partsChoice===4?"Correct! 4 eighths altogether.":"Count the two pieces in each colour, then add them.");}const f=e.target.closest("[data-factor]");if(f){f.classList.toggle("selected");f.classList.toggle("a");}});
 drawDoor();
 })();
-</script></body></html>
+</script><script src="read-aloud.js?v=20261015-001"></script>
+</body></html>
