@@ -17,6 +17,7 @@ const data=window.CLASS6_STUDY_DATA||{}, mal2=window.MALAYALAM2_WORKBOOK, entry=
 document.getElementById('study-title').textContent=(names[subject]||'Subject')+' — Term '+term;
 document.getElementById('term-label').textContent=['ONAM / TERM 1','CHRISTMAS / TERM 2','ANNUAL / TERM 3'][term-1];
 document.getElementById('study-subtitle').textContent='Chapter summaries • Practice activities • Answer explanations';
+if(subject==='malayalam2'){const units={1:'Unit 1 • മനസ്സുതുറക്കാം',2:'Unit 2 • പൂത്തുതിമിർക്കാം',3:'Unit 3 • ഒത്തുതുഴയാം'};document.getElementById('study-title').textContent='Malayalam 2 — '+units[term];document.getElementById('term-label').textContent='TERM '+term+' • '+units[term].split('• ')[1];document.getElementById('study-subtitle').textContent='അടിസ്ഥാന പാഠാവലി • Chapter summaries • Questions and model answers';document.querySelector('.notice').textContent='Chapter-wise Malayalam 2 study notes with matched model answers and direct HSSLive Guru references. Answers are paraphrased for learning.';}
 document.title=(names[subject]||'Subject')+' Term '+term+' • Sam’s Visual Learning Studio';
 const nav=document.getElementById('term-switch');
 for(let t=1;t<=3;t++){const a=document.createElement('a');a.href='term-chapters.html?subject='+encodeURIComponent(subject)+'&term='+t;a.textContent='Term '+t+(t===1?' · Onam':t===2?' · Christmas':' · Annual');if(t===term)a.className='active';nav.appendChild(a)}
