@@ -12,6 +12,7 @@
   let activeButton = null, activeUtterance = null, observer = null;
   const BLOCK_SELECTOR = "h1,h2,h3,h4,h5,p,li,blockquote,dt,dd,figcaption,.question,.q,.qcard,.overview,.summary,.reading-panel,.activity,.explanation,.prompt,.review-block,.answer-key,.story-door,.stage,.model,.discovery-text,.gym-principle";
   const EXTRA_BLOCK_SELECTOR = ".chapter-body,.panel,.card,.section,.worksheet-section,.reading-block,.lesson-block";
+  const CONTAINER_SELECTOR = ".question,.q,.qcard,.overview,.summary,.reading-panel,.activity,.explanation,.prompt,.review-block,.answer-key,.story-door,.stage,.model,.discovery-text,.gym-principle";
   function cleanText(el) {
     const copy = el.cloneNode(true);
     copy.querySelectorAll("button,input,textarea,select,option,script,style,.sam-read-aloud-btn,[aria-hidden=true],.sr-only,.visually-hidden").forEach(n => n.remove());
@@ -25,7 +26,7 @@
     if (el.closest(".sam-read-aloud-btn") || el.querySelector(".sam-read-aloud-btn")) return false;
     const text = cleanText(el);
     if (text.length < 16 || text.length > 1800) return false;
-    if (el.matches(EXTRA_BLOCK_SELECTOR) && hasReadableChild(el)) return false;
+    if ((el.matches(EXTRA_BLOCK_SELECTOR) || el.matches(CONTAINER_SELECTOR)) && hasReadableChild(el)) return false;
     return true;
   }
   function bestVoice() {
