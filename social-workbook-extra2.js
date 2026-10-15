@@ -176,7 +176,7 @@
  add(8,0,[
   Q("What is an inscription, and what can it reveal?","Writing engraved or recorded on a durable surface; it can reveal names, rulers, donations, language, events or administration."),
   M("Which is an archaeological source?",["A burial site and its artefacts","A modern advertisement","A fictional story written today"],"A burial site and its artefacts"),
-  F("A written account of a journey by a visitor is a travel ______.","ogue"),
+  F("A written account of a journey by a visitor is called a ______.","travelogue"),
   Q("Why should historians treat travelogues carefully?","Visitors may have limited knowledge, personal biases or misunderstandings, so their accounts should be compared with other evidence."),
   T("A source may be useful even if it does not answer every historical question.","True"),
   Q("What can grave goods such as ornaments, tools and vessels tell us about past communities?","They can provide clues about craft skills, beliefs, social differences, technology and practices surrounding death.")
