@@ -9,11 +9,11 @@
 <div class="notice">These are original, simplified revision notes and practice activities based on the Class 6 Kerala syllabus and the chapter titles you provided. Use the textbook as the final reference for exact wording and textbook-specific activities.</div>
 <section class="chapter-list" id="chapter-list" aria-live="polite"></section>
 <footer style="text-align:center;color:#7a8b93;font-size:12px;padding:22px">Sam’s Visual Learning Studio • Learn one step at a time</footer>
-</main><script src="class6-study-data.js"></script><script src="malayalam1-study-data.js"></script><script>
+</main><script src="class6-study-data.js"></script><script src="malayalam1-study-data.js"></script><script src="malayalam2-study-data.js"></script><script>
 (function(){
 const p=new URLSearchParams(location.search), subject=p.get('subject')||'english', term=Math.min(3,Math.max(1,Number(p.get('term')||1)));
 const names={english:'English',science:'Science',social:'Social Science',hindi:'Hindi',maths:'Maths',malayalam1:'Malayalam 1 — Kerala Padavali',malayalam2:'Malayalam 2 — Adishthana Padavali'};
-const data=window.CLASS6_STUDY_DATA||{}, entry=data[subject];
+const data=window.CLASS6_STUDY_DATA||{}, mal2=window.MALAYALAM2_WORKBOOK, entry=subject==='malayalam2'&&mal2?{terms:mal2.terms}:data[subject];
 document.getElementById('study-title').textContent=(names[subject]||'Subject')+' — Term '+term;
 document.getElementById('term-label').textContent=['ONAM / TERM 1','CHRISTMAS / TERM 2','ANNUAL / TERM 3'][term-1];
 document.getElementById('study-subtitle').textContent='Chapter summaries • Practice activities • Answer explanations';
@@ -22,14 +22,14 @@ const nav=document.getElementById('term-switch');
 for(let t=1;t<=3;t++){const a=document.createElement('a');a.href='term-chapters.html?subject='+encodeURIComponent(subject)+'&term='+t;a.textContent='Term '+t+(t===1?' · Onam':t===2?' · Christmas':' · Annual');if(t===term)a.className='active';nav.appendChild(a)}
 const termUnits=subject==='english'?{1:[1,2],2:[3,4],3:[5]}:{1:[1],2:[2],3:[3]};
 const list=document.getElementById('chapter-list'), chapters=entry&&entry.terms?(termUnits[term]||[term]).flatMap(unit=>entry.terms[unit]||[]):[];
-if(!chapters.length){list.innerHTML='<div class="empty">This subject’s chapter list has not been added yet. Malayalam 1 — Kerala Padavali will be added when its term-wise list is provided.</div>';return}
+if(!chapters.length){list.innerHTML='<div class="empty">This subject’s chapter list has not been added yet. Please check the syllabus update.</div>';return}
 chapters.forEach((c,i)=>{
 const card=document.createElement('article');card.className='chapter-card';
 const head=document.createElement('div');head.className='chapter-head';
 const idx=document.createElement('div');idx.className='chapter-index';idx.textContent=c.number||i+1;
-const info=document.createElement('div');const h=document.createElement('h2');const open=document.createElement('a');open.href='chapter-study.html?subject='+encodeURIComponent(subject)+'&term='+term+'&title='+encodeURIComponent(c.title);open.textContent=c.title;open.style.color='inherit';open.style.textDecoration='none';open.setAttribute('aria-label','Open chapter '+c.title);h.appendChild(open);const p=document.createElement('p');p.textContent=(c.subtitle||'Chapter revision')+' · Tap title to open lesson →';info.append(h,p);head.append(idx,info);
+const info=document.createElement('div');const h=document.createElement('h2');const open=document.createElement('a');open.href=subject==='malayalam2'?'malayalam2-workbook.html?term='+term+'&chapter='+c.number:'chapter-study.html?subject='+encodeURIComponent(subject)+'&term='+term+'&title='+encodeURIComponent(c.title);open.textContent=c.title;open.style.color='inherit';open.style.textDecoration='none';open.setAttribute('aria-label','Open chapter '+c.title);h.appendChild(open);const p=document.createElement('p');p.textContent=(c.subtitle||'Chapter revision')+' · Tap title to open lesson →';info.append(h,p);head.append(idx,info);
 const body=document.createElement('div');body.className='chapter-body';
-const launch=document.createElement('a');launch.className='open-lesson';launch.href='chapter-study.html?subject='+encodeURIComponent(subject)+'&term='+term+'&title='+encodeURIComponent(c.title);launch.textContent='Open chapter lesson →';launch.setAttribute('aria-label','Open lesson for '+c.title);body.appendChild(launch);
+const launch=document.createElement('a');launch.className='open-lesson';launch.href=subject==='malayalam2'?'malayalam2-workbook.html?term='+term+'&chapter='+c.number:'chapter-study.html?subject='+encodeURIComponent(subject)+'&term='+term+'&title='+encodeURIComponent(c.title);launch.textContent='Open chapter lesson →';launch.setAttribute('aria-label','Open lesson for '+c.title);body.appendChild(launch);
 const sec=(title,content)=>{const s=document.createElement('section');s.className='study-section';const h=document.createElement('h3');h.textContent=title;s.appendChild(h);if(Array.isArray(content)){const ul=document.createElement('ul');content.forEach(v=>{const li=document.createElement('li');li.textContent=v;ul.appendChild(li)});s.appendChild(ul)}else{const p=document.createElement('p');p.textContent=content;s.appendChild(p)}body.appendChild(s)};
 sec('Chapter summary',c.summary||'Review the chapter in the textbook and identify its main idea, key terms and examples.');
 sec('Important points',c.points||['Identify the main idea.','Learn the important words or concepts.','Explain one example in your own words.']);
