@@ -1,6 +1,8 @@
 (function () {
   "use strict";
-  if (/^(hindi|malayalam)/i.test(location.pathname.split("/").pop() || "")) return;
+  const currentFile = location.pathname.split("/").pop() || "";
+  const selectedSubject = (new URLSearchParams(location.search).get("subject") || "").toLowerCase();
+  if (/^(hindi|malayalam)/i.test(currentFile) || /^(hindi|malayalam|malayalam1|malayalam2)$/.test(selectedSubject)) return;
   if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) return;
   const STYLE_ID = "sam-read-aloud-style";
   if (!document.getElementById(STYLE_ID)) {
