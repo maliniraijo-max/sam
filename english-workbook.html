@@ -32,4 +32,5 @@ function renderSlide(){const s=slides[slide];hide('overviewPage');hide('finishPa
 $('startBtn').onclick=()=>{slide=0;renderSlide();window.scrollTo(0,0)};$('prevBtn').onclick=()=>{if(slide>0){slide--;renderSlide();window.scrollTo(0,0)}else renderOverview()};$('nextBtn').onclick=()=>{if(slide<4){slide++;renderSlide();window.scrollTo(0,0)}else{hide('studyPage');show('finishPage');window.scrollTo(0,0)}};$('reviewBtn').onclick=()=>{slide=0;renderSlide();window.scrollTo(0,0)};
 renderOverview();
 })();
-</script></body></html>
+</script><script src="read-aloud.js?v=20261015-001"></script>
+</body></html>
