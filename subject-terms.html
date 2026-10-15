@@ -57,6 +57,7 @@
   malayalam2:['4 chapters','4 chapters','3 chapters']
  };
  (statusLabels[subject]||[]).forEach((label,i)=>{const card=document.getElementById('term'+(i+1));if(card){const status=card.querySelector('.term-status');status.textContent=label+' · Open →'}});
+ if(subject==='malayalam2'){const unitNames=['Unit 1 • മനസ്സുതുറക്കാം','Unit 2 • പൂത്തുതിമിർക്കാം','Unit 3 • ഒത്തുതുഴയാം'];unitNames.forEach((name,i)=>{const card=document.getElementById('term'+(i+1));if(card){const desc=card.querySelector('p');desc.textContent=name+' — chapter summaries, question answers and revision.';}})}
 
  if(selected.alias){
   const alias=document.createElement('p');
