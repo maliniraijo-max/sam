@@ -46,4 +46,5 @@ $('prev').addEventListener('click',()=>{if(sectionNo>0)sectionNo--;else if(chapt
 $('next').addEventListener('click',()=>{if(sectionNo<bank[chapterNo].sections.length-1)sectionNo++;else if(chapterNo<9){chapterNo++;sectionNo=0}else{chapterNo=1;sectionNo=0}render();window.scrollTo(0,0)});
 render();document.getElementById('studyPage').classList.add('hidden');document.getElementById('startQA').addEventListener('click',()=>{document.getElementById('overviewPage').classList.add('hidden');document.getElementById('studyPage').classList.remove('hidden');window.scrollTo(0,0)});
 })();
-</script></body></html>
+</script><script src="read-aloud.js?v=20261015-001"></script>
+</body></html>
