@@ -27,7 +27,7 @@ function ensureFifteen(section,chapter){
   if(mode===0)add(x,"In your own words, explain: "+q,"qa",null,x.a);
   else if(mode===1)add(x,"Complete the key idea: "+q+" — ______","fill",null,a);
   else if(mode===2)add(x,"Which answer best matches this idea: "+q+"?","mcq",[a||"The idea explained in the lesson","An unrelated idea","The opposite of the lesson"],a||x.a);
-  else if(mode===3)add(x,"True or false: "+q+".","tf",null,"True");
+  else if(mode===3)add(x,"Explain the key idea in one sentence: "+q,"qa",null,x.a);
   else add(x,"Give one example or reason connected with: "+q,"qa",null,x.a);
  }
  while(section.items.length<15){const x=base[section.items.length%base.length];add(x,"Explain one important detail about "+chapter.title+".","qa",null,x.a);}
