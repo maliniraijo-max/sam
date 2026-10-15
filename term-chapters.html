@@ -12,7 +12,7 @@
 </main><script src="class6-study-data.js"></script><script>
 (function(){
 const p=new URLSearchParams(location.search), subject=p.get('subject')||'english', term=Math.min(3,Math.max(1,Number(p.get('term')||1)));
-const names={english:'English',science:'Science',social:'Social Science',hindi:'Hindi',maths:'Maths',malayalam2:'Malayalam 2 — Adishthana Padavali'};
+const names={english:'English',science:'Science',social:'Social Science',hindi:'Hindi',maths:'Maths',malayalam1:'Malayalam 1 — Kerala Padavali',malayalam2:'Malayalam 2 — Adishthana Padavali'};
 const data=window.CLASS6_STUDY_DATA||{}, entry=data[subject];
 document.getElementById('study-title').textContent=(names[subject]||'Subject')+' — Term '+term;
 document.getElementById('term-label').textContent=['ONAM / TERM 1','CHRISTMAS / TERM 2','ANNUAL / TERM 3'][term-1];
