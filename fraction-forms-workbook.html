@@ -54,7 +54,7 @@ function render(){
  if(c.visual==="sharing"){ $("totalRange").addEventListener("input",e=>{total=Number(e.target.value);$("totalOut").textContent=total;$("visualArea").querySelector(".formula").textContent=total+" ÷ "+people+" = "+total+"/"+people});$("peopleRange").addEventListener("input",e=>{people=Number(e.target.value);$("peopleOut").textContent=people;$("visualArea").querySelector(".formula").textContent=total+" ÷ "+people+" = "+total+"/"+people});}
  $("prevBtn").disabled=current===0;$("nextBtn").textContent=current===concepts.length-1?"Back to overview ↑":"Next concept →";
 }
-function norm(s){return String(s||"").trim().toLowerCase().replace(/\s+/g,"").replace(/÷/g,"/").replace(/[m]/g,"").replace(/=/g,"")}
+function norm(s){return String(s||"").trim().toLowerCase().replace(/\s+/g,"+").replace(/÷/g,"/").replace(/=/g,"")}
 $("start").addEventListener("click",()=>{$("overview").hidden=true;$("lesson").hidden=false;render();window.scrollTo({top:0,behavior:"smooth"})});
 $("hintBtn").addEventListener("click",()=>{$("hintText").textContent=concepts[current].hint});
 $("revealBtn").addEventListener("click",()=>{$("feedback").textContent="Answer: "+concepts[current].answer+". "+concepts[current].explain;$("feedback").style.color="#26764c"});
