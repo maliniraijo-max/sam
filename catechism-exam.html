@@ -34,4 +34,5 @@ const answers={q1:"B",q2:"A",q3:"C",q4:"D",q5:"B",q6:"C",q7:"D",q8:"A",q9:"B",q1
 document.getElementById("check").addEventListener("click",()=>{let score=0,done=0;for(const [q,a] of Object.entries(answers)){const chosen=document.querySelector('input[name="'+q+'"]:checked');if(chosen){done++;if(chosen.value===a)score++;}}const r=document.getElementById("result");r.textContent=done<20?"You answered "+done+" of 20 questions. Score so far: "+score+"/20. Complete the remaining questions to see your final score.":"Your score: "+score+"/20 ("+Math.round(score/20*100)+"%). Well done for practising!";});
 document.getElementById("showKey").addEventListener("click",()=>{const k=document.getElementById("key");k.style.display=k.style.display==="block"?"none":"block";});
 document.getElementById("reset").addEventListener("click",()=>{document.getElementById("exam").reset();document.getElementById("result").textContent="";document.getElementById("key").style.display="none";});
-</script></body></html>
+</script><script src="read-aloud.js?v=20261015-001"></script>
+</body></html>
