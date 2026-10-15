@@ -135,5 +135,4 @@ const quiz=document.getElementById('quiz');quizItems.forEach((item,i)=>{const bo
 document.getElementById('checkQuiz').addEventListener('click',()=>{let score=0,done=0;quizItems.forEach((q,i)=>{const selected=document.querySelector('input[name="q'+i+'"]:checked');if(selected){done++;if(Number(selected.value)===q.correct)score++}});document.getElementById('score').textContent=done<quizItems.length?'Answer all 3 questions first. You have answered '+done+' of 3.':'Your score: '+score+' / 3. '+(score===3?'Excellent work!':'Review the chapter and try again.')});
 })();
 </script><script src="read-aloud.js?v=20261015-001"></script>
-<script src="read-aloud.js?v=20261015-001"></script>
 </body></html>
