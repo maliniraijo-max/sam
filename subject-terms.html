@@ -58,6 +58,7 @@
  };
  (statusLabels[subject]||[]).forEach((label,i)=>{const card=document.getElementById('term'+(i+1));if(card){const status=card.querySelector('.term-status');status.textContent=label+' · Open →'}});
  if(subject==='malayalam2'){const unitNames=['Unit 1 • മനസ്സുതുറക്കാം','Unit 2 • പൂത്തുതിമിർക്കാം','Unit 3 • ഒത്തുതുഴയാം'];unitNames.forEach((name,i)=>{const card=document.getElementById('term'+(i+1));if(card){const desc=card.querySelector('p');desc.textContent=name+' — chapter summaries, question answers and revision.';}})}
+ if(subject==='maths'){const chapterNames=[['1. Angles','2. One Fraction Many Forms','3. Volume'],['4. Arithmetic of Parts','5. Decimal Forms','6. Multiples and Factors'],['7. Money Math','8. Unchanging Relations','9. Lines and Angles','10. Number Relations','11. Letter Math','12. Data Pictures']];chapterNames.forEach((names,i)=>{const card=document.getElementById('term'+(i+1));if(card){const desc=card.querySelector('p');desc.textContent=names.join(' • ');}})}
 
  if(selected.alias){
   const alias=document.createElement('p');
