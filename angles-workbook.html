@@ -43,7 +43,7 @@ const concepts=[
 let current=0, sliderValue=60;
 const $=id=>document.getElementById(id);
 function angleSvg(deg,mode){
- const cx=180,cy=158,r=112,rad=-deg*Math.PI/180,x=cx+r*Math.cos(rad),y=cy+r*Math.sin(rad;
+ const cx=180,cy=158,r=112,rad=-deg*Math.PI/180,x=cx+r*Math.cos(rad),y=cy+r*Math.sin(rad);
  const arcR=42,ex=cx+arcR*Math.cos(rad),ey=cy+arcR*Math.sin(rad);
  return '<svg viewBox="0 0 360 210" role="img" aria-label="Interactive angle of '+deg+' degrees"><line x1="36" y1="'+cy+'" x2="320" y2="'+cy+'" stroke="#d9e7f0" stroke-width="1" stroke-dasharray="4 5"/><line x1="'+cx+'" y1="'+cy+'" x2="322" y2="'+cy+'" stroke="#2d80b8" stroke-width="5" stroke-linecap="round"/><line x1="'+cx+'" y1="'+cy+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="#e5a32c" stroke-width="5" stroke-linecap="round"/><path d="M '+(cx+arcR)+' '+cy+' A '+arcR+' '+arcR+' 0 '+(deg>180?1:0)+' 0 '+ex.toFixed(1)+' '+ey.toFixed(1)+'" fill="none" stroke="#26764c" stroke-width="4"/><circle cx="'+cx+'" cy="'+cy+'" r="5" fill="#243d50"/><text x="'+(cx+8)+'" y="'+(cy+19)+'" font-size="12" fill="#243d50">Vertex</text><text x="278" y="'+(cy-12)+'" font-size="12" fill="#2d80b8">Arm 1</text><text x="'+Math.max(12,Math.min(260,x-6))+'" y="'+Math.max(16,y-12)+'" font-size="12" fill="#9a6b12">Arm 2</text><text x="180" y="25" text-anchor="middle" font-size="22" font-weight="800" fill="#236b9d">'+deg+'°</text></svg>';
 }
