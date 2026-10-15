@@ -60,4 +60,5 @@ $("revealBtn").addEventListener("click",()=>{$("feedback").textContent="Answer: 
 $("checkBtn").addEventListener("click",()=>{const c=concepts[current],v=$("answerInput").value;if(v.trim()===""){$("feedback").textContent="Try an answer first, or ask for a hint.";return}const ok=Number(v)===c.answer;$("feedback").textContent=ok?"Correct! "+c.explain:"Not quite yet. "+c.hint+" Try again, or show the explanation.";$("feedback").style.color=ok?"#18845c":"#9a5b00"});
 $("prevBtn").addEventListener("click",()=>{if(current>0){current--;render();window.scrollTo({top:0,behavior:"smooth"})}else{$("lesson").hidden=true;$("overview").hidden=false}});
 $("nextBtn").addEventListener("click",()=>{if(current<concepts.length-1){current++;render();window.scrollTo({top:0,behavior:"smooth"})}else{$("lesson").hidden=true;$("overview").hidden=false;$("overview").scrollIntoView({behavior:"smooth"})}});
-</script></body></html>
+</script><script src="read-aloud.js?v=20261015-001"></script>
+</body></html>
