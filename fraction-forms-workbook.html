@@ -61,4 +61,5 @@ $("revealBtn").addEventListener("click",()=>{$("feedback").textContent="Answer: 
 $("checkBtn").addEventListener("click",()=>{const c=concepts[current],v=$("answerInput").value;if(!v.trim()){$("feedback").textContent="Try a response first, or ask for a hint.";return}const acceptable=c.type==="number"?Number(v)===Number(c.answer):norm(v)===norm(c.answer)||(c.answer==="3/4"&&norm(v)==="3/4")||(c.answer==="2 3/4"&&norm(v)==="2+3/4");$("feedback").textContent=acceptable?"Yes! "+c.explain:"Not quite yet. "+c.hint+" Try again, or choose “Show explanation.”";$("feedback").style.color=acceptable?"#26764c":"#98630c"});
 $("prevBtn").addEventListener("click",()=>{if(current>0){current--;render();window.scrollTo({top:0,behavior:"smooth"})}else{$("lesson").hidden=true;$("overview").hidden=false}});
 $("nextBtn").addEventListener("click",()=>{if(current<concepts.length-1){current++;render();window.scrollTo({top:0,behavior:"smooth"})}else{$("lesson").hidden=true;$("overview").hidden=false;$("overview").scrollIntoView({behavior:"smooth"})}});
-</script></body></html>
+</script><script src="read-aloud.js?v=20261015-001"></script>
+</body></html>
