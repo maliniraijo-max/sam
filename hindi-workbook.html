@@ -17,8 +17,20 @@ const $=id=>document.getElementById(id);
 const termFor=n=>n<=4?1:n<=8?2:3;
 function show(el){el.classList.remove('hidden')}function hide(el){el.classList.add('hidden')}
 function renderOverview(){const c=data[chapterNo];if(!c)return;$('title').textContent=c.title;$('unit').textContent=c.unit+' · CHAPTER '+chapterNo;$('subtitle').textContent=c.english+' • 5 slides • 15 questions';$('overviewText').textContent=c.overview;$('sourceLink').href=c.source;$('back').href='term-chapters.html?subject=hindi&term='+termFor(chapterNo);document.title=c.title+' • Hindi Workbook';hide($('studyPage'));hide($('finishPage'));show($('overviewPage'))}
-function renderSlide(){const c=data[chapterNo],s=c.slides[slideNo];hide($('overviewPage'));hide($('finishPage'));show($('studyPage'));$('slideTitle').textContent=s.heading;$('slideCount').textContent='Slide '+(slideNo+1)+' of '+c.slides.length;$('progressFill').style.width=((slideNo+1)/c.slides.length*100)+'%';$('slideSummary').textContent=s.summary;$('prevBtn').disabled=slideNo===0;$('prevBtn').style.opacity=slideNo===0?'.45':'1';$('nextBtn').textContent=slideNo===c.slides.length-1?'Finish chapter ✓':'Next slide →';const root=$('questions');root.innerHTML='';
-s.qs.forEach((q,i)=>{const box=document.createElement('div');box.className='qcard';const prompt=document.createElement('div');prompt.className='qtext';prompt.textContent=(slideNo*3+i+1)+'. '+q.q;box.appendChild(prompt);
+function ensureFifteen(s){
+ const base=s.qs.slice(),seen=new Set(base.map(q=>q.q));
+ const add=q=>{if(!seen.has(q.q)){seen.add(q.q);s.qs.push(q)}};
+ for(let i=0;s.qs.length<15;i++){
+  const b=base[i%base.length],a=String(b.a||"").replace(/[.!?]+$/,""),stem=String(b.q||"").replace(/[?]+$/,"");
+  const mode=i%4;
+  if(mode===0)add({type:"short",q:"अपने शब्दों में समझाइए: "+stem+"।",a:b.a});
+  else if(mode===1)add({type:"fill",q:"पाठ के आधार पर पूरा करें: ______",a:b.a});
+  else if(mode===2)add({type:"one",q:"इस दृश्य से जुड़ा एक मुख्य तथ्य लिखिए।",a:b.a});
+  else add({type:"mcq",q:"कौन-सा उत्तर पाठ के विचार से मेल खाता है?",opts:[a||b.a,"पाठ से असंबंधित उत्तर","पाठ के विपरीत उत्तर"],a:a||b.a});
+ }
+}
+function renderSlide(){const c=data[chapterNo],s=c.slides[slideNo];ensureFifteen(s);hide($('overviewPage'));hide($('finishPage'));show($('studyPage'));$('slideTitle').textContent=s.heading;$('slideCount').textContent='Slide '+(slideNo+1)+' of '+c.slides.length;$('progressFill').style.width=((slideNo+1)/c.slides.length*100)+'%';$('slideSummary').textContent=s.summary;$('prevBtn').disabled=slideNo===0;$('prevBtn').style.opacity=slideNo===0?'.45':'1';$('nextBtn').textContent=slideNo===c.slides.length-1?'Finish chapter ✓':'Next slide →';const root=$('questions');root.innerHTML='';
+s.qs.forEach((q,i)=>{const box=document.createElement('div');box.className='qcard';const prompt=document.createElement('div');prompt.className='qtext';prompt.textContent=(slideNo*15+i+1)+'. '+q.q;box.appendChild(prompt);
 if(q.type==='mcq'){q.opts.forEach((opt,j)=>{const lab=document.createElement('label');lab.className='option';const radio=document.createElement('input');radio.type='radio';radio.name='q'+i;radio.value=opt;const span=document.createElement('span');span.textContent=opt;lab.append(radio,span);box.appendChild(lab)});const check=document.createElement('button');check.className='btn ghost';check.textContent='Check answer';const fb=document.createElement('div');fb.className='feedback';check.addEventListener('click',()=>{const picked=box.querySelector('input:checked');fb.textContent=!picked?'Choose an answer first.':picked.value===q.a?'Correct! ✓':'Not quite. Reveal the model answer and try again.';fb.style.color=picked&&picked.value===q.a?'#26764f':'#8c5d22'});box.append(check,fb)}
 else {const input=document.createElement(q.type==='short'?'textarea':'input');input.className='answerbox';if(q.type==='short'){input.rows=2;input.placeholder='Write your answer in a sentence…'}else input.placeholder=q.type==='fill'?'Complete the sentence…':'Write a one-word answer…';box.appendChild(input)}
 const reveal=document.createElement('button');reveal.className='btn ghost';reveal.style.marginTop='8px';reveal.textContent='Show model answer';const model=document.createElement('div');model.className='model';model.textContent='Model answer: '+q.a;reveal.addEventListener('click',()=>{model.classList.toggle('show');reveal.textContent=model.classList.contains('show')?'Hide model answer':'Show model answer'});box.append(reveal,model);root.appendChild(box)});
