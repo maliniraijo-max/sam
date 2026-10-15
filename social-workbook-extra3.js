@@ -255,14 +255,14 @@
   return {type:"tf",q:"True or false: "+a,a:"True"};
  };
  Object.keys(slides).forEach(k=>{
-  const chapter=Number(k);
+  const chapterNo=Number(k);
   slides[k].forEach((slide,slideIndex)=>{
    const items=[];
    slide[2].forEach((concept,i)=>{
     items.push({type:"qa",q:concept[0],a:concept[1]});
     items.push(type2(i,concept));
    });
-   chapter.sections.push({name:slide[0],reading:slide[1],items});
+   b[chapterNo].sections.push({name:slide[0],reading:slide[1],items});
   });
  });
 })();
