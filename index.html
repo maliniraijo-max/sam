@@ -60,6 +60,37 @@
   <p class="exam-timetable-note"><span>ℹ️</span><span>All examinations will be held during regular school hours.</span></p>
 </section>
 
+
+<style>
+.exam-portions{margin:20px 0 26px;padding:clamp(15px,2.5vw,24px);border:1px solid #dce7f5;border-radius:22px;background:linear-gradient(145deg,#fff 0%,#f3f8ff 100%);box-shadow:0 8px 24px rgba(30,64,110,.07);color:#17365f}
+.exam-portions *{box-sizing:border-box}.exam-portions-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:15px}
+.exam-portions-kicker{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:850;color:#4776a9;margin:0 0 5px}
+.exam-portions h2{font-size:clamp(1.15rem,2.7vw,1.55rem);line-height:1.2;color:#123567;margin:0}
+.exam-portions-sub{margin:7px 0 0;color:#62758e;font-size:.9rem;line-height:1.45}
+.exam-portions-badge{white-space:nowrap;background:#fff4d8;color:#825b10;border:1px solid #f0dfad;border-radius:999px;padding:8px 10px;font-size:.72rem;font-weight:850}
+.exam-portions-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.exam-portion-card{min-width:0;background:#fff;border:1px solid #dce7f4;border-radius:16px;padding:15px}
+.exam-portion-top{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.exam-portion-icon{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:#eaf3ff;font-size:1.25rem;flex-shrink:0}
+.exam-portion-card h3{font-size:1rem;line-height:1.25;margin:0;color:#173e78}
+.exam-portion-tag{display:inline-block;margin-top:4px;color:#72849b;font-size:.72rem;font-weight:750}
+.exam-portion-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.exam-portion-list li{padding:9px 10px;border-radius:10px;background:#f5f8fc;font-size:.88rem;line-height:1.4;color:#314a67;overflow-wrap:anywhere}
+.exam-portion-list strong{color:#173e78}
+.exam-portions-footer{display:flex;gap:9px;align-items:flex-start;margin:14px 2px 0;padding:11px 12px;border-radius:12px;background:#eaf5ff;color:#3e5e7c;font-size:.82rem;line-height:1.45}
+@media(max-width:700px){.exam-portions{border-radius:18px}.exam-portions-grid{grid-template-columns:1fr;gap:10px}.exam-portion-card{padding:13px}.exam-portions-badge{font-size:.66rem;padding:7px 9px}.exam-portions-sub{font-size:.85rem}}
+@media(max-width:390px){.exam-portions-head{display:block}.exam-portions-badge{display:inline-block;margin-top:10px}}
+</style>
+<section class="exam-portions" aria-labelledby="exam-portions-title">
+ <div class="exam-portions-head"><div><p class="exam-portions-kicker">Study guide • Mid-term preparation</p><h2 id="exam-portions-title">Second Mid-Term Exam Portions</h2><p class="exam-portions-sub">Sam’s chapter checklist · More subjects will be added as portions arrive.</p></div><span class="exam-portions-badge">📝 3 subjects added</span></div>
+ <div class="exam-portions-grid">
+  <article class="exam-portion-card"><div class="exam-portion-top"><div class="exam-portion-icon" aria-hidden="true">📘</div><div><h3>Malayalam-I</h3><span class="exam-portion-tag">Unit 3 · നൽകുകിൽ നേടാം</span></div></div><ul class="exam-portion-list"><li><strong>Lesson 1</strong></li><li><strong>Lesson 2</strong></li><li><strong>Lesson 3</strong></li></ul></article>
+  <article class="exam-portion-card"><div class="exam-portion-top"><div class="exam-portion-icon" aria-hidden="true">🌍</div><div><h3>Social Science</h3><span class="exam-portion-tag">Lessons to revise</span></div></div><ul class="exam-portion-list"><li><strong>Lesson 5</strong></li><li><strong>Lesson 6</strong></li><li><strong>Lesson 7</strong></li></ul></article>
+  <article class="exam-portion-card"><div class="exam-portion-top"><div class="exam-portion-icon" aria-hidden="true">📗</div><div><h3>English</h3><span class="exam-portion-tag">Second mid-term</span></div></div><ul class="exam-portion-list"><li><strong>Mousetronaut</strong></li><li><strong>Six Dots</strong></li></ul></article>
+ </div>
+ <div class="exam-portions-footer"><span aria-hidden="true">✨</span><span><strong>More portions coming soon.</strong> This list can be updated when the remaining subjects are shared.</span></div>
+</section>
+
 <div class="home-card-gallery">
 <a class="wonder-world-home-card" href="wonder-world.html" aria-label="Open Wonder World">
   <span class="wonder-world-home-icon">🧭</span>
