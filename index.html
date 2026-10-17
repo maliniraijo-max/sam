@@ -2,7 +2,65 @@
   <span class="chapter-cards-home-icon">📚</span>
   <span class="chapter-cards-home-copy"><strong>Class 6 Whole Syllabus &amp; Catechism</strong><small>All subjects • Term-wise chapters • Worksheets • Quizzes • Catechism lessons and exam practice</small></span>
   <span class="chapter-cards-home-arrow">→</span>
-</a></section><div class="home-card-gallery">
+</a></section>
+<style>
+/* Second mid-term timetable: responsive home dashboard card */
+.exam-timetable{margin:22px 0 26px;padding:clamp(14px,2.5vw,24px);border:1px solid #d8e7f5;border-radius:22px;background:linear-gradient(145deg,#f8fbff 0%,#eef6ff 100%);box-shadow:0 8px 24px rgba(30,64,110,.08);color:#17365f}
+.exam-timetable *{box-sizing:border-box}
+.exam-timetable-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
+.exam-timetable-kicker{margin:0 0 5px;font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#4776a9}
+.exam-timetable h2{margin:0;font-size:clamp(1.15rem,2.8vw,1.65rem);line-height:1.2;color:#123567}
+.exam-timetable-subtitle{margin:7px 0 0;color:#526984;font-size:.92rem}
+.exam-timetable-badge{flex-shrink:0;border-radius:999px;background:#153d75;color:#fff;padding:8px 11px;font-size:.75rem;font-weight:800;white-space:nowrap}
+.exam-timetable-desktop{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid #d8e3f0;border-radius:14px;background:#fff}
+.exam-timetable-desktop th{background:#153d75;color:#fff;text-align:left;padding:12px 14px;font-size:.86rem}
+.exam-timetable-desktop td{padding:13px 14px;border-top:1px solid #e2eaf3;vertical-align:top;font-size:.91rem}
+.exam-timetable-desktop tr:first-child td{border-top:0}
+.exam-date{font-weight:800;color:#173e78;white-space:nowrap}
+.exam-weekday{display:block;margin-top:3px;color:#6a7f99;font-size:.8rem;font-weight:500}
+.exam-subject{display:block;padding:4px 0;line-height:1.35}
+.exam-subject+.exam-subject{border-top:1px dashed #e2eaf3;margin-top:4px;padding-top:8px}
+.exam-mobile{display:none;gap:12px}
+.exam-day-card{padding:13px;border:1px solid #dbe7f4;border-radius:15px;background:#fff;box-shadow:0 3px 10px rgba(30,64,110,.04)}
+.exam-day-title{display:flex;align-items:center;gap:9px;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid #e5edf6}
+.exam-day-number{display:grid;place-items:center;width:46px;height:46px;flex-shrink:0;border-radius:12px;background:#e6f1ff;color:#153d75;font-weight:900;font-size:1rem;line-height:1.1}
+.exam-day-number small{display:block;font-size:.62rem;text-transform:uppercase;letter-spacing:.05em}
+.exam-day-date{font-weight:850;color:#173e78}
+.exam-day-weekday{display:block;margin-top:2px;color:#71839a;font-size:.82rem;font-weight:500}
+.exam-grade-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.exam-grade{min-width:0;padding:10px 8px;border-radius:11px;background:#f4f8fd}
+.exam-grade-label{display:block;margin-bottom:6px;color:#53749c;font-size:.7rem;font-weight:850;letter-spacing:.04em;text-transform:uppercase}
+.exam-grade-subject{font-size:.82rem;font-weight:750;line-height:1.3;overflow-wrap:anywhere;color:#263f5c}
+.exam-grade-subject+.exam-grade-subject{border-top:1px solid #dce7f2;margin-top:7px;padding-top:7px}
+.exam-timetable-note{display:flex;gap:8px;align-items:flex-start;margin:14px 2px 0;color:#526984;font-size:.82rem;line-height:1.45}
+.exam-timetable-note span{flex-shrink:0}
+@media(max-width:700px){.exam-timetable{margin:17px 0 22px;border-radius:18px}.exam-timetable-head{align-items:flex-start}.exam-timetable-badge{font-size:.67rem;padding:7px 9px}.exam-timetable-desktop{display:none}.exam-mobile{display:grid}.exam-timetable-subtitle{font-size:.85rem}}
+@media(max-width:390px){.exam-timetable-head{display:block}.exam-timetable-badge{display:inline-block;margin-top:10px}.exam-grade-grid{gap:6px}.exam-grade{padding:9px 6px}.exam-grade-subject{font-size:.76rem}}
+</style>
+<section class="exam-timetable" aria-labelledby="exam-timetable-title">
+  <div class="exam-timetable-head">
+    <div><p class="exam-timetable-kicker">Plan • Prepare • Feel confident</p><h2 id="exam-timetable-title">Second Mid-Term Examination</h2><p class="exam-timetable-subtitle">St. Aloysius High School, North Paravur · 2–5 November 2026</p></div>
+    <span class="exam-timetable-badge">📅 Exam week</span>
+  </div>
+  <table class="exam-timetable-desktop">
+    <thead><tr><th>Date</th><th>Standard V</th><th>Standard VI</th><th>Standard VII</th></tr></thead>
+    <tbody>
+      <tr><td class="exam-date">02 Nov 2026<span class="exam-weekday">Monday</span></td><td><span class="exam-subject">Malayalam-I</span><span class="exam-subject">Social Science</span></td><td><span class="exam-subject">English</span><span class="exam-subject">Basic Science</span></td><td><span class="exam-subject">Hindi</span><span class="exam-subject">Mathematics</span></td></tr>
+      <tr><td class="exam-date">03 Nov 2026<span class="exam-weekday">Tuesday</span></td><td><span class="exam-subject">English</span><span class="exam-subject">Mathematics</span></td><td><span class="exam-subject">Malayalam-II</span><span class="exam-subject">Social Science</span></td><td><span class="exam-subject">Malayalam-I</span><span class="exam-subject">Basic Science</span></td></tr>
+      <tr><td class="exam-date">04 Nov 2026<span class="exam-weekday">Wednesday</span></td><td><span class="exam-subject">Hindi</span><span class="exam-subject">Basic Science</span></td><td><span class="exam-subject">Malayalam-I</span><span class="exam-subject">Mathematics</span></td><td><span class="exam-subject">English</span><span class="exam-subject">Social Science</span></td></tr>
+      <tr><td class="exam-date">05 Nov 2026<span class="exam-weekday">Thursday</span></td><td><span class="exam-subject">Malayalam-II</span></td><td><span class="exam-subject">Hindi</span></td><td><span class="exam-subject">Malayalam-II</span></td></tr>
+    </tbody>
+  </table>
+  <div class="exam-mobile">
+    <article class="exam-day-card"><div class="exam-day-title"><div class="exam-day-number">02<small>Nov</small></div><div class="exam-day-date">Monday, 2 November<span class="exam-day-weekday">Exam timetable</span></div></div><div class="exam-grade-grid"><div class="exam-grade"><span class="exam-grade-label">Std. V</span><div class="exam-grade-subject">Malayalam-I</div><div class="exam-grade-subject">Social Science</div></div><div class="exam-grade"><span class="exam-grade-label">Std. VI</span><div class="exam-grade-subject">English</div><div class="exam-grade-subject">Basic Science</div></div><div class="exam-grade"><span class="exam-grade-label">Std. VII</span><div class="exam-grade-subject">Hindi</div><div class="exam-grade-subject">Mathematics</div></div></div></article>
+    <article class="exam-day-card"><div class="exam-day-title"><div class="exam-day-number">03<small>Nov</small></div><div class="exam-day-date">Tuesday, 3 November<span class="exam-day-weekday">Exam timetable</span></div></div><div class="exam-grade-grid"><div class="exam-grade"><span class="exam-grade-label">Std. V</span><div class="exam-grade-subject">English</div><div class="exam-grade-subject">Mathematics</div></div><div class="exam-grade"><span class="exam-grade-label">Std. VI</span><div class="exam-grade-subject">Malayalam-II</div><div class="exam-grade-subject">Social Science</div></div><div class="exam-grade"><span class="exam-grade-label">Std. VII</span><div class="exam-grade-subject">Malayalam-I</div><div class="exam-grade-subject">Basic Science</div></div></div></article>
+    <article class="exam-day-card"><div class="exam-day-title"><div class="exam-day-number">04<small>Nov</small></div><div class="exam-day-date">Wednesday, 4 November<span class="exam-day-weekday">Exam timetable</span></div></div><div class="exam-grade-grid"><div class="exam-grade"><span class="exam-grade-label">Std. V</span><div class="exam-grade-subject">Hindi</div><div class="exam-grade-subject">Basic Science</div></div><div class="exam-grade"><span class="exam-grade-label">Std. VI</span><div class="exam-grade-subject">Malayalam-I</div><div class="exam-grade-subject">Mathematics</div></div><div class="exam-grade"><span class="exam-grade-label">Std. VII</span><div class="exam-grade-subject">English</div><div class="exam-grade-subject">Social Science</div></div></div></article>
+    <article class="exam-day-card"><div class="exam-day-title"><div class="exam-day-number">05<small>Nov</small></div><div class="exam-day-date">Thursday, 5 November<span class="exam-day-weekday">Final exam day</span></div></div><div class="exam-grade-grid"><div class="exam-grade"><span class="exam-grade-label">Std. V</span><div class="exam-grade-subject">Malayalam-II</div></div><div class="exam-grade"><span class="exam-grade-label">Std. VI</span><div class="exam-grade-subject">Hindi</div></div><div class="exam-grade"><span class="exam-grade-label">Std. VII</span><div class="exam-grade-subject">Malayalam-II</div></div></div></article>
+  </div>
+  <p class="exam-timetable-note"><span>ℹ️</span><span>All examinations will be held during regular school hours.</span></p>
+</section>
+
+<div class="home-card-gallery">
 <a class="wonder-world-home-card" href="wonder-world.html" aria-label="Open Wonder World">
   <span class="wonder-world-home-icon">🧭</span>
   <span class="wonder-world-home-copy"><strong>Wonder World</strong><small>Word World • Maths Playground • Story Adventures • Discovery Lab • Creative Studio</small></span>
