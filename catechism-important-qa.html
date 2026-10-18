@@ -98,4 +98,50 @@
 <details><summary>Which Gospel compares Jesus’ crucifixion to the lifting of the bronze serpent?</summary><div class="ans">The Gospel of John.</div></details>
 <details><summary>Which chapter talks about the lifting up of the serpent?</summary><div class="ans">John, Chapter 3.</div></details>
 </div><a class="back" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">↑ Back to top</a></section>
-<a class="back" href="catechism.html">← Return to Catechism chapter cards</a></main></body></html>
+<a class="back" href="catechism.html">← Return to Catechism chapter cards</a><style>
+.read-aloud-btn{display:inline-flex;align-items:center;gap:7px;margin:9px 0 4px;padding:9px 13px;border:1px solid #b9d7e8;border-radius:999px;background:#edf8ff;color:#174d6c;font:700 14px/1.2 system-ui;cursor:pointer}
+.read-aloud-btn:focus-visible{outline:3px solid #e5bd54;outline-offset:2px}
+.read-aloud-btn[aria-pressed="true"]{background:#193b63;color:#fff}
+.read-aloud-note{font-size:12px;color:#63788b;margin:4px 0 0}
+@media(max-width:520px){.read-aloud-btn{min-height:42px;font-size:14px}}
+</style>
+<script>
+(function(){
+ let activeButton=null;
+ function stopSpeech(){
+   if('speechSynthesis' in window) window.speechSynthesis.cancel();
+   if(activeButton){activeButton.setAttribute('aria-pressed','false');activeButton.textContent='🔊 Read aloud';activeButton=null;}
+ }
+ function chooseVoice(){
+   const voices=window.speechSynthesis.getVoices()||[];
+   const english=voices.filter(v=>/^en(-|$)/i.test(v.lang));
+   const femaleHints=/female|samantha|karen|aria|jenny|zira|susan|moira|tessa|serena|ava|allison|victoria|salli|joanna|emma|olivia|sonia/i;
+   return english.find(v=>femaleHints.test(v.name))||english.find(v=>/Google UK English Female|Microsoft.*(Aria|Jenny|Zira|Sonia|Emma)/i.test(v.name))||english[0]||voices[0]||null;
+ }
+ function textFor(detail){
+   const q=detail.querySelector('summary');
+   const a=detail.querySelector('.ans');
+   return 'Question. '+(q?q.innerText.trim():'')+'. Answer. '+(a?a.innerText.trim():'');
+ }
+ document.querySelectorAll('details').forEach(function(detail){
+   const btn=document.createElement('button');
+   btn.type='button';btn.className='read-aloud-btn';btn.textContent='🔊 Read aloud';
+   btn.setAttribute('aria-label','Read this question and answer aloud');btn.setAttribute('aria-pressed','false');
+   btn.addEventListener('click',function(){
+     if(!('speechSynthesis' in window)){alert('Read aloud is not supported in this browser. Please try Chrome.');return;}
+     if(activeButton===btn){stopSpeech();return;}
+     stopSpeech();
+     const utterance=new SpeechSynthesisUtterance(textFor(detail));
+     const voice=chooseVoice();if(voice)utterance.voice=voice;
+     utterance.rate=0.68;utterance.pitch=1.08;utterance.volume=1;
+     activeButton=btn;btn.setAttribute('aria-pressed','true');btn.textContent='⏹ Stop reading';
+     utterance.onend=utterance.onerror=function(){if(activeButton===btn){btn.setAttribute('aria-pressed','false');btn.textContent='🔊 Read aloud';activeButton=null;}};
+     window.speechSynthesis.speak(utterance);
+   });
+   detail.appendChild(btn);
+ });
+ const note=document.createElement('p');note.className='read-aloud-note';note.textContent='Read aloud uses your device’s available voice. A female-sounding English voice is preferred when available; speech is slowed down for easier listening.';
+ const hero=document.querySelector('.hero');if(hero)hero.appendChild(note);
+})();
+</script>
+</main></body></html>
