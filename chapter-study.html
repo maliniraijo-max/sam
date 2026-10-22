@@ -22,7 +22,19 @@ document.getElementById('back').href='term-chapters.html?subject='+encodeURIComp
 document.getElementById('summary').textContent=chapter.summary||'Read the chapter and identify its main idea.';
 (chapter.points||[]).forEach(t=>{const li=document.createElement('li');li.textContent=t;document.getElementById('points').appendChild(li)});
 const acts=document.getElementById('activities');
-(chapter.activities||[]).forEach((a,i)=>{const wrap=document.createElement('div');wrap.className='activity';const q=document.createElement('div');q.className='question';q.textContent=(i+1)+'. '+a.q;const input=document.createElement('textarea');input.className='answer';input.placeholder='Write your answer here…';input.setAttribute('aria-label','Your answer to '+a.q);const btn=document.createElement('button');btn.className='btn';btn.textContent='Show model answer';const model=document.createElement('div');model.className='model';model.textContent=a.a;btn.addEventListener('click',()=>{model.classList.toggle('show');btn.textContent=model.classList.contains('show')?'Hide model answer':'Show model answer'});wrap.append(q,input,btn,model);acts.appendChild(wrap)});
+(chapter.activities||[]).forEach((a,i)=>{const wrap=document.createElement('div');wrap.className='activity';const q=document.createElement('div');q.className='question';q.textContent=(i+1)+'. '+a.q;const input=document.createElement('textarea');input.className='answer';input.placeholder='Write your answer here…';input.setAttribute('aria-label','Your answer to '+a.q);const btn=document.createElement('button');btn.className='btn';btn.textContent='Show model answer';const model=document.createElement('div');model.className='model';model.textContent=a.a;btn.addEventListener('click',()=>{model.classList.toggle('show');btn.textContent=model.classList.contains('show')?'Hide model answer':'Show model answer'});wrap.append(q,input,btn,model);
+if(subject==='science'){
+const readBtn=document.createElement('button');readBtn.className='btn';readBtn.type='button';readBtn.textContent='🔊 Read question & answer aloud';readBtn.style.marginTop='8px';
+readBtn.addEventListener('click',function(){
+if(!('speechSynthesis' in window)){alert('Read aloud is not supported in this browser. Please try Chrome.');return;}
+window.speechSynthesis.cancel();
+const utterance=new SpeechSynthesisUtterance('Question. '+a.q+'. Answer. '+a.a);
+const voices=window.speechSynthesis.getVoices()||[],english=voices.filter(v=>/^en(-|$)/i.test(v.lang)),hints=/female|samantha|karen|aria|jenny|zira|susan|moira|tessa|serena|ava|allison|victoria|salli|joanna|emma|olivia|sonia/i;
+utterance.voice=english.find(v=>hints.test(v.name))||english[0]||voices[0]||null;utterance.rate=0.68;utterance.pitch=1.08;utterance.volume=1;
+readBtn.textContent='⏹ Stop reading';utterance.onend=utterance.onerror=function(){readBtn.textContent='🔊 Read question & answer aloud';};window.speechSynthesis.speak(utterance);
+});wrap.appendChild(readBtn);
+}
+acts.appendChild(wrap)});
 const slug={
 'Names and Names':'names-and-names-questions-and-answers',
 'The Colours of Earth':'the-colours-of-earth-questions-and-answers',
