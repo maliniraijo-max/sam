@@ -133,38 +133,49 @@ window.SCIENCE_WORKBOOK = {
 {type:"qa",q:"A student says the ovule becomes the fruit. Correct the student.",a:"The ovule develops into the seed; the ovary develops into the fruit."},
 {type:"qa",q:"Why is pollination necessary before fertilisation can normally occur in flowering plants?",a:"Pollen must reach the stigma so a pollen tube can grow and carry the male gamete toward the egg."}
 ]}]},
-5:{title:"Association of Substances",summary:"Substances can occur together as mixtures and can often be separated by using differences in properties such as size, solubility, magnetism and settling. The chapter focuses on selecting suitable methods and explaining observations.",sections:[
-{name:"A • Name & recall",items:[
-{type:"qa",q:"What do we call a combination of two or more substances together?",a:"A mixture."},
-{type:"qa",q:"Which method uses a magnet to remove magnetic material?",a:"Magnetic separation."},
-{type:"qa",q:"Which method separates an insoluble solid from a liquid using a filter?",a:"Filtration."},
-{type:"qa",q:"Which method lets heavier insoluble particles settle at the bottom?",a:"Sedimentation."},
-{type:"qa",q:"What is the pouring off of the clear liquid after settling called?",a:"Decantation."},
-{type:"qa",q:"Which method can recover dissolved salt from salt water?",a:"Evaporation."}
+5:{title:"Association of Substances",summary:"Mixtures are part of everyday life: food, air, soil, drinks and building materials. A mixture contains two or more substances. Homogeneous mixtures are uniform throughout; heterogeneous mixtures have different parts. A solution forms when a solute dissolves in a solvent. Matter is made of tiny particles: molecules are made of atoms, and particle arrangement helps explain solids, liquids and gases. Mixtures can be separated by differences in size, solubility, settling, density or magnetism.",sections:[
+{name:"A • Mixtures around us",items:[
+{type:"qa",q:"What is a mixture? Give two everyday examples.",a:"A mixture contains two or more substances together. Examples include salad, concrete, soil, air or salt water."},
+{type:"qa",q:"Name four ingredients used to make concrete.",a:"Cement, sand, gravel and water."},
+{type:"qa",q:"Why is a snack made of groundnuts, fried gram and cashews a mixture?",a:"It contains several substances that can still be identified as separate components."},
+{type:"qa",q:"Must all components in a mixture be in the same state of matter?",a:"No. Mixtures may contain solids, liquids or gases in different combinations."}
 ]},
-{name:"B • Choose the method",items:[
-{type:"qa",q:"Choose a method to separate stones from rice when the pieces are easy to see.",a:"Handpicking."},
-{type:"qa",q:"Choose a method to separate fine sand from water.",a:"Sedimentation and decantation, or filtration."},
-{type:"qa",q:"Choose a method to separate larger grains from fine particles using a mesh.",a:"Sieving."},
-{type:"qa",q:"Choose a method to separate iron filings from powdered sulphur or sand.",a:"Magnetic separation."},
-{type:"qa",q:"Choose a method to obtain salt from a salt solution when the water may evaporate.",a:"Evaporation."},
-{type:"tf",q:"One separation method is suitable for every mixture.",a:"False. The method depends on the properties of the components."}
+{name:"B • Solutions and mixture types",items:[
+{type:"qa",q:"What is a solution?",a:"A solution is a homogeneous mixture formed when a solute dissolves in a solvent."},
+{type:"qa",q:"Explain solute and solvent using salt water.",a:"Salt is the solute because it dissolves. Water is the solvent because it dissolves the salt and is present in greater quantity."},
+{type:"qa",q:"How does a homogeneous mixture differ from a heterogeneous mixture?",a:"A homogeneous mixture has the same properties throughout. A heterogeneous mixture has different parts or properties in different places."},
+{type:"qa",q:"Classify salt water, sugar water and chalk powder in water.",a:"Salt water and sugar water are homogeneous when fully dissolved. Chalk powder in water is heterogeneous because particles remain separate and may settle."},
+{type:"qa",q:"Why are all solutions mixtures, but not all mixtures solutions?",a:"A solution contains more than one component, so it is a mixture. But some mixtures are heterogeneous and are not solutions."},
+{type:"qa",q:"Why might a medicine bottle say “shake well before use”?",a:"Some components may settle during storage. Shaking redistributes them more evenly."},
+{type:"qa",q:"Give an example of a solid dissolved in a liquid, a gas in a liquid and a mixture of gases.",a:"Salt water; soda water; air."}
 ]},
-{name:"C • Explain & compare",items:[
-{type:"qa",q:"Why can a magnet separate iron filings from sand?",a:"Iron is attracted by the magnet while sand is not, so their different magnetic properties allow separation."},
-{type:"qa",q:"How do sedimentation and decantation work together?",a:"The solid is allowed to settle; then the clearer liquid is carefully poured off."},
-{type:"qa",q:"Why is filtration not usually used to separate dissolved salt from water?",a:"Dissolved salt passes through the filter with the water; it is not an insoluble solid."},
-{type:"qa",q:"What property makes sieving useful?",a:"The components have different particle sizes."},
-{type:"qa",q:"Why should the separation method be selected after observing the mixture?",a:"Different mixtures have different properties, so the suitable method depends on size, solubility, magnetism or settling behaviour."}
+{name:"C • Molecules, atoms and states of matter",items:[
+{type:"qa",q:"What is a molecule?",a:"A tiny particle made of one or more atoms that retains the characteristic properties of a substance."},
+{type:"qa",q:"How are atoms related to molecules?",a:"Atoms are building blocks of matter. Molecules form when atoms join together."},
+{type:"qa",q:"Compare particle arrangement in solids, liquids and gases.",a:"Solid particles are packed closely and mainly vibrate in place. Liquid particles remain close but slide past one another. Gas particles are far apart and move freely."},
+{type:"qa",q:"Why does a solid keep its shape while a liquid takes the shape of its container?",a:"Solid particles remain in fixed positions relative to one another. Liquid particles can move past each other, so liquids flow."},
+{type:"qa",q:"Why can gases spread quickly through a room?",a:"Gas particles are far apart and move freely in all directions."},
+{type:"qa",q:"Has sugar disappeared when it dissolves in water?",a:"No. Sugar particles spread throughout the water. They are too small to see, but the solution remains sweet."},
+{type:"qa",q:"What is a pure substance? Give one example and contrast it with a mixture.",a:"A pure substance contains one kind of substance, such as pure water or oxygen. A mixture contains two or more components, such as soda water."}
 ]},
-{name:"D • Multi-step problems",items:[
-{type:"qa",q:"A mixture contains iron pins, sand and water. Give a sensible sequence to recover the iron pins and separate the sand from water.",a:"First use a magnet to remove the iron pins. Then allow the sand to settle and decant the water, or filter the mixture."},
-{type:"qa",q:"You must separate salt from a salt-water solution. What remains after the water evaporates?",a:"Salt remains as a solid."},
-{type:"qa",q:"A student tries to filter sugar dissolved in water but finds sugar in the filtrate. Explain why.",a:"Dissolved sugar particles pass through the filter with the water; filtration removes insoluble solids, not dissolved substances."},
-{type:"qa",q:"A mixture has large stones and small sand grains. What could be done first, and why?",a:"Handpick the stones or use a suitable sieve because the components differ in size."},
-{type:"qa",q:"Explain how to separate a mixture of muddy water using settling, pouring and filtering.",a:"Allow mud to settle, carefully pour off the clearer upper water, and filter it if further removal of suspended particles is needed."}
-]}]},
-6:{title:"Tiny Chambers of Life",summary:"Cells are the basic structural and functional units of living things. Some organisms are single-celled and others many-celled. Microscopes reveal cells and tiny organisms; plant and animal cells share some structures but differ in others.",sections:[
+{name:"D • Air and environmental care",items:[
+{type:"qa",q:"Why is air considered a mixture?",a:"Air contains several gases, mainly nitrogen and oxygen, with carbon dioxide and other gases in smaller amounts."},
+{type:"qa",q:"Which gas do humans use in respiration, and which gas do plants use in photosynthesis?",a:"Humans use oxygen in respiration. Plants use carbon dioxide during photosynthesis."},
+{type:"qa",q:"Why can burning plastic harm living things?",a:"Burning plastic can release toxic smoke and pollutants that contaminate air and harm health."}
+]},
+{name:"E • Methods of separation",items:[
+{type:"qa",q:"How can stones be separated from rice, and what property helps?",a:"Use handpicking when stones can be seen; differences in size, shape or colour help identify them."},
+{type:"qa",q:"How can iron filings be separated from sand?",a:"Use a magnet because iron is attracted while sand is not."},
+{type:"qa",q:"How are tea leaves separated from tea?",a:"Filtration or straining. The leaves are larger than the strainer openings, while the liquid passes through."},
+{type:"qa",q:"Explain how to clarify muddy water using sedimentation and decantation.",a:"Let mud settle at the bottom (sedimentation), then carefully pour the clearer water into another container (decantation). Filtration can remove remaining suspended particles."},
+{type:"qa",q:"How can salt be recovered from salt water?",a:"Evaporation removes water as vapour and leaves salt behind."},
+{type:"qa",q:"How is chaff separated from paddy, and why does the method work?",a:"Winnowing uses moving air: lighter chaff is carried away more easily than heavier grains."},
+{type:"qa",q:"How are stones separated from fine sand at a construction site?",a:"Sieving. Smaller sand grains pass through the mesh while larger stones remain."},
+{type:"qa",q:"How is butter separated from curd?",a:"Churning helps butter gather separately from the liquid part of the curd."},
+{type:"qa",q:"Why cannot filtration separate dissolved salt from water?",a:"Dissolved salt passes through the filter with water. Evaporation is used to recover the salt."},
+{type:"qa",q:"A mixture contains iron filings, sand and water. Give a sensible separation sequence.",a:"Use a magnet to remove the iron filings. Then let the sand settle and decant the water, or use filtration."},
+{type:"qa",q:"Which property is used in handpicking, sieving and magnetic separation?",a:"Handpicking uses visible differences such as size, shape or colour; sieving uses particle size; magnetic separation uses attraction to a magnet."}
+]}]},6:{title:"Tiny Chambers of Life",summary:"Cells are the basic structural and functional units of living things. Some organisms are single-celled and others many-celled. Microscopes reveal cells and tiny organisms; plant and animal cells share some structures but differ in others.",sections:[
 {name:"A • One-word & identify",items:[
 {type:"qa",q:"What is the basic structural and functional unit of life?",a:"Cell."},
 {type:"qa",q:"What instrument magnifies cells too small to see clearly with the naked eye?",a:"Microscope."},
