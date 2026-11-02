@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f5e9"><title>Social Science • One-Word Practice • Sam</title><link rel="stylesheet" href="style.css">
+<style>
+:root{--ink:#293d35;--green:#47745d;--line:#dce7d9;--pale:#f1f6e9;--gold:#b58a43}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f5f4e8,#fffaf1);color:var(--ink);font-family:Arial,sans-serif}.shell{max-width:900px;margin:auto;padding:14px 15px 42px}.top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.top a{color:var(--green);font-weight:800;text-decoration:none}.hero{text-align:center;padding:23px 5px 14px}.badge{display:inline-block;background:#e7efdc;color:#42634c;border:1px solid #d3e0c9;border-radius:30px;padding:7px 13px;font-size:12px;font-weight:900;letter-spacing:.04em}.hero h1{font-size:clamp(27px,5vw,42px);margin:12px 0 6px;line-height:1.12}.hero p{color:#6d7e70;line-height:1.5;margin:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px;text-align:center}.stat strong{display:block;font-size:22px;color:var(--green)}.stat span{font-size:12px;color:#718073}.panel{background:#fff;border:1px solid var(--line);border-radius:17px;padding:16px;margin:13px 0;box-shadow:0 7px 20px #455b4010}.chapter{margin:20px 0 8px;padding:10px 12px;border-radius:11px;background:linear-gradient(90deg,#eaf1df,#f8f2df);color:#3e6048;font-weight:900}.q{padding:13px 0;border-top:1px solid #edf0e9}.q:first-child{border-top:0}.qtop{display:flex;gap:10px;align-items:flex-start}.num{flex:0 0 30px;height:30px;border-radius:9px;background:#eaf1df;color:#42634c;display:grid;place-items:center;font-weight:900}.question{font-weight:750;line-height:1.5;flex:1}.actions{display:flex;gap:8px;margin:9px 0 0 40px;flex-wrap:wrap}.btn{border:0;border-radius:9px;padding:8px 12px;font-weight:800;cursor:pointer;background:#47745d;color:#fff}.btn.alt{background:#edf2e8;color:#45634b}.answer{display:none;margin:9px 0 0 40px;background:#f0f7ed;border:1px solid #d9e9d4;border-radius:10px;padding:10px 12px;line-height:1.5}.answer.show{display:block}.answer strong{color:#315c3e}.footer{font-size:13px;color:#718073;line-height:1.55}.print{background:#b58a43}.progress{height:8px;border-radius:20px;background:#e8eee4;overflow:hidden;margin:12px 0}.progress div{height:100%;width:0;background:#71956b;transition:width .2s}@media(max-width:520px){.shell{padding:10px}.panel{padding:13px}.stats{gap:6px}.stat{padding:9px 5px}}
+@media print{body{background:#fff}.top,.actions,.progress,.footer .print{display:none!important}.panel{box-shadow:none;break-inside:avoid}.answer{display:block!important}.hero{padding-top:5px}}
+</style></head><body><main class="shell">
+<header class="top"><a href="social-workbook.html?chapter=5">← Back to Social Science</a><strong>CLASS 6 • SAM’S PRACTICE</strong></header>
+<section class="hero"><span class="badge">TERM 2 • EXAM PRACTICE</span><h1>One-Word Questions &amp; Answers</h1><p>Chapters 5, 6 and 7 · 50 questions · 50 marks</p></section>
+<div class="stats"><div class="stat"><strong>50</strong><span>Questions</span></div><div class="stat"><strong>50</strong><span>Total marks</span></div><div class="stat"><strong>1</strong><span>Mark each</span></div></div>
+<section class="panel"><strong>How to practise</strong><p class="footer">Read each question and say or write a one-word answer. Then select “Reveal answer” to check. Try all 50 questions before revising the answers.</p><div class="progress"><div id="progress"></div></div><div class="footer" id="progressText">0 of 50 answers revealed</div></section>
+<div id="questions"></div>
+<section class="panel"><strong>Finished?</strong><p class="footer">Count one mark for each correct answer. Maximum score: 50 marks. Ask Sam to revise the questions he found difficult and try them again.</p><button class="btn print" onclick="window.print()">Print question paper + answer key</button></section>
+</main>
+<script>
+const groups=[
+{title:"Chapter 5 – Culture and Cultural Diversities",items:[
+["What do we call the shared way of life of a community?","Culture"],
+["Which part of culture includes the language people speak?","Language"],
+["What do we call a customary celebration?","Festival"],
+["Which art form uses body movements and rhythm?","Dance"],
+["What do we call a traditional practice passed through generations?","Tradition"],
+["Where do children first learn many cultural practices?","Family"],
+["What word describes the presence of many different cultures?","Diversity"],
+["What should we show towards unfamiliar customs?","Respect"],
+["What do we call an oversimplified belief about a group?","Stereotype"],
+["What helps people participate without unfair exclusion?","Inclusion"],
+["Which national identity can people share while keeping local traditions?","Indian"],
+["What can people share to enrich society besides food and language?","Ideas"],
+["What should we use to understand an unfamiliar custom politely?","Questions"],
+["What helps communities resolve disagreements peacefully?","Discussion"],
+["What should never be used as a reason to exclude people?","Identity"],
+["What do we call the music, food and dress of a community collectively?","Culture"]
+]},
+{title:"Chapter 6 – From Agriculture to Industry",items:[
+["What is the growing of crops and raising of animals called?","Agriculture"],
+["What is the supply of water to crops called?","Irrigation"],
+["Which natural resource forms the base for growing most crops?","Soil"],
+["What do we call goods produced beyond immediate needs?","Surplus"],
+["What is the buying and selling of goods called?","Trade"],
+["Which activity obtains resources directly from nature?","Primary"],
+["Which sector processes raw materials into products?","Secondary"],
+["Which sector provides services such as teaching and banking?","Tertiary"],
+["Which agricultural raw material is used to make cloth?","Cotton"],
+["Which crop is a raw material for making sugar?","Sugarcane"],
+["What is the making of goods called?","Production"],
+["What transforms raw materials into finished products?","Industry"],
+["What connects producers with buyers?","Trade"],
+["Which activity includes catching fish?","Fishing"],
+["What can factories create for people?","Jobs"],
+["What harmful effect can unmanaged industrial activity cause?","Pollution"],
+["What should industries reduce to protect the environment?","Waste"]
+]},
+{title:"Chapter 7 – Through the Continents",items:[
+["What is one of Earth's major landmasses called?","Continent"],
+["Which is the largest continent?","Asia"],
+["Which continent is known as the coldest continent?","Antarctica"],
+["Which continent lies south of Europe across the Mediterranean Sea?","Africa"],
+["Which continent includes the countries Canada and Brazil?","America"],
+["Which continent is also a country?","Australia"],
+["Which continent contains the Himalayas?","Asia"],
+["Which is the world's highest mountain above sea level?","Everest"],
+["Which mountain range contains Mount Everest?","Himalayas"],
+["Which mountain range is commonly used as part of the Europe–Asia boundary?","Ural"],
+["What book of maps helps us locate places?","Atlas"],
+["Which model represents the Earth?","Globe"],
+["What separates and connects continents?","Oceans"],
+["What physical feature may provide fertile land along its banks?","River"],
+["Which landform is generally higher and flatter than surrounding land?","Plateau"],
+["Which landform is a large area of flat or gently rolling land?","Plain"],
+["Which natural factor strongly influences the climate of a place?","Latitude"],
+["What can mountains affect besides travel and settlement?","Climate"]
+]}
+];
+const root=document.getElementById('questions');let n=0,revealed=0;
+groups.forEach(g=>{const h=document.createElement('div');h.className='chapter';h.textContent=g.title;root.appendChild(h);g.items.forEach(([q,a])=>{n++;const card=document.createElement('section');card.className='panel q';card.innerHTML='<div class="qtop"><span class="num">'+n+'</span><div class="question"></div></div><div class="actions"><button class="btn alt" type="button">Reveal answer</button></div><div class="answer"><strong>Answer:</strong> <span></span></div>';card.querySelector('.question').textContent=q;card.querySelector('.answer span').textContent=a;const b=card.querySelector('button'),ans=card.querySelector('.answer');b.addEventListener('click',()=>{const show=!ans.classList.contains('show');ans.classList.toggle('show',show);b.textContent=show?'Hide answer':'Reveal answer';if(show&&!card.dataset.counted){card.dataset.counted='1';revealed++;document.getElementById('progress').style.width=(revealed/50*100)+'%';document.getElementById('progressText').textContent=revealed+' of 50 answers revealed';}});root.appendChild(card);});});
+</script></body></html>
