@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ml"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e8f7f5"><title>Malayalam 1 • 13-Mark One-Word Practice</title><link rel="stylesheet" href="style.css">
+<style>
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#e8f7f5,#f8fcfb 48%,#fff);color:#173d3c;font-family:Arial,"Noto Sans Malayalam",sans-serif}.shell{max-width:900px;margin:auto;padding:16px 14px 48px}.top{display:flex;justify-content:space-between;gap:12px;align-items:center}.top a{color:#147b75;text-decoration:none;font-weight:850}.hero{text-align:center;padding:28px 8px 20px}.eyebrow{display:inline-block;background:#d3f0eb;border:1px solid #a9ded5;color:#176d66;padding:7px 13px;border-radius:99px;font-size:12px;font-weight:900;letter-spacing:.06em}.hero h1{font-size:clamp(27px,5vw,40px);line-height:1.2;margin:13px 0 8px;color:#164b48}.muted{color:#557674;line-height:1.65}.summary{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin:18px 0}.pill{background:#fff;border:1px solid #cfe8e2;border-radius:13px;padding:9px 13px;font-weight:800;color:#24635e;font-size:13px}.progressbox{background:#fff;border:1px solid #cfe8e2;border-radius:17px;padding:14px 16px;margin:16px 0}.track{height:9px;background:#e3f0ed;border-radius:99px;overflow:hidden;margin-top:9px}.track span{display:block;height:100%;width:0;background:#239b8d;transition:width .2s}.chapter{margin:22px 0 10px;color:#176d66;font-size:17px;font-weight:900}.q{background:#fff;border:1px solid #d4eae5;border-radius:17px;padding:15px;margin:10px 0;box-shadow:0 5px 18px #174c4509}.qhead{display:flex;gap:11px;align-items:flex-start}.num{flex:0 0 32px;height:32px;border-radius:11px;background:#dff4ef;color:#176d66;display:grid;place-items:center;font-weight:900}.question{font-size:16px;line-height:1.7;font-weight:750}.btn{border:0;border-radius:11px;padding:10px 14px;background:#d9f1ec;color:#145e58;font-weight:850;cursor:pointer;margin:11px 0 0 43px}.answer{display:none;margin:10px 0 0 43px;background:#f0faf7;border:1px solid #cce9e1;border-radius:11px;padding:11px 13px;font-size:16px;font-weight:900;color:#145e58}.answer.show{display:block}.footer{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.footer button{border:0;border-radius:12px;padding:12px 16px;background:#176d66;color:#fff;font-weight:850;cursor:pointer}.footer .light{background:#e4f2ef;color:#1a5c56}@media(max-width:520px){.shell{padding:12px 10px 35px}.q{padding:13px}.question{font-size:15px}}
+@media print{body{background:#fff}.top,.footer,.btn{display:none!important}.q{break-inside:avoid;box-shadow:none}.answer{display:block!important}.shell{max-width:none}}
+</style></head><body><main class="shell">
+<header class="top"><a href="term-chapters.html?subject=malayalam1&term=2">← Malayalam 1 • Term 2</a><strong>CLASS 6</strong></header>
+<section class="hero"><span class="eyebrow">MALAYALAM 1 • CHAPTERS 5, 6 &amp; 7</span><h1>13-Mark One-Word Practice</h1><p class="muted">ചോദ്യങ്ങൾ വായിച്ച് ഉത്തരം മനസ്സിൽ പറയുക. ശേഷം മാതൃകാ ഉത്തരം തുറന്ന് പരിശോധിക്കുക.</p><div class="summary"><span class="pill">13 Questions</span><span class="pill">1 Mark Each</span><span class="pill">Total: 13 Marks</span></div></section>
+<section class="progressbox"><strong id="progressText">0 of 13 answers revealed</strong><div class="track"><span id="progress"></span></div></section>
+<div id="questions"></div>
+<div class="footer"><button onclick="window.print()">🖨️ Print practice sheet</button><button class="light" onclick="document.querySelectorAll('.answer').forEach(x=>x.classList.add('show'));document.querySelectorAll('.btn').forEach(x=>x.textContent='Hide answer');updateProgress()">Show all answers</button><button class="light" onclick="document.querySelectorAll('.answer').forEach(x=>x.classList.remove('show'));document.querySelectorAll('.btn').forEach(x=>x.textContent='Reveal answer');updateProgress()">Hide all answers</button></div>
+<p class="muted" style="font-size:12px;text-align:center">Prepared from the Malayalam 1 chapter notes currently stored in Sam’s study data. Check the textbook for exact wording.</p>
+</main><script>
+const groups=[
+{title:"Chapter 5 • കോയയുടെ ചെറിയ വസ്തുക്കൾ",items:[
+["കോയയ്ക്ക് ഭാര്യയിൽനിന്ന് ലഭിച്ച സന്തോഷവാർത്ത എന്തായിരുന്നു?","ആൺകുഞ്ഞ്"],
+["കോയ നൂറു ദിർഹം ആരിൽനിന്നാണ് കടം വാങ്ങിയത്?","മുതലാളി"],
+["കോയ കടം വാങ്ങിയ തുക എത്രയായിരുന്നു?","നൂറ് ദിർഹം"],
+["കോയയുടെ മുറിയിൽ ഉണ്ടായിരുന്ന പെട്ടി ഏത്?","ട്രങ്ക്"]
+]},
+{title:"Chapter 6 • ഗാന്ധിജിയുടെ അതിഥി",items:[
+["ഗാന്ധിജിയുടെ ആശ്രമം സ്ഥിതിചെയ്തിരുന്ന സ്ഥലം ഏത്?","വാർധ"],
+["കുട്ടി കാണണമെന്ന് ആവശ്യപ്പെട്ടത് ആരെയാണ്?","ബപ്പു"],
+["ഗാന്ധിജി ഇരുന്നുകൊണ്ട് നൂൽ നൂൽക്കാൻ ഉപയോഗിച്ചത് എന്ത്?","ചരഖ"],
+["കുട്ടിക്ക് ആശ്വാസവും അഭയവും നൽകിയ വ്യക്തി ആര്?","ഗാന്ധിജി"]
+]},
+{title:"Chapter 7 • തൊഴിലിന്റെ രുചി, ഭാഷയുടെയും",items:[
+["മലയാളം പഠിക്കാൻ ആഗ്രഹിച്ച പെൺകുട്ടിയുടെ പേര് എന്ത്?","ദറക്സ"],
+["ദറക്സ പഠിക്കാൻ ആഗ്രഹിച്ച ഭാഷ ഏത്?","മലയാളം"],
+["ദറക്സ തയ്യാറാക്കിയ കഥാരൂപം ഏത്?","ചിത്രകഥകൾ"],
+["ദറക്സ പരിശീലിച്ച സൂചിനൂൽപ്പണി ഏത്?","എംബ്രോയ്ഡറി"],
+["ദറക്സ പരിശീലിച്ച കൈത്തൊഴിൽപ്രവൃത്തി ഏത്?","തുന്നൽ"]
+]}
+];
+let total=0;
+const root=document.getElementById('questions');
+groups.forEach(g=>{const h=document.createElement('h2');h.className='chapter';h.textContent=g.title;root.appendChild(h);g.items.forEach(([q,a])=>{total++;const card=document.createElement('article');card.className='q';const head=document.createElement('div');head.className='qhead';const num=document.createElement('span');num.className='num';num.textContent=total;const question=document.createElement('div');question.className='question';question.textContent=q;head.append(num,question);const btn=document.createElement('button');btn.className='btn';btn.textContent='Reveal answer';const ans=document.createElement('div');ans.className='answer';ans.textContent='ഉത്തരം: '+a;btn.addEventListener('click',()=>{ans.classList.toggle('show');btn.textContent=ans.classList.contains('show')?'Hide answer':'Reveal answer';updateProgress()});card.append(head,btn,ans);root.appendChild(card)})});
+function updateProgress(){const n=document.querySelectorAll('.answer.show').length;document.getElementById('progress').style.width=(n/13*100)+'%';document.getElementById('progressText').textContent=n+' of 13 answers revealed'}
+</script></body></html>
