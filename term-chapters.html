@@ -6,6 +6,12 @@
 <header class="study-top"><a href="chapter-cards.html">← All Subjects</a><strong>CLASS 6 • STUDY HUB</strong></header>
 <section class="study-hero"><span class="study-meta" id="term-label">TERM STUDY NOTES</span><h1 id="study-title">Loading chapters…</h1><p id="study-subtitle">Summary • Activities • Solutions</p></section>
 <nav class="term-switch" id="term-switch" aria-label="Select term"></nav>
+<section id="malayalam-one-word-card" style="display:none;margin:0 0 18px;padding:18px;border:1px solid #a9ded5;border-radius:20px;background:linear-gradient(135deg,#e4f6f2,#f2fbf8);box-shadow:0 8px 22px #174c450b">
+<div style="display:flex;align-items:center;gap:13px;flex-wrap:wrap">
+<div style="width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:#c9ece4;font-size:25px">✍️</div>
+<div style="flex:1;min-width:190px"><div style="font-size:11px;font-weight:900;letter-spacing:.1em;color:#176d66">EXAM PRACTICE • 13 MARKS</div><h2 style="margin:4px 0;color:#164b48;font-size:20px">One-Word Q &amp; A</h2><p style="margin:0;color:#557674;font-size:13px;line-height:1.5">Chapters 5, 6 &amp; 7 • 13 questions • Reveal model answers</p></div>
+<a href="malayalam1-one-word-practice.html" style="display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 16px;border-radius:12px;background:#176d66;color:white;text-decoration:none;font-weight:900">Start practice →</a>
+</div></section>
 <div class="notice">These are original, simplified revision notes and practice activities based on the Class 6 Kerala syllabus and the chapter titles you provided. Use the textbook as the final reference for exact wording and textbook-specific activities.</div>
 <section class="chapter-list" id="chapter-list" aria-live="polite"></section>
 <footer style="text-align:center;color:#7a8b93;font-size:12px;padding:22px">Sam’s Visual Learning Studio • Learn one step at a time</footer>
@@ -23,6 +29,7 @@ const nav=document.getElementById('term-switch');
 for(let t=1;t<=3;t++){const a=document.createElement('a');a.href='term-chapters.html?subject='+encodeURIComponent(subject)+'&term='+t;a.textContent='Term '+t+(t===1?' · Onam':t===2?' · Christmas':' · Annual');if(t===term)a.className='active';nav.appendChild(a)}
 const termUnits=subject==='english'?{1:[1,2],2:[3,4],3:[5]}:{1:[1],2:[2],3:[3]};
 const list=document.getElementById('chapter-list'), chapters=entry&&entry.terms?(termUnits[term]||[term]).flatMap(unit=>entry.terms[unit]||[]):[];
+if(subject==='malayalam1'&&term===2)document.getElementById('malayalam-one-word-card').style.display='block';
 if(!chapters.length){list.innerHTML='<div class="empty">This subject’s chapter list has not been added yet. Please check the syllabus update.</div>';return}
 chapters.forEach((c,i)=>{
 const card=document.createElement('article');card.className='chapter-card';
