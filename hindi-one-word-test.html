@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5fbff">
+<title>Hindi One-Word Test • Sam’s Learning</title>
+<link rel="stylesheet" href="style.css">
+<style>
+*{box-sizing:border-box}.test-page{min-height:100vh;background:linear-gradient(180deg,#eef8ff,#fffdf7);color:#243d50}.test-shell{max-width:850px;margin:auto;padding:18px 15px 50px}.top a{color:#347e9d;text-decoration:none;font-weight:850}.hero{text-align:center;padding:28px 8px 22px}.badge{display:inline-block;padding:7px 12px;border-radius:99px;background:#e8f2ff;color:#285b91;font-size:11px;font-weight:900;letter-spacing:.1em}.hero h1{font-size:clamp(28px,6vw,42px);margin:12px 0 7px}.hero p{margin:0;color:#657b8c}.summary{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:14px}.summary span{background:#fff;border:1px solid #dce8f1;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:800}.instructions{padding:13px 15px;background:#fff8e7;border:1px solid #f0e2bd;border-radius:14px;font-size:13px;line-height:1.5;margin-bottom:17px}.chapter-label{margin:20px 0 10px;padding:10px 13px;border-radius:12px;background:#eaf4ff;color:#1f5686;font-weight:900}.q-card{background:#fff;border:1px solid #dfe9f0;border-radius:15px;padding:14px 15px;margin:10px 0;box-shadow:0 5px 15px #1f475708}.q-top{display:flex;gap:10px;align-items:flex-start}.num{flex:0 0 30px;height:30px;border-radius:10px;background:#eaf4ff;color:#245b9a;display:grid;place-items:center;font-weight:900}.q-text{font-size:16px;line-height:1.55;font-weight:750;flex:1}.q-card input{display:block;width:100%;margin:11px 0 0;padding:12px 13px;border:1px solid #cbdce8;border-radius:10px;font:inherit;font-size:16px;background:#fbfdff}.q-card input:focus{outline:2px solid #91c5e8;border-color:#5797c5}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.btn{border:0;border-radius:12px;padding:13px 18px;font:inherit;font-weight:900;cursor:pointer}.primary{background:#1c6595;color:white}.secondary{background:#eaf1f6;color:#36556b}.result{display:none;background:#fff;border:1px solid #cfe1ef;border-radius:18px;padding:18px;margin:20px 0}.result h2{margin:0 0 8px}.score{font-size:30px;font-weight:950;color:#1d6594}.answer-row{padding:9px 0;border-top:1px solid #edf1f4;font-size:14px;line-height:1.5}.correct{color:#18734b;font-weight:850}.wrong{color:#ad4b37;font-weight:850}.small{font-size:12px;color:#71818b}footer{text-align:center;color:#82919b;font-size:12px;padding:22px}
+</style></head>
+<body class="test-page"><main class="test-shell">
+<header class="top"><a href="term-chapters.html?subject=hindi&term=2">← Hindi · Term 2</a></header>
+<section class="hero"><span class="badge">SAM’S HINDI EXAM PRACTICE</span><h1>One-Word Questions &amp; Answers</h1><p>मीठा संतरा • चलें</p><div class="summary"><span>20 Questions</span><span>20 Marks</span><span>1 mark each</span></div></section>
+<div class="instructions"><strong>How to answer:</strong> Read each question and type a short, one-word answer in Hindi. Each correct answer gets 1 mark. Submit when all answers are complete. Your score and model answers will appear at the end.</div>
+<form id="testForm" autocomplete="off">
+<div class="chapter-label">🍊 Chapter 5 · मीठा संतरा (Questions 1–10)</div>
+<div id="chapter5"></div>
+<div class="chapter-label">🚲 Chapter 6 · चलें (Questions 11–20)</div>
+<div id="chapter6"></div>
+<div class="actions"><button class="btn primary" type="submit">Submit Test &amp; See Score</button><button class="btn secondary" type="button" id="resetBtn">Try Again</button></div>
+</form>
+<section class="result" id="result" aria-live="polite"><h2>Your Result</h2><div class="score" id="score"></div><p id="message"></p><h3>Model Answers</h3><div id="answers"></div></section>
+<footer>Sam’s Visual Learning Studio • Learn one step at a time</footer>
+</main>
+<script>
+const questions=[
+{q:"लेखक शिलांग में कहाँ रहता था?",a:"मल्की",display:"मल्की हिल्स",alts:["मल्की हिल्स"]},
+{q:"बूढ़ी कांग की छोटी दुकान में क्या बिकता था?",a:"फल",display:"मौसमी फल",alts:["मौसमी फल"]},
+{q:"बूढ़ी कांग के साथ कभी-कभी कौन बैठती थी?",a:"पोती",display:"उसकी पोती",alts:["उसकी पोती","नातिन"]},
+{q:"बूढ़ी कांग किस चीज़ में चीनी डालने की बात करती थी?",a:"संतरा",display:"संतरा",alts:["संतरे"]},
+{q:"बूढ़ी कांग ने कितनी चीनी डालने की बात कही?",a:"पव्वा",display:"एक पव्वा",alts:["एक पव्वा"]},
+{q:"लेखक ने संतरे किससे खरीदे?",a:"कांग",display:"बूढ़ी कांग",alts:["बूढ़ी कांग"]},
+{q:"बूढ़ी कांग की दुकान किस प्रकार की थी?",a:"गुमटी",display:"गुमटी",alts:["छोटी गुमटी"]},
+{q:"लेखक को कितने साल बाद वह दुकान याद आई? (पाठ में समय)",a:"बीस",display:"बीस साल",alts:["बीस साल"]},
+{q:"युवती ने लेखक से क्या लेने से इनकार किया?",a:"पैसा",display:"पैसा",alts:["पैसे"]},
+{q:"युवती के मन में लेखक के प्रति कौन-सा भाव था?",a:"कृतज्ञता",display:"कृतज्ञता",alts:["कृतज्ञता का भाव"]},
+{q:"टुक्कू कई दिनों से क्या माँग रहा था?",a:"साइकिल",display:"साइकिल",alts:["एक साइकिल"]},
+{q:"अम्मा ने अपने लिए क्या खरीदा?",a:"स्कूटी",display:"स्कूटी",alts:["स्कूटर"]},
+{q:"टुक्कू किससे गिर पड़ा?",a:"साइकिल",display:"साइकिल",alts:["साइकिल से"]},
+{q:"टुक्कू के सिर पर क्या निकल आया?",a:"गूमड़",display:"गूमड़",alts:["गूमड़"]},
+{q:"अम्मा की कौन-सी दो जगह छिल गईं?",a:"कोहनी",display:"कोहनी और घुटने",alts:["कोहनी और घुटने"]},
+{q:"वाहन चलाते समय सिर की सुरक्षा के लिए क्या पहनना चाहिए?",a:"हेलमेट",display:"हेलमेट",alts:["हेलमेट"]},
+{q:"कार चलाते समय क्या पहनना चाहिए?",a:"सीटबेल्ट",display:"सीट बेल्ट",alts:["सीट बेल्ट","सीट-बेल्ट"]},
+{q:"अम्मा और टुक्कू ने अगले दिन फिर क्या करने का निश्चय किया?",a:"कोशिश",display:"कोशिश (चलाने की)",alts:["कोशिश करना","चलाना"]},
+{q:"‘चलाऊँगी’ किस काल का उदाहरण है?",a:"भविष्यतकाल",display:"भविष्यतकाल",alts:["भविष्य काल"]},
+{q:"टुक्कू और अम्मा रात में एक-दूसरे को क्या डालकर सोए?",a:"बाँहें",display:"बाँहें (गले में)",alts:["बाँहें"]}
+];
+const norm=s=>s.toLowerCase().replace(/[\s।.,!?՝-]/g,"").replace(/[़]/g,"");
+function render(){
+ [0,10].forEach((start,group)=>{const target=document.getElementById(group===0?"chapter5":"chapter6");target.innerHTML="";questions.slice(start,start+10).forEach((item,i)=>{const n=start+i+1;const card=document.createElement("div");card.className="q-card";card.innerHTML='<div class="q-top"><span class="num">'+n+'</span><label class="q-text" for="ans'+n+'"></label></div><input id="ans'+n+'" name="q'+n+'" type="text" inputmode="text" placeholder="अपना उत्तर लिखें…" aria-label="Answer for question '+n+'">';card.querySelector("label").textContent=item.q;target.appendChild(card)})});
+}
+document.getElementById("testForm").addEventListener("submit",e=>{e.preventDefault();let score=0;const box=document.getElementById("answers");box.innerHTML="";questions.forEach((q,i)=>{const n=i+1,entered=document.getElementById("ans"+n).value.trim();const acceptable=[q.a,...q.alts];const ok=acceptable.some(v=>norm(v)===norm(entered));if(ok)score++;const row=document.createElement("div");row.className="answer-row";row.innerHTML='<strong>Q'+n+'.</strong> '+q.q+'<br><span class="'+(ok?"correct":"wrong")+'">'+(ok?"✓ Correct":"✗ Your answer: "+(entered||"—"))+'</span><br><strong>Model answer:</strong> '+q.display;box.appendChild(row)});document.getElementById("score").textContent=score+" / 20";document.getElementById("message").textContent=score>=16?"Excellent work, Sam! Keep it up.":score>=10?"Good effort! Revise the model answers and try again.":"Keep practising, Sam. You can improve with one more try.";document.getElementById("result").style.display="block";document.getElementById("result").scrollIntoView({behavior:"smooth",block:"start"})});
+document.getElementById("resetBtn").addEventListener("click",()=>{document.getElementById("testForm").reset();document.getElementById("result").style.display="none";window.scrollTo({top:0,behavior:"smooth"})});
+render();
+</script></body></html>
