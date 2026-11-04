@@ -47,5 +47,15 @@ if(c.source){const src=document.createElement('section');src.className='study-se
 card.append(head,body);list.appendChild(card);
 });
 })();
+</script><script>
+(function(){
+ const p=new URLSearchParams(location.search);
+ if(p.get('subject')!=='hindi'||p.get('term')!=='2')return;
+ const card=document.createElement('section');
+ card.style.cssText='margin:0 0 20px;padding:18px;border:1px solid #c9dfef;border-radius:20px;background:linear-gradient(135deg,#eef7ff,#f7fbff);display:flex;align-items:center;gap:14px;flex-wrap:wrap';
+ card.innerHTML='<div style="width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:#dceeff;font-size:25px">📝</div><div style="flex:1;min-width:190px"><div style="font-size:11px;font-weight:900;letter-spacing:.1em;color:#376b96">EXAM PRACTICE • 20 MARKS</div><h2 style="margin:4px 0;color:#234b70;font-size:20px">One-Word Q &amp; A Test</h2><p style="margin:0;color:#5d7487;font-size:13px;line-height:1.5">Hindi Chapters 5 &amp; 6 • 20 questions • 1 mark each</p></div><a href="hindi-one-word-test.html" style="display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 17px;border-radius:12px;background:#1d6594;color:white;text-decoration:none;font-weight:900">Start 20-mark test →</a>';
+ const nav=document.getElementById('term-switch');
+ nav.insertAdjacentElement('afterend',card);
+})();
 </script><script src="read-aloud.js?v=20261015-001"></script>
 </body></html>
